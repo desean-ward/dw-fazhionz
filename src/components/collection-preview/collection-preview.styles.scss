@@ -1,0 +1,27 @@
+   .collection-preview {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    width: 91vw;
+    margin: 0 auto;
+    
+    .title {
+        font-size: 38px;
+        margin-bottom: 30px;
+    }
+    
+    .items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 1px;
+
+        &.collection-item {
+            margin-bottom: 30px;
+        }
+    }
+
+    .preview {
+        display: flex;
+        justify-content: space-between;
+    }
+} 
