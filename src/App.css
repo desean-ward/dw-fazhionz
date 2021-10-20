@@ -1,10 +1,14 @@
-* {
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
   font-family: 'Open Sans Condensed' !important;
-  padding: 0px 60px;
+  padding: 0px;
 }
 
 a {
@@ -12,5 +16,8 @@ a {
   text-decoration: none !important;
 
 }
+
+
+
 
 /* @import "~bootstrap/scss/bootstrap"; */

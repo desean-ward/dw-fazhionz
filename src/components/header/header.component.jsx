@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { auth } from '../../firebase/firebase.utils.js';
@@ -13,46 +12,55 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 
 
-import './header.styles.scss';
+import { HeaderContainer, Left, Right, LogoContainer, TitleContainer, OptionsContainer, OptionLink, HamburgerContainer } from './header.styles';
 
 
 
 /* Destructure the currentUser property */
-const Header = ({ currentUser, hidden }) => (
-   
-    <div className = 'header'> 
-        <Link className='logo-container' to="/">
-        <img src="https://img.icons8.com/ios-filled/50/000000/jacket.png" alt="Logo" />
-        </Link>
+const Header = ({ currentUser, hidden }) => {
 
-        <Link className="title" to="/"><h1>D.W. FAZHIONZ</h1></Link>
+    return (
         
-        <div className='options'>
-        <Link className='option' to='/shop'>SHOP</Link>
+        <HeaderContainer> 
+        <Left>
+            <LogoContainer to="/">
+            <img src="https://img.icons8.com/ios-filled/50/000000/jacket.png" alt="Logo" />
+            </LogoContainer>
 
-        <Link className='option' to='/shop'>CONTACT</Link>
-        
-        {
-            /* Conditionally renders a 'div' if currentUser is an object,
-            or a 'Link' if it's false */
-            currentUser ? 
-            <div className='option' onClick={() => auth.signOut()}>
-                SIGN OUT
-            </div>
-            :
-            <Link className='option' to='/sign-in'>SIGN IN</Link>
-        }
+            <TitleContainer to="/">D.W. FAZHIONZ</TitleContainer>
+        </Left>
+    
+        <Right>
+            <OptionsContainer>
+            <OptionLink to='/shop'>SHOP</OptionLink>
 
-        <CartIcon />
-        </div>
+            <OptionLink to='/shop'>CONTACT</OptionLink>
+            
+            {
+                /* Conditionally renders a 'div' if currentUser is an object,
+                or a 'Link' if it's false */
+                currentUser ? 
+                <OptionLink as='div' onClick={() => auth.signOut()}>
+                    SIGN OUT
+                </OptionLink>
+                :
+                <OptionLink to='/sign-in'>SIGN IN</OptionLink>
+            }
+            
+            <CartIcon />
 
-        {
-            /* Toggle the Shopping Cart Dropdown */
-            hidden ? null :
-            <CartDropdown hidden/>
-        }
-    </div>
-)
+            </OptionsContainer>
+
+            {
+                /* Toggle the Shopping Cart Dropdown */
+                hidden ? null :
+                <CartDropdown hidden/>
+            }
+        </Right>
+                
+        </HeaderContainer>
+    )
+ }
 
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
