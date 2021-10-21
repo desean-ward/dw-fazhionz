@@ -21,6 +21,11 @@
       margin-left: 7.5px;
     }
 
+    @media screen and (max-width: 800px) {
+      height: 200px;
+}
+
+
     .background-image {
         width: 100%;
         height: 100%;
@@ -34,7 +39,7 @@
         /* Any element with the background-image class */
         & .background-image {
             transform: scale(1.1);
-            transition: transform 3s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+            transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95);
         }
 
         & .content {

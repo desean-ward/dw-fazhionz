@@ -4,6 +4,14 @@ import styled from 'styled-components';
 export const Container = styled.div`
     display: flex;
     margin-top: 150px;
+
+    @media screen and (max-width: 700px) {
+        padding: 0px;
+        font-size: 20px;
+
+        flex-direction: column;
+        margin-top: 20px;
+    }
 `;
 
 export const Left = styled.div`
@@ -13,7 +21,9 @@ export const Left = styled.div`
     padding: 20px;
 `;
 
-export const Logo = styled.h1``;
+export const Logo = styled.h1`
+    font-weight: bolder;
+`;
 
 export const Description = styled.p`
     margin: 20px 0px;
@@ -39,10 +49,16 @@ export const SocialIcon = styled.div`
 export const Center = styled.div`
     flex: 1;
     padding: 20px;
+
+    @media screen and (max-width: 700px) {
+        padding-right: 10px;
+        margin-top: 20px;
+    }
 `;
 
 export const Title = styled.h3`
     margin-bottom: 30px;
+    font-weight: bolder;
 `;
 
 export const List = styled.ul`

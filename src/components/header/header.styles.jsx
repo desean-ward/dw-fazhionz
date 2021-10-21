@@ -15,6 +15,13 @@ export const HeaderContainer = styled.div`
     justify-content: space-between;
     margin-bottom: 25px;
     border-bottom: black 1px solid;
+
+    @media screen and (max-width: 800px) {
+        padding: 10px;
+        height: 60px;
+        margin-bottom: 20px;
+  }
+}
 `;
 
 export const Left = styled.div`
@@ -25,15 +32,10 @@ export const Left = styled.div`
     padding-left: 60px;
 `;
 
-export const Center = styled.div`
-    flex: 1;
-    display: flex;
-    align-items: center;
-`;
 
 
 export const Right = styled.div`
-    flex: 1;
+    flex: 2;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -47,6 +49,13 @@ export const LogoContainer = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;  
+
+    @media screen and (max-width: 800px) {
+        padding: 10px;
+        margin-right: 10px;
+        width: 50px;
+    }
+
 `;
 
 export const TitleContainer = styled(Link)`
@@ -58,13 +67,30 @@ justify-content: center;
 margin-top: 0px;
 margin-left: 0px;
 font-size: 24px;
+
+@media screen and (max-width: 800px) {
+    padding: 10px;
+    font-size: 18px;
+}
 `;
+
 export const OptionsContainer = styled.div`
     width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    @media screen and (max-width: 800px) {
+        width: 80%;
+    }
+
+    @media screen and (max-width: 620px) {
+        padding: 5px;
+        flex: 2;
+        
+    }
+
 `;
 
 export const OptionsContainerStyles = css`
@@ -99,10 +125,6 @@ export const HamburgerContainer = styled.div`
         top: 20px;
         
     }
+
+    
 `;
-
-
-const ShowNav = () => {
-    const [isOpen, setIsOpen] = useState();
-}
-

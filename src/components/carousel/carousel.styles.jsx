@@ -10,6 +10,10 @@ export const Container = styled.div`
     position: relative;
     margin-bottom: 110px;
     overflow: hidden;
+
+    @media screen and (max-width: 800px) {
+        height: 50vh;
+    }
 `;
 
 export const ArrowContainer = styled.div`
@@ -27,7 +31,7 @@ export const ArrowContainer = styled.div`
     right: ${props => props.direction === "right" && "10px"};
     margin: auto;
     cursor: pointer;
-    opacity: 0.9
+    opacity: 0.5;
     z-index: 5;
 `;
 
@@ -53,6 +57,10 @@ export const Slide = styled.div`
     height: 100vh;
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 800px) {
+        height: 50vh;
+    }
 `;
 
 export const ImageContainer = styled.div`
@@ -68,10 +76,18 @@ export const Image = styled.img`
 export const InfoContainer = styled.div`
     flex: 1;
     padding 50px;
+
+    @media screen and (max-width: 800px) {
+        margin-top: -95px;
+    }
 `;
 
 export const Title = styled.h1`
     font-size: 70px;
+
+    @media screen and (max-width: 800px) {
+        font-size: 50px;
+    }
 `;
 
 export const Description = styled.p`
@@ -79,6 +95,10 @@ export const Description = styled.p`
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 3px;
+
+    @media screen and (max-width: 800px) {
+        font-size: 15px;
+    }
 `;
 
 export const Button = styled.button`
@@ -87,4 +107,5 @@ export const Button = styled.button`
     background-color: transparent;
 `;
 
-export const ButtonContainer = styled(Link)``;
+export const ButtonContainer = styled(Link)`
+`;

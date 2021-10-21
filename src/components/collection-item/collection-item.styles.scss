@@ -23,6 +23,13 @@
         position: absolute;
         top: 200px;
         display: none;
+
+        @media screen and (max-width: 800px) {
+            display: block;
+            opacity: 0.9;
+            min-width: unset;
+            padding: 0px 10px;
+      }
     }
 
     &:hover {
@@ -34,6 +41,7 @@
             opacity: 0.85;
             display: flex;
         }
+    
     }
 
     .collection-footer {

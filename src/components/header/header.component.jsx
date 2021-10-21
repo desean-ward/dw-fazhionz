@@ -34,7 +34,7 @@ const Header = ({ currentUser, hidden }) => {
             <OptionsContainer>
             <OptionLink to='/shop'>SHOP</OptionLink>
 
-            <OptionLink to='/shop'>CONTACT</OptionLink>
+            <OptionLink to='/contact'>CONTACT</OptionLink>
             
             {
                 /* Conditionally renders a 'div' if currentUser is an object,

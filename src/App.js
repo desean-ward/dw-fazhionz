@@ -2,6 +2,7 @@ import React from 'react';
 
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component.jsx';
+import ContactPage from './pages/contact/contact.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx';
 import CheckoutPage from './pages/checkout/checkout.component';
 
@@ -9,9 +10,10 @@ import HeaderMessage from './components/header-message/header-message.component'
 import Header from './components/header/header.component.jsx';
 import Footer from './components/footer/footer.component.jsx';
 
+import { GlobalStyle } from './global.styles';
+
 // import CollectionPreview from './components/collection-preview/collection-preview.component.jsx';
 
-import './App.css';
 import './pages/homepage/homepage.styles.scss';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -68,11 +70,13 @@ componentDidMount(){
             if a user is signed in or out (an object or null) */ }
             
             {/* <MessageModal currentUser={ this.state.currentUser } /> */}
+            <GlobalStyle />
           <HeaderMessage /> 
           <Header />
           <Switch>
               <Route exact path='/' component={ HomePage } />
               <Route path='/shop' component={ ShopPage } />
+              <Route path='/contact' component={ ContactPage } />
               <Route exact path='/checkout' component={ CheckoutPage } />
               <Route exact path='/sign-in' render={() => this.props.currentUser ? 
                (<Redirect to='/' />) : (<SignInAndSignUpPage />) }/>

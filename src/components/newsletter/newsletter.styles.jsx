@@ -11,11 +11,20 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    @media screen and (max-width: 800px) {
+        height: 30vh;
+        margin-top: 60px;
+    }
 `;
 
 export const Title = styled.h1`
     font-size: 70px;
     margin-bottom: 20px;
+
+    @media screen and (max-width: 800px) {
+       font-size: 50px;
+    }
 `;
 
 export const Description = styled.div`

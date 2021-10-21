@@ -21,6 +21,12 @@ export const Center = styled.div`
     justify-content: center;
     color: white;
 
+    @media screen and (max-width: 800px) {
+        flex: 2;
+        padding: 10px;
+        font-size: 14px;
+    }
+
 `;
 
 export const Right = styled.div`
@@ -41,6 +47,7 @@ export const SearchContainer = styled.div`
     margin-left: 10px;
     background-color: white;
     height: 26px;
+    cursor: pointer;
 `;
 
 export const Input = styled.input`
