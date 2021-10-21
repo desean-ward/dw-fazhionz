@@ -26,6 +26,8 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import { create } from 'domain';
 // import MessageModal from './components/modal/message-modal.component.jsx';
 
+import ScrollToTop from './ScrollToTop.js';
+
 
 
 class App extends React.Component {
@@ -71,6 +73,7 @@ componentDidMount(){
             
             {/* <MessageModal currentUser={ this.state.currentUser } /> */}
             <GlobalStyle />
+            <ScrollToTop />
           <HeaderMessage /> 
           <Header />
           <Switch>
