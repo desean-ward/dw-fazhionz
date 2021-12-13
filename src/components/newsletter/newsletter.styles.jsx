@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     height: 60vh;
     width: 100vw;
-    margin-top: 200px;
+    margin-top: 130px;
     color: white;
     background-color: maroon;
     display: flex;
@@ -21,6 +21,7 @@ export const Container = styled.div`
 export const Title = styled.h1`
     font-size: 70px;
     margin-bottom: 20px;
+    margin-top: -50px;
 
     @media screen and (max-width: 800px) {
        font-size: 50px;

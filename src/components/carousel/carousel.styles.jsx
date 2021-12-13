@@ -8,7 +8,6 @@ export const Container = styled.div`
     height: 100vh;
     display: flex;
     position: relative;
-    margin-bottom: 60px;
     overflow: hidden;
 
     @media screen and (max-width: 800px) {
@@ -54,7 +53,7 @@ export const Wrapper = styled.div`
     height: 100%;
     display: flex;
     transition: all 1.5s ease;
-    transform: translateX(${(props) => props.slideIndex * -100}vw)
+    transform: translateZ(${(props) => props.slideIndex * -100}vw)
 `;
 
 export const Slide = styled.div`
