@@ -18,9 +18,14 @@
 
   }
   .name,
-  .quantity,
   .price {
     width: 23%;
+    padding-left: 10px;
+  }
+
+  .quantity {
+    width: 23%;
+    padding-left: 5px;
   }
 
   .quantity {
@@ -28,6 +33,7 @@
 
     .arrow {
       cursor: pointer;
+      border: 1px solid black;
 
     }
 
@@ -38,7 +44,11 @@
   }
 
   .remove-button {
-    padding-left: 12px;
+    padding-left: 30px;
     cursor: pointer;
+
+    &:hover {
+      color: red;
+    }
   }
 }

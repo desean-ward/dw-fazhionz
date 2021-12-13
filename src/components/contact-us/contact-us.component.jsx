@@ -5,19 +5,15 @@ import CustomButton from '../../components/custom-button/custom-button.component
 import { Container, Title, Message, InputContainer, NameInput, EmailInput, MessageInput, ButtonSend } from './contact-us.styles';
 
 
-
 const Contact = () => {
 
     const handleClick = () => {
         alert('Clicked');
-
     }
 
     return (
         <Container>
             <Title>CONTACT US</Title>
-
-
             <Message>We'd love to hear from you!</Message>
 
             <InputContainer>

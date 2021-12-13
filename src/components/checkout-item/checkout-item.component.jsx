@@ -8,7 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { VscTrash } from 'react-icons/vsc';
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
+import { BiPlus, BiMinus } from 'react-icons/bi';
 
 import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions';
 
@@ -25,9 +25,9 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
             <span className="name">{name}</span>
             
             <span className="quantity">
-                <div className="arrow" onClick={() => removeItem(cartItem)}><FaArrowAltCircleLeft /></div>
+                <div className="arrow" onClick={() => removeItem(cartItem)}><BiMinus /></div>
                 <span className="value">{quantity}</span>
-                <div className="arrow" onClick={() => addItem(cartItem)}><FaArrowAltCircleRight /></div>
+                <div className="arrow" onClick={() => addItem(cartItem)}><BiPlus /></div>
             </span>
 
             <span className="price">${price}</span>

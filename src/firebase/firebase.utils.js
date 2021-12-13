@@ -13,8 +13,6 @@ const config = {
     measurementId: "G-XNLMQXZQWQ"
 };
 
-
-
 /* Initialize the database */
 firebase.initializeApp(config);
 
@@ -28,7 +26,6 @@ const provider = new firebase.auth.GoogleAuthProvider();
 /* To always trigger the Google popup */
 provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
-
 
 /* Checks to see if a userAuth exists/returns */
  export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -56,7 +53,6 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider);
             console.log('Error creating user', error.message);
         }
     }
-
     
     return userRef;
 };

@@ -7,12 +7,9 @@ import { FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 import { GrMail } from 'react-icons/gr';
 
 
-
-
 const Footer = () => {
     return (
         <Container>
-
             <Left>
                 <Logo>D.W. Fazhionz</Logo>
                 <Description>
@@ -67,7 +64,6 @@ const Footer = () => {
                 <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
             
             </Right>
-        
         </Container>
     )   
 }

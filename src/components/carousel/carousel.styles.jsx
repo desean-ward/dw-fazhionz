@@ -8,7 +8,7 @@ export const Container = styled.div`
     height: 100vh;
     display: flex;
     position: relative;
-    margin-bottom: 110px;
+    margin-bottom: 60px;
     overflow: hidden;
 
     @media screen and (max-width: 800px) {
@@ -33,6 +33,11 @@ export const ArrowContainer = styled.div`
     cursor: pointer;
     opacity: 0.5;
     z-index: 5;
+
+    &:hover {
+        transform: scale(1.2);
+        transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95); 
+    }
 `;
 
 export const LeftArrow = styled(MdArrowLeft)`

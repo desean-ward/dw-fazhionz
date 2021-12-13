@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component.jsx';
+
 import './sign-in.styles.scss';
 
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js';
@@ -15,7 +16,6 @@ class SignIn extends Component {
             password: '',
             displayName: ''
         }
-
     }
 
     /* Prevent default event from firing */
@@ -74,13 +74,9 @@ class SignIn extends Component {
                         </CustomButton>
                     </div>
                 </form>
-            
-                </div>
-
-                
+            </div>
         );
     }
-
 }
 
 export default SignIn;

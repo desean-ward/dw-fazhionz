@@ -10,15 +10,11 @@ import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
-
-
 import { HeaderContainer, Left, Right, LogoContainer, TitleContainer, OptionsContainer, OptionLink, HamburgerContainer } from './header.styles';
-
 
 
 /* Destructure the currentUser property */
 const Header = ({ currentUser, hidden }) => {
-
     return (
         
         <HeaderContainer> 
@@ -57,7 +53,6 @@ const Header = ({ currentUser, hidden }) => {
                 <CartDropdown hidden/>
             }
         </Right>
-                
         </HeaderContainer>
     )
  }
