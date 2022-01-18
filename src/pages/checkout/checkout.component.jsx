@@ -9,51 +9,62 @@ import CheckoutItem from '../../components/checkout-item/checkout-item.component
 
 import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
 
+import AnimatedPage from '../../components/animated-page/animated-page.component'
+
+
 import './checkout.styles.scss';
 
 const CheckoutPage = ({ cartItems, total }) => (
-    <div className='checkout-page'>
-        <div className="checkout-header">
-            <div className="header-block">
-                <span>Product</span>
+    <AnimatedPage>
+        <div className='checkout-page'>
+            <div className="checkout-header maroon">
+                <div className="header-block">
+                    <span>Product</span>
+                </div>
+
+                <div className="header-block">
+                    <span>Description</span>
+                </div>
+
+                <div className="header-block">
+                    <span>Quantity</span>
+                </div>
+
+                <div className="header-block">
+                    <span>Subtotal</span>
+                </div>
+
+                <div className="header-block">
+                    <span>Remove</span>
+                </div>
             </div>
 
-            <div className="header-block">
-                <span>Description</span>
+                <div className="cart-items">
+                    {
+                    
+                        cartItems.map(cartItem => (
+                            <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+                        ))
+                    
+                    }
+                </div>
+
+            <div className="total">
+                <span>TOTAL: ${total}</span>
             </div>
 
-            <div className="header-block">
-                <span>Quantity</span>
+            <div className="checkoutMessage maroon">
+                <p>
+                **  Please use the following test card information!  **
+                    <br />
+                    4242 4242 4242 4242 -- Exp: 12/22 -- CVV: 123
+                </p>
             </div>
-
-            <div className="header-block">
-                <span>Price</span>
-            </div>
-
-            <div className="header-block">
-                <span>Remove</span>
+            <div className="button">
+                <StripeCheckoutButton price={total} cartItems={cartItems} total={total} />
             </div>
         </div>
-        {
-            cartItems.map(cartItem => 
-                <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-            )
-        }
-        <div className="total">
-            <span>TOTAL: ${total}</span>
-        </div>
-
-        <div className="checkoutMessage">
-            <p>
-               ** Please use the following test card for payments! **
-                <br />
-                4242 4242 4242 4242 -- Exp: 12/22 -- CVV: 123
-            </p>
-        </div>
-        <div className="button">
-            <StripeCheckoutButton price={total} cartItems={cartItems} total={total} />
-        </div>
-    </div>
+    </AnimatedPage>
 );
 
 const mapStateToProps = createStructuredSelector({

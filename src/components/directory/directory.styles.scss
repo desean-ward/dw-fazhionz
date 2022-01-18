@@ -1,10 +1,31 @@
+.directory-container {
+    position: relative;
+    width: 100vw;
+    height: 130vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-contents: center;
+    align-items: center;
+    //padding: 10vh 0 125vh 0;
+    //margin-top: 20vh;
+}
+
 .directory-menu {
-    width: 82vw;
+    position: absolute;
+    width: 80%;
+    height: 100vh;
+    top: 10vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    align-content: center;
+    //margin-left: 50%;
+    //transform: translateX(-50%);
+    justify-content: center;
+    align-content: center;
+    
 
-    @media screen and (max-width: 800px) {
-        margin-top: -120px;;
-    }
+    // @media screen and (max-width: 800px) {
+    //     margin-top: -120px;;
+    // }
   }

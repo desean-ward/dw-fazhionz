@@ -1,66 +1,209 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react'
 
-import { Container, ArrowContainer, LeftArrow, RightArrow, Wrapper, Slide, ImageContainer, Image, InfoContainer, Title, Description, Button, ButtonContainer } from './carousel.styles';
+import {
+	Container,
+	ArrowContainer,
+	LeftArrow,
+	RightArrow,
+	Wrapper,
+	Slide,
+	ImageContainer,
+	Image,
+	InfoContainer,
+	Title,
+	Description,
+	ButtonContainer,
+	CarouselNav,
+	NavIndicator,
+} from './carousel.styles'
 
-import CustomButton from '../../components/custom-button/custom-button.component';
+import CustomButton from '../../components/custom-button/custom-button.component'
 
-import { sliderItems } from './data.js';
-
-
+import { sliderItems } from './data.js'
+import { truncateSync } from 'fs'
 
 const Carousel = () => {
-    const [slideIndex, setSlideIndex] = useState(0);
+	const [slideIndex, setSlideIndex] = useState(0)
+	const [slideImg, setSlideImg] = useState('')
+	const [slideNav, setSlideNav] = useState(0)
+	const previousIndex = null
+	const [isActive, setIsActive] = useState(false)
+	const [isLoading, setIsLoading] = useState(null)
 
-    const handleClick = (direction) => {
-        if (direction === "left") {
-            setSlideIndex(slideIndex > 0 ? slideIndex -1 : 3)
-        } else {
-            setSlideIndex(slideIndex < 3 ? slideIndex + 1 : 0)
-        }
-    }
+	const slideRef = useRef([])
+	const navRef = useRef([])
+	slideRef.current = []
+	navRef.current = []
 
-    return (
-        <Container>
+	const imgContainerRef = useRef(null)
+	const imgRef = useRef(null)
+	const prevArrowRef = useRef(null)
+	const nextArrowRef = useRef(null)
+	const titleRef = useRef(null)
+	const descRef = useRef(null)
+	const btnContainerRef = useRef(null)
+	const btnRef = useRef(null)
 
-            <ArrowContainer direction="left" onClick={() => handleClick("left")}>
-                <LeftArrow />
-            </ArrowContainer>
+	const firstClone = { ...sliderItems[slideIndex] }
+	const lastClone = { ...sliderItems[sliderItems.length - 1] }
 
-            <Wrapper slideIndex={slideIndex}>
-                {sliderItems.map((item) => (
-                 
-                <Slide>
-                    <ImageContainer>
-                        <Image src={ item.img }>
-                        </Image>
-                    </ImageContainer>
+	firstClone.id = 'first-clone'
+	lastClone.id = 'last-clone'
 
-                    <InfoContainer>
-                        <Title>
-                        { item.title }
-                        </Title>
+	// sliderItems.push(firstClone);
+	// sliderItems.unshift(lastClone);
 
-                        <Description>
-                        { item.desc }
-                        </Description>
+	// console.log(
+	// 	'SLIDER ITEMS: ' +
+	// 		JSON.stringify(sliderItems) +
+	// 		' COUNT: ' +
+	// 		sliderItems.length +
+	// 		' CURRENT INDEX: ' +
+	// 		slideIndex
+	// )
 
-                        <ButtonContainer to="/shop">
-                            <CustomButton>
-                            SHOP NOW
-                            </CustomButton>
-                        </ButtonContainer>
-                    </InfoContainer>
-                </Slide>
-                ))
-            }
-            </Wrapper>
+	useEffect(() => {
+		setIsLoading(true)
+		if (sliderItems.length === 0) {
+			return
+		}
 
-            <ArrowContainer direction="right" onClick={() => handleClick("right")}>
-                <RightArrow />
-            </ArrowContainer>
+		const allLoading = document.querySelectorAll('.loading')
+		const allHidden = document.querySelectorAll('.hidden')
 
-        </Container>
-    )
+		for (let i = 0; i < allLoading.length; i++) {
+			allLoading[i].classList.remove('loading')
+		}
+
+		for (let i = 0; i < allHidden.length; i++) {
+			allHidden[i].classList.remove('hidden')
+		}
+
+		setIsLoading(false)
+	}, [])
+
+	/********** Handles the carousel navigation buttons **********/
+	useEffect(() => {
+		const interval = setInterval(() => {
+			handleClick('right')
+		}, 5000)
+
+		updateSelection()
+
+		return () => clearInterval(interval)
+	}, [{ Carousel }])
+
+	const handleClick = (direction) => {
+		if (direction === 'left') {
+			setSlideIndex(() => (slideIndex > 0 ? slideIndex - 1 : 3))
+		} else {
+			setSlideIndex(() => (slideIndex < 3 ? slideIndex + 1 : 0))
+
+			// const firstSlide = sliderItems.shift();
+			//sliderItems.push(firstSlide);
+			//setSlideIndex(0);
+		}
+	}
+
+	const updateSelection = () => {
+		for (let i = 0; i < sliderItems.length; i++) {
+			if (i === slideIndex) {
+				navRef.current[i].style.backgroundColor = 'maroon'
+			} else {
+				navRef.current[i].style.backgroundColor = 'black'
+			}
+		}
+	}
+
+	const addToSlideRefs = (el) => {
+		if (el && !slideRef.current.includes(el)) {
+			slideRef.current.push(el)
+		}
+	}
+
+	const addToNavRefs = (el) => {
+		if (el && !navRef.current.includes(el)) {
+			navRef.current.push(el)
+		}
+	}
+
+	return (
+		<Container>
+			{/********** LEFT ARROW **********/}
+			<ArrowContainer
+				ref={prevArrowRef}
+				className='loading'
+				direction='left'
+				onClick={() => handleClick('left')}>
+				<LeftArrow className='maroon' />
+			</ArrowContainer>
+
+			{/********** CAROUSEL **********/}
+			<Wrapper id='wrapper' slideIndex={slideIndex}>
+				{/********** SLIDES **********/}
+				{sliderItems.map((item) => (
+					<Slide key={item.id} ref={addToSlideRefs}>
+						{/********** SLIDE IMAGE **********/}
+						<ImageContainer
+							ref={imgContainerRef}
+							className='img-container loading'>
+							<Image
+								ref={imgRef}
+								className='image-blurred-edge hidden'
+								backgroundImage={item.img}
+							/>
+						</ImageContainer>
+
+						{/********** SLIDE INFO **********/}
+						<InfoContainer>
+							<Title ref={titleRef} className='loading'>
+								<span className='maroon strong'>{item.title}</span>
+							</Title>
+
+							<Description ref={descRef} className='loading'>
+								DON'T COMPROMISE ON STYLE!
+								<br />
+								GET <span className='maroon'>15% OFF</span> ON
+								NEW ARRIVALS.
+							</Description>
+
+							{/********** SHOP NOW BUTTON **********/}
+							<ButtonContainer
+								ref={btnContainerRef}
+								className='btn-container loading'
+								to='/shop'>
+								<CustomButton className='custom-button hidden'>
+									SHOP NOW
+								</CustomButton>
+							</ButtonContainer>
+						</InfoContainer>
+					</Slide>
+				))}
+			</Wrapper>
+
+			{/********** RIGHT/NEXT  ARROW **********/}
+			<ArrowContainer
+				ref={nextArrowRef}
+				className='loading'
+				direction='right'
+				onClick={() => handleClick('right')}>
+				<RightArrow className='maroon' />
+			</ArrowContainer>
+
+			{/********** CAROUSEL NAV BUTTONS **********/}
+			<CarouselNav id='carousel-nav'>
+				{sliderItems.map((item) => (
+					<NavIndicator
+						key={item.id}
+						id={slideIndex}
+						ref={addToNavRefs}
+						onClick={() => setSlideIndex(item.id - 1)}
+						className='loading'
+					/>
+				))}
+			</CarouselNav>
+		</Container>
+	)
 }
 
 export default Carousel

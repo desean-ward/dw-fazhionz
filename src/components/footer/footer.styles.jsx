@@ -2,8 +2,21 @@ import styled from 'styled-components';
 
 
 export const Container = styled.div`
-    display: flex;
-    margin-top: 150px;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 100vw;
+    height: 90vh;
+    grid-template-columns: repeat(3, max(350px));
+    grid-template-areas:
+        'left  center  right';
+
+    gap: 80px;
+    justify-content: center;
+    margin-top: 80vh;
+    padding-top: 5%;
+    background-color: white;
+
 
     @media screen and (max-width: 700px) {
         padding: 0px;
@@ -15,27 +28,30 @@ export const Container = styled.div`
 `;
 
 export const Left = styled.div`
-    flex: 1;
+    grid-area: left;
+    position: absolute;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    left: 0;
 `;
 
-export const Logo = styled.h1`
-    font-weight: bolder;
+export const Logo = styled.h3`
+   
 `;
 
 export const Description = styled.p`
-    margin: 20px 0px;
+    margin-bottom: 20px;
+    width: auto;
 `;
 
 export const SocialContainer = styled.div`
     display: flex;
+    padding-bottom: 20px;
 `;
 
 export const SocialIcon = styled.div`
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     color: white;
     background-color: #${props => props.color};
@@ -47,13 +63,13 @@ export const SocialIcon = styled.div`
 `;
 
 export const Center = styled.div`
-    flex: 1;
-    padding: 20px;
+    grid-area: center;
+    position: absolute;
 
-    @media screen and (max-width: 700px) {
+    /* @media screen and (max-width: 700px) {
         padding-right: 10px;
         margin-top: 20px;
-    }
+    } */
 `;
 
 export const Title = styled.h3`
@@ -63,6 +79,7 @@ export const Title = styled.h3`
 
 export const List = styled.ul`
     margin: 0;
+    width: 95%;
     padding: 0;
     list-style: none;
     display: flex;
@@ -75,10 +92,9 @@ export const ListItem = styled.li`
     cursor: pointer;
 `;
 
-
 export const Right = styled.ul`
-    flex: 1;
-    padding: 20px;
+    grid-area: right;
+    position: absolute;
 `;
 
 export const ContactItem = styled.div`
@@ -88,5 +104,5 @@ export const ContactItem = styled.div`
 `;
 
 export const Payment = styled.img`
-    width: 50%;
+    width: 100%;
 `;

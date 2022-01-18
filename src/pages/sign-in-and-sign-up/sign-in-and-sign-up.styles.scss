@@ -1,9 +1,12 @@
 .sign-in-and-sign-up {
-    width: 1250px;
-    display: flex;
-    justify-content: space-between;
-    margin: 30px auto;
-
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(2, 500px);
+    justify-items: center;
+    place-content: center;
+    margin-top: 5vh;
+    margin-bottom: -60vh;
+    
     @media screen and (max-width: 800px) {
         padding-left: 20px;
         font-size: 16px;

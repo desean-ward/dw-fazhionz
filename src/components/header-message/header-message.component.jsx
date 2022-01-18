@@ -1,35 +1,69 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 
-import {IconContext} from 'react-icons';
-import { FaSearch } from 'react-icons/fa';
+import { createStructuredSelector } from 'reselect'
+import { selectCurrentUser } from '../../redux/user/user.selectors'
 
-import { Left, Center, Right, HeaderMessageContainer, Language, SearchContainer, Input } from './header-message.styles'
+import { IconContext } from 'react-icons'
 
-const HeaderMessage = () => {
-    return (
-        <HeaderMessageContainer>
-        <IconContext.Provider value={{ color:'' }}>
+import {
+	Left,
+	Center,
+	Right,
+	HeaderMessageContainer,
+} from './header-message.styles'
 
-        <Left>
-            <Language>EN</Language> 
-            
-            <SearchContainer>
-                <Input />
-                <FaSearch />
-            </SearchContainer>
-        </Left>
+const HeaderMessage = ({ currentUser }) => {
+	const initialState = 'Hello'
+	const [ name, setName ] = useState(initialState)
+	const [ nameUpdated, setNameUpdated ] = useState(false)
 
-        <Center>
-        SITEWIDE SALE: 10% OFF EVERYTHING!!!
-        </Center>
+	const getCurrentUser = () => {
+		
+		if (!currentUser) return
 
-        <Right>
-        </Right>
+		if (nameUpdated == false) {
+			setName(currentUser.displayName)
+			setNameUpdated(true)
+		}
+	}
 
-        </IconContext.Provider>
-        </HeaderMessageContainer>
+	const getMessage = () => {
+		//getCurrentUser()
+		//setName(currentUser.displayName)
+		return 'Welcome, {currentUser.displayName}!'
+	}
 
-    )
+	useEffect(() => {
+		function handleName() {
+			getCurrentUser()
+		}
+
+		handleName()
+	}, [currentUser]) 
+
+
+	return (
+		<HeaderMessageContainer>
+			<IconContext.Provider value={{ color: '' }}>
+				<Left></Left>
+
+				<Center>YOUR 1-STOP FAZHION SHOP!!!</Center>
+
+				<Right>
+					{currentUser ? 
+						<div>Welcome, {name}!</div>
+					 : 
+						<span>Please Sign In Or Sign Up</span>
+					}
+				</Right>
+			</IconContext.Provider>
+		</HeaderMessageContainer>
+	)
 }
 
-export default HeaderMessage;
+const mapStateToProps = createStructuredSelector({
+	currentUser: selectCurrentUser,
+})
+
+export default connect(mapStateToProps)(HeaderMessage)

@@ -57,13 +57,13 @@ class SignUp extends React.Component {
         const { displayName, email, password, confirmPassword } = this.state;
         return (
             <div className = 'sign-up'>
-                <h2 className = 'title'>I do not have an account</h2>
+                <h2 className = 'title maroon'>I do not have an account</h2>
                 <span>Sign up with your email and password</span>
 
                 <form className = 'sign-up-form' onSubmit = { this.handleSubmit }>
                    <FormInput
                         type = 'text'
-                        autocomplete = 'displayname'
+                        autoComplete = 'displayname'
                         name = 'displayName'
                         value = {displayName}
                         onChange = {this.handleChange}
@@ -73,7 +73,7 @@ class SignUp extends React.Component {
 
                     <FormInput
                         type = 'email'
-                        autocomplete = 'email'
+                        autoComplete = 'email'
                         name = 'email'
                         value = {email}
                         onChange = {this.handleChange}
@@ -83,7 +83,7 @@ class SignUp extends React.Component {
 
                     <FormInput
                         type = 'password'
-                        autocomplete = 'new-password'
+                        autoComplete = 'new-password'
                         name = 'password'
                         value = {password}
                         onChange = {this.handleChange}
@@ -93,7 +93,7 @@ class SignUp extends React.Component {
 
                     <FormInput
                         type = 'password'
-                        autocomplete = 'new-password'
+                        autoComplete = 'new-password'
                         name = 'confirmPassword'
                         value = {confirmPassword}
                         onChange = {this.handleChange}
@@ -101,7 +101,9 @@ class SignUp extends React.Component {
                         required
                     /> 
                   
-                    <CustomButton type = 'submit' onSubmit = {this.handleSubmit }>SIGN UP</CustomButton>;
+                    <div className="buttons">
+                        <CustomButton type = 'submit' onSubmit = {this.handleSubmit }>SIGN UP</CustomButton>
+                    </div>
                 </form>
             </div>
         ) 

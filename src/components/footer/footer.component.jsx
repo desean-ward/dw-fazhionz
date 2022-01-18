@@ -11,10 +11,12 @@ const Footer = () => {
     return (
         <Container>
             <Left>
-                <Logo>D.W. Fazhionz</Logo>
+                <Title>D.W. Fazhionz</Title>
+
                 <Description>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore ipsa molestiae accusamus quos? Sunt consequatur omnis nemo harum quo culpa atque aperiam delectus sit fugiat itaque sapiente odio natus, nihil cum? Illum accusantium aperiam accusamus? Voluptate quo consequuntur vitae sunt quos adipisci ex consectetur animi mollitia autem! Ipsum, eligendi sequi?                
                 </Description>
+
                 <SocialContainer>
                     <SocialIcon color="385999">
                         <BsFacebook />
@@ -28,12 +30,11 @@ const Footer = () => {
                     <SocialIcon color="E60023">
                         <BsPinterest />
                     </SocialIcon>
-                
                 </SocialContainer>
             </Left>
 
             <Center>
-                <Title>Useful Links</Title>
+                <Title>Links</Title>
                 <List>
                     <ListItem>Home</ListItem>
                     <ListItem>Cart</ListItem>
@@ -51,15 +52,16 @@ const Footer = () => {
                 <Title>Contact</Title>
                 <ContactItem>
                 <FaMapMarkerAlt style={{marginRight: "10px"}} /> 
-                    123 Michigan Avenue, Chicago, Illinois 60601
+                    123 Michigan Avenue <br />
+                    Chicago, Illinois 60601
                 </ContactItem>
                 <ContactItem>
                     <FaPhoneAlt style={{marginRight: "10px"}} /> 
-                    +1 (312) 123-1234
+                    +1 (312) 625-8028
                 </ContactItem>
                 <ContactItem>
                     <GrMail style={{marginRight: "10px"}} />  
-                     desean-ward@dw-fazhionz.com
+                     d.ward.chi@gmail.com
                 </ContactItem>
                 <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
             

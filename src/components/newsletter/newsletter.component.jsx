@@ -5,18 +5,29 @@ import { Container, Title, Description, InputContainer, Input, Button } from './
 import { MdSend } from 'react-icons/md';
 
 const Newsletter = () => {
+
+    const handleClick = () => {
+        const text = document.querySelector('.input');
+
+        text.value = '';
+
+        alert(`You're now subscribed!` + '\r\n' +
+        `Please watch your email for weekly deals.`
+        );
+    }
+
     return (
         <Container>
             <Title>Newsletter</Title>
             <Description>
-            Get timely updates about our new arrivals.
+            Subscribe to receive updates on deals and new arrivals
             </Description>
 
             <InputContainer>
-                <Input placeholder="Your email" />
+                <Input className='input' placeholder="Your email" />
                 
-                <Button>
-                <MdSend />
+                <Button onClick={handleClick}>
+                    <MdSend />
                 </Button>
             
             </InputContainer>

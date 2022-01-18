@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import CustomButton from '../../components/custom-button/custom-button.component';
 
@@ -6,26 +6,36 @@ import { Container, Title, Message, InputContainer, NameInput, EmailInput, Messa
 
 
 const Contact = () => {
-
+    
     const handleClick = () => {
-        alert('Clicked');
+        const name = document.querySelector('.name-input');
+        const email = document.querySelector('.email-input');
+        const message = document.querySelector('.message-input');
+
+        name.value = '';
+        email.value = '';
+        message.value = '';
+
+        alert(`Thanks for reaching out.` + '\r\n' +
+        `You'll hear back from us shortly.`
+        );
     }
 
     return (
         <Container>
-            <Title>CONTACT US</Title>
+            <Title className='maroon'>CONTACT US</Title>
             <Message>We'd love to hear from you!</Message>
 
             <InputContainer>
-                <NameInput placeholder="Name"></NameInput>
+                <NameInput className="name-input" placeholder="Name"></NameInput>
 
-                <EmailInput placeholder="Email"></EmailInput>
+                <EmailInput className="email-input" placeholder="Email"></EmailInput>
                 
-                <MessageInput placeholder="Message"></MessageInput>
+                <MessageInput className="message-input" placeholder="Message"></MessageInput>
             </InputContainer>
 
             <ButtonSend>
-                <CustomButton onClick="handleClick">Send</CustomButton>
+                <CustomButton onClick={handleClick}>Send</CustomButton>
             </ButtonSend>
         </Container>
     )

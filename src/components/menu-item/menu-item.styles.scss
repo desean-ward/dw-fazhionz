@@ -6,8 +6,10 @@
     align-items: center;
     justify-content: center;
     border: 1px solid black;
+    border-radius: 10px;
     margin: 0 7.5px 15px;
     overflow: hidden;
+    background-color: white;
 
     &.large {
         height: 380px
@@ -31,6 +33,7 @@
         height: 100%;
         background-position: center;
         background-size: cover;
+        transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
 
     &:hover {
@@ -39,7 +42,7 @@
         /* Any element with the background-image class */
         & .background-image {
             transform: scale(1.1);
-            transition: transform 2s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+            
         }
 
         & .content {
@@ -55,9 +58,14 @@
       align-items: center;
       justify-content: center;
       border: 1px solid black;
+      border-radius: 10px;
       background-color: white;
-      opacity: 0.7;
+      opacity: 0.5;
       position: absolute;
+
+      &:hover {
+        .title { color: maroon; }
+      }
   
       .title {
         font-weight: bolder;
