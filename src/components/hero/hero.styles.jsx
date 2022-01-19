@@ -11,16 +11,86 @@ export const LogoContainer = styled.div`
 	place-items: center;
 	background-color: white;
 
+
 	img {
 		position: absolute;
 		object-fit: contain;
-		width: 80%;
+		width: auto;
 		height: 80%;
 
 		&.logo {
-			position: absolute;
 			z-index: 1;
+			animation: scale 1s linear;
 		}
+
+		&.logo-images {
+			visibility: hidden;
+			border-radius: 20px;
+
+			&.left{
+				left: 30vw;
+				animation: 
+					slide-out-left .5s linear .7s,
+					glow .5s linear 1.2s;
+				animation-fill-mode: forwards;
+			}
+
+			&.right {
+				right: 30vw;
+				animation: 
+					slide-out-right .5s linear .7s,
+					glow .5s linear 1.2s;
+				animation-fill-mode: forwards;
+			}
+		}
+	}
+
+	@keyframes scale {
+		0% {
+			transform: scale(0);
+		}
+		50% {
+			transform: scale(1.1);
+		}
+		100% {
+			transform: scale(1)
+		}
+	}
+
+	@keyframes slide-out-left {
+		0% {
+			//transform: translateX(0);
+			visibility: hidden;
+			
+		}
+		100% {
+			transform: translateX(-15vw);
+			visibility: visible;
+		}
+	}
+
+	@keyframes slide-out-right {
+		0% {
+			visibility: hidden;
+		}
+		100% {
+			transform: translateX(15vw);
+			visibility: visible;
+		}
+	}
+
+	@keyframes glow {
+		0% {
+			//box-shadow: 0 0 10px maroon;
+		}
+		50% {
+			//box-shadow: 0 0 20px 10px maroon;
+			opacity: .3;
+		}
+		100% {
+			//box-shadow: 0 0 10px maroon;
+		}
+
 	}
 `
 

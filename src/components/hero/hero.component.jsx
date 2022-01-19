@@ -7,13 +7,20 @@ const Hero = () => {
 		<>
 			<LogoContainer>
 				<img
+					className='logo-images left'
+					src='../../images/dw-fazhionz-bg-left.png'
+					alt='Logo'
+				/>
+
+				<img
 					className='logo'
 					src='../../images/dw-fazhionz.png'
 					alt='Logo'
 				/>
+
 				<img
-					className='logo-images'
-					src='../../images/dw-fazhionz-bg-img.png'
+					className='logo-images right'
+					src='../../images/dw-fazhionz-bg-right.png'
 					alt='Logo'
 				/>
 			</LogoContainer>

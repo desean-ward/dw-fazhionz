@@ -9,13 +9,13 @@ export const Container = styled.div`
     padding: 0px 60px;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 70px;
     margin-bottom: -60vh;
 
 `;
 
 
-export const Title = styled.h1`
+export const Title = styled.h2`
     width: 55%;    
     font-weight: bold;
     text-align: left;
@@ -24,7 +24,6 @@ export const Title = styled.h1`
 
 export const Message = styled.p`
     width: 55%;
-    font-size: 20px;
     text-align: left;
 `;
 

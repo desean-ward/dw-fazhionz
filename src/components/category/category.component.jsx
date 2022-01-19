@@ -11,11 +11,11 @@ const Category = ({ title, items }) => {
 
     return (
         <div className='collection-preview'>
-            <h1 className='title'>
+            <h2 className='title'>
                 { title.toUpperCase() } 
 
                 <Link to={url} className='view-all'>View All</Link>
-            </h1>
+            </h2>
 
 
             <div className='preview'>

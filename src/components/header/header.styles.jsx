@@ -38,19 +38,20 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Left = styled.div`
-    flex: 1;
+    flex: 1 1;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: flex-start;
     padding-left: 40px;
 `;
 
 export const Right = styled.div`
-    flex: 2;
+    flex: 1 1;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 60px;
+    padding-right: 120px;
 `;
 
 export const TitleContainer = styled(Link)`

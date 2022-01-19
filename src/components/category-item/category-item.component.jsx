@@ -54,6 +54,7 @@ const CategoryItem = ({ item, addItem }) => {
 					style={{
 						backgroundImage: `url(${imageUrl})`,
 					}}
+					alt='Image'
 				/>
 			</div>
 
