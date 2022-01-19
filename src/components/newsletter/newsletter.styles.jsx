@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+	position: relative;
 	height: 50vh;
 	width: 100vw;
 	margin-top: 75vh;
@@ -52,7 +53,5 @@ export const Input = styled.input`
 
 export const Button = styled.button`
     flex: 1;
-    border-none;
-    outline-none;
     background-color: white;
 `
