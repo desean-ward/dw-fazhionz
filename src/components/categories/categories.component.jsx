@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
 import { createStructuredSelector } from 'reselect';
 
-
+import AnimatedPage from '../../components/animated-page/animated-page.component'
 import Category from '../category/category.component';
 
 import './categories.styles.scss';
@@ -12,13 +12,15 @@ import './categories.styles.scss';
 const Categories = ({ collections }) => {
     const { title, items } = collections;
     return(
-        <div className="collections-overview">
-        {
-            collections.map(({ id, ...otherCollectionsProps}) => (
-                <Category key={id} {...otherCollectionsProps} />
-            ))
-        }
-        </div>
+        <AnimatedPage>
+            <div className="collections-overview">
+            {
+                collections.map(({ id, ...otherCollectionsProps}) => (
+                    <Category key={id} {...otherCollectionsProps} />
+                ))
+            }
+            </div>
+        </AnimatedPage>
     );
 };
 

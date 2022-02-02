@@ -4,31 +4,47 @@ import { Link } from 'react-router-dom'
 
 export const LogoContainer = styled.div`
 	position: relative;
-	height: 80vh;
+	z-index: 50;
+	height: clamp(30vh, 85vh, 100vh);
 	width: 100vw;
 	display: grid;
 	grid-template-columns: 1fr;
 	place-items: center;
 	background-color: white;
 
+	@media only screen and (max-width: 1100px) and (orientation: portrait) {
+		height: 50vh;
+		overflow: hidden;
+	}
 
 	img {
 		position: absolute;
-		object-fit: contain;
-		width: auto;
-		height: 80%;
+		width: 100vw;
+		height: 100%;
 
 		&.logo {
-			z-index: 1;
+			grid-area: logo;
 			animation: scale 1s linear;
+			width: 75%;
+			height: 70%;
+
+			@media only screen and (max-width: 1100px) and (orientation: portrait) {
+				height: 30vh;
+				width: 100%;
+			}
+			z-index: 2;
 		}
 
 		&.logo-images {
+			position: absolute;
 			visibility: hidden;
 			border-radius: 20px;
+			width: auto;
+			height: 75%;
 
 			&.left{
-				left: 30vw;
+				grid-area: left;
+				left: 50%;
 				animation: 
 					slide-out-left .5s linear .7s,
 					glow .5s linear 1.2s;
@@ -36,13 +52,22 @@ export const LogoContainer = styled.div`
 			}
 
 			&.right {
-				right: 30vw;
+				grid-area: right;
+				right: 50%;
 				animation: 
 					slide-out-right .5s linear .7s,
 					glow .5s linear 1.2s;
 				animation-fill-mode: forwards;
+				
+			}
+
+			@media only screen and (max-width: 1100px) and (orientation: portrait) {
+				top: 35vh;
+				height: 60%;
+				width: 50%
 			}
 		}
+
 	}
 
 	@keyframes scale {
@@ -59,12 +84,11 @@ export const LogoContainer = styled.div`
 
 	@keyframes slide-out-left {
 		0% {
-			//transform: translateX(0);
 			visibility: hidden;
 			
 		}
 		100% {
-			transform: translateX(-15vw);
+			transform: translateX(-45vw);
 			visibility: visible;
 		}
 	}
@@ -74,69 +98,8 @@ export const LogoContainer = styled.div`
 			visibility: hidden;
 		}
 		100% {
-			transform: translateX(15vw);
+			transform: translateX(45vw);
 			visibility: visible;
-		}
-	}
-
-	@keyframes glow {
-		0% {
-			//box-shadow: 0 0 10px maroon;
-		}
-		50% {
-			//box-shadow: 0 0 20px 10px maroon;
-			opacity: .3;
-		}
-		100% {
-			//box-shadow: 0 0 10px maroon;
-		}
-
-	}
-`
-
-export const ScrollToTop = styled.div`
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	z-index: 1500;
-	align-content: end;
-	top: 0;
-	right: 40px;
-	height: 50px;
-	width: 50px;
-	color: white;
-	background-color: maroon;
-	border: 1px solid white;
-	box-shadow: 4px 2px 4px black;
-	border-radius: 50%;
-	cursor: pointer;
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity .3s ease-in-out;
-	transition: top .5s ease;
-
-	&.active {
-		visibility: visible;
-		opacity: 1;
-		top: 90vh;
-	}
-
-	&.arrow {
-		height: 70px;
-		width: 70px;
-	}
-
-	&.animateArrow {
-		top: 0;
-	}
-
-	&:hover {
-		background-color: white;
-
-		.arrow {
-			color: maroon;
 		}
 	}
 `

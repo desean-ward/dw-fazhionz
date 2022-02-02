@@ -2,12 +2,28 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     position: fixed;
-    z-index: -12;
     top: 0;
-   // margin-top: 300vh;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    background: url('../../images/woman-3.jpg');
+    
+    @media only screen and (max-width: 770px) {
+      //position: relative;
+      //z-index: 1;
+    }
+
+    /* @media only screen and (max-width: 900px) and (min-height: 400px) {
+		height: 100vh;
+        width: 100%;
+        top: 10%;
+        background-size: contain;
+	  } */
+`
+
+export const Woman = styled.img`
+    position: absolute;
+  /* background: url('../../images/woman-3.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+    height: 100%;
+    width: 100%;
 `

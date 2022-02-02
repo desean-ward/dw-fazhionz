@@ -1,256 +1,324 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useOrientation } from 'react-use'
+import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom'
 
-const getMaxHeight = isOpen => {
-    console.log(isOpen);
-   return isOpen ? "250px" : "0px";
+const getMaxHeight = (isOpen) => {
+	console.log(isOpen)
+	return isOpen ? '250px' : '0px'
 }
 
-export const HeaderTop = styled.div`
-
-`;
+export const HeaderTop = styled.div``
 
 export const HeaderContainer = styled.div`
-    @font-face {
-        font-family: "Basement Grotesque";
-        src: url("./assets/fonts/basement-grotesque.otf");
-
-        font-family: "Nautigal";
-        src: url("./assets/fonts/nautigal-bold.otf");
-    }
-
-    position: sticky;
-    z-index: 100;
-    top: 0;
-    padding: 20px;
-    height: 100%;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
+	position: sticky;
+	z-index: 100;
+	top: 0;
+	padding: 20px 10%;
+	height: 100%;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	background-color: white;
 	transition: transform 0.5s ease;
-    /* @media screen and (max-width: 800px) {
-        padding: 10px;
-        height: 60px;
-        margin-bottom: 20px;
-     } */
-`;
+
+	&.shadow {
+		filter: drop-shadow(0 1px 8px black);
+	}
+
+	@media (max-width: 1100px) {
+		flex-direction: column-reverse;
+
+		@media only screen and (orientation: portrait) {
+			height: 10vh;
+			top: 0;
+			padding-top: 10px;
+		}
+	}
+`
 
 export const Left = styled.div`
-    flex: 1 1;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 40px;
-`;
+	display: flex;
+	width: 40%;
+	align-items: start;
+	justify-content: start;
+
+	@media (max-width: 1100px) {
+		width: 100%;
+		justify-content: center;
+	}
+
+	@media only screen and (max-width: 620px) {
+		flex-direction: row;
+		justify-content: start;
+		align-items: start;
+
+		@media only screen and (orientation: portrait) {
+			flex-direction: column-reverse;
+
+			.search {
+				margin-left: -25px;
+				margin-top: 5px;
+			}
+
+			.language {
+				margin-top: 15px;
+				margin-left: -25px;
+			}
+		}
+	}
+`
 
 export const Right = styled.div`
-    flex: 1 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 120px;
-`;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	//margin-right: 20px;
+	width: 60%;
+
+	.cart-icon {
+		position: relative;
+		display: flex;
+		margin: auto 0;
+		//right: 0vw;
+		top: -3px;
+		
+
+		@media only screen and (max-width: 900px) {
+			position: absolute;
+			right: 0;
+			top: 12px; 
+
+			@media only screen and (orientation: portrait) {
+				//top: 10px;
+			}
+		}
+
+		@media only screen and (max-width: 600px) {
+			right: 5%;
+			top: 0;
+		}
+
+		@media only screen and (max-width: 400px) {
+			right: 7.5%;
+			top: 0px;
+
+			@media only screen and (max-height: 700px) {
+				top: 6px;
+			}
+		}
+	}
+
+	@media (max-width: 1100px) {
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+	}
+
+    @media only screen and (max-width: 600px) {   
+	    padding-top: 10px;
+    }
+`
 
 export const TitleContainer = styled(Link)`
-    display: flex;
-    align-content: center;
-    left: 50px;
-    font-weight: 600;
-    font-style: italic;
-    display: flex;
-    align-items: center; 
-    justify-content: center;
-    margin-top: 0px;
-    margin-left: 0px;
-    font-size: 5vh;
-    z-index: 1;
-
-    .nautigal {
-        //font-family: 'Nautigal', sans-serif;
-        //font-weight: 1000;
-        //-webkit-text-stroke: 1px white;
-        -webkit-text-fill-color: maroon;
-        
-        padding-right: 20px;
-        z-index: 1
-    }
-
-    @supports (-webkit-text-stroke: 1px black) {
-        background-image: linear-gradient(30deg, black 40%, rgba(255,0,0,0) 75%);
-        -webkit-background-clip: text;
-        
-        -webkit-text-stroke: 1px black;
-        -webkit-text-fill-color: transparent;
-    }
-
-    @media screen and (max-width: 800px) {
-        padding: 10px;
-        font-size: 18px;
-    }
-`;
+	display: flex;
+	align-content: center;
+	left: 50px;
+	font-weight: 600;
+	font-style: italic;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 0px;
+	margin-left: 0px;
+	z-index: 1;
+`
 
 export const Language = styled.span`
-    font-size: 16px;
-    cursor: pointer;
-    color: #212529;
-    cursor: default;
-`;
+	color: #212529;
+	position: relative;
+	margin-left: -30px;
+	height: 40px;
+
+	@media only screen and (max-width: 620px) {
+		display: none;
+	}
+`
 
 export const SearchContainer = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    margin-left: 10px;
-    background-color: white;
-    border-radius: 50%;
-    box-shadow: 0 0 5px 1px grey;
-   
-    height: 24px;
-    width: 24px;
-    transition: 
-        500ms width ease-in-out,
-        500ms padding ease-in-out,
-        500ms border-radius ease-in-out;
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	margin-left: 12px;
+	background-color: white;
+	border-radius: 50%;
+	box-shadow: 0 0 5px 1px grey;
+	margin-top: 5px;
+	height: 26px;
+	width: 26px;
+	transition: 500ms width ease-in-out, 500ms padding ease-in-out,
+		500ms border-radius ease-in-out;
 
-    //**  open state  **//
-    &.search-open {
-        width: 16rem;
-        border-radius: 0;
+	@media only screen and (orientation: portrait) and (max-width: 620px) {
+		position: relative;
+		top: -14px;
+	}
 
-        .close-icon {
-            z-index: 1;
+	//**  open state  **//
+	&.search-open {
+		width: 21rem;
+		border-radius: 0;
+
+		.close-icon {
+			z-index: 1;
+		}
+
+        @media only screen and (max-width: 600px) {
+            width: 18rem;
         }
-    }
 
-    &.show {
-        display: inline-block;
-    }
+		@media only screen and (max-width: 400px) {
+            width: 15rem;
+			font-size: 16px;
+        }
+	}
 
-    .search-icon {
-        position: absolute;
-        z-index: 100;
-        margin-left: -2px;
-        cursor: pointer;
-        visibility: visible;
-    }
+	&.show {
+		display: inline-block;
+	}
 
-    .delete-icon {
-        position: relative;
-        left: 12px;
-        z-index: -1;
-        cursor: pointer;
-    }
+	.search-icon {
+		position: absolute;
+		margin-left: -2px;
+		cursor: pointer;
+		visibility: visible;
+	}
 
-    .close-icon {
-        position: sticky;
-        z-index: -1;
-        left: 100%;
-        cursor: pointer;
-    }
-`;
+	.delete-icon {
+		position: relative;
+		left: 12px;
+		z-index: -2;
+		cursor: pointer;
+	}
+
+	.close-icon {
+		position: sticky;
+		z-index: -1;
+		left: 100%;
+		cursor: pointer;
+	}
+`
 
 export const Input = styled.input`
-    position: relative;
-    left: 30px;
-    height: 24px;
-    width: 80%;
-    border:none;
-    outline: none;
-    background-color: transparent;
-    visibility: hidden;
+	position: relative;
+	left: 35px;
+	height: 24px;
+	width: 80%;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	visibility: hidden;
 
-    &:not(:placeholder-shown) ~
-        .delete-icon {
-            z-index: 1;
-        }
-`;
+	&:not(:placeholder-shown) ~ .delete-icon {
+		z-index: 1;
+	}
+`
 
 export const OptionsContainer = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: start;
-    justify-content: space-evenly;
-    margin-right: -80px;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: start;
+	justify-content: space-evenly;
 
-    @media screen and (max-width: 800px) {
-        width: 80%;
-    }
+	
 
-    @media screen and (max-width: 620px) {
-        padding: 5px;
-        flex: 2;
-    }
-`;
+	
+`
 
 export const OptionsContainerStyles = css`
-    position: relative;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-left: 5px;
-`;
+	position: relative;
+	padding: 10px 15px;
+	cursor: pointer;
+	margin-left: 5px;
+`
 
-export const OptionLine = styled.div`
-        
-`;
+export const OptionLine = styled.div``
 
 export const OptionLink = styled(Link)`
-    ${ OptionsContainerStyles }
+	${OptionsContainerStyles}
 
-    :hover {
-        color: maroon;
-    }
+	:hover {
+		color: maroon;
+	}
 
-    ::after {
-        content: '';
-        display: flex;
-        flex: 1 1;
-        position: absolute;
-        z-index: 100;
-        width: 80%;
-        left: 10%;
-        margin: 5px auto;
-        height: 0.175rem;
-        background-color: maroon;
-    }
+	::after {
+		content: '';
+		display: flex;
+		flex: 1 1;
+		position: absolute;
+		z-index: 100;
+		width: 80%;
+		left: 10%;
+		margin: 5px auto;
+		height: 0.175rem;
+		background-color: maroon;
+	}
 
-    &.btn-ctr::after {
-        transform: scale(0, 1);
-        transition: transform 0.3s ease;
-    }
+	&.btn-ctr::after {
+		transform: scale(0, 1);
+		transition: transform 0.3s ease;
+	}
 
-    &.btn-ctr:hover::after {
-        transform: scale(1, 1);
-    }
-`;
+	&.btn-ctr:hover::after {
+		transform: scale(1, 1);
+	}
+
+	@media only screen and (orientation: portrait) {
+		left: -30px;
+		top: 10px;
+	}
+		
+
+	@media only screen and (max-width: 620px), (max-height: 600px) {
+		display: none;
+	}
+`
 
 export const HamburgerContainer = styled.div`
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    
-    span {
-        height: 2px;
-        width: 35px;
-        background-color: orange;
-        margin-bottom: 4px;
-        border-radius: 5px;
-        border-bottom: 2px solid maroon;
-    }
+	position: relative;
+	width: 30px;
+	height: 20px;
+	background: #fff;
+	top: 10vh;
+	right: 5%;
+	cursor: pointer;
+`
+export const Bars = styled.div`
+	width: 30px;
+	height: 4px;
+	background: #000;
 
-    @media only screen and (max-width: 768px) {
-        display: flex;
-        z-index: 5;
-        position: relative;
-        right: 120px;
-        top: 20px;
-        
-    }
-`;
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		width: 30px;
+		height: 4px;
+		background: #000;
+	}
+
+	&::before {
+		margin-top: 9px;
+	}
+
+	&::after {
+		margin-top: 18px;
+	}
+`
 
 export const ScrollToTop = styled.div`
 	position: fixed;
@@ -258,10 +326,10 @@ export const ScrollToTop = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	z-index: 1500;
+	z-index: 100;
 	align-content: end;
 	top: 0;
-	right: 40px;
+	right: 60px;
 	height: 50px;
 	width: 50px;
 	color: white;
@@ -272,13 +340,25 @@ export const ScrollToTop = styled.div`
 	cursor: pointer;
 	visibility: hidden;
 	opacity: 0;
-	transition: opacity .3s ease-in-out;
-	transition: top .5s ease;
+	transition: opacity 0.3s ease-in-out;
+	transition: top 0.5s ease;
 
 	&.active {
 		visibility: visible;
 		opacity: 1;
-		top: 85vh;
+		top: 90vh;
+
+		@media only screen and (max-height: 800px) {
+			top: 85vh;
+		}
+
+		@media only screen and (orientation: portrait) {
+			top: 92.5vh;
+
+			@media only screen and (max-width: 640px) {
+				right: 20px;
+			}
+		}
 	}
 
 	&.arrow {

@@ -1,10 +1,15 @@
 .collections-overview {
+    position: relative;
     display: flex;
     flex-direction: column;
-    display: flex;
     margin-bottom: -80vh;
-    margin: 9.4px 0 -80vh 10.4%;
-    width: 100vw;
+    margin-top: 8vh;
+    //margin-right: auto;
+    //margin-left: auto;
+    //margin: 8vh 0 -80vh 0;
+    //justify-content: center;
+    //align-items: center;
+    //width: 100vw;
 
     // ::-webkit-scrollbar {
     //     width: thin;

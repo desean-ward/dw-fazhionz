@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
 
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
@@ -22,7 +21,9 @@ const CartDropdown = ({ cartItems, history, dispatch }) => {
 	}
 	
 	const checkCart = () => {
-		return cartItems.length ? setHasItems(true) : setHasItems(false)
+		return cartItems.length 
+		? setHasItems(true) 
+		: setHasItems(false)
 	}
 
 	useEffect(() => {

@@ -5,6 +5,7 @@ import { SpacerContainer } from './spacer.styles'
 
 const Spacer = () => {
     return (
+        
        <SpacerContainer />
     )
 }

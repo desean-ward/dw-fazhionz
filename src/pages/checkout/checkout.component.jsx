@@ -22,7 +22,7 @@ const CheckoutPage = ({ cartItems, total }) => (
                     <span>Product</span>
                 </div>
 
-                <div className="header-block">
+                <div className="header-block description">
                     <span>Description</span>
                 </div>
 
@@ -56,8 +56,10 @@ const CheckoutPage = ({ cartItems, total }) => (
             <div className="checkoutMessage maroon">
                 <p>
                 **  Please use the following test card information!  **
-                    <br />
-                    4242 4242 4242 4242 -- Exp: 12/22 -- CVV: 123
+                    <br /><br />
+                    4242 4242 4242 4242<br />
+                    Exp: 12/26<br />
+                    CVV: 123
                 </p>
             </div>
             <div className="button">

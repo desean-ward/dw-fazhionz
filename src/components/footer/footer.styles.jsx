@@ -1,38 +1,60 @@
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom'
 
+export const Wrapper = styled.div`
+    position: relative;
+    z-index: 50;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    margin-top: 80vh; 
+
+    &.shadow {
+        filter: drop-shadow(0 -3px 12px black);
+    }
+
+    &.portrait {
+        @media only screen and (orientation: portrait) {
+            margin-top: 50vh;
+        }
+    }
+
+    @media only screen and (max-width: 1100px) {
+        height: 100%;
+    }
+`
 export const Container = styled.div`
     position: relative;
-    z-index: 1;
+    padding-top: 40px;
     display: grid;
-    width: 100vw;
-    height: 90vh;
-    grid-template-columns: repeat(3, max(350px));
+    width: 80%;
+    background-color: white;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
         'left  center  right';
+    justify-items: center;
+    gap: 2rem;
 
-    gap: 80px;
-    justify-content: center;
-    margin-top: 80vh;
-    padding-top: 5%;
-    background-color: white;
-
-
-    @media screen and (max-width: 700px) {
-        padding: 0px;
-        font-size: 20px;
-
-        flex-direction: column;
-        margin-top: 20px;
+    @media screen and (max-width: 1100px) {
+        width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            'left'
+            'center'
+            'right';
+        justify-content: start;
     }
 `;
 
 export const Left = styled.div`
     grid-area: left;
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: column;
-    left: 0;
+    width: 90%;
 `;
 
 export const Logo = styled.h3`
@@ -41,12 +63,11 @@ export const Logo = styled.h3`
 
 export const Description = styled.p`
     margin-bottom: 20px;
-    width: auto;
 `;
 
 export const SocialContainer = styled.div`
     display: flex;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 `;
 
 export const SocialIcon = styled.div`
@@ -64,12 +85,10 @@ export const SocialIcon = styled.div`
 
 export const Center = styled.div`
     grid-area: center;
-    position: absolute;
-
-    /* @media screen and (max-width: 700px) {
-        padding-right: 10px;
-        margin-top: 20px;
-    } */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
 `;
 
 export const Title = styled.h3`
@@ -78,23 +97,33 @@ export const Title = styled.h3`
 `;
 
 export const List = styled.ul`
-    margin: 0;
-    width: 95%;
+    width: 100%;
     padding: 0;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
 `;
 
-export const ListItem = styled.li`
+export const ListItem = styled(Link)`
     width: 50%;
     margin-bottom: 10px;
     cursor: pointer;
+
+    &:hover {
+        color: grey;
+    }
 `;
 
-export const Right = styled.ul`
+export const Right = styled.div`
     grid-area: right;
-    position: absolute;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    
+    @media only screen and (max-width: 479px) {
+        top: -80px;
+    }
 `;
 
 export const ContactItem = styled.div`
@@ -104,5 +133,5 @@ export const ContactItem = styled.div`
 `;
 
 export const Payment = styled.img`
-    width: 100%;
+    width: 250px;
 `;

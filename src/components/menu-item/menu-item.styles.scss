@@ -1,8 +1,9 @@
 .menu-item {
     min-width: 30%;
     height: 240px;
-    flex: 1 1 auto;
+    flex: 1 1 250px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     border: 1px solid black;
@@ -11,9 +12,13 @@
     overflow: hidden;
     background-color: white;
 
-    &.large {
-        height: 380px
-    }
+    // &.large {
+    //     //height: 100%;
+
+    //     // @media only screen and (max-width: 900px) and (min-height: 400px) {
+    //     //   height: 180px;
+    //     // }
+    // }
   
     &:first-child {
       margin-right: 7.5px;
@@ -75,7 +80,7 @@
       }
   
       .subtitle {
-        font-weight: lighter;
+        //font-weight: lighter;
         font-size: 16px;
       }
     }

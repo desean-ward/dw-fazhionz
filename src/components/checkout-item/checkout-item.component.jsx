@@ -12,7 +12,7 @@ import { BiPlus, BiMinus } from 'react-icons/bi';
 
 import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions';
 
-import './checkout-item.styles.scss';
+import { ItemContainer, InfoContainer, ImageContainer, Name, Quantity, Price, RemoveBtn} from './checkout-item.styles';
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
     const { name, imageUrl, price, quantity } = cartItem;
@@ -40,12 +40,9 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
             cartItem.quantity = updatedQty;
             
             addItem(cartItem);
-            //alert(cartItem.quantity)
-            
             
         } else {
             if(inputRef.current.value == "") {
-                //alert(itemTotal)
                 cartItem.quantity = 0;
                 removeItem(cartItem);
             }
@@ -70,31 +67,33 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
     }
 
     return(
-        <div className="checkout-item">
-            <div className="image-container">
+        <ItemContainer className="checkout-item">
+            <ImageContainer className="image-container">
                 <img src={imageUrl} alt="item" />
-            </div>
+            </ImageContainer>
 
-            <span className="name">{name}</span>
-            
-            <span className="quantity">
-                <div className="arrow" onClick={() => removeItem(cartItem)}><BiMinus /></div>
-                <input type="input"
-                id="value" 
-                className="value" 
-                ref={inputRef}
-                onChange={handleQtyChange} 
-                onClick={handleQtyClick} 
-                onKeyUp={handleKeyUp}
-                onBlur={handleOnBlur}
-                value={updatedQty} />
-                <div className="arrow" onClick={() => addItem(cartItem)}><BiPlus /></div>
-            </span>
+            <InfoContainer>
+                <Name className="name">{name}</Name>
+                
+                <Quantity className="quantity">
+                    <div className="arrow" onClick={() => removeItem(cartItem)}><BiMinus /></div>
+                    <input type="input"
+                    id="value" 
+                    className="value" 
+                    ref={inputRef}
+                    onChange={handleQtyChange} 
+                    onClick={handleQtyClick} 
+                    onKeyUp={handleKeyUp}
+                    onBlur={handleOnBlur}
+                    value={updatedQty} />
+                    <div className="arrow" onClick={() => addItem(cartItem)}><BiPlus /></div>
+                </Quantity>
 
-            <span className="price">${itemTotal}</span>
+                <Price className="price">${itemTotal}</Price>
 
-            <div className="remove-button"  onClick={() => clearItem(cartItem)}>{<MdOutlineDeleteForever className="trash-icon" />}</div>
-        </div>
+                <RemoveBtn className="remove-button"  onClick={() => clearItem(cartItem)}>{<MdOutlineDeleteForever className="trash-icon" />}</RemoveBtn>
+            </InfoContainer>
+        </ItemContainer>
     );
 };
 

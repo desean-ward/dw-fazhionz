@@ -14,7 +14,7 @@ const Hero = () => {
 
 				<img
 					className='logo'
-					src='../../images/dw-fazhionz.png'
+					src='../../images/dw-fazhionz1.png'
 					alt='Logo'
 				/>
 

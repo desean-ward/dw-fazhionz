@@ -1,9 +1,12 @@
 import React from 'react'
-import { Container } from './woman-background.styles'
+
+import { Container, Woman } from './woman-background.styles'
 
 const WomanBackground = () => {
     return (
-        <Container />
+        <Container>
+            <Woman src='../../images/woman-3.jpg' />
+        </Container>
     )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import Directory from '../../components/directory/directory.component'
 
+import Directory from '../../components/directory/directory.component'
 import { HomePageContainer } from './homepage.styles'
 import Carousel from '../../components/carousel/carousel.component'
 import Newsletter from '../../components/newsletter/newsletter.component'
@@ -13,23 +13,25 @@ import AnimatedPage from '../../components/animated-page/animated-page.component
 import Spacer from '../../components/spacer/spacer.component'
 
 
-const HomePage = () => (
-	<AnimatedPage>
-		<HomePageContainer>
-			<Hero  />
-			<Spacer />
-			<BannerOne />
-			<Spacer />
-			<Carousel />
-			<Spacer />
-			<Directory />
-			<Spacer />
-			<Countdown />
-			<Products />
-			<Newsletter />
-			<WomanBackground />
-		</HomePageContainer>
-	</AnimatedPage>
-)
+const HomePage = () => {
+	return (
+		<AnimatedPage>
+			<HomePageContainer>
+				<Hero  />
+				<Spacer />
+				<BannerOne />
+				<Spacer />
+				<Carousel />
+				<Spacer />
+				<Directory />
+				<Spacer />
+				<Countdown />
+				<Products />
+				<Newsletter />
+				<WomanBackground />
+			</HomePageContainer>
+		</AnimatedPage>
+	)
+}
 
 export default HomePage

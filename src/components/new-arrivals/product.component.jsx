@@ -31,12 +31,14 @@ const Product = ({ name, category, price, imgUrl, item, addItem }) => {
 	const nowPrice = price - (price * .15)
 
 	const popup = (i) => {
+		//popupViews[i].style.display = 'relative'
 		popupViews[i].style.visibility = 'visible'
 		popupViews[i].style.opacity = '1'
 		document.body.style.overflow = 'hidden'
 	}
 
 	const closePopUp = (i) => {
+		//popupViews[i].style.display = 'none'
 		popupViews[i].style.visibility = 'hidden'
 		popupViews[i].style.opacity = '0'
 		document.body.style.overflow = 'auto'
@@ -124,7 +126,7 @@ const Product = ({ name, category, price, imgUrl, item, addItem }) => {
 						<span className='wasPrice'>${price}.00</span>
 						<span className='price'>${nowPrice}</span>
 						
-						<AddSectionLinks>
+						<AddSectionLinks className='links'>
 							<a href='#' 
 								className='add__cart__btn' 
 								onClick={() => addItem(item)}

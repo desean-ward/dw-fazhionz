@@ -1,16 +1,20 @@
 .checkout-page {
-	width: 60vw;
+	width: 65vw;
 	//max-height: 70vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 30px auto 0;
+	margin: 0 auto;
 	margin-bottom: -60vh;
+	margin-top: 10vh;
 	scrollbar-width: thin;
 
-	@media screen and (max-width: 800px) {
-		width: 90vw;
+	@media screen and (max-width: 900px) {
+		position: relative;
+		width: 85vw;
 		min-height: 60vh;
+		top: -5vh;
+		margin-bottom: -95vh;
 	}
 
 	.checkout-header {
@@ -19,20 +23,27 @@
 		font-size: 24px;
 		font-weight: bold;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		border-bottom: 1px solid darkgrey;
 
 		.header-block {
 			text-transform: capitalize;
-			width: 23%;
+			width: auto;
+
+			&.description {
+				position: relative;
+				left: -30px;
+			}
 
 			&:last-child {
 				width: 8%;
 			}
 		}
-	}
 
-	
+		@media only screen and (max-width: 800px) {
+			display: none;
+		}
+	}
 
 	.cart-items {
 		min-height: 10vh;
@@ -48,6 +59,10 @@
 		margin-top: 30px;
 		margin-left: auto;
 		font-size: 36px;
+
+		@media only screen and (max-width: 600px) {
+			font-size: 28px;
+		}
 	}
 
 	.checkoutMessage {
@@ -55,6 +70,10 @@
 		font-weight: bold;
 		text-align: center;
 		margin-top: 30px;
+
+		@media only screen and (max-width: 600px) {
+			font-size: 14px;
+		}
 	}
 
 	.button {

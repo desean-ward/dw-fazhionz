@@ -9,7 +9,7 @@ $main-color: black;
 @mixin shrinkLabel {
   top: -14px;
   font-size: 12px;
-  color: $main-color;
+  //color: $main-color;
 }
 
 /* Wraps the label and input together in a group */

@@ -2,13 +2,20 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 	position: relative;
-	height: 50vh;
+	z-index: 50;
+	height: clamp(2vh, 120em, 50vh);
 	width: 100%;
 	color: white;
 	display: flex;
-	//align-items: center;
-	//justify-content: center;
 	flex-direction: row;
+
+	@media only screen and (max-width: 1100px) and (orientation: portrait) {
+		height: 30vh;
+	}
+
+	@media only screen and (max-width: 600px) {
+		font-size: smaller;
+	}
 `
 
 export const LeftSide = styled.span`
@@ -17,7 +24,6 @@ export const LeftSide = styled.span`
 	justify-content: center;
 	flex-direction: column;
 	padding: 20px;
-	//align-items: center;
 	left: 0;
 	width: 50vw;
 	height: 100%;
@@ -38,23 +44,15 @@ export const RightSide = styled.span`
 	flex-direction: column;
 	justify-content: center;
 	padding: 20px;
-	//padding: 2rem 60px;
 	right: 0;
 	width: 50vw;
 	height: 100%;
 	clip-path: polygon(40% 0, 100% 0%, 100% 100%, 0 100%);
 	background-color: grey;
-	//text-align: right;
-
-	h1 {
-		
-		
-	}
 `
 
 export const Title = styled.h1`
 	width: 60%;
-	font-size: 70px;
 	
 	&.left {
 		border-top: 1px solid white;
@@ -69,7 +67,7 @@ export const Title = styled.h1`
 
 	&.right {
 		color: maroon;
-		margin-left: 41%;
+		margin-left: 45%;
 		width: 55%;
 		text-align: right;
 		border-top: 1px solid;
@@ -78,13 +76,9 @@ export const Title = styled.h1`
 	}
 
 	&.push-left {
-		margin-left: 35%;
+		margin-left: 40%;
 		border-bottom: 2px solid;
-	}
-	
-
-	@media screen and (max-width: 800px) {
-		font-size: 50px;
+		left: -30px;
 	}
 `
 

@@ -46,7 +46,7 @@ const HeaderMessage = ({ currentUser }) => {
 	return (
 		<HeaderMessageContainer>
 			<IconContext.Provider value={{ color: '' }}>
-				<Left></Left>
+				<Left>Modern Apparel For Modern Mindz</Left>
 
 				<Center>YOUR 1-STOP FAZHION SHOP!!!</Center>
 

@@ -2,46 +2,45 @@ import styled from "styled-components";
 
 export const TimerContainer = styled.section`
 	position: sticky;
-    top: 0;
-    padding-left: 3em;
+    z-index: 50;
+    top: 10vh;
 	width: 100vw;
 	height: 100vh;
-    //margin-top: 50vh;
     background-color: black;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 450px 150px;
     grid-template-areas:
         ' timer hourglass ';
-    place-items: center center;
-    //z-index: -1;
+    place-content: center;
+    overflow: hidden;
 
 	h2 {
 		font-weight: 600;
 	}
 
-    /* @media screen and (max-width: 50em) {
-        height: 30vh;
-        padding-left: .5em;
+    @media screen and (max-width: 770px) and (orientation: portrait) {
+        height: 100vh;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            '  hourglass  '
+            '    timer   ';
+        gap: 40px;
+        padding-top: 10vh;
     }
-
-    @media screen and (max-width: 30em) {
-        padding-left: .5em;
-    } */
 `;
 
 export const Timer = styled.section`
     grid-area: 'timer';
-	position: absolute;
+	position: relative;
+    top: -8vh;
 	color: white;
-	width: 50%;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
     gap: 10px;
-    margin-left: -8em;
-    z-index: 1;
+    //margin-left: -8em;
+    //z-index: 1;
 
     /* @media screen and (max-width: 30em) {
         width: 90%;
@@ -56,6 +55,8 @@ export const TimerContent = styled.div`
     flex-direction: column;
     gap: 20px;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 
 	p {
 		color: maroon;
@@ -76,31 +77,36 @@ export const TimeSpan = styled.div`
     font-size: 1.2rem;
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	padding: 0 1em 0 .2em;
+	padding: 0 1em 0 .4em;
 	text-align: center;
-    place-content: center center;
+    place-content: center;
 
     p {
         margin-bottom: -1px;
+        padding-left: 10px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        width: 80%;
     }
 `;
 
 export const Hourglass = styled.div`
-position: absolute;
-margin-left: 32em;
-grid-area: 'hourglass';
-width: 100%;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-background-image: url("../../images/hourglass.jpg");
-background-position: center;
-background-size: fit;
-background-repeat: no-repeat;
-height: 340px;
+    position: relative;
+    grid-area: 'hourglass';
+    top: -8vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../images/hourglass.jpg");
+    background-position: center;
+    background-size: fit;
+    background-repeat: no-repeat;
+    height: 340px;
 
-@media screen and (max-width: 70em) {
+/* @media screen and (max-width: 70em) {
     right: -1em;
 }
 
@@ -111,7 +117,7 @@ height: 340px;
 @media screen and (max-width: 30em) {
     top: 1.2em;
     right: .1em;
-}
+} */
 `;
 
 export const Time = styled.section``;

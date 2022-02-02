@@ -1,24 +1,23 @@
 import styled from 'styled-components'
 
-
 import ProductsSection from './products-section.component'
-
 
 export const Products = styled(ProductsSection)``
 
-
 export const Container = styled.div`
 	position: relative;
-	background-color: black;
-	overflow: auto;
+	z-index: 50;
+	top: -15vh;
 	width: 100vw;
-	height: 100vh;
-	margin-top: 20vh;
-	//padding: 0 5vw;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
 	gap: 2rem;
-	justify-content: center;
+	place-content: center;
+
+	@media only screen and (max-width: 770px) and (orientation: portrait) {
+		top: 0;
+		height: 100%;
+	}
 `
 
 /********** Product Card **********/
@@ -40,7 +39,7 @@ export const ProductCard = styled.div`
 	width: 100%;
 	height: fit-content;
 	border-radius: 10px;
-	box-shadow: 1px 2px 8px  maroon;
+	box-shadow: 1px 1px 10px  grey;
 
 	::before {
 		content: '';
@@ -62,16 +61,16 @@ export const ProductCard = styled.div`
 			border-radius: 10%;
 			margin: 20px auto;
 
-			&::before{
-				position:absolute;
-				top:0;
-				left:0;
-				right:0;
-				bottom:0;
-				content:'';
+			&::before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				content: '';
 				background: white;
-				filter:blur(10px);
-				margin:-15px;
+				filter: blur(10px);
+				margin: -15px;
 				overflow: hidden;
 			}
 		}
@@ -136,24 +135,31 @@ export const Footer = styled.div`
 /********** Product Quick View Popup / Modal **********/
 export const PopupView = styled.div`
 	z-index: 200;
-	background: rgba(105, 105, 105, 0.9);
+	//background: rgba(105, 105, 105, 0.9);
+	background-color: rgba( 000, 000, 000, 0.7);
 	position: fixed;
 	display: flex;
 	top: 0;
 	left: 0;
+	bottom: 0;
+	right: 0;
 	width: 100vw;
-	height: 100%;
+	//height: 100vh;
 	padding: 15vh 10vw;
 	place-content: center;
 	opacity: 0;
 	visibility: hidden;
 	transition: all 0.3s cubic-bezier(0.7, 0.4, 0.66, 1.71);
-	overflow: auto;
+	overflow-y: hidden;
 
-	html {
+	/* body {
 		overflow: hidden;
-	}
+	} */
 
+	@media only screen and (max-width: 800px) and (orientation: portrait) {
+		padding: 0 10vw;
+		
+	}
 
 	/********************  Media Queries  ********************/
 	// @media (max-width: 950px) {
@@ -169,11 +175,10 @@ export const PopupView = styled.div`
 	// }
 `
 
-
 export const PopupProduct = styled.div`
 	position: relative;
 	height: 100vh;
-	width: 100vw;
+	width: 60vw;
 	//border: 5px solid hotpink;
 	display: grid;
 	grid-template-columns: 1fr 2fr;
@@ -197,26 +202,48 @@ export const PopupProduct = styled.div`
 			background-color: maroon;
 		}
 
-		@media (max-width: 800px) {
-			//top: 0;
-			//right: 5%;
-		}
+		
 	}
 
-	/*************** Media Queries ***************/
-	// @media (max-width: 800px) {
-	// 	grid-template-columns: 80vw;
-	// 	grid-template-rows: 1fr 2fr;
-	// 	grid-template-areas:
-	// 		' img '
-	// 		' info ';
+	/************** Media Queries **************/
+	 @media only screen and (max-width: 800px) and (orientation: portrait) {
+	 	grid-template-columns: 80vw;
+	 	grid-template-rows: 1fr 2fr;
+	 	grid-template-areas:
+	 		' img '
+	 		' info ';
+		top: -40px;
+		width: 100vw;
+		justify-content: center;
 
-	// 	@media (max-height: 400px) {
-	// 		height: 100%;
-	// 	}
-	// }
+		.popup__img {
+			left: 5%;
+			top: 17vh;
+			width: 90%;
+			height: 50%;
+			margin: 0 auto;
+		}
+
+		.info {
+			top: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		.close__btn {
+			top: 60px;
+		}
+	 }
+
+	 @media (max-height: 800px) and (orientation: landscape) {
+		 	top: 7px;
+			 width: 75vw;
+
+	 		.links {
+				justify-content: end;
+			 }
+	 	}
 `
-
 
 export const PopupImage = styled.div`
 	grid-area: img;
@@ -242,8 +269,6 @@ export const PopupImage = styled.div`
 		right: 0px;
 		border-radius: 10px;
 	}
-
-
 
 	// @media (min-width: 900px) {
 	// 	//top: 10%;
@@ -279,7 +304,6 @@ export const PopupImage = styled.div`
 
 	//@media (max-width: 450px) { margin-top: 10px; }
 `
-
 
 export const Info = styled.div`
 	grid-area: info;
@@ -323,9 +347,6 @@ export const Info = styled.div`
 
 	p {
 		position: relative;
-		//max-height: 600px;
-		//width: 80%;
-		//height: 70vh;
 		padding: 5px 10px;
 		line-height: 1.5;
 		border-left: 1px solid #1d212b;
@@ -333,33 +354,10 @@ export const Info = styled.div`
 		padding-left: 10px;
 		overflow: auto;
 		scrollbar-width: thin;
-
-		// @media (max-width: 900px) {
-		// 	border-left: 1px solid #1d212b;
-		// }
 	}
-
-
-
-
-/********************  Media Queries  ********************/
-	// @media (max-width: 800px) {
-	// 	width: 100%;
-	// 	top: -28%;
-	// 	border-top-left-radius: 0;
-	// 	border-top-right-radius: 0;
-
-	// 	@media (max-height: 400px) {
-	// 		top: 60%;
-	// 		border-top-left-radius: 0;
-	// 		border-top-right-radius: 0;
-	// 	}
-	// }
 `
 
-export const Description = styled.div`
-
-`
+export const Description = styled.div``
 
 export const AddSectionLinks = styled.div`
 	position: relative;

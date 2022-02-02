@@ -149,7 +149,7 @@ const Carousel = () => {
 							className='img-container loading'>
 							<Image
 								ref={imgRef}
-								className='image-blurred-edge hidden'
+								className=''
 								backgroundImage={item.img}
 							/>
 						</ImageContainer>
@@ -157,7 +157,9 @@ const Carousel = () => {
 						{/********** SLIDE INFO **********/}
 						<InfoContainer>
 							<Title ref={titleRef} className='loading'>
-								<span className='maroon strong'>{item.title}</span>
+								<span className='maroon strong'>
+									{item.title}
+								</span>
 							</Title>
 
 							<Description ref={descRef} className='loading'>

@@ -1,5 +1,5 @@
 .collection-item {
-	width: 23vw;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -11,7 +11,6 @@
 	&:hover {
 		.image {
 			opacity: 0.8;
-			cursor: pointer;
 		}
 
 		.btn-container {
@@ -24,7 +23,7 @@
 	}
 
 	.image {
-		width: 100%;
+		width: 95%;
 		height: 340px;
 		background-size: cover;
 		background-position: center;
@@ -34,7 +33,7 @@
 	}
 
 	.btn-container {
-		position: relative;
+		position: absolute;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -43,10 +42,14 @@
 		opacity: 0;
 		visibility: hidden;
 		transition: opacity 0.3s ease-in-out;
+
+		@media only screen and (max-width: 600px) {
+			opacity: 1;
+			visibility: visible;
+		}
 	}
 
 	.custom-button {
-		//width: 80%;
 		opacity: 1;
 		position: absolute;
 		bottom: 50px;
@@ -55,11 +58,17 @@
 		color: white;
 		outline: none;
 		border: none;
+		font-size: 20px;
 
-		&:hover {
+		&:hover, &:touchstart {
 			background-color: white;
 			color: maroon;
 			outline: 1px solid maroon;
+		}
+
+		&:active {
+			color: grey;
+			outline: 1px solid grey;
 		}
 
 		@media screen and (max-width: 800px) {
@@ -71,11 +80,20 @@
 	}
 
 	.collection-footer {
-		width: 100%;
+		position: relative;
+		width: 95%;
 		height: 5%;
 		display: flex;
-		justify-content: space-around;
-		font-size: 18px;
+		font-size: 24px;
+		
+		.price {
+			position: absolute;
+			right: 30px;
+		}
+
+		@media only screen and (max-width: 600px) {
+			font-size: 22px;
+		}
 	}
 }
 

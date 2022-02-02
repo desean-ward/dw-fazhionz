@@ -12,11 +12,13 @@ const Category = ({ collection }) => {
     return (
         <AnimatedPage>
             <div className="collection-page">
-                <h2 className='title'>{ title }</h2>
-                <div className="items">
-                    {
-                        items.map(item => <CategoryItem key={ item.id } item={ item } />)
-                    }
+                <div className='preview'>
+                    <h2 className='title'>{ title }</h2>
+                    <div className="items">
+                        {
+                            items.map(item => <CategoryItem key={ item.id } item={ item } />)
+                        }
+                    </div>
                 </div>
             </div>
         </AnimatedPage>

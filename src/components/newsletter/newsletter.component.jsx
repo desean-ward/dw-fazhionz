@@ -1,39 +1,119 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react'
+import emailjs from 'emailjs-com'
 
-import { Container, Title, Description, InputContainer, Input, Button } from './newsletter.styles';
+import GlassModal from '../glass-popup/glass-popup.component'
 
-import { MdSend } from 'react-icons/md';
+import {
+	Container,
+	Title,
+	Description,
+	InputContainer,
+	Input,
+	Button,
+} from './newsletter.styles'
+
+import { MdSend } from 'react-icons/md'
 
 const Newsletter = () => {
+	const [modal, setModal] = useState(false)
+	const initialValue = ''
+	const [formValue, setFormValue] = useState(initialValue)
+	const [isSubmit, setIsSubmit] = useState(false)
+	const email = document.querySelector('.email-input')
 
-    const handleClick = () => {
-        const text = document.querySelector('.input');
+	const emailFormat =
+		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-        text.value = '';
+	const handleChange = (e) => {
+		setFormValue(e.target.value)
+		console.log(formValue)
+	}
 
-        alert(`You're now subscribed!` + '\r\n' +
-        `Please watch your email for weekly deals.`
-        );
-    }
+	const handleSubmit = (e) => {
+		e.preventDefault()
 
-    return (
-        <Container>
-            <Title>Newsletter</Title>
-            <Description>
-            Subscribe to receive updates on deals and new arrivals
-            </Description>
+		// Validate the email format before submitting via useEffect
+		validate(formValue) ? setIsSubmit(true) : setIsSubmit(false)
+	}
 
-            <InputContainer>
-                <Input className='input' placeholder="Your email" />
-                
-                <Button onClick={handleClick}>
-                    <MdSend />
-                </Button>
-            
-            </InputContainer>
-            
-        </Container>
-    )
+	const showModal = () => {
+		setModal(!modal)
+		setFormValue(initialValue)
+
+		if (modal) setIsSubmit(false)
+	}
+
+	useEffect(() => {
+		// Submit the email and show confirmation modal/popup
+		if (isSubmit) {
+			//sendEmail()
+			showModal()
+		}
+	}, [isSubmit])
+
+	const validate = (value) => {
+		if (value.match(emailFormat)) {
+			return true
+		}
+	}
+
+	const form = useRef()
+
+	const sendEmail = () => {
+		emailjs
+			.sendForm(
+				'service_jhnvilg',
+				'dw-fazhionz-newsletter',
+				form.current,
+				'user_E2SDLaiMBuyQ2WLk4t4Vg'
+			)
+			.then(
+				(result) => {
+					console.log(result.text)
+				},
+				(error) => {
+					console.log(error.text)
+				}
+			)
+	}
+
+
+	return (
+		<>
+			<Container>
+				<Title>Newsletter</Title>
+				<Description>
+					Subscribe to receive updates on deals and new arrivals
+				</Description>
+
+				<InputContainer
+					ref={form}
+					className='form'
+					onSubmit={handleSubmit}>
+					<Input
+                        name='email'
+						className='email-input'
+						type='email'
+						placeholder='Your email'
+						value={formValue}
+						onChange={handleChange}
+					/>
+
+					<Button type='submit'>
+						<MdSend />
+					</Button>
+				</InputContainer>
+			</Container>
+
+			<GlassModal
+				show={modal}
+				close={showModal}
+				titleBG='D.W. Fazhionz'
+				title="You're now subscribed!"
+				content='Please watch your inbox for weekly deals.'
+			/>
+		</>
+	)
 }
 
 export default Newsletter
