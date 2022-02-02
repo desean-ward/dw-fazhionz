@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
     position: relative;
     z-index: 50;
     height: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     background-color: white;
@@ -121,7 +122,7 @@ export const Right = styled.div`
     flex-direction: column;
     width: 90%;
     
-    @media only screen and (max-width: 479px) {
+    @media only screen and (max-width: 480px) {
         top: -80px;
     }
 `;

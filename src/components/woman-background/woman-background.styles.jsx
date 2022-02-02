@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     
     @media only screen and (max-width: 770px) {
@@ -25,5 +25,5 @@ export const Woman = styled.img`
     background-size: cover;
     background-repeat: no-repeat; */
     height: 100%;
-    width: 100%;
+    width: 100vw;
 `

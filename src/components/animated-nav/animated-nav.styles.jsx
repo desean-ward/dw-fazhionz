@@ -3,14 +3,14 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Wrapper = styled.div`
-    position: absolute;
+    position: fixed;
      //z-index: 4000;
 	height: 100vh;
 	width: 100vw; 
     display: ${props => props.show ? "none" : "flex"};
     justify-content: center;
     align-items: center;
-    //overflow: hidden;
+    overflow: hidden;
 
     h1 {
         font-size: 40px;
@@ -28,7 +28,7 @@ export const Navigation = styled.div`
     position: fixed;
     z-index: 200;
     background-color: maroon;
-    width: 100%;
+    width: 100vw;
     height: 30px;
     display: flex;
     justify-content: center;
@@ -41,7 +41,7 @@ export const Navigation = styled.div`
         z-index: -1;
         top: 0;
         left: 0;
-        width: 100%;
+        width: 100vw;
         height: 100%;
         opacity: 0.15;
         height: 30px;
@@ -50,7 +50,7 @@ export const Navigation = styled.div`
     h2 {
         position: absolute;
         top: 10%;
-        left: 5%;
+        left: 7%;
         opacity: 0;
         color: #fff;
         font-size: 2em;
@@ -105,7 +105,7 @@ export const HamburgerContainer = styled.div`
     z-index: 200;
     width: 30px;
     height: 30px;
-    background: #fff;
+    background-color: transparent;
     top: 40px;
     right: 5%;
     cursor: pointer;

@@ -86,7 +86,7 @@ export const Right = styled.div`
 		top: -3px;
 		
 
-		@media only screen and (max-width: 900px) {
+		@media only screen and (max-width: 1000px) {
 			position: absolute;
 			right: 0;
 			top: 12px; 

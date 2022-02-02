@@ -4,10 +4,11 @@ export const Container = styled.div`
 	position: relative;
 	z-index: 50;
 	height: clamp(2vh, 120em, 50vh);
-	width: 100%;
+	width: 100vw;
 	color: white;
 	display: flex;
 	flex-direction: row;
+	overflow-x: hidden;
 
 	@media only screen and (max-width: 1100px) and (orientation: portrait) {
 		height: 30vh;
@@ -76,7 +77,7 @@ export const Title = styled.h1`
 	}
 
 	&.push-left {
-		margin-left: 40%;
+		margin-left: 35%;
 		border-bottom: 2px solid;
 		left: -30px;
 	}
