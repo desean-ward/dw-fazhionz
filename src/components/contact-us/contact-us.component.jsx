@@ -62,7 +62,7 @@ const Contact = () => {
 
 	useEffect(() => {
 		if (isSubmit) {
-			//sendEmail()
+			sendEmail()
 			showModal()
 		}
 	}, [isSubmit])

@@ -46,7 +46,7 @@ const Newsletter = () => {
 	useEffect(() => {
 		// Submit the email and show confirmation modal/popup
 		if (isSubmit) {
-			//sendEmail()
+			sendEmail()
 			showModal()
 		}
 	}, [isSubmit])
