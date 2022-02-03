@@ -11,6 +11,7 @@ import BannerOne from '../../components/banner-one/banner-one.component'
 import WomanBackground from '../../components/woman-background/woman-background.component'
 import AnimatedPage from '../../components/animated-page/animated-page.component'
 import Spacer from '../../components/spacer/spacer.component'
+import CarouselSpacer from '../../components/spacer/carousel-spacer.component'
 
 
 const HomePage = () => {
@@ -22,7 +23,7 @@ const HomePage = () => {
 				<BannerOne />
 				<Spacer />
 				<Carousel />
-				<Spacer />
+				<CarouselSpacer />
 				<Directory />
 				<Spacer />
 				<Countdown />

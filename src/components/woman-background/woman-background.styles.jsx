@@ -25,5 +25,5 @@ export const Woman = styled.img`
     background-size: cover;
     background-repeat: no-repeat; */
     height: 100%;
-    width: 100vw;
+    width: 100%;
 `

@@ -3,14 +3,14 @@ import React from 'react'
 import { SpacerContainer, CarouselSpacerContainer } from './spacer.styles'
 
 
-const Spacer = () => {
+const CarouselSpacer = () => {
     return (
         
-       <SpacerContainer />
+       <CarouselSpacerContainer />
     )
 }
 
-export default Spacer
+export default CarouselSpacer
 
 
 

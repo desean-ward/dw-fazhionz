@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Spacer from '../../components/spacer/spacer.component'
 
 export const HomePageContainer = styled.div`
     width: 100vw;
@@ -8,4 +9,5 @@ export const HomePageContainer = styled.div`
     align-items: center;
     scrollbar-width: thin;
     scroll-behavior: smooth;
+
 `;

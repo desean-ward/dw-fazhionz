@@ -14,7 +14,7 @@ import {
 } from './animated-nav.styles'
 
 
-const AnimatedNav = ({ show, close, cartItems }) => {
+const AnimatedNav = ({ show, close, cartItems, auth, currentUser }) => {
     const [ hasItems, setHasItems ] = useState(false)
 
     const wrapperRef = useRef(null)
@@ -48,6 +48,7 @@ const AnimatedNav = ({ show, close, cartItems }) => {
     }
 
     const closeMenu = () => {
+        if (auth) auth.signOut(); 
         t1.reverse()
         close()
     }
@@ -82,9 +83,20 @@ const AnimatedNav = ({ show, close, cartItems }) => {
                         onClick={closeMenu}>Contact Us</MobileNavLink>
 					</li>
 					<li className='item'>
-						<MobileNavLink
+                    {
+                        currentUser ? (
+                            <MobileNavLink
+                                className='link' to='sign-in'
+                                onClick={closeMenu}
+                            >
+                                Sign Out
+                            </MobileNavLink>
+                        ) : (
+                            <MobileNavLink
                         className='link' to='sign-in'
-                        onClick={closeMenu}>Sign In/Sign Out</MobileNavLink>
+                        onClick={closeMenu}>Sign In/Sign Up</MobileNavLink>
+                        )
+                    }
 					</li>
 					</Menu>
 

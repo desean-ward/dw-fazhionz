@@ -85,7 +85,12 @@ const Header = ({ currentUser, hidden }) => {
 			<ScrollToTop className='scrollTopArrow' onClick={scrollToTop}>
 				<ImArrowUp className='arrow' />
 			</ScrollToTop>
-			<AnimatedNav show={show} close={openMenu} />
+			<AnimatedNav 
+				show={show} 
+				close={openMenu}
+				auth={auth}
+				currentUser={currentUser} 
+			/>
 			<HeaderTop>
 				<HeaderMessage id='message' currentUser={currentUser} />
 			</HeaderTop>
@@ -168,12 +173,14 @@ const Header = ({ currentUser, hidden }) => {
 								<OptionLink
 									as='div'
 									className='btn-ctr'
-									onClick={() => auth.signOut()}>
+									onClick={() => auth.signOut()}
+								>
 									SIGN OUT
 									<OptionLine />
 								</OptionLink>
 							) : (
-								<OptionLink className='btn-ctr' to='/sign-in'>
+								<OptionLink 		className='btn-ctr' 	to='/sign-in'
+								>
 									SIGN IN / SIGN UP
 									<OptionLine />
 								</OptionLink>

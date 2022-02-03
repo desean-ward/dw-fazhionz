@@ -10,7 +10,7 @@ export const ItemContainer = styled.div`
 	justify-content: space-between;
 	transition: all 0.3s ease-in-out;
 
-    &:hover {
+    &:hover, &:active {
     background-color: rgba(0, 0, 0, .05);
     }  
 
@@ -58,7 +58,7 @@ export const InfoContainer = styled.div`
             justify-self: right;
             margin-right: 10px; 
         }
-        .price { margin-right: 24px; }
+        .price { margin-right: 26px; }
     }
 `
 

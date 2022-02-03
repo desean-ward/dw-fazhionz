@@ -50,7 +50,7 @@ const StripeCheckoutButton = ({ price, cartItems, removeItem }) => {
                     close={showModal}
                     titleBG='D.W. Fazhionz'
                     title="Payment Successful!"
-                    content='Please visit us again.'
+                    content='Please shop with us again.'
             />
         </>
     )

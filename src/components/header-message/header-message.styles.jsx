@@ -14,7 +14,7 @@ export const HeaderMessageContainer = styled.div`
 	text-align: center;
 
 	@media only screen and (max-width: 999px) {
-		display: none;
+		//display: none;
 	}
 `
 
@@ -22,12 +22,20 @@ export const Left = styled.div`
 	display: flex;
 	align-items: center;
 	color: white;
+
+	@media only screen and (max-width: 999px) {
+		display: none;
+	}
 `
 
 export const Center = styled.div`
 	display: flex;
 	justify-content: center;
 	color: white;
+
+	@media only screen and (max-width: 999px) {
+		display: none;
+	}
 `
 
 export const Right = styled.div`

@@ -9,7 +9,6 @@ export const Container = styled.div`
 	display: flex;
 	position: relative;
 	height: 100%;
-	//padding: 1vh 0 1vh 0;
 	overflow: hidden;
 	background: white;
 
@@ -35,7 +34,7 @@ export const Container = styled.div`
 	}
 
 	@media screen and (max-width: 1100px) and (orientation: portrait) {
-		height: 60vh;
+		height: 62vh;
 	}
 `
 
@@ -147,6 +146,7 @@ export const InfoContainer = styled.div`
 		@media screen and (orientation: portrait) {
 			padding-left: 0;
 			margin-top: 20px;
+			height: 20vh;
 
 			@media only screen and (max-width: 400px) {
 				font-size: smaller;
@@ -206,7 +206,8 @@ export const CarouselNav = styled.div`
 	height: 40px;
 
 	@media only screen and (max-width: 900px) and (min-height: 400px) {
-		display: none;
+		position: absolute;
+		margin-top: -40px;
 	}
 `
 
@@ -220,5 +221,10 @@ export const NavIndicator = styled.div`
 
 	#active {
 		background-color: maroon;
+	}
+
+	@media only screen and (max-width: 900px) and (min-height: 400px) {
+		width: 12%;
+		height: 60%;
 	}
 `

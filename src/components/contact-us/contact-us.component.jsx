@@ -57,7 +57,7 @@ const Contact = () => {
 		// }
 
 		setFormValues(initialValues)
-		inputName.focus()
+		//inputName.focus()
 	}, [isSubmit])
 
 	useEffect(() => {

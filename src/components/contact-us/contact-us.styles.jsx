@@ -25,7 +25,16 @@ export const Container = styled.div`
 
        @media only screen and (max-height: 450px) {
            height: 100vh;
+           margin-bottom: -20vh;
        }
+   }
+
+   @media only screen and (max-width: 900px) and (max-height: 1100px) {
+      height: 75vh;
+
+      @media only screen and (max-width: 450px) {
+          height: 85vh;
+      }
    }
 `
 
@@ -50,6 +59,8 @@ export const InputContainer = styled.form`
         border: 1px solid maroon;
         box-shadow: 1px 1px 4px maroon;
     }
+
+   
     
 `
 
