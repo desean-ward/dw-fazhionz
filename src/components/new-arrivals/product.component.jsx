@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 
-import QuickView from './quick-view.component'
+import QuickView from '../../components/new-arrivals/quick-view.component'
 
 import {
 	Container,
@@ -26,35 +26,14 @@ const Product = ({ imageUrl, name, price, category, addItem, item, dispatch }) =
 	let currentIndex = null;
 
 	const popup = (i) => {
-		//popupViews[i].style.display = 'relative'
-		// popupViews[i].style.visibility = 'visible'
-		// popupViews[i].style.opacity = '1'
-		// document.body.style.overflow = 'hidden'
-		//setIndex(i)
-		//index = i
-		// if (i != index) {
-		// 	 setIndex(i)
-		// 	setShow(true)
-		// }
 		i.preventDefault()
 		setIndex(i)
 		setShow(true)
-
-		
-		
 	}
 
 	const close = () => {
 		setShow(false)
 	}
-
-	// popupBtns.forEach((popupBtn, i) => {
-	// 	popupBtn.addEventListener('click', (e) => {
-	// 		e.preventDefault()
-	// 		popup(i)
-	// 	})
-	// })
-
 
 	useEffect(() => {
 		setPopupBtns(document.querySelectorAll('.popup__btn'))

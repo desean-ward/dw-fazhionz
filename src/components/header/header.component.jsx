@@ -194,7 +194,6 @@ const Header = ({ currentUser, hidden }) => {
 						/* Toggle the Shopping Cart Dropdown */
 						hidden ? null : <CartDropdown hidden />
 					}
-					
 
 					<HamburgerContainer
 						className='hamburger'

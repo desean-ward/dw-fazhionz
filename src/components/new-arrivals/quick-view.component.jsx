@@ -13,6 +13,9 @@ import {
 } from './product.styles'
 
 import { IoMdClose } from 'react-icons/io'
+import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillHeart } from 'react-icons/ai'
+import CartIcon from '../../components/cart-icon/cart-icon.component'
 
 
 const QuickView = ({ show, close, index, imageUrl, name, price, category, addItem, item, dispatch }) => {
@@ -94,9 +97,6 @@ const QuickView = ({ show, close, index, imageUrl, name, price, category, addIte
                                 onTouchEnd={addToBag}
                             >
                                 ADD TO BAG
-                            </a>
-                            <a href='#' className='add__wish'>
-                                Add to Wishlist
                             </a>
                         </AddSectionLinks>
                     </Info>

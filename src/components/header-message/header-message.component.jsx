@@ -19,7 +19,6 @@ const HeaderMessage = ({ currentUser }) => {
 	const [ nameUpdated, setNameUpdated ] = useState(false)
 
 	const getCurrentUser = () => {
-		
 		if (!currentUser) return
 
 		if (nameUpdated == false) {

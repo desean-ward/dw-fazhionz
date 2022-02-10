@@ -371,24 +371,27 @@ export const AddSectionLinks = styled.div`
 	width: 100%;
 	bottom: 0;
 	height: 100%;
-	left: auto;
-	right: auto;
+	//left: auto;
+	//right: auto;
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
-	align-items: end;
+	align-items: center;
 
 	a {
 		&.add__cart__btn {
 			position: absolute;
 			color: white;
 			background: maroon;
-			width: fit-content;
+			width: 200px;;
 			margin: 0 auto 40px auto;
 			text-transform: uppercase;
 			text-decoration: none;
 			letter-spacing: 1px;
 			padding: 10px 15px;
 			border-radius: 10px;
+			display: flex;
+			justify-content: center;
 
 			:hover {
 				background-color: white;

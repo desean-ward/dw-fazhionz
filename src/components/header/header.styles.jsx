@@ -233,10 +233,6 @@ export const OptionsContainer = styled.div`
 	display: flex;
 	align-items: start;
 	justify-content: space-evenly;
-
-	
-
-	
 `
 
 export const OptionsContainerStyles = css`
