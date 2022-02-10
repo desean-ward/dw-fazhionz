@@ -33,7 +33,7 @@ const AnimatedNav = ({ show, close, cartItems, auth, currentUser }) => {
            if (t1.reversed()) {
                 t1.play()
             } else {
-                t1.to(wrapperRef.current, { zIndex: 200 })
+                t1.to(wrapperRef.current, { visibility: 'visible', zIndex: 200 })
                 .to('.nav', { right: 0 })
                 .to('.nav', { height: '100vh' }, '-=.1')
                 .to('.link', { opacity: 1, PointerEvents: 'all', stagger: {

@@ -1,39 +1,61 @@
 import React from 'react'
+
+import { connect } from 'react-redux'
+
+import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
+import { createStructuredSelector } from "reselect";
+
 import { Container } from './product.styles'
 import './global-styles.css'
 import Product from './product.component'
 
 
-const ProductsSection = () => {
+const ProductsSection = ({ collections }) => {
+    
+	const prod1 = collections[0].items[0]
+	const prod2 = collections[1].items[0]
+	const prod3 = collections[2].items[0]
+
+
     return (
         <>
             <Container className='container'>
                 <Product
                     className='productOne'
-                    name='Brown Brim'
-                    category='Hats'
-                    price='25'
-                    imgUrl='https://i.ibb.co/ZYW3VTp/brown-brim.png'
+                    name={prod1.name}
+                    category={collections[0].title}
+                    price={prod1.price}
+                    imageUrl={prod1.imageUrl}
+                    item={prod1}
                 />
             
                 <Product
                 className='productTwo'
-                name='Adidas NMD'
-                category='Sneakers'
-                price='220'
-                imgUrl='https://i.ibb.co/0s3pdnc/adidas-nmd.png'
+                name={prod2.name}
+                category={collections[1].title}
+                price={prod2.price}
+                imageUrl={prod2.imageUrl}
+                item={prod2}
                 />
             
                 <Product
                 className='productThree'
-                name='Black Jean Shearling'
-                category='Jackets'
-                price='125'
-                imgUrl='https://i.ibb.co/XzcwL5s/black-shearling.png'
+                name={prod3.name}
+                category={collections[2].title}
+                price={prod3.price}
+                imageUrl={prod3.imageUrl}
+                item={prod3}
                /> 
             </Container>
         </>
     )
 }
 
-export default ProductsSection
+
+
+const mapStateToProps = createStructuredSelector({
+    collections: selectCollectionsForPreview
+
+})
+
+export default connect(mapStateToProps)(ProductsSection)

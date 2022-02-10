@@ -63,7 +63,11 @@ const CheckoutPage = ({ cartItems, total }) => (
                 </p>
             </div>
             <div className="button">
-                <StripeCheckoutButton price={total} cartItems={cartItems} total={total} />
+                {
+                    total > 0
+                    ? (<StripeCheckoutButton price={total} cartItems={cartItems} total={total} />) 
+                    : ( null )
+                }
             </div>
         </div>
     </AnimatedPage>

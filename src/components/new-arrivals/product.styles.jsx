@@ -134,7 +134,7 @@ export const Footer = styled.div`
 
 /********** Product Quick View Popup / Modal **********/
 export const PopupView = styled.div`
-	z-index: 200;
+	z-index: 1000200;
 	//background: rgba(105, 105, 105, 0.9);
 	background-color: rgba( 000, 000, 000, 0.7);
 	position: fixed;
@@ -152,9 +152,10 @@ export const PopupView = styled.div`
 	transition: all 0.3s cubic-bezier(0.7, 0.4, 0.66, 1.71);
 	overflow-y: hidden;
 
-	/* body {
-		overflow: hidden;
-	} */
+	&.show {
+		opacity: 1;
+		visibility: visible;
+	}
 
 	@media only screen and (max-width: 800px) and (orientation: portrait) {
 		padding: 0 10vw;
@@ -177,6 +178,7 @@ export const PopupView = styled.div`
 
 export const PopupProduct = styled.div`
 	position: relative;
+	z-index: 120000;
 	height: 100vh;
 	width: 60vw;
 	//border: 5px solid hotpink;
@@ -212,7 +214,7 @@ export const PopupProduct = styled.div`
 	 	grid-template-areas:
 	 		' img '
 	 		' info ';
-		top: -40px;
+		//top: 5vh;
 		width: 100vw;
 		justify-content: center;
 
@@ -243,6 +245,10 @@ export const PopupProduct = styled.div`
 				justify-content: end;
 			 }
 	 	}
+`
+
+export const Modal = styled.div`
+
 `
 
 export const PopupImage = styled.div`

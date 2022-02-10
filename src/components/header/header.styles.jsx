@@ -12,7 +12,7 @@ export const HeaderTop = styled.div``
 
 export const HeaderContainer = styled.div`
 	position: sticky;
-	z-index: 100;
+	z-index: 60;
 	top: 0;
 	padding: 20px 10%;
 	height: 100%;

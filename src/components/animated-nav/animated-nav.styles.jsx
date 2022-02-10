@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    visibility: hidden;
 
     h1 {
         font-size: 40px;
@@ -33,7 +34,7 @@ export const Navigation = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    right: -100vw;
+    right: -200vw;
     overflow: hidden;
 
     img {

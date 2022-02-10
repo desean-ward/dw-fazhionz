@@ -8,14 +8,17 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
     <div 
     /* Interpolate 'size' of any menu-items containing the 'size' property */
         className = { ` ${size} menu-item` }
-        onClick={() => history.push(`${match.url}${linkUrl}`)}>
+        >
         
         <div 
             /* Interpolate the imageUrl */
             className='background-image'  style={{
             backgroundImage: `url(${imageUrl})`
         }}></div>
-    <div className='content'>
+    <div 
+        className='content' 
+        onClick={() => history.push(`${match.url}${linkUrl}`)
+    }>
         <h1 className='title'>{ title.toUpperCase() }</h1>
         <span className='subtitle'>SHOP NOW</span>
     </div>

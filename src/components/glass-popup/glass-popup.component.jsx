@@ -20,9 +20,6 @@ const GlassModal = ({ show, close, titleBG, title, content }) => {
 			
 			return
 		}
-
-		
-
 	}, [show])
 
 	function handleClose() {
