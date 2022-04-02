@@ -40,11 +40,11 @@ import {
 } from '../animated-nav/animated-nav.styles.jsx'
 
 const Header = ({ currentUser, hidden }) => {
-	const [ show, setShow ] = useState(false)
-	const [ searchUrl, setSearchUrl ] = useState('')
-	const [ inputValue, setInputValue ] = useState(null)
-	const [ validPath, setValidPath ] = useState(false)
-	const [ modal, setModal ] = useState(false);
+	const [show, setShow] = useState(false)
+	const [searchUrl, setSearchUrl] = useState('')
+	const [inputValue, setInputValue] = useState(null)
+	const [validPath, setValidPath] = useState(false)
+	const [modal, setModal] = useState(false)
 	const searchRef = useRef(null)
 	const inputRef = useRef(null)
 	const mobileNavRef = useRef(null)
@@ -78,11 +78,14 @@ const Header = ({ currentUser, hidden }) => {
 
 	const handleKeyDown = (e) => {
 		if (e.keyCode === 13) {
-			const paths = [ 'mens', 'womens', 'hats', 'jackets', 'sneakers']
+			const paths = ['mens', 'womens', 'hats', 'jackets', 'sneakers']
 			const path = inputRef.current.value.trim()
 
-			if (paths.includes(path)) { history.push(searchUrl) }
-			else { history.push('/page-not-found') }
+			if (paths.includes(path)) {
+				history.push(searchUrl)
+			} else {
+				history.push('/page-not-found')
+			}
 
 			inputRef.current.value = ''
 		}
@@ -120,11 +123,11 @@ const Header = ({ currentUser, hidden }) => {
 			<ScrollToTop className='scrollTopArrow' onClick={scrollToTop}>
 				<ImArrowUp className='arrow' />
 			</ScrollToTop>
-			<AnimatedNav 
-				show={show} 
+			<AnimatedNav
+				show={show}
 				close={openMenu}
 				auth={auth}
-				currentUser={currentUser} 
+				currentUser={currentUser}
 			/>
 			<HeaderTop>
 				<HeaderMessage id='message' currentUser={currentUser} />
@@ -209,14 +212,12 @@ const Header = ({ currentUser, hidden }) => {
 								<OptionLink
 									as='div'
 									className='btn-ctr'
-									onClick={() => auth.signOut()}
-								>
+									onClick={() => auth.signOut()}>
 									SIGN OUT
 									<OptionLine />
 								</OptionLink>
 							) : (
-								<OptionLink 		className='btn-ctr' 	to='/sign-in'
-								>
+								<OptionLink className='btn-ctr' to='/sign-in'>
 									SIGN IN / SIGN UP
 									<OptionLine />
 								</OptionLink>
@@ -242,8 +243,8 @@ const Header = ({ currentUser, hidden }) => {
 			<GlassModal
 				show={modal}
 				close={showModal}
-				titleBG='WEEKLY SPECIAL!!!'
-				title="Enjoy 15% Off All Apparel!"
+				titleBG='WEEKLY SPECIAL'
+				title='Enjoy 15% Off All Apparel!!!'
 				content="Don't forget to join our newsletter for weekly deals."
 			/>
 		</>
