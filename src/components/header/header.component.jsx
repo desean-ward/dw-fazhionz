@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 
+import { useHistory } from 'react-router-dom'
+
 import { auth } from '../../firebase/firebase.utils.js'
 
 import { createStructuredSelector } from 'reselect'
@@ -36,15 +38,17 @@ import {
 	Bars,
 } from '../animated-nav/animated-nav.styles.jsx'
 
-/* Destructure the currentUser property */
 const Header = ({ currentUser, hidden }) => {
-	const [show, setShow] = useState(false)
-	const [inputValue, setInputValue] = useState(null)
+	const [ show, setShow ] = useState(false)
+	const [ searchUrl, setSearchUrl ] = useState('')
+	const [ inputValue, setInputValue ] = useState(null)
+	const [ validPath, setValidPath ] = useState(false)
 	const searchRef = useRef(null)
 	const inputRef = useRef(null)
 	const mobileNavRef = useRef(null)
 	const close = document.querySelector('.close-icon')
 	const del = document.querySelector('.delete-icon')
+	const history = useHistory()
 
 	window.addEventListener('scroll', () => {
 		var scroll = document.querySelector('.scrollTopArrow')
@@ -72,8 +76,27 @@ const Header = ({ currentUser, hidden }) => {
 
 	const handleKeyDown = (e) => {
 		if (e.keyCode === 13) {
+			const paths = [ 'mens', 'womens', 'hats', 'jackets', 'sneakers']
+			const path = inputRef.current.value.trim()
+
+			if (paths.includes(path)) { history.push(searchUrl) }
+			else { history.push('/page-not-found') }
+
 			inputRef.current.value = ''
 		}
+	}
+
+	const checkValue = (path) => {
+		if (inputRef.current.value == path) setValidPath(true)
+
+		if (validPath === true) {
+			history.push(searchUrl)
+			inputRef.current.value = ''
+		} else history.push('/page-not-found')
+	}
+
+	const handleChange = (e) => {
+		setSearchUrl('/shop/' + e.target.value)
 	}
 
 	const openMenu = () => {
@@ -122,6 +145,7 @@ const Header = ({ currentUser, hidden }) => {
 							className='search-input'
 							placeholder="Ex: 'mens', 'sneakers'..."
 							onKeyDown={handleKeyDown}
+							onChange={handleChange}
 						/>
 
 						<RiDeleteBack2Line

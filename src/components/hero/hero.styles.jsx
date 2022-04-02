@@ -47,7 +47,7 @@ export const LogoContainer = styled.div`
 				left: 50%;
 				animation: 
 					slide-out-left .5s linear .7s,
-					glow .5s linear 1.2s;
+					flash .5s linear 1.2s;
 				animation-fill-mode: forwards;
 			}
 
@@ -56,7 +56,7 @@ export const LogoContainer = styled.div`
 				right: 50%;
 				animation: 
 					slide-out-right .5s linear .7s,
-					glow .5s linear 1.2s;
+					flash .5s linear 1.2s;
 				animation-fill-mode: forwards;
 				
 			}
@@ -100,6 +100,18 @@ export const LogoContainer = styled.div`
 		100% {
 			transform: translateX(45vw);
 			visibility: visible;
+		}
+	}
+
+	@keyframes flash {
+		0% {
+			opacity: 1;
+		}
+		50% {
+			opacity: .2;
+		}
+		100% {
+			opacity: 1;
 		}
 	}
 `

@@ -77,7 +77,7 @@ const Product = ({ imageUrl, name, price, category, addItem, item, dispatch }) =
 				className='quick__view'
 				show={show}
 				close={close}
-				category={item.category}
+				//category={item.category}
 				name={item.name}
 				price={item.price}
 				imageUrl={item.imageUrl}

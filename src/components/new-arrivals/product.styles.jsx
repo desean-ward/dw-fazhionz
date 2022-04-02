@@ -134,7 +134,7 @@ export const Footer = styled.div`
 
 /********** Product Quick View Popup / Modal **********/
 export const PopupView = styled.div`
-	z-index: 1000200;
+	z-index: 1000;
 	//background: rgba(105, 105, 105, 0.9);
 	background-color: rgba( 000, 000, 000, 0.7);
 	position: fixed;
@@ -229,7 +229,7 @@ export const PopupProduct = styled.div`
 		.info {
 			top: 0;
 			width: 100%;
-			height: 100%;
+			height: 70%;
 		}
 
 		.close__btn {
@@ -237,12 +237,18 @@ export const PopupProduct = styled.div`
 		}
 	 }
 
+	 @media (min-width: 801px) and (orientation: portrait) {
+		 width: 100vw;
+		 height: 60vh;
+		 margin: auto 0;
+	 }
+
 	 @media (max-height: 800px) and (orientation: landscape) {
 		 	top: 7px;
 			 width: 75vw;
 
 	 		.links {
-				justify-content: end;
+				//justify-content: end;
 			 }
 	 	}
 `
@@ -384,14 +390,16 @@ export const AddSectionLinks = styled.div`
 			color: white;
 			background: maroon;
 			width: 200px;;
-			margin: 0 auto 40px auto;
+			margin: 0 auto 0 auto;
 			text-transform: uppercase;
 			text-decoration: none;
 			letter-spacing: 1px;
 			padding: 10px 15px;
 			border-radius: 10px;
 			display: flex;
+			flex-direction: row;
 			justify-content: center;
+			align-items: center;
 
 			:hover {
 				background-color: white;

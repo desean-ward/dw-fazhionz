@@ -24,6 +24,7 @@ import { selectCurrentUser } from "./redux/user/user.selectors";
 import { AnimatePresence } from 'framer-motion/dist/es/index'
 
 import ScrollToTop from "./ScrollToTop.js";
+import PageNotFound from "./components/page-not-found/page-not-found.component";
 
 class App extends React.Component {
   /* Setup unsubscribe method */
@@ -78,6 +79,7 @@ class App extends React.Component {
                 )
               }
             />
+            <Route path='*' component={PageNotFound} />
           </Switch>
         </AnimatePresence>
         <Footer />

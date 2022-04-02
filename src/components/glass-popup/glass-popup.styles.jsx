@@ -71,12 +71,13 @@ export const Modal = styled.div`
 
 export const Title = styled.h3`
 	text-align: center;
-	top: 20px;
+	top: 40px;
 `
 export const TitleBG = styled.h1`
 	font-size: 50px;
 	font-weight: 700;
 	text-align: center;
+	padding-bottom: 40px;
 	color: rgba(255, 255, 255, 0.3);
 `
 
