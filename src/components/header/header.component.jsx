@@ -13,6 +13,7 @@ import HeaderMessage from '../header-message/header-message.component'
 import CartIcon from '../cart-icon/cart-icon.component'
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 import AnimatedNav from '../animated-nav/animated-nav.component'
+import GlassModal from '../glass-popup/glass-popup.component'
 
 import {
 	HeaderTop,
@@ -43,6 +44,7 @@ const Header = ({ currentUser, hidden }) => {
 	const [ searchUrl, setSearchUrl ] = useState('')
 	const [ inputValue, setInputValue ] = useState(null)
 	const [ validPath, setValidPath ] = useState(false)
+	const [ modal, setModal ] = useState(false);
 	const searchRef = useRef(null)
 	const inputRef = useRef(null)
 	const mobileNavRef = useRef(null)
@@ -102,6 +104,16 @@ const Header = ({ currentUser, hidden }) => {
 	const openMenu = () => {
 		setShow(!show)
 	}
+
+	const showModal = () => {
+		setModal(!modal)
+	}
+
+	useEffect(() => {
+		setTimeout(() => {
+			showModal()
+		}, 5000)
+	}, [])
 
 	return (
 		<>
@@ -226,6 +238,14 @@ const Header = ({ currentUser, hidden }) => {
 					</HamburgerContainer>
 				</Right>
 			</HeaderContainer>
+
+			<GlassModal
+				show={modal}
+				close={showModal}
+				titleBG='WEEKLY SPECIAL!!!'
+				title="Enjoy 15% Off All Apparel!"
+				content="Don't forget to join our newsletter for weekly deals."
+			/>
 		</>
 	)
 }
