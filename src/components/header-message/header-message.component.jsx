@@ -1,8 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react'
-import { connect } from 'react-redux'
+import React, { useRef, useEffect, useState, useContext } from 'react'
 
 import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
+
+import { db, auth } from '../../utils/firebase/firebase.utils'
+import { doc, getDoc } from 'firebase/firestore'
+
+
+import { UserContext } from '../../context/user.context.jsx'
 
 import { IconContext } from 'react-icons'
 
@@ -13,34 +18,37 @@ import {
 	HeaderMessageContainer,
 } from './header-message.styles'
 
-const HeaderMessage = ({ currentUser }) => {
+const HeaderMessage = () => {
 	const initialState = 'Hello'
 	const [ name, setName ] = useState(initialState)
 	const [ nameUpdated, setNameUpdated ] = useState(false)
+	const { currentUser } = useContext(UserContext)
 
 	const getCurrentUser = () => {
 		if (!currentUser) return
 
-		if (nameUpdated == false) {
+		console.log("HEADER: " + currentUser.displayName)
+		
+		/* if (nameUpdated == false) {
 			setName(currentUser.displayName)
 			setNameUpdated(true)
-		}
-	}
+		} */
 
-	const getMessage = () => {
-		//getCurrentUser()
-		//setName(currentUser.displayName)
-		return 'Welcome, {currentUser.displayName}!'
+		setName(currentUser.displayName)
+
 	}
 
 	useEffect(() => {
-		function handleName() {
+		function updateName() {
 			getCurrentUser()
 		}
 
-		handleName()
+		 return updateName()
 	}, [currentUser]) 
 
+	
+
+	
 
 	return (
 		<HeaderMessageContainer>
@@ -61,8 +69,4 @@ const HeaderMessage = ({ currentUser }) => {
 	)
 }
 
-const mapStateToProps = createStructuredSelector({
-	currentUser: selectCurrentUser,
-})
-
-export default connect(mapStateToProps)(HeaderMessage)
+export default HeaderMessage

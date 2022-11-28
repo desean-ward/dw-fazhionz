@@ -79,21 +79,21 @@ const AnimatedNav = ({ show, close, cartItems, auth, currentUser }) => {
 					</li>
 					<li className='item'>
 						<MobileNavLink
-                        className='link' to='contact'
+                        className='link' to='contact-us'
                         onClick={closeMenu}>Contact Us</MobileNavLink>
 					</li>
 					<li className='item'>
                     {
                         currentUser ? (
                             <MobileNavLink
-                                className='link' to='sign-in'
+                                className='link' to='auth'
                                 onClick={closeMenu}
                             >
                                 Sign Out
                             </MobileNavLink>
                         ) : (
                             <MobileNavLink
-                        className='link' to='sign-in'
+                        className='link' to='auth'
                         onClick={closeMenu}>Sign In/Sign Up</MobileNavLink>
                         )
                     }

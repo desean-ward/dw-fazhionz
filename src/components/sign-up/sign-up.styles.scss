@@ -1,17 +1,11 @@
-.sign-up {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
+.sign-up-form {
+	width: 450px;
 
-    .title {
-        margin: 0;
-    }
-
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        justify-items: space-between;
-        gap: 10px;
-    }
-
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		justify-items: space-between;
+		gap: 10px;
+        width: 100%;
+	}
 }

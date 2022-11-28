@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { Link } from 'react-router-dom'
 
 export const LogoContainer = styled.div`
 	position: relative;
@@ -34,6 +33,28 @@ export const LogoContainer = styled.div`
 			}
 			z-index: 2;
 		}
+		&.burst {
+			/* left: 20%;
+			z-index: 20;
+			width: 90%; */
+			z-index: 20;
+			width: 60%;
+			height: 90%;
+			opacity: 0;
+			animation: flash2 1s linear 1.9s;
+		}
+
+		&.burst2 {
+			/* left: 20%;
+			z-index: 20;
+			width: 90%; */
+			z-index: 20;
+			width: 80%;
+			height: 90%;
+			opacity: 0;
+			transform: rotate(45deg);
+			animation: flash3 1s linear 2.4s;
+		}
 
 		&.logo-images {
 			position: absolute;
@@ -60,6 +81,8 @@ export const LogoContainer = styled.div`
 				animation-fill-mode: forwards;
 				
 			}
+
+			
 
 			@media only screen and (max-width: 1100px) and (orientation: portrait) {
 				top: 35vh;
@@ -112,6 +135,18 @@ export const LogoContainer = styled.div`
 		}
 		100% {
 			opacity: 1;
+		}
+	}
+
+	@keyframes flash2 {
+		0% {
+			opacity: 1;
+		}
+		50% {
+			opacity: .1;
+		}
+		100% {
+			opacity: 0;
 		}
 	}
 `

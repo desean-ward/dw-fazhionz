@@ -6,7 +6,7 @@ import AnimatedPage from '../../components/animated-page/animated-page.component
 
 import { ContactPageContainer } from './contact.styles'
 
-const ContactPage = () => {
+const ContactUs = () => {
     return (
         <AnimatedPage>
             <ContactPageContainer>
@@ -16,4 +16,4 @@ const ContactPage = () => {
     )
 }
 
-export default ContactPage;
+export default ContactUs;

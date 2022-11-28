@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 export const Wrapper = styled.div`
     position: fixed;
-     //z-index: 4000;
 	height: 100vh;
 	width: 100vw; 
     display: ${props => props.show ? "none" : "flex"};

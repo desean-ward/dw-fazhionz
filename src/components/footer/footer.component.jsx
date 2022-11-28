@@ -44,7 +44,7 @@ const Footer = () => {
                     <Title>D.W. Fazhionz</Title>
 
                     <Description>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore ipsa molestiae accusamus quos? Sunt consequatur omnis nemo harum quo culpa atque aperiam delectus sit fugiat itaque sapiente odio natus, nihil cum?              
+                        Lorem ipsum dolor sit, amet consectetur. Labore ipsa molestiae accusamus quos? Sunt consequatur omnis nemo nihil cum?              
                     </Description>
 
                     <SocialContainer>
@@ -68,11 +68,11 @@ const Footer = () => {
                     <List>
                         <ListItem to='/'>Home</ListItem>
                         <ListItem to='/checkout'>Checkout</ListItem>
-                        <ListItem to='/shop/mens'>Mens</ListItem>
-                        <ListItem to='/shop/womens'>Womens</ListItem>
-                        <ListItem to='/shop/hats'>Hats</ListItem>
-                        <ListItem to='/shop/jackets'>Jackets</ListItem>
-                        <ListItem to='/shop/sneakers'>Sneakers</ListItem>
+                        <ListItem to='/shop/categories/mens'>Mens</ListItem>
+                        <ListItem to='/shop/categories/womens'>Womens</ListItem>
+                        <ListItem to='/shop/categories/hats'>Hats</ListItem>
+                        <ListItem to='/shop/categories/jackets'>Jackets</ListItem>
+                        <ListItem to='/shop/categories/sneakers'>Sneakers</ListItem>
                         <ListItem to='#'>Wishlist</ListItem>
                     </List>
                 </Center>
@@ -86,7 +86,7 @@ const Footer = () => {
                     </ContactItem>
                     <ContactItem>
                         <FaPhoneAlt style={{marginRight: "10px"}} /> 
-                        +1 (312) 625-8028
+                        +1 (773) 209-1814
                     </ContactItem>
                     <ContactItem>
                         <GrMail style={{marginRight: "10px"}} />  

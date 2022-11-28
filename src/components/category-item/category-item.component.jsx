@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 
 import CustomButton from '../custom-button/custom-button.component'
 
-
-
 import { addItem } from '../../redux/cart/cart.actions'
 
-import './category-item.styles.scss'
-
 import QuickView from '../../components/new-arrivals/quick-view.component'
+
+import { CategoryItemContainer, ImageContainer, Image, ButtonContainer, FooterContainer } from './category-item.styles'
+
 
 const CategoryItem = ({ item, addItem }) => {
 	/********** VARIABLES **********/
@@ -36,18 +35,14 @@ const CategoryItem = ({ item, addItem }) => {
 	}
 
 	const popup = (i) => {
-		//i.preventDefault()
 		setIndex(i)
 		setShow(true)
-
-		console.log("SHOW: " + i.incex)
 	}
 
 	const close = () => {
 		setShow(false)
 	}
 
-	/********** HOOKS  **********/
 	useEffect(() => {
 		const startRenderCard = () => {
 			setIsLoading(true)
@@ -55,7 +50,6 @@ const CategoryItem = ({ item, addItem }) => {
 			if (!item) {
 				return
 			}
-
 			setIsLoading(false)
 			renderCard()
 		}
@@ -71,10 +65,10 @@ const CategoryItem = ({ item, addItem }) => {
 
 	return (
 		/********** CATEGORY ITEM  **********/
-		<div className='collection-item'>
+		<CategoryItemContainer>
 			{/********** IMAGE **********/}
-			<div ref={imgContainerRef} className='image-container loading'>
-				<div
+			<ImageContainer ref={imgContainerRef} className='loading'>
+				<Image
 					ref={imgRef}
 					className='image'
 					style={{
@@ -82,24 +76,24 @@ const CategoryItem = ({ item, addItem }) => {
 					}}
 					alt='Image'
 				/>
-			</div>
+			</ImageContainer>
 
 			{/********** FOOTER **********/}
-			<div className='collection-footer'>
+			<FooterContainer>
 				<span ref={nameRef} className='name loading'>
 					{name}
 				</span>
 				<span ref={priceRef} className='price loading'>
 					Price: ${price}
 				</span>
-			</div>
+			</FooterContainer>
 
 			{/*********** BUTTON **********/}
-			<div ref={btnRef} className='popup__btn btn-container'>
+			<ButtonContainer ref={btnRef} className='popup__btn btn-container'>
 				<CustomButton onClick={popup} inverted>
 					Quick View
 				</CustomButton>
-			</div>
+			</ButtonContainer>
 
 			<QuickView
 				index={index}
@@ -112,7 +106,7 @@ const CategoryItem = ({ item, addItem }) => {
 				imageUrl={item.imageUrl}
 				item={item}
 			/>
-		</div>
+		</CategoryItemContainer>
 	)
 }
 

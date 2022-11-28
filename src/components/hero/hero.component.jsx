@@ -19,6 +19,24 @@ const Hero = () => {
 				/>
 
 				<img
+					className='burst'
+					src='../../images/burst.png'
+					alt='Logo'
+				/>
+
+				<img
+					className='burst2'
+					src='../../images/burst.png'
+					alt='Logo'
+				/>
+
+				<img
+					className='lines'
+					src='../../images/dw-fazhionz-bg-lines.png'
+					alt='Logo'
+				/>
+
+				<img
 					className='logo-images right'
 					src='../../images/dw-fazhionz-bg-right.png'
 					alt='Logo'

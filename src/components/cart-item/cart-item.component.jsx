@@ -6,20 +6,22 @@ The cart items are the individual items listed in the cart/bag dropdown.
 
 import React from 'react';
 
-import './cart-item.styles.scss';
+import { CartItemContainer, ItemDetails, CartItems } from './cart-item.styles'
+
 
 const CartItem = ({ item: { imageUrl, price, name, quantity } }) => {
-    const itemTotal = Number(price) * Number(quantity);
+    const newPrice = Number(price - (price * .15).toFixed(2))
+    const itemTotal = Number(newPrice) * Number(quantity);
 
     return (
-    <div className="cart-item">
+    <CartItemContainer>
         <img src={imageUrl} alt="item" />
-        <div className="item-details">
+        <ItemDetails>
             <span className="name">{name}</span>
-            <span className="price">{quantity} x ${price}</span>
-            <span className="right">Subtotal: ${itemTotal}</span>
-        </div>
-    </div>
+            <span className="price">{quantity} x ${newPrice}</span>
+            <span className="right">Subtotal: ${itemTotal.toFixed(2)}</span>
+        </ItemDetails>
+    </CartItemContainer>
     )
 }
 

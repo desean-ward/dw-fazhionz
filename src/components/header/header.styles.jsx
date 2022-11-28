@@ -1,5 +1,3 @@
-import React, { useState } from 'react'
-import { useOrientation } from 'react-use'
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 
@@ -75,14 +73,12 @@ export const Right = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	//margin-right: 20px;
 	width: 60%;
 
 	.cart-icon {
 		position: relative;
 		display: flex;
 		margin: auto 0;
-		//right: 0vw;
 		top: -3px;
 		
 
@@ -92,7 +88,6 @@ export const Right = styled.div`
 			top: 12px; 
 
 			@media only screen and (orientation: portrait) {
-				//top: 10px;
 			}
 		}
 

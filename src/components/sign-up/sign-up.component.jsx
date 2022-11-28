@@ -1,28 +1,40 @@
-import React from 'react';
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 
 import FormInput from '../form-input/form-input.component';
+import GlassModal from '../glass-popup/glass-popup.component'
+
+import { UserContext } from '../../context/user.context'
 import CustomButton from '../custom-button/custom-button.component';
 
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+import { auth, createUserDocumentFromAuth, createAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
 
-import './sign-up.styles.scss';
+import { SignUpFormContainer, SignUpForm, ButtonsContainer } from './sign-up.styles.jsx'
 
-class SignUp extends React.Component {
-    constructor() {
-        super();
+//import './sign-up.styles.scss';
 
-        this.state = {
-            displayName: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
-        }
-    }
 
-     handleSubmit = async event => {
+
+const defaultFormFields = {
+    email: '',
+    password: '',
+    confirmPassword: '',
+    displayName: ''
+};
+
+const SignUp = () => {
+    const [ formFields, setFormFields ] = useState(defaultFormFields)
+    const { email, password, confirmPassword, displayName } = formFields
+    const [modal, setModal] = useState(false)
+	const [error, setError] = useState('')
+
+    const { currentUser, setCurrentUser } = useContext(UserContext)
+
+    const showModal = () => {
+		setModal(!modal)
+	}
+
+    const handleSubmit = async event => {
         event.preventDefault();
-
-        const { displayName, email, password, confirmPassword } = this.state;
 
         if (password !== confirmPassword) {
             alert ('Passwords do not match!');
@@ -30,84 +42,110 @@ class SignUp extends React.Component {
         }
 
         try {
-            const { user } = await auth.createUserWithEmailAndPassword (email, password );
+            const { user } = await createAuthUserWithEmailAndPassword (email, password );
 
-            await createUserProfileDocument (user, { displayName });
+           setCurrentUser(user)
+           
 
-             // This will clear out the form //
-            this.setState ({
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
-            });
+            await createUserDocumentFromAuth (user, { displayName });
+
+             // Clear out the form //
+           setFormFields(defaultFormFields)
         } catch (error) {
-            console.error (error);
+            if (error.code === 'auth/email-already-in-use') {
+                setError('Cannot create user. Email already in use.')
+                showModal()
+                setFormFields(defaultFormFields)
+            } else {
+                setError('User creation encountered an error.')
+                setFormFields(defaultFormFields)
+                
+                console.log('User creation encountered an error', error)
+            }
         }
             
-        };
+    };
 
-        handleChange = event => {
-            const { name, value } = event.target;
+    const handleChange = event => {
+        const { name, value } = event.target;
 
-            this.setState({ [name]: value });
-        }
-        
-    render() {
-        const { displayName, email, password, confirmPassword } = this.state;
-        return (
-            <div className = 'sign-up'>
-                <h2 className = 'title maroon'>I do not have an account</h2>
-                <span>Sign up with your email and password</span>
-
-                <form className = 'sign-up-form' onSubmit = { this.handleSubmit }>
-                   <FormInput
-                        type = 'text'
-                        autoComplete = 'displayname'
-                        name = 'displayName'
-                        value = {displayName}
-                        onChange = {this.handleChange}
-                        label = 'Display Name'
-                        required
-                    /> 
-
-                    <FormInput
-                        type = 'email'
-                        autoComplete = 'email'
-                        name = 'email'
-                        value = {email}
-                        onChange = {this.handleChange}
-                        label = 'Email'
-                        required
-                    /> 
-
-                    <FormInput
-                        type = 'password'
-                        autoComplete = 'new-password'
-                        name = 'password'
-                        value = {password}
-                        onChange = {this.handleChange}
-                        label = 'Password'
-                        required
-                    /> 
-
-                    <FormInput
-                        type = 'password'
-                        autoComplete = 'new-password'
-                        name = 'confirmPassword'
-                        value = {confirmPassword}
-                        onChange = {this.handleChange}
-                        label = 'Confirm Password'
-                        required
-                    /> 
-                  
-                    <div className="buttons">
-                        <CustomButton type = 'submit' onSubmit = {this.handleSubmit }>SIGN UP</CustomButton>
-                    </div>
-                </form>
-            </div>
-        ) 
+        setFormFields({ ...formFields, [name]: value });
     }
+
+    const updateFields = () => {
+        setFormFields(defaultFormFields)
+    }
+
+    useEffect(() => {
+        updateFields()
+
+    }, [currentUser])
+        
+   
+    return (
+        <Fragment>
+            <SignUpFormContainer>
+                <SignUpForm>
+                    <h2 className='title maroon'>Don't have an account?</h2>
+                    <span>Sign up with your email and password</span>
+
+                    <form className='sign-up-form' onSubmit = { handleSubmit }>
+                        <FormInput
+                            type = 'text'
+                            name = 'displayName'
+                            value = { displayName }
+                            onChange = { handleChange }
+                            label = 'Display Name'
+                            required
+                        /> 
+
+                        <FormInput
+                            type = 'email'
+                            autoComplete = 'email'
+                            name = 'email'
+                            value = { email }
+                            onChange = { handleChange }
+                            label = 'Email'
+                            required
+                        /> 
+
+                        <FormInput
+                            type = 'password'
+                            autoComplete = 'new-password'
+                            name = 'password'
+                            value = {password}
+                            onChange = { handleChange }
+                            label = 'Password'
+                            required
+                        /> 
+
+                        <FormInput
+                            type = 'password'
+                            autoComplete = 'new-password'
+                            name = 'confirmPassword'
+                            value = { confirmPassword}
+                            onChange = { handleChange }
+                            label = 'Confirm Password'
+                            required
+                        /> 
+                        
+                        <ButtonsContainer>
+                            <CustomButton type = 'submit' onSubmit = { handleSubmit }>SIGN UP</CustomButton>
+                        </ButtonsContainer>
+                    </form>
+                </SignUpForm>
+            </SignUpFormContainer>
+
+            <GlassModal
+                    show={modal}
+                    close={showModal}
+                    titleBG='Alert!'
+                    title={error}
+                    content='Please try re-entering your information.'
+                />
+            </Fragment>
+    ) 
+    
 }
     
 

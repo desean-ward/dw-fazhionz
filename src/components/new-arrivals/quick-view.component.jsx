@@ -41,13 +41,6 @@ const QuickView = ({ show, close, index, imageUrl, name, price, category, addIte
 		}, 500)
 	}
 
-    // function handleOpen() {
-    //     const fadeIn = document.querySelector('.popup__view')
-	// 		fadeIn.classList.add('show')
-			
-	// 		return
-    // }
-
     useEffect(() => {
 		if (show) {
 			const fadeIn = document.querySelector('.popup__view')
@@ -88,7 +81,7 @@ const QuickView = ({ show, close, index, imageUrl, name, price, category, addIte
                             </p>
 
                         <span className='wasPrice'>${price}.00</span>
-                        <span className='price'>${nowPrice}</span>
+                        <span className='price'>${nowPrice.toFixed(2)}</span>
                         
                         <AddSectionLinks className='links'>
                             <a href='#' 

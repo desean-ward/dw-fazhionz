@@ -25,7 +25,7 @@ export const ItemContainer = styled.div`
     @media only screen and (max-width: 900px) {
         padding-right: 5px;
     }
-`;
+`
 
 export const ImageContainer = styled.div`
     width: 20%;
@@ -36,7 +36,7 @@ export const ImageContainer = styled.div`
         height: 100%;
         width: 100%;
     }
-`;
+`
 
 export const InfoContainer = styled.div`
     width: 100%;
@@ -69,7 +69,7 @@ export const Name = styled.span`
     @media only screen and (max-width: 800px) {
         font-size: 16px;
     }
-`;
+`
 
 export const Quantity = styled.span`
     grid-area: quantity;
@@ -100,14 +100,14 @@ export const Quantity = styled.span`
     @media only screen and (max-width: 600px) {
         left: 0;
     }
-`;
+`
 
 export const Price = styled.span`
     grid-area: price;
     text-align: right;
     width: 20%;
     left: 20px;
-`;
+`
 
 export const RemoveBtn = styled.div`
     grid-area: remove;
@@ -124,4 +124,4 @@ export const RemoveBtn = styled.div`
     &:hover {
       color: maroon;
     }
-`;
+`

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext, Fragment } from 'react'
 import { connect } from 'react-redux'
 
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import { auth } from '../../firebase/firebase.utils.js'
+import { auth, signOutUser } from '../../utils/firebase/firebase.utils.js'
 
 import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
@@ -14,6 +14,9 @@ import CartIcon from '../cart-icon/cart-icon.component'
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 import AnimatedNav from '../animated-nav/animated-nav.component'
 import GlassModal from '../glass-popup/glass-popup.component'
+
+import { UserContext } from '../../context/user.context'
+import { CartContext } from '../../context/cart.context'
 
 import {
 	HeaderTop,
@@ -39,7 +42,7 @@ import {
 	Bars,
 } from '../animated-nav/animated-nav.styles.jsx'
 
-const Header = ({ currentUser, hidden }) => {
+const Header = ({ hidden }) => {
 	const [show, setShow] = useState(false)
 	const [searchUrl, setSearchUrl] = useState('')
 	const [inputValue, setInputValue] = useState(null)
@@ -50,7 +53,9 @@ const Header = ({ currentUser, hidden }) => {
 	const mobileNavRef = useRef(null)
 	const close = document.querySelector('.close-icon')
 	const del = document.querySelector('.delete-icon')
-	const history = useHistory()
+	const navigate = useNavigate()
+	const { currentUser } = useContext(UserContext)
+	const { isCartOpen, setIsCartOpen } = useContext(CartContext)
 
 	window.addEventListener('scroll', () => {
 		var scroll = document.querySelector('.scrollTopArrow')
@@ -77,14 +82,15 @@ const Header = ({ currentUser, hidden }) => {
 	}
 
 	const handleKeyDown = (e) => {
-		if (e.keyCode === 13) {
-			const paths = ['mens', 'womens', 'hats', 'jackets', 'sneakers']
-			const path = inputRef.current.value.trim()
+		const paths = ['mens', 'womens', 'hats', 'jackets', 'sneakers']
+		const path = inputRef.current.value.toLowerCase().trim()
 
+		if (e.keyCode === 13) {
 			if (paths.includes(path)) {
-				history.push(searchUrl)
+				navigate(searchUrl)
 			} else {
-				history.push('/page-not-found')
+				navigate('/page-not-found')
+
 			}
 
 			inputRef.current.value = ''
@@ -95,13 +101,13 @@ const Header = ({ currentUser, hidden }) => {
 		if (inputRef.current.value == path) setValidPath(true)
 
 		if (validPath === true) {
-			history.push(searchUrl)
-			inputRef.current.value = ''
-		} else history.push('/page-not-found')
+			navigate(searchUrl)
+		} else return 
+
 	}
 
 	const handleChange = (e) => {
-		setSearchUrl('/shop/' + e.target.value)
+		setSearchUrl('/shop/categories/' + e.target.value.toLowerCase())
 	}
 
 	const openMenu = () => {
@@ -113,13 +119,14 @@ const Header = ({ currentUser, hidden }) => {
 	}
 
 	useEffect(() => {
-		setTimeout(() => {
+		return setTimeout(() => {
 			showModal()
 		}, 5000)
 	}, [])
 
+
 	return (
-		<>
+		<Fragment>
 			<ScrollToTop className='scrollTopArrow' onClick={scrollToTop}>
 				<ImArrowUp className='arrow' />
 			</ScrollToTop>
@@ -185,7 +192,6 @@ const Header = ({ currentUser, hidden }) => {
 						/>
 					</SearchContainer>
 
-					{/* <TitleContainer to="/">DWF</TitleContainer> */}
 				</Left>
 
 				<Right className='header-right'>
@@ -200,7 +206,7 @@ const Header = ({ currentUser, hidden }) => {
 							<OptionLine />
 						</OptionLink>
 
-						<OptionLink className='btn-ctr' to='/contact'>
+						<OptionLink className='btn-ctr' to='/contact-us'>
 							CONTACT
 							<OptionLine />
 						</OptionLink>
@@ -212,12 +218,12 @@ const Header = ({ currentUser, hidden }) => {
 								<OptionLink
 									as='div'
 									className='btn-ctr'
-									onClick={() => auth.signOut()}>
+									onClick={signOutUser}>
 									SIGN OUT
 									<OptionLine />
 								</OptionLink>
 							) : (
-								<OptionLink className='btn-ctr' to='/sign-in'>
+								<OptionLink className='btn-ctr' to='/auth'>
 									SIGN IN / SIGN UP
 									<OptionLine />
 								</OptionLink>
@@ -229,7 +235,7 @@ const Header = ({ currentUser, hidden }) => {
 
 					{
 						/* Toggle the Shopping Cart Dropdown */
-						hidden ? null : <CartDropdown hidden />
+						isCartOpen && <CartDropdown />
 					}
 
 					<HamburgerContainer
@@ -247,12 +253,11 @@ const Header = ({ currentUser, hidden }) => {
 				title='Enjoy 15% Off All Apparel!!!'
 				content="Don't forget to join our newsletter for weekly deals."
 			/>
-		</>
+		</Fragment>
 	)
 }
 
 const mapStateToProps = createStructuredSelector({
-	currentUser: selectCurrentUser,
 	hidden: selectCartHidden,
 })
 

@@ -16,7 +16,9 @@ import { ItemContainer, InfoContainer, ImageContainer, Name, Quantity, Price, Re
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
     const { name, imageUrl, price, quantity } = cartItem;
-    const itemTotal = price * quantity;
+    const newPrice = price - (price * .15)
+    const itemTotal = Number(newPrice) * quantity;
+    const newItemTotal = itemTotal.toFixed(2)
 
     const [qty, setQty ] = useState(quantity);
     const inputRef = useRef(quantity)
@@ -89,7 +91,7 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
                     <div className="arrow" onClick={() => addItem(cartItem)}><BiPlus /></div>
                 </Quantity>
 
-                <Price className="price">${itemTotal}</Price>
+                <Price className="price">${newItemTotal}</Price>
 
                 <RemoveBtn className="remove-button"  onClick={() => clearItem(cartItem)}>{<MdOutlineDeleteForever className="trash-icon" />}</RemoveBtn>
             </InfoContainer>

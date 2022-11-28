@@ -11,7 +11,8 @@ import StripeCheckout from 'react-stripe-checkout';
 const StripeCheckoutButton = ({ price, cartItems, removeItem }) => {
     const [ modal, setModal ] = useState(false)
 
-    const priceForStripe = price * 100;
+    const priceForStripe = price;
+    const newPrice = priceForStripe - (priceForStripe * .15)
     const publishableKey = 'pk_test_51Jl420GpXB6crEodfLGfmxP1CkW5aOjJAeMX3O6yzoiezf1kvNRKYUVyd2LOg3hQt9ZOoIiO09iPiXq6h7NKXvsm00DEEIPHDV';
 
     const onToken = token => {
@@ -38,7 +39,7 @@ const StripeCheckoutButton = ({ price, cartItems, removeItem }) => {
                 billingAddress 
                 shippingAddress 
                 image='https://img.icons8.com/ios-filled/50/000000/jacket.png' 
-                description={`Your total is $${price}`} 
+                description={`Your total is $${newPrice.toFixed(2)}`} 
                 amount={priceForStripe} 
                 panelLabel='Pay Now' 
                 token={onToken} 

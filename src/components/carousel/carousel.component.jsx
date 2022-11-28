@@ -49,19 +49,7 @@ const Carousel = () => {
 
 	firstClone.id = 'first-clone'
 	lastClone.id = 'last-clone'
-
-	// sliderItems.push(firstClone);
-	// sliderItems.unshift(lastClone);
-
-	// console.log(
-	// 	'SLIDER ITEMS: ' +
-	// 		JSON.stringify(sliderItems) +
-	// 		' COUNT: ' +
-	// 		sliderItems.length +
-	// 		' CURRENT INDEX: ' +
-	// 		slideIndex
-	// )
-
+ 
 	useEffect(() => {
 		setIsLoading(true)
 		if (sliderItems.length === 0) {
@@ -98,10 +86,6 @@ const Carousel = () => {
 			setSlideIndex(() => (slideIndex > 0 ? slideIndex - 1 : 3))
 		} else {
 			setSlideIndex(() => (slideIndex < 3 ? slideIndex + 1 : 0))
-
-			// const firstSlide = sliderItems.shift();
-			//sliderItems.push(firstSlide);
-			//setSlideIndex(0);
 		}
 	}
 

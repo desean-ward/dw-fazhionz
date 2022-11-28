@@ -17,7 +17,7 @@ const GlassModal = ({ show, close, titleBG, title, content }) => {
 		if (show) {
 			const fadeIn = document.querySelector('.modalContainer')
 			fadeIn.classList.add('show')
-			
+
 			return
 		}
 	}, [show])
@@ -26,10 +26,10 @@ const GlassModal = ({ show, close, titleBG, title, content }) => {
 		const fadeIn = document.querySelector('.modalContainer')
 		fadeIn.classList.remove('show')
 
-    // Return close property to parent
+		// Return close property to parent
 		setTimeout(() => {
 			close()
-		}, 500)
+		}, 2000)
 	}
 
 	return ReactDom.createPortal(
@@ -41,13 +41,14 @@ const GlassModal = ({ show, close, titleBG, title, content }) => {
 					<Modal
 						className='popup'
 						onClick={(e) => e.stopPropagation()}>
-            
-            <IoClose className='exit' onClick={() => handleClose()} />
-           
+						<IoClose
+							className='exit'
+							onClick={() => handleClose()}
+						/>
+
 						<TitleBG>{titleBG}</TitleBG>
 						<Title>{title}</Title>
 						<Content>{content}</Content>
-						
 					</Modal>
 				</Container>
 			) : null}

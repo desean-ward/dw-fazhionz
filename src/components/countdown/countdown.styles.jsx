@@ -39,8 +39,6 @@ export const Timer = styled.section`
 	align-items: center;
 	justify-content: center;
     gap: 10px;
-    //margin-left: -8em;
-    //z-index: 1;
 
     /* @media screen and (max-width: 30em) {
         width: 90%;

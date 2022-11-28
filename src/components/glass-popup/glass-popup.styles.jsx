@@ -31,15 +31,9 @@ export const Modal = styled.div`
 	width: calc(15rem + 15vw);
 	height: fit-content;
 	background-color: rgba(070, 000, 000, 1);
-	//background-color: rgba(255, 255, 255, 0.3);
-	//background-color: maroon;
-	//backdrop-filter: blur(5px);
 	color: white;
 	border: 1px solid rgba(255, 255, 255, 0.5);
-	//border-left: 1px solid rgba(255, 255, 255, 0.5);
 	border-radius: 20px;
-	//box-shadow: 2px 5px 30px rgba(255, 255, 255, 0.4);
-	//box-shadow: 2px 2px 7px black;
 	padding: 20px 20px;
 
 	.exit {
@@ -53,20 +47,6 @@ export const Modal = styled.div`
 			color: grey;
 		}
 	}
-
-	/* &::before {
-        content: '';
-        //margin: -15px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: maroon;
-        filter: blur(65px);
-        opacity: .8;
-        z-index: -1;
-    } */
 `
 
 export const Title = styled.h3`

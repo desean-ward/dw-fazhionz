@@ -9,7 +9,7 @@ const BannerOne= () => {
     return (
         <Container>
             <LeftSide>
-                <Title className='left'>STYLES</Title>
+                <Title className='left'>STYLEZ</Title>
                 
                 <Description>
                 FOR
@@ -25,7 +25,7 @@ const BannerOne= () => {
                 FOR
                 </Description>
 
-                <Title className='push-left'>STYLES</Title>
+                <Title className='push-left'>STYLEZ</Title>
 
                 
             </RightSide>

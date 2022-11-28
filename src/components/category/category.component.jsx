@@ -1,35 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 
-import CategoryItem from '../category-item/category-item.component.jsx';
+import CategoryItem from '../category-item/category-item.component.jsx'
 
-import './category.styles.scss';
+import { CategoriesContext } from '../../context/categories.context'
 
-const Category = ({ title, items }) => {
-    const url = "/shop/" + title.toLowerCase();
+import { CategoryContainer, Preview } from './category.styles'
 
+const Category = ({ title, products }) => {
+	const url = '/shop/categories/' + title
 
-    return (
-        <div className='collection-preview'>
-            <h2 className='title'>
-                { title.toUpperCase() } 
+	return (
+		<CategoryContainer>
+			<h2 className='title'>
+				<span>{title.toUpperCase()}</span>
+			</h2>
+			<Link to={title} className='view-all'>View All</Link>
 
-                <Link to={url} className='view-all'>View All</Link>
-            </h2>
+			<Preview>
+				{products
+					.filter((_, idx) => idx < 4)
+					.map((product) => (
+						<CategoryItem key={product.id} item={product} />
+					))}
+			</Preview>
+		</CategoryContainer>
+	)
+}
 
-
-            <div className='preview'>
-                {
-                    /* Filter the array to display only 4 items */
-                    items
-                    .filter(( item, idx ) => idx < 4)
-                    .map(item => (
-                        <CategoryItem key={item.id} item={item} row/>
-                    ))
-                }
-            </div>
-        </div>
-    )
-};
-
-export default Category;
+export default Category

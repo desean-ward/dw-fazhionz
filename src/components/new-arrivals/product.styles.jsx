@@ -135,7 +135,6 @@ export const Footer = styled.div`
 /********** Product Quick View Popup / Modal **********/
 export const PopupView = styled.div`
 	z-index: 1000;
-	//background: rgba(105, 105, 105, 0.9);
 	background-color: rgba( 000, 000, 000, 0.7);
 	position: fixed;
 	display: flex;
@@ -144,7 +143,6 @@ export const PopupView = styled.div`
 	bottom: 0;
 	right: 0;
 	width: 100vw;
-	//height: 100vh;
 	padding: 15vh 10vw;
 	place-content: center;
 	opacity: 0;
@@ -181,7 +179,7 @@ export const PopupProduct = styled.div`
 	z-index: 120000;
 	height: 100vh;
 	width: 60vw;
-	//border: 5px solid hotpink;
+	left: 3vw;
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 	grid-template-areas: ' img info ';
@@ -193,7 +191,7 @@ export const PopupProduct = styled.div`
 		position: absolute;
 		align-self: end;
 		top: -60px;
-		right: 0;
+		right: 5vw;
 		font-size: 30px;
 		color: #1d212b;
 		cursor: pointer;
@@ -266,9 +264,7 @@ export const PopupImage = styled.div`
 	height: 70%;
 	top: 5%;
 	background: #1d212b;
-	//justify-self: center;
 	left: 12%;
-	//top: 10%;
 	border-radius: 10px;
 	box-shadow: 6px 6px 6px #1d212b;
 
@@ -323,7 +319,7 @@ export const Info = styled.div`
 	z-index: 10;
 	background: white;
 	display: flex;
-	width: 95%;
+	width: 75%;
 	height: 80%;
 	flex-direction: column;
 	padding: 5% 20px;
@@ -377,8 +373,6 @@ export const AddSectionLinks = styled.div`
 	width: 100%;
 	bottom: 0;
 	height: 100%;
-	//left: auto;
-	//right: auto;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;

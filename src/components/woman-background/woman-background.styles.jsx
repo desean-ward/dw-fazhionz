@@ -21,9 +21,6 @@ export const Container = styled.div`
 
 export const Woman = styled.img`
     position: absolute;
-  /* background: url('../../images/woman-3.jpg');
-    background-size: cover;
-    background-repeat: no-repeat; */
     height: 100%;
     width: 100%;
 `

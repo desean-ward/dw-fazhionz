@@ -1,99 +1,105 @@
-import React from "react";
+import React, { useContext, useEffect } from 'react'
 
-import HomePage from "./pages/homepage/homepage.component";
-import ShopPage from "./pages/shop/shop.component.jsx";
-import ContactPage from "./pages/contact/contact.component";
-import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
-import CheckoutPage from "./pages/checkout/checkout.component";
+import Home from './routes/home/homepage.component'
+import Shop from './routes/shop/shop.component.jsx'
+import ContactUs from './routes/contact/contact.component'
+import Authentication from './routes/authentication/authentication.component'
+import Checkout from './routes/checkout/checkout.component'
 
-import Header from "./components/header/header.component.jsx";
-import Footer from "./components/footer/footer.component.jsx";
+import Categories from './components/categories/categories.component'
+import Category from './routes/category/category.component'
 
-import './App.css';
-//import GlobalStyle from "./global.styles";
-import "./pages/homepage/homepage.styles.scss";
+import Header from './components/header/header.component.jsx'
+import Footer from './components/footer/footer.component.jsx'
 
-import { Switch, Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { setCurrentUser } from "./redux/user/user.actions";
-import { selectCurrentUser } from "./redux/user/user.selectors";
+import {
+	db,
+	auth,
+	createUserDocumentFromAuth,
+} from './utils/firebase/firebase.utils'
+import { doc, getDoc } from 'firebase/firestore'
+import { setCurrentUser } from './redux/user/user.actions'
+import { selectCurrentUser } from './redux/user/user.selectors'
+
+import { UserContext } from './context/user.context'
 
 import { AnimatePresence } from 'framer-motion/dist/es/index'
 
-import ScrollToTop from "./ScrollToTop.js";
-import PageNotFound from "./components/page-not-found/page-not-found.component";
+import ScrollToTop from './ScrollToTop.js'
+import PageNotFound from './components/page-not-found/page-not-found.component'
 
-class App extends React.Component {
-  /* Setup unsubscribe method */
-  unsubscribeFromAuth = null;
+import './App.css'
+import './routes/home/homepage.styles.scss'
+import { CategoriesContainer } from './components/categories/categories.styles'
 
-  componentDidMount() {
-    const { setCurrentUser } = this.props;
+const App = () => {
+	const { currentUser, setCurrentUser } = useContext(UserContext)
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
+	useEffect(() => {
+		const unsubscribeFromAuth = auth.onAuthStateChanged(
+			async (userAuth) => {
+				if (userAuth) {
+					const userRef = await createUserDocumentFromAuth(userAuth)
 
-        userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data(),
-            },
-          });
-        });
-      }
+				const docRef = doc(db, 'users', userAuth.uid)
 
-      setCurrentUser(userAuth);
-    });
-  }
+				await getDoc(docRef).then((doc) => {
+					setCurrentUser(doc.data())
+				})
 
-  /* Close the subscription to prevent memory leaks */
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+					/* userRef.onSnapshot((snapShot) => {
+						setCurrentUser({
+							currentUser: {
+								id: snapShot.id,
+								...snapShot.data(),
+							},
+						})
+					}) */
+					/* alert('GOT EM!!!!: ' + JSON.stringify(userAuth.uid)) */
+				}
 
-  render() {
-    
-    return (
-      <div>
-        <ScrollToTop />
-        <Header />
-        <AnimatePresence exitBeforeEnter>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/shop" component={ShopPage} />
-            <Route path="/contact" component={ContactPage} />
-            <Route exact path="/checkout" component={CheckoutPage} />
-            <Route
-              exact
-              path="/sign-in"
-              render={() =>
-                this.props.currentUser ? (
-                  <Redirect to="/" />
-                ) : (
-                  <SignInAndSignUpPage />
-                )
-              }
-            />
-            <Route path='*' component={PageNotFound} />
-          </Switch>
-        </AnimatePresence>
-        <Footer />
-      </div>
-    );
-  }
+
+				//setCurrentUser(userAuth)
+			}
+		)
+		
+
+		return unsubscribeFromAuth
+	}, [])
+
+	return (
+		<div>
+			<ScrollToTop />
+			<Header />
+			<AnimatePresence exitBeforeEnter>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route
+						path='/shop'
+						element={<Navigate replace to='/shop/categories' />}
+					/>
+					<Route path='/shop/categories/*' element={<Shop />} />
+					<Route path='/contact-us' element={<ContactUs />} />
+					<Route exact path='/checkout' element={<Checkout />} />
+					<Route path='/auth' element={<Authentication />} />
+					<Route path='*' element={<PageNotFound />} />
+				</Routes>
+			</AnimatePresence>
+			<Footer />
+		</div>
+	)
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-});
+	currentUser: selectCurrentUser,
+})
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
+	setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App

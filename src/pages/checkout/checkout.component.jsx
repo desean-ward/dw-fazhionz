@@ -14,7 +14,7 @@ import AnimatedPage from '../../components/animated-page/animated-page.component
 
 import './checkout.styles.scss';
 
-const CheckoutPage = ({ cartItems, total }) => (
+const Checkout = ({ cartItems, total }) => (
     <AnimatedPage>
         <div className='checkout-page'>
             <div className="checkout-header maroon">
@@ -78,4 +78,4 @@ const mapStateToProps = createStructuredSelector({
     total: selectCartTotal
 })
 
-export default connect(mapStateToProps)(CheckoutPage);
+export default connect(mapStateToProps)(Checkout);

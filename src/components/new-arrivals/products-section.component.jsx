@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import { connect } from 'react-redux'
-
 import Categories from '../../components/categories/categories.component'
 
 import Product from './product.component'
@@ -10,7 +8,6 @@ import WithSpinner from '../../components/with-spinner/with-spinner.component'
 import NEW_ARRIVALS  from './new-arrivals.data.json'
 
 import { Container } from './product.styles'
-import './global-styles.css'
 
 const CategoriesWithSpinner = WithSpinner(Categories)
 
@@ -26,8 +23,7 @@ const ProductsSection = () => {
 			<Container className='container'>
 				<Product
 					className='productOne'
-					//name={prod1.name}
-					//category={collections[0].title}
+					name={prod1.name}
 					price={prod1.price}
 					imageUrl={prod1.imageUrl}
 					item={prod1}
@@ -36,7 +32,6 @@ const ProductsSection = () => {
 				<Product
 					className='productTwo'
 					name={prod2.name}
-					//category={collections[1].title}
 					price={prod2.price}
 					imageUrl={prod2.imageUrl}
 					item={prod2}
@@ -45,7 +40,6 @@ const ProductsSection = () => {
 				<Product
 					className='productThree'
 					name={prod3.name}
-					//category={collections[2].title}
 					price={prod3.price}
 					imageUrl={prod3.imageUrl}
 					item={prod3}
@@ -54,7 +48,5 @@ const ProductsSection = () => {
 		</>
 	)
 }
-
-
 
 export default ProductsSection

@@ -22,10 +22,8 @@ const Contact = () => {
 
 	const initialValues = { name: '', email: '', subject: '', message: '' }
 	const [formValues, setFormValues] = useState(initialValues)
-	//const [formErrors, setFormErrors] = useState({})
 	const [isSubmit, setIsSubmit] = useState(false)
 
-	//const errors = {}
 	const emailFormat =
 		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 	const name = document.querySelector('.name-input')
@@ -52,13 +50,8 @@ const Contact = () => {
 	}
 
 	useEffect(() => {
-		let inputName = document.querySelector('.name-input')
-		// if (Object.keys(formErrors).length === 0 && isSubmit) {
-		// }
-
 		setFormValues(initialValues)
-		//inputName.focus()
-	}, [isSubmit])
+ 	}, [isSubmit])
 
 	useEffect(() => {
 		if (isSubmit) {

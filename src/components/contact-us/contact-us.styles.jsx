@@ -40,10 +40,8 @@ export const Container = styled.div`
 
 
 export const Title = styled.h2`
-    //position: absolute;
     left: 0;
 `
-
 
 export const Message = styled.p`
 `
@@ -55,15 +53,15 @@ export const InputContainer = styled.form`
     height: 50vh;
     margin-top: 40px;
 
+    input, textarea {
+        border-radius: 5px;
+    }
+
     .highlight {
         border: 1px solid maroon;
         box-shadow: 1px 1px 4px maroon;
     }
-
-   
-    
 `
-
 
 export const NameInput = styled.input`
     margin-bottom: 20px;
@@ -71,19 +69,16 @@ export const NameInput = styled.input`
     height: 40px;
     padding-left: 10px;
     
-    
     :focus, :hover {
         background-color: transparent;
     }
 `
-
 
 export const EmailInput = styled.input`
     margin-bottom: 20px;
     outline: none;
     height: 40px;
     padding-left: 10px;
-    
 
     :focus, :hover {
         background-color: transparent;
@@ -96,12 +91,10 @@ export const SubjectInput = styled.input`
     height: 40px;
     padding-left: 10px;
     
-    
     :focus, :hover {
         background-color: transparent;
     }
 `
-
 
 export const MessageInput = styled.textarea`
     height: 160px;
@@ -130,7 +123,6 @@ export const ButtonSend = styled.div`
     font-size: 20px;
 
     @media screen and (max-width: 800px) {
-        //margin-top: 20px;
         margin-bottom: 10px;
     }
 `
