@@ -21,10 +21,17 @@ export const CategoryContainer = styled.div`
 `
 
 export const Preview = styled.div`
-	margin-top: 3vh;
+	/* margin-top: 3vh;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-	justify-content: center;
+	justify-content: center; */
+
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px 10px;
+    margin-left: 15px;
+    padding: .5%;
 
 	@media only screen and (max-width: 800px) {
 		width: 92.5vw;

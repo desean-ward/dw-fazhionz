@@ -1,10 +1,16 @@
 import styled from 'styled-components'
 
 export const CategoryViewContainer = styled.div`
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 10px;
-    grid-row-gap: 30px;
+    grid-row-gap: 30px; */
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px 10px;
+    margin-left: 15px;
     padding: .5%;
 `
 
