@@ -59,7 +59,6 @@ export const Image = styled.div`
     background-size: cover;
     background-position: center;
     margin-bottom: 0.5px;
-	margin-left: 10px;
     opacity: 1;
     visibility: hidden;
 `
