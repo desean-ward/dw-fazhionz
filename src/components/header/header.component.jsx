@@ -121,7 +121,7 @@ const Header = ({ hidden }) => {
 	useEffect(() => {
 		return setTimeout(() => {
 			showModal()
-		}, 5000)
+		}, 10000)
 	}, [])
 
 
