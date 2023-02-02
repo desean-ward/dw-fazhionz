@@ -34,4 +34,5 @@ export const Preview = styled.div`
     flex-wrap: wrap;
     gap: 30px 10px;
     padding: .5% 5vw;
+	width: 372px;
 `
