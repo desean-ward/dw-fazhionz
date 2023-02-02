@@ -5,7 +5,7 @@ export const CategoryContainer = styled.div`
 	padding: 0 0.5%;
 
 	.title {
-		margin: 12vh 0 0 10px;
+		margin: 12vh 0 0 5vw;
 		width: 100%;
 	}
 
