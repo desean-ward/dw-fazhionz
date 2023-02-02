@@ -8,14 +8,12 @@ export const CategoryViewContainer = styled.div`
 
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 30px 10px;
-    margin-left: 15px;
-    padding: .5%;
+    padding: .5% 5vw;
 `
 
 export const TitleContainer = styled.div`
     .title {
-        margin: 11.5vh 0 30px 20px;
+        margin: 11.5vh 0 30px 5vw;
     }
 `
