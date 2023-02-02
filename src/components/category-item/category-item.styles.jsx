@@ -54,7 +54,7 @@ export const ImageContainer = styled.div`
 `
 
 export const Image = styled.div`
-    width: 95%;
+    /* width: 95%; */
     height: 340px;
     background-size: cover;
     background-position: center;
