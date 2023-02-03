@@ -22,7 +22,7 @@ export const TitleContainer = styled.div`
 
         @media (width < 1325px) {
             text-align: center;
-            margin: 0;
+            margin: 11.5vh 0 30px 0;
         }
     }
 
