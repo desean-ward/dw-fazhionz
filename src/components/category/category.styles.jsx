@@ -11,6 +11,10 @@ export const CategoryContainer = styled.div`
 	.title {
 		margin: 12vh 0 0 5vw;
 		width: 100%;
+
+		@media (width < 1325px) {
+			margin: 0;
+		}
 	}
 
 	.view-all {
@@ -20,6 +24,10 @@ export const CategoryContainer = styled.div`
 		&:hover {
 			color: maroon;
 			cursor: pointer;
+		}
+
+		@media (width < 1325px) {
+			margin: 0;
 		}
 	}
 	

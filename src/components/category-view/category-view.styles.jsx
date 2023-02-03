@@ -20,4 +20,9 @@ export const TitleContainer = styled.div`
     .title {
         margin: 11.5vh 0 30px 5vw;
     }
+
+    @media (width < 1325px) {
+		justify-content: center;
+        margin: 0;
+	}
 `
