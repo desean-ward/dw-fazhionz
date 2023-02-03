@@ -19,10 +19,12 @@ export const CategoryViewContainer = styled.div`
 export const TitleContainer = styled.div`
     .title {
         margin: 11.5vh 0 30px 5vw;
+
+        @media (width < 1325px) {
+            text-align: center;
+            margin: 0;
+        }
     }
 
-    @media (width < 1325px) {
-		justify-content: center;
-        margin: 0;
-	}
+    
 `
