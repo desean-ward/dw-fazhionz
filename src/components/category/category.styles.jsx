@@ -18,10 +18,7 @@ export const CategoryContainer = styled.div`
 			cursor: pointer;
 		}
 	}
-
-	@media (width <= 900px) {
-		width: 92.5vw;
-	}
+	
 `
 
 export const Preview = styled.div`
@@ -34,4 +31,10 @@ export const Preview = styled.div`
     flex-wrap: wrap;
     gap: 30px 10px;
     padding: .5% 5vw;
+
+	@media (width < 1325px) {
+		/* width: 92.5vw; */
+
+		justify-content: center;
+	}
 `
