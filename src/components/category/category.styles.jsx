@@ -4,6 +4,10 @@ export const CategoryContainer = styled.div`
 	width: 100vw;
 	padding: 0 0.5%;
 
+	@media (width < 1325px) {
+		text-align: center;
+	}
+
 	.title {
 		margin: 12vh 0 0 5vw;
 		width: 100%;
