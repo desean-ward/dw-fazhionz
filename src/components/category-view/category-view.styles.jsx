@@ -10,6 +10,10 @@ export const CategoryViewContainer = styled.div`
     flex-wrap: wrap;
     gap: 30px 10px;
     padding: .5% 5vw;
+
+    @media (width < 1325px) {
+		justify-content: center;
+	}
 `
 
 export const TitleContainer = styled.div`
