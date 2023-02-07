@@ -120,7 +120,7 @@ export const FooterContainer = styled.div`
     /* font-size: 20px; */
     
     .price {
-        position: absolute;
+       /* position: absolute; */
     }
 
     @media only screen and (max-width: 600px) {
