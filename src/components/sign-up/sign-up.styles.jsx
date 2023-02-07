@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const SignUpFormContainer = styled.div`
     width: 450px;
 
-    @media (width <= 1100px) {
+    @media (max-width: 1100px) {
         width: 90vw;
     }
 `

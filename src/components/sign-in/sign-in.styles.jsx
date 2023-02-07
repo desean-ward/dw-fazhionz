@@ -28,7 +28,7 @@ export const SignInContainer = styled.div`
         padding-right: 10px;
     }
 
-    @media (width <= 1100px) {
+    @media (max-width: 1100px) {
         margin-bottom: 60px;
         with: 90vw;
     }
