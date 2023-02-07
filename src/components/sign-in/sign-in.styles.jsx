@@ -32,6 +32,7 @@ export const SignInContainer = styled.div`
         margin-bottom: 60px;
         width: 90vw;
     }
+`
 
 
    

@@ -9,9 +9,6 @@ export const SignUpFormContainer = styled.div`
 `
 
 export const SignUpForm = styled.div`
-    @media (max-width: 1100px) {
-        width: 90vw;
-    }
 
 `
 
