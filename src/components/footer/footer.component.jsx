@@ -44,7 +44,7 @@ const Footer = () => {
                     <Title>D.W. Fazhionz</Title>
 
                     <Description>
-                        Lorem ipsum dolor sit, amet consectetur. Labore ipsa molestiae accusamus quos? Sunt consequatur omnis nemo nihil cum?              
+                    Introducing DW Fazhionz, the go-to fashion store for the modern and stylish crowd. Our website features an extensive collection of on-trend clothing for both men and women. From bold graphic tees to stylish outerwear, we've got everything you need to make a fashion statement. Stay ahead of the curve with our constantly updated collection of the latest fashion trends. At DW Fazhionz, we believe that fashion is a form of self-expression, so why not make a statement with your style? Shop now and join the DW Fazhionz community!             
                     </Description>
 
                     <SocialContainer>

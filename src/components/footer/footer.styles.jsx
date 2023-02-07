@@ -38,7 +38,7 @@ export const Container = styled.div`
     justify-items: center;
     gap: 2rem;
 
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1200px) {
         width: 100%;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr;
@@ -122,8 +122,16 @@ export const Right = styled.div`
     flex-direction: column;
     width: 90%;
     
-    @media only screen and (max-width: 480px) {
-        /* top: -80px; */
+    @media only screen and (max-width: 1100px) {
+        margin-top: -50px;
+    }
+
+    @media only screen and (max-width: 900px) {
+        margin-top: -55px;
+    }
+
+    @media only screen and (max-width: 900px) {
+        margin-top: -75px;
     }
 `;
 
