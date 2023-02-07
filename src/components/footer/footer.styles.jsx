@@ -123,7 +123,7 @@ export const Right = styled.div`
     width: 90%;
     
     @media only screen and (max-width: 480px) {
-        top: -80px;
+        /* top: -80px; */
     }
 `;
 
