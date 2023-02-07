@@ -121,7 +121,6 @@ export const FooterContainer = styled.div`
     
     .price {
         position: absolute;
-        right: 30px;
     }
 
     @media only screen and (max-width: 600px) {
