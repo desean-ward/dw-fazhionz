@@ -230,8 +230,10 @@ const Header = ({ hidden }) => {
 							)
 						}
 
-						<CartIcon />
+						
 					</OptionsContainer>
+
+					<CartIcon />
 
 					{
 						/* Toggle the Shopping Cart Dropdown */
