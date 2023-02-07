@@ -113,7 +113,7 @@ export const ButtonContainer = styled.div`
 
 export const FooterContainer = styled.div`
     position: relative;
-    /* width: 95%; */8pm
+    width: 95%;
     height: 5%;
     display: flex;
 	justify-content: space-between;
