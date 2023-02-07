@@ -2,6 +2,10 @@ import styled from 'styled-components'
 
 export const SignUpFormContainer = styled.div`
     width: 450px;
+
+    @media <=1100 {
+        width: 90vw;
+    }
 `
 
 export const SignUpForm = styled.div`
