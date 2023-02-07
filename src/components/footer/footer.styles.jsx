@@ -133,6 +133,10 @@ export const Right = styled.div`
     @media only screen and (max-width: 640px) {
         margin-top: -97px;
     }
+
+    @media only screen and (max-width: 640px) {
+        margin-top: -160px;
+    }
 `;
 
 export const ContactItem = styled.div`
