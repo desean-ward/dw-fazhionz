@@ -113,17 +113,28 @@ export const ButtonContainer = styled.div`
 
 export const FooterContainer = styled.div`
     position: relative;
-    width: 95%;
+    /* width: 95%; */
     height: 5%;
     display: flex;
+<<<<<<< HEAD
+	justify-content: space-between;
+    /÷ font-size: 20px; */
+=======
     /* font-size: 20px; */
+>>>>>>> 3e3bf94794e57650119fe7e8e7a16ea6a3bff1b9
     
     .price {
         position: absolute;
         right: 30px;
     }
 
+<<<<<<< HEAD
+    /* @media only screen and (max-width: 600px) {
+        font-si6ze: 22px;
+    } */
+=======
     @media only screen and (max-width: 600px) {
        /* font-size: 22px; */
     }
+>>>>>>> 3e3bf94794e57650119fe7e8e7a16ea6a3bff1b9
 `
