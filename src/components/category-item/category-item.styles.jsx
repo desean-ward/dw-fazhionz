@@ -116,7 +116,7 @@ export const FooterContainer = styled.div`
     width: 95%;
     height: 5%;
     display: flex;
-    font-size: 20px;
+    /* font-size: 20px; */
     
     .price {
         position: absolute;
@@ -124,6 +124,6 @@ export const FooterContainer = styled.div`
     }
 
     @media only screen and (max-width: 600px) {
-        font-size: 22px;
+       /* font-size: 22px; */
     }
 `
