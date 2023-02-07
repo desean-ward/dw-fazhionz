@@ -7,7 +7,8 @@
 }
 
 body {
-  font-size: clamp(1.25em, 1.5vw, 2.5em);
+  /* font-size: clamp(1.25em, 1.5vw, 2.5em); */
+  font-size: clamp(1rem, 0.6323rem + 1.5484vw, 1.6rem);
   font-weight: 400;
   padding: 0px;
   font-family: "Poppins", sans-serif !important;
@@ -15,7 +16,11 @@ body {
 }
 
 h1 {
-  font-size: clamp(2.5em, 3vw, 5em);
+  font-size: clamp(2.4rem, 1.6645rem + 3.0968vw, 3.6rem);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 1.1097rem + 2.0645vw,  2.4rem);
 }
 
 
