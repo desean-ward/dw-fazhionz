@@ -30,7 +30,7 @@ export const SignInContainer = styled.div`
 
     @media (max-width: 1100px) {
         margin-bottom: 60px;
-        with: 90vw;
+        width: 90vw;
     }
 
 
