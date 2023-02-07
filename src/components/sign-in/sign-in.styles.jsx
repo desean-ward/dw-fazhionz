@@ -29,7 +29,7 @@ export const SignInContainer = styled.div`
     }
 
     @media <= 1100px {
-        marginh-bottom: 60px;
+        margin-bottom: 60px;
         with: 90vw;
     }
 
