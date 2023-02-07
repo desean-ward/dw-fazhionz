@@ -130,7 +130,7 @@ export const Right = styled.div`
         margin-top: -55px;
     }
 
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 640px) {
         margin-top: -75px;
     }
 `;
