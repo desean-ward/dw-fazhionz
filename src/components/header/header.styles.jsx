@@ -16,7 +16,7 @@ export const HeaderContainer = styled.div`
 	height: 100%;
 	width: 100vw;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	gap: 20px;
 	background-color: white;
@@ -39,7 +39,7 @@ export const HeaderContainer = styled.div`
 
 export const Left = styled.div`
 	display: flex;
-	width: 40%;
+	/* width: 40%; */
 	align-items: start;
 	justify-content: start;
 
