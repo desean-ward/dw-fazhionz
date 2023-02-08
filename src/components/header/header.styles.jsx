@@ -137,7 +137,7 @@ export const Language = styled.span`
 	margin-left: -30px;
 	height: 40px;
 
-	@media only screen and (max-width: 620px) {
+	@media only screen and (max-width: 640px) {
 		display: none;
 	}
 `
