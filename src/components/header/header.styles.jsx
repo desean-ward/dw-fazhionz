@@ -26,7 +26,7 @@ export const HeaderContainer = styled.div`
 		filter: drop-shadow(0 1px 8px black);
 	}
 
-	@media (max-width: 1100px) {
+	/* @media (max-width: 1100px) {
 		flex-direction: column-reverse;
 
 		@media only screen and (orientation: portrait) {
@@ -34,7 +34,7 @@ export const HeaderContainer = styled.div`
 			top: 0;
 			padding-top: 10px;
 		}
-	}
+	} */
 `
 
 export const Left = styled.div`
@@ -278,7 +278,7 @@ export const OptionLink = styled(Link)`
 		display: none;
 	} */
 
-	@media only screen and (max-width: 900px) {
+	@media only screen and (max-width: 620px) {
 		display: none;
 	}
 `
