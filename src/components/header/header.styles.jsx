@@ -73,16 +73,16 @@ export const Right = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 60%;
+	/* width: 60%; */
 
 	.cart-icon {
 		position: relative;
 		display: flex;
 		margin: auto 0;
-		top: -3px;
+		/* top: -3px; */
 		
 
-		@media only screen and (max-width: 1000px) {
+		/* @media only screen and (max-width: 1000px) {
 			position: absolute;
 			right: 0;
 			top: 12px; 
@@ -103,10 +103,10 @@ export const Right = styled.div`
 			@media only screen and (max-height: 700px) {
 				top: 6px;
 			}
-		}
+		} */
 	}
 
-	@media (max-width: 1100px) {
+	/* @media (max-width: 1100px) {
 		width: 100%;
 		justify-content: center;
 		align-items: center;
@@ -114,7 +114,7 @@ export const Right = styled.div`
 
     @media only screen and (max-width: 600px) {   
 	    padding-top: 10px;
-    }
+    } */
 `
 
 export const TitleContainer = styled(Link)`
