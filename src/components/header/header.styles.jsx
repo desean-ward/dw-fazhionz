@@ -268,13 +268,17 @@ export const OptionLink = styled(Link)`
 		transform: scale(1, 1);
 	}
 
-	@media only screen and (orientation: portrait) {
+	/* @media only screen and (orientation: portrait) {
 		left: -30px;
 		top: 10px;
 	}
 		
 
-	@media only screen and (max-width: 620px), (max-height: 600px) {
+	/* @media only screen and (max-width: 620px), (max-height: 600px) {
+		display: none;
+	} */
+
+	@media only screen and (max-width: 900px) {
 		display: none;
 	}
 `
