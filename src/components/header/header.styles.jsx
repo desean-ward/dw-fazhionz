@@ -26,15 +26,16 @@ export const HeaderContainer = styled.div`
 		filter: drop-shadow(0 1px 8px black);
 	}
 
-	/* @media (max-width: 1100px) {
-		flex-direction: column-reverse;
+	@media (max-width: 1100px) {
+		flex-wrap: wrap-reverse;
+		justify-content: center;
 
-		@media only screen and (orientation: portrait) {
+		/* @media only screen and (orientation: portrait) {
 			height: 10vh;
 			top: 0;
 			padding-top: 10px;
-		}
-	} */
+		} */
+	}
 `
 
 export const Left = styled.div`
