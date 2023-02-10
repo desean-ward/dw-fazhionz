@@ -26,7 +26,6 @@ export const HeaderContainer = styled.div`
 	}
 
 	@media (max-width: 1100px) {
-		flex-wrap: wrap;
 		font-size: smaller;
 
 		/* @media only screen and (orientation: portrait) {
@@ -34,6 +33,10 @@ export const HeaderContainer = styled.div`
 			top: 0;
 			padding-top: 10px;
 		} */
+	}
+
+	@media (max-width: 640px) {
+		flex-wrap: nowrap;
 	}
 `
 
@@ -271,7 +274,7 @@ export const OptionLink = styled(Link)`
 	/* @media only screen and (orientation: portrait) {
 		left: -30px;
 		top: 10px;
-	}
+	} */
 		
 
 	/* @media only screen and (max-width: 620px), (max-height: 600px) {
