@@ -12,13 +12,12 @@ export const HeaderContainer = styled.div`
 	position: sticky;
 	z-index: 60;
 	top: 0;
-	padding: 20px 10%;
+	padding: 5px 15%;
 	height: 100%;
 	width: 100vw;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	gap: 20px;
 	background-color: white;
 	transition: transform 0.5s ease;
 
@@ -27,8 +26,8 @@ export const HeaderContainer = styled.div`
 	}
 
 	@media (max-width: 1100px) {
-		flex-wrap: wrap-reverse;
-		justify-content: center;
+		flex-wrap: wrap;
+		font-size: smaller;
 
 		/* @media only screen and (orientation: portrait) {
 			height: 10vh;

@@ -4,43 +4,26 @@ export const HeaderMessageContainer = styled.div`
 	position: relative;
 	z-index: 50;
 	background-color: maroon;
-	width: 100vw;
-	height: clamp(25px, 70px, 5vh);
+	color: white;
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	justify-content: space-around;
-	padding: 30px 2vw;
+	padding: 5px 0;
 	text-align: center;
-
-	@media only screen and (max-width: 999px) {
-		//display: none;
-	}
+	font-size: smaller;
 `
 
 export const Left = styled.div`
-	display: flex;
-	align-items: center;
-	color: white;
-
 	@media only screen and (max-width: 999px) {
 		display: none;
 	}
 `
 
 export const Center = styled.div`
-	display: flex;
-	justify-content: center;
-	color: white;
-
 	@media only screen and (max-width: 999px) {
 		display: none;
 	}
 `
 
 export const Right = styled.div`
-	display: flex;
-	flex-direction: row;
-	color: white;
-	justify-content: flex-end;
 `
