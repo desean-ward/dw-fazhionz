@@ -26,6 +26,8 @@ export const HeaderContainer = styled.div`
 	}
 
 	@media (max-width: 1100px) {
+		flex-wrap: wrap;
+		justify-content: center;
 		font-size: smaller;
 
 		/* @media only screen and (orientation: portrait) {
@@ -37,6 +39,7 @@ export const HeaderContainer = styled.div`
 
 	@media (max-width: 640px) {
 		flex-wrap: nowrap;
+		justify-content: space-between;
 	}
 `
 
@@ -46,10 +49,10 @@ export const Left = styled.div`
 	align-items: start;
 	justify-content: start;
 
-	@media (max-width: 1100px) {
+	/* @media (max-width: 1100px) {
 		width: 100%;
 		justify-content: center;
-	}
+	} */
 
 	@media only screen and (max-width: 620px) {
 		flex-direction: row;
@@ -60,7 +63,7 @@ export const Left = styled.div`
 			flex-direction: column-reverse;
 
 			.search {
-				margin-left: -25px;
+				margin-left: -15px;
 				margin-top: 5px;
 			}
 
@@ -137,7 +140,6 @@ export const TitleContainer = styled(Link)`
 export const Language = styled.span`
 	color: #212529;
 	position: relative;
-	margin-left: -30px;
 	height: 40px;
 
 	@media only screen and (max-width: 640px) {
@@ -159,10 +161,9 @@ export const SearchContainer = styled.div`
 	transition: 500ms width ease-in-out, 500ms padding ease-in-out,
 		500ms border-radius ease-in-out;
 
-	@media only screen and (orientation: portrait) and (max-width: 620px) {
+	/* @media only screen and (orientation: portrait) and (max-width: 620px) {
 		position: relative;
-		top: -14px;
-	}
+	} */
 
 	//**  open state  **//
 	&.search-open {
@@ -226,7 +227,7 @@ export const Input = styled.input`
 
 export const OptionsContainer = styled.div`
 	position: relative;
-	width: 100%;
+	width: 40vw;
 	height: 100%;
 	display: flex;
 	align-items: start;
