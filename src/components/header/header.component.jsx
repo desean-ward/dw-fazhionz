@@ -236,7 +236,7 @@ const Header = ({ hidden }) => {
 						
 					</OptionsContainer>
 
-					<CartIcon />
+					<CartIcon className='cart-icon'/>
 
 					{
 						/* Toggle the Shopping Cart Dropdown */

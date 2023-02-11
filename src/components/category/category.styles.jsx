@@ -2,11 +2,9 @@ import styled from 'styled-components'
 
 export const CategoryContainer = styled.div`
 	width: 100vw;
-	//padding: 0 0.5%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	//gap: 30px 10px;
 	padding: 0.5% 3.5%;
 
 	@media (width < 1325px) {
@@ -14,13 +12,8 @@ export const CategoryContainer = styled.div`
 	}
 
 	.title {
-		//margin: 12vh 0 0 5vw;
 		width: 90%;
 		margin-top: 9.5vh;
-		//text-align: left;
-		@media (width < 1325px) {
-			//margin: 0;
-		}
 	}
 
 	.view-all {
@@ -31,18 +24,10 @@ export const CategoryContainer = styled.div`
 			color: maroon;
 			cursor: pointer;
 		}
-
-		@media (width < 1325px) {
-			//margin: 0;
-		}
 	}
 `
 
 export const Preview = styled.div`
-	/* margin-top: 3vh;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-	justify-content: center; */
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -50,8 +35,6 @@ export const Preview = styled.div`
 	padding: 0.5% 5vw;
 
 	@media (width < 1325px) {
-		/* width: 92.5vw; */
-
 		justify-content: center;
 	}
 `

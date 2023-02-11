@@ -39,7 +39,7 @@ export const ProductCard = styled.div`
 	width: 100%;
 	height: fit-content;
 	border-radius: 10px;
-	box-shadow: 1px 1px 10px  grey;
+	//box-shadow: 1px 1px 10px grey;
 
 	::before {
 		content: '';

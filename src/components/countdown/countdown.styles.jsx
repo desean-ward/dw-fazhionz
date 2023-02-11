@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TimerContainer = styled.section`
 	position: sticky;
     z-index: 50;
-    top: 10vh;
+    top: 5vh;
 	width: 100vw;
 	height: 100vh;
     background-color: black;

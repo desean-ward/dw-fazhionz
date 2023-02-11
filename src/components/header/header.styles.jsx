@@ -29,6 +29,7 @@ export const HeaderContainer = styled.div`
 		flex-wrap: wrap;
 		justify-content: center;
 		font-size: smaller;
+		padding: 5px 5%;
 
 		/* @media only screen and (orientation: portrait) {
 			height: 10vh;
@@ -81,12 +82,10 @@ export const Right = styled.div`
 	justify-content: center;
 	/* width: 60%; */
 
-	.cart-icon {
+	&.cart-icon {
 		position: relative;
 		display: flex;
 		margin: auto 0;
-		/* top: -3px; */
-		
 
 		/* @media only screen and (max-width: 1000px) {
 			position: absolute;
@@ -112,13 +111,14 @@ export const Right = styled.div`
 		} */
 	}
 
-	/* @media (max-width: 1100px) {
+	@media (max-width: 1100px) {
 		width: 100%;
-		justify-content: center;
+		justify-content: wrap;
 		align-items: center;
 	}
 
-    @media only screen and (max-width: 600px) {   
+
+    /* @media only screen and (max-width: 600px) {   
 	    padding-top: 10px;
     } */
 `
@@ -239,6 +239,7 @@ export const OptionsContainerStyles = css`
 	padding: 10px 15px;
 	cursor: pointer;
 	margin-left: 5px;
+	min-width: fit-content;
 `
 
 export const OptionLine = styled.div``
