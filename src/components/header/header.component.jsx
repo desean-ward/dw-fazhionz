@@ -121,7 +121,7 @@ const Header = ({ hidden }) => {
 	useEffect(() => {
 		return setTimeout(() => {
 			showModal()
-		}, 5000)
+		}, 10000)
 	}, [])
 
 
@@ -230,8 +230,10 @@ const Header = ({ hidden }) => {
 							)
 						}
 
-						<CartIcon />
+						
 					</OptionsContainer>
+
+					<CartIcon />
 
 					{
 						/* Toggle the Shopping Cart Dropdown */
