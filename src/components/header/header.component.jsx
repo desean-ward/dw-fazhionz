@@ -18,6 +18,9 @@ import GlassModal from '../glass-popup/glass-popup.component'
 import { UserContext } from '../../context/user.context'
 import { CartContext } from '../../context/cart.context'
 
+import AnimatedPage from '../../components/animated-page/animated-page.component'
+
+
 import {
 	HeaderTop,
 	HeaderContainer,

@@ -9,8 +9,8 @@ export const DropdownContainer = styled.div`
     border-top: 1px solid rgb(216, 214, 214);
     background-color: white;
     box-shadow: 0 5px 5px 0 rgba(36, 31, 31, 0.5);
-    top: 75px;
-    right: 170px;
+    top: 55px;
+    margin-left: 450px;
     opacity: 1;
 `
 

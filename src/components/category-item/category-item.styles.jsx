@@ -6,7 +6,7 @@ export const CategoryItemContainer = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	height: 350px;
-	width: 390px;
+	width: 320px;
 	align-items: center;
 	position: relative;
 	margin: 0 0 75px 0px;
@@ -54,8 +54,8 @@ export const ImageContainer = styled.div`
 `
 
 export const Image = styled.div`
-    /* width: 95%; */
-    height: 340px;
+    width: 320px;
+    height: 320px;
     background-size: cover;
     background-position: center;
     margin-bottom: 0.5px;

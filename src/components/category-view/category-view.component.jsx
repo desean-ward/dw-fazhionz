@@ -19,11 +19,10 @@ const CategoryView = () => {
 
   return (
       <Fragment>
-        <TitleContainer>
-            <h2 className='title'>{ category.toUpperCase() }</h2>
-        </TitleContainer>
-
         <CategoryViewContainer>
+            <TitleContainer>
+                <h2 className='title'>{ category.toUpperCase() }</h2>
+            </TitleContainer>
             {   
                 products && products.map((product) => <CategoryItem key={product.id} item={product} />)
             }

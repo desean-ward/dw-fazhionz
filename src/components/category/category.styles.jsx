@@ -2,23 +2,29 @@ import styled from 'styled-components'
 
 export const CategoryContainer = styled.div`
 	width: 100vw;
-	padding: 0 0.5%;
+	//padding: 0 0.5%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	//gap: 30px 10px;
+	padding: 0.5% 3.5%;
 
 	@media (width < 1325px) {
 		text-align: center;
 	}
 
 	.title {
-		margin: 12vh 0 0 5vw;
-		width: 100%;
-
+		//margin: 12vh 0 0 5vw;
+		width: 90%;
+		margin-top: 9.5vh;
+		//text-align: left;
 		@media (width < 1325px) {
-			margin: 0;
+			//margin: 0;
 		}
 	}
 
 	.view-all {
-		margin-left: 5vw;
+		width: 90%;
 		font-size: smaller;
 
 		&:hover {
@@ -27,10 +33,9 @@ export const CategoryContainer = styled.div`
 		}
 
 		@media (width < 1325px) {
-			margin: 0;
+			//margin: 0;
 		}
 	}
-	
 `
 
 export const Preview = styled.div`
@@ -38,11 +43,11 @@ export const Preview = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 	justify-content: center; */
-
+	width: 100%;
 	display: flex;
-    flex-wrap: wrap;
-    gap: 30px 10px;
-    padding: .5% 5vw;
+	flex-wrap: wrap;
+	gap: 30px 10px;
+	padding: 0.5% 5vw;
 
 	@media (width < 1325px) {
 		/* width: 92.5vw; */

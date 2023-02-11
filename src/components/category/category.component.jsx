@@ -7,6 +7,7 @@ import { CategoriesContext } from '../../context/categories.context'
 
 import { CategoryContainer, Preview } from './category.styles'
 
+
 const Category = ({ title, products }) => {
 	const url = '/shop/categories/' + title
 
