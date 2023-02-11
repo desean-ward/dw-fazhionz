@@ -54,7 +54,7 @@ export const ImageContainer = styled.div`
 `
 
 export const Image = styled.div`
-    width: 95%;
+    /* width: 95%; */
     height: 340px;
     background-size: cover;
     background-position: center;
@@ -116,14 +116,14 @@ export const FooterContainer = styled.div`
     width: 95%;
     height: 5%;
     display: flex;
-    font-size: 20px;
+	justify-content: space-between;
+    /* font-size: 20px; */
     
     .price {
-        position: absolute;
-        right: 30px;
+       /* position: absolute; */
     }
 
     @media only screen and (max-width: 600px) {
-        font-size: 22px;
+       /* font-size: 22px; */
     }
 `

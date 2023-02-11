@@ -12,13 +12,12 @@ export const HeaderContainer = styled.div`
 	position: sticky;
 	z-index: 60;
 	top: 0;
-	padding: 20px 10%;
+	padding: 5px 15%;
 	height: 100%;
 	width: 100vw;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
-	gap: 20px;
 	background-color: white;
 	transition: transform 0.5s ease;
 
@@ -27,26 +26,33 @@ export const HeaderContainer = styled.div`
 	}
 
 	@media (max-width: 1100px) {
-		flex-direction: column-reverse;
+		flex-wrap: wrap;
+		justify-content: center;
+		font-size: smaller;
 
-		@media only screen and (orientation: portrait) {
+		/* @media only screen and (orientation: portrait) {
 			height: 10vh;
 			top: 0;
 			padding-top: 10px;
-		}
+		} */
+	}
+
+	@media (max-width: 640px) {
+		flex-wrap: nowrap;
+		justify-content: space-between;
 	}
 `
 
 export const Left = styled.div`
 	display: flex;
-	width: 40%;
+	/* width: 40%; */
 	align-items: start;
 	justify-content: start;
 
-	@media (max-width: 1100px) {
+	/* @media (max-width: 1100px) {
 		width: 100%;
 		justify-content: center;
-	}
+	} */
 
 	@media only screen and (max-width: 620px) {
 		flex-direction: row;
@@ -57,7 +63,7 @@ export const Left = styled.div`
 			flex-direction: column-reverse;
 
 			.search {
-				margin-left: -25px;
+				margin-left: -15px;
 				margin-top: 5px;
 			}
 
@@ -73,16 +79,16 @@ export const Right = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 60%;
+	/* width: 60%; */
 
 	.cart-icon {
 		position: relative;
 		display: flex;
 		margin: auto 0;
-		top: -3px;
+		/* top: -3px; */
 		
 
-		@media only screen and (max-width: 1000px) {
+		/* @media only screen and (max-width: 1000px) {
 			position: absolute;
 			right: 0;
 			top: 12px; 
@@ -103,10 +109,10 @@ export const Right = styled.div`
 			@media only screen and (max-height: 700px) {
 				top: 6px;
 			}
-		}
+		} */
 	}
 
-	@media (max-width: 1100px) {
+	/* @media (max-width: 1100px) {
 		width: 100%;
 		justify-content: center;
 		align-items: center;
@@ -114,7 +120,7 @@ export const Right = styled.div`
 
     @media only screen and (max-width: 600px) {   
 	    padding-top: 10px;
-    }
+    } */
 `
 
 export const TitleContainer = styled(Link)`
@@ -134,10 +140,9 @@ export const TitleContainer = styled(Link)`
 export const Language = styled.span`
 	color: #212529;
 	position: relative;
-	margin-left: -30px;
 	height: 40px;
 
-	@media only screen and (max-width: 620px) {
+	@media only screen and (max-width: 640px) {
 		display: none;
 	}
 `
@@ -156,10 +161,9 @@ export const SearchContainer = styled.div`
 	transition: 500ms width ease-in-out, 500ms padding ease-in-out,
 		500ms border-radius ease-in-out;
 
-	@media only screen and (orientation: portrait) and (max-width: 620px) {
+	/* @media only screen and (orientation: portrait) and (max-width: 620px) {
 		position: relative;
-		top: -14px;
-	}
+	} */
 
 	//**  open state  **//
 	&.search-open {
@@ -223,7 +227,7 @@ export const Input = styled.input`
 
 export const OptionsContainer = styled.div`
 	position: relative;
-	width: 100%;
+	width: 40vw;
 	height: 100%;
 	display: flex;
 	align-items: start;
@@ -268,13 +272,17 @@ export const OptionLink = styled(Link)`
 		transform: scale(1, 1);
 	}
 
-	@media only screen and (orientation: portrait) {
+	/* @media only screen and (orientation: portrait) {
 		left: -30px;
 		top: 10px;
-	}
+	} */
 		
 
-	@media only screen and (max-width: 620px), (max-height: 600px) {
+	/* @media only screen and (max-width: 620px), (max-height: 600px) {
+		display: none;
+	} */
+
+	@media only screen and (max-width: 620px) {
 		display: none;
 	}
 `

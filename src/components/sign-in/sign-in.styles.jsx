@@ -28,7 +28,11 @@ export const SignInContainer = styled.div`
         padding-right: 10px;
     }
 
-    @media screen and (max-width: 800px) {
+    @media (max-width: 900px) {
         margin-bottom: 60px;
+        width: 90vw;
     }
 `
+
+
+   

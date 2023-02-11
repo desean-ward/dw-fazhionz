@@ -4,7 +4,7 @@ export const CartIconContainer = styled.div`
     width: 40px;
     height: 40px;
     position: relative;
-    top: 5px;
+    /* top: 5px; */
     display: flex;
     flex-direction: column;
     align-items: center;
