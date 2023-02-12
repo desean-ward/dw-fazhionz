@@ -102,29 +102,26 @@ export const Navigation = styled.div`
 
 export const HamburgerContainer = styled.div`
     position: absolute;
+    display: flex;
     z-index: 200;
     width: 30px;
     height: 30px;
     background-color: transparent;
     top: 22.5px;
     right: 5%;
+    margin-left: 5px;
     cursor: pointer;
 
     @media only screen and (min-width: 721px) {
         display: none;
     }
 
-    @media only screen and (orientation: landscape) and (max-height: 600px) {
+    /* @media only screen and (orientation: landscape) and (max-height: 600px) {
         display: flex;
         margin-top: 10px;
-    }
-
-    @media only screen and (max-width: 400px) {
-        top: 35px
-    }
-
-   
+    } */
 `
+
 export const Bars = styled.div`
     width: 30px;
     height: 4px;

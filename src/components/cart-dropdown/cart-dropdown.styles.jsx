@@ -23,7 +23,7 @@ export const DropdownContainer = styled.div`
     }
 
     @media (width < 720px) {
-        margin-left: 28%;
+        margin: 0 28%;
         top: 50px;
     }
 `

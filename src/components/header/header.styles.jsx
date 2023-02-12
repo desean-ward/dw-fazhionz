@@ -63,12 +63,12 @@ export const Left = styled.div`
 			.search {
 				margin-left: -2.5px;
 				margin-top: 5px;
-				width: 21rem;
+				width: 100%;
 				border-radius: 0%;
 			};
 
 			.search-input {
-				width: 90%;
+				width: 75%;
 				visibility: visible;
 			}
 
