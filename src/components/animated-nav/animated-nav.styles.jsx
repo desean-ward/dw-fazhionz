@@ -106,11 +106,11 @@ export const HamburgerContainer = styled.div`
     width: 30px;
     height: 30px;
     background-color: transparent;
-    top: 40px;
+    top: 22.5px;
     right: 5%;
     cursor: pointer;
 
-    @media only screen and (min-width: 621px) {
+    @media only screen and (min-width: 721px) {
         display: none;
     }
 

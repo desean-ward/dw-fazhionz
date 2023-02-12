@@ -191,7 +191,7 @@ export const PopupProduct = styled.div`
 		position: absolute;
 		align-self: end;
 		top: -60px;
-		right: 5vw;
+		right: 12.5vw;
 		font-size: 30px;
 		color: #1d212b;
 		cursor: pointer;

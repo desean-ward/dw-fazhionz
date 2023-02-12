@@ -18,7 +18,6 @@ export const CategoryContainer = styled.div`
 
 	.view-all {
 		width: 90%;
-		font-size: smaller;
 
 		&:hover {
 			color: maroon;
@@ -33,6 +32,7 @@ export const Preview = styled.div`
 	flex-wrap: wrap;
 	gap: 30px 10px;
 	padding: 0.5% 5vw;
+	margin-bottom: -5vw;
 
 	@media (width < 1325px) {
 		justify-content: center;

@@ -24,7 +24,7 @@ const CategoryView = () => {
                 <h2 className='title'>{ category.toUpperCase() }</h2>
             </TitleContainer>
             {   
-                products && products.map((product) => <CategoryItem key={product.id} item={product} />)
+                products && products.map((product) => <CategoryItem className='item' key={product.id} item={product} />)
             }
         </CategoryViewContainer>
     </Fragment>

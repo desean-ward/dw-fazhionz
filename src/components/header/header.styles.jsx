@@ -50,27 +50,35 @@ export const Left = styled.div`
 	align-items: start;
 	justify-content: start;
 
-	/* @media (max-width: 1100px) {
-		width: 100%;
-		justify-content: center;
-	} */
-
-	@media only screen and (max-width: 620px) {
+	
+	@media only screen and (max-width: 720px) {
 		flex-direction: row;
 		justify-content: start;
 		align-items: start;
+		width: 75%;
 
 		@media only screen and (orientation: portrait) {
 			flex-direction: column-reverse;
 
 			.search {
-				margin-left: -15px;
+				margin-left: -2.5px;
 				margin-top: 5px;
+				width: 21rem;
+				border-radius: 0%;
+			};
+
+			.search-input {
+				width: 90%;
+				visibility: visible;
 			}
 
 			.language {
 				margin-top: 15px;
 				margin-left: -25px;
+			}
+
+			.close-icon {
+				display: none;
 			}
 		}
 	}
@@ -81,6 +89,10 @@ export const Right = styled.div`
 	align-items: center;
 	justify-content: center;
 	/* width: 60%; */
+
+	@media (width < 1100) {
+		justify-content: space-around;
+	}
 
 	&.cart-icon {
 		position: relative;
@@ -117,6 +129,10 @@ export const Right = styled.div`
 		align-items: center;
 	}
 
+	@media (width < 720px) {
+		width: 25%;
+	}
+
 
     /* @media only screen and (max-width: 600px) {   
 	    padding-top: 10px;
@@ -138,11 +154,13 @@ export const TitleContainer = styled(Link)`
 `
 
 export const Language = styled.span`
+	display: flex;
+	align-items: center;
 	color: #212529;
 	position: relative;
 	height: 40px;
 
-	@media only screen and (max-width: 640px) {
+	@media only screen and (max-width: 720px) {
 		display: none;
 	}
 `
@@ -160,10 +178,6 @@ export const SearchContainer = styled.div`
 	width: 26px;
 	transition: 500ms width ease-in-out, 500ms padding ease-in-out,
 		500ms border-radius ease-in-out;
-
-	/* @media only screen and (orientation: portrait) and (max-width: 620px) {
-		position: relative;
-	} */
 
 	//**  open state  **//
 	&.search-open {
@@ -227,7 +241,6 @@ export const Input = styled.input`
 
 export const OptionsContainer = styled.div`
 	position: relative;
-	width: 40vw;
 	height: 100%;
 	display: flex;
 	align-items: start;
@@ -283,7 +296,7 @@ export const OptionLink = styled(Link)`
 		display: none;
 	} */
 
-	@media only screen and (max-width: 620px) {
+	@media only screen and (max-width: 720px) {
 		display: none;
 	}
 `
@@ -293,7 +306,6 @@ export const HamburgerContainer = styled.div`
 	width: 30px;
 	height: 20px;
 	background: #fff;
-	top: 10vh;
 	right: 5%;
 	cursor: pointer;
 `

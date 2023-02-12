@@ -10,8 +10,22 @@ export const DropdownContainer = styled.div`
     background-color: white;
     box-shadow: 0 5px 5px 0 rgba(36, 31, 31, 0.5);
     top: 55px;
-    margin-left: 450px;
+    margin-left: 500px;
     opacity: 1;
+
+    @media (width < 1100px) {
+        top: 85px;
+        left: 8.5%;
+    }
+
+    @media (width < 900px) {
+        left: -4.25%;
+    }
+
+    @media (width < 720px) {
+        margin-left: 28%;
+        top: 50px;
+    }
 `
 
 export const CartItems = styled.div`

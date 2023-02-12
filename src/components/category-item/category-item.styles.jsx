@@ -5,7 +5,7 @@ export const CategoryItemContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	height: 350px;
+	height: 340px;
 	width: 320px;
 	align-items: center;
 	position: relative;
@@ -14,6 +14,7 @@ export const CategoryItemContainer = styled.div`
 	&:hover {
 		.image {
 			opacity: 0.8;
+			transform: scale(1.01);
 		}
 
 		.btn-container {
@@ -41,13 +42,14 @@ export const ImageContainer = styled.div`
 		}
 	}
 
+	
 	&.image {
 		height: 350px;
 	}
 
 	&.name,
 	&.price {
-		top: 10px;
+		//top: 10px;
 		padding-bottom: 10px;
 	}
 }
@@ -56,11 +58,11 @@ export const ImageContainer = styled.div`
 export const Image = styled.div`
     width: 320px;
     height: 320px;
-    background-size: cover;
+    background-size: object-fit;
     background-position: center;
-    margin-bottom: 0.5px;
     opacity: 1;
     visibility: hidden;
+	transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95) 0s;
 `
 
 export const ButtonContainer = styled.div`
@@ -117,12 +119,7 @@ export const FooterContainer = styled.div`
     height: 5%;
     display: flex;
 	justify-content: space-between;
-    /* font-size: 20px; */
     
-    .price {
-       /* position: absolute; */
-    }
-
     @media only screen and (max-width: 600px) {
        /* font-size: 22px; */
     }
