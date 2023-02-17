@@ -6,12 +6,12 @@ import Carousel from '../../components/carousel/carousel.component'
 import Newsletter from '../../components/newsletter/newsletter.component'
 import Countdown from '../../components/countdown/countdown.component'
 import { Products } from '../../components/new-arrivals/product.styles'
-import Hero from '../../components/hero/hero.component'
+import Hero from '../../components/hero/hero2.component'
 import BannerOne from '../../components/banner-one/banner-one.component'
 import WomanBackground from '../../components/woman-background/woman-background.component'
 import AnimatedPage from '../../components/animated-page/animated-page.component'
 import Spacer from '../../components/spacer/spacer.component'
-import CarouselSpacer from '../../components/spacer/carousel-spacer.component'
+import HeroSpacer from '../../components/spacer/hero-spacer.component'
 
 
 const Home = () => {
@@ -19,11 +19,12 @@ const Home = () => {
 		<AnimatedPage>
 			<HomePageContainer>
 				<Hero  />
+				<HeroSpacer/>
 				<Spacer />
 				<BannerOne />
 				<Spacer />
 				<Carousel />
-				<CarouselSpacer />
+				<Spacer />
 				<Directory />
 				<Spacer />
 				<Countdown />

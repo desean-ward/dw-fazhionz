@@ -127,16 +127,16 @@ export const Right = styled.div`
     }
 
     @media only screen and (max-width: 900px) {
-        margin-top: -55px;
+        margin-top: -12px;
     }
 
     @media only screen and (max-width: 640px) {
         margin-top: -97px;
     }
 
-    @media only screen and (max-width: 640px) {
-        margin-top: -160px;
-    }
+    /* @media only screen and (max-width: 640px) {
+        margin-top: -100px;
+    } */
 `;
 
 export const ContactItem = styled.div`

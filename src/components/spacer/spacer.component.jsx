@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SpacerContainer, CarouselSpacerContainer } from './spacer.styles'
+import { SpacerContainer } from './spacer.styles'
 
 
 const Spacer = () => {

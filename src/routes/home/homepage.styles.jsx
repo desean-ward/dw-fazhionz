@@ -10,4 +10,5 @@ export const HomePageContainer = styled.div`
     scrollbar-width: thin;
     scroll-behavior: smooth;
 
+
 `;

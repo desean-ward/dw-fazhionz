@@ -51,7 +51,7 @@ export const Left = styled.div`
 	justify-content: start;
 
 	
-	@media only screen and (max-width: 720px) {
+	@media only screen and (max-width: 721px) {
 		flex-direction: row;
 		justify-content: start;
 		align-items: start;

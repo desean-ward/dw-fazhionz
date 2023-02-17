@@ -13,18 +13,23 @@ export const DropdownContainer = styled.div`
     margin-left: 500px;
     opacity: 1;
 
-    @media (width < 1100px) {
+    @media (width < 1101px) {
         top: 85px;
-        left: 8.5%;
+        left: 18.5%;
     }
 
-    @media (width < 900px) {
+    @media (width < 901px) {
         left: -4.25%;
     }
 
-    @media (width < 720px) {
-        margin: 0 28%;
+    @media (width < 721px) {
+        margin-left: 50%;
         top: 50px;
+    }
+
+    @media (width < 481px) {
+        margin: 0 10%;
+        width: 90%;
     }
 `
 
@@ -37,7 +42,6 @@ export const CartItems = styled.div`
 `
 
 export const EmptyMessage = styled.div`
-	font-size: 18px;
     margin: 50px auto;
 `
 

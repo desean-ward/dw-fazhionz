@@ -1,0 +1,55 @@
+.video-container {
+    position: relative;
+    height: 100svh;
+    width: 100%;
+    z-index: 50;
+
+    @media (orientation: portrait) {
+      height: 40svh;
+    }
+  }
+
+  video {
+    position: absolute;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    filter: grayscale(100%);
+    
+  }
+
+  .overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 100;
+
+    @media (width < 1101px) {
+      height: 100vh;
+    }
+  }
+
+  .hero-title {
+    position: absolute;
+    bottom: 0;
+    width: 70%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    background-color: maroon;
+    padding: 20px;
+
+    @media (width < 1101px) {
+      h1 {
+        font-size: 2.4rem;
+      }
+      
+      .hero-content {
+        display: none;
+        
+      }
+    }
+  }

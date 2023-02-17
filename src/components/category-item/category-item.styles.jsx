@@ -14,7 +14,7 @@ export const CategoryItemContainer = styled.div`
 	&:hover {
 		.image {
 			opacity: 0.8;
-			transform: scale(1.01);
+			transform: scale(1.025);
 		}
 
 		.btn-container {

@@ -39,6 +39,7 @@ export const Container = styled.div`
 `
 
 export const ArrowContainer = styled.div`
+	position: absolute;
 	width: 50px;
 	height: 50px;
 	background-color: lightgrey;
@@ -49,8 +50,8 @@ export const ArrowContainer = styled.div`
 	position: absolute;
 	top: 10px;
 	bottom: 0;
-	left: ${(props) => props.direction === 'left' && '10px'};
-	right: ${(props) => props.direction === 'right' && '10px'};
+	left: ${(props) => props.direction === 'left' && '25px'};
+	right: ${(props) => props.direction === 'right' && '25px'};
 	margin: auto;
 	cursor: pointer;
 	opacity: 0.5;
@@ -62,9 +63,17 @@ export const ArrowContainer = styled.div`
 		opacity: 1;
 	}
 
-	@media only screen and (max-width: 900px) and (orientation: portrait) {
-		opacity: 1;
-		top: -60px;
+
+	@media (width < 1101px) {
+		top: -420px;
+	}
+
+	@media (width < 901px) {
+		top: -390px;
+	}
+
+	@media (width < 481px) {
+		top: -300px;
 	}
 `
 
@@ -96,7 +105,6 @@ export const Slide = styled.div`
 
 	@media only screen and (max-width: 1100px) and (orientation: portrait) {
 		flex-direction: column;
-		//height: 100vh;
 	}
 `
 
@@ -133,10 +141,6 @@ export const InfoContainer = styled.div`
 	width: 40vw;
 	gap: 40px;
 
-	/* @media only screen and (max-width: 1000px) and (min-height: 350px) {
-		height: 40vh;
-	} */
-
 	@media screen and (max-width: 1100px) {
 		height: 25vh;
 		width: 95%;
@@ -147,42 +151,20 @@ export const InfoContainer = styled.div`
 			padding-left: 0;
 			margin-top: 20px;
 			height: 20vh;
-
-			@media only screen and (max-width: 400px) {
-				font-size: smaller;
-				gap: 0;
-
-				h1 {
-					font-size: 40px;
-				}
-			}
-			
 		}
 	}
 
 `
 
 export const Title = styled.h1`
-	//font-size: 60px;
-	/* @media screen and (max-width: 800px) {
-		font-size: 50px;
-	} */
 `
 
 export const Description = styled.p`
-	//margin: 40px 0 60px 0;
-	//font-size: 20px;
 	font-weight: 500;
 	letter-spacing: 3px;
-
-	/* @media screen and (max-width: 800px) {
-		font-size: 15px;
-	} */
 `
 
 export const ButtonContainer = styled(Link)`
-	//position: absolute;
-	//width: 165px;
 	height: 55px;
 
 	@media only screen and (max-width: 900px) and (min-height: 400px) {
@@ -205,9 +187,8 @@ export const CarouselNav = styled.div`
 	width: 20%;
 	height: 40px;
 
-	@media only screen and (max-width: 900px) and (min-height: 400px) {
-		position: absolute;
-		margin-top: -40px;
+	@media (width < 481px) {
+		margin-bottom: 16px;
 	}
 `
 

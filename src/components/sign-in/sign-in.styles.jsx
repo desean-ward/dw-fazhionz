@@ -14,6 +14,11 @@ export const SignInContainer = styled.div`
         flex-direction: column;
         justify-items: space-between;
         gap: 10px;
+
+        span {
+            width: 100%;
+            text-align: center;
+        }
     } 
 
     .logo {

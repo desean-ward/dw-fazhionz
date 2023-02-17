@@ -112,6 +112,9 @@ const SignIn = () => {
 							Sign In
 						</CustomButton>
 
+						<span className='hr'><hr /></span>
+						<span>OR SIGN IN WITH</span>
+
 						<CustomButton onClick={googleSignIn} isGoogleSignIn>
 							{' '}
 							<div className='logo'>
@@ -120,7 +123,7 @@ const SignIn = () => {
 									alt='Google'
 								/>
 							</div>
-							Sign In With Google{' '}
+							Google{' '}
 						</CustomButton>
 					</div>
 				</form>

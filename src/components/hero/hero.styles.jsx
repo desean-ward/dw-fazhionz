@@ -11,7 +11,7 @@ export const LogoContainer = styled.div`
 	place-items: center;
 	background-color: white;
 
-	@media only screen and (max-width: 1100px) and (orientation: portrait) {
+	@media only screen and (max-width: 900px) and (orientation: portrait) {
 		height: 50vh;
 		overflow: hidden;
 	}
@@ -27,7 +27,7 @@ export const LogoContainer = styled.div`
 			width: 75%;
 			height: 70%;
 
-			@media only screen and (max-width: 1100px) and (orientation: portrait) {
+			@media only screen and (max-width: 900px) and (orientation: portrait) {
 				height: 30vh;
 				width: 100%;
 			}
@@ -84,7 +84,7 @@ export const LogoContainer = styled.div`
 
 			
 
-			@media only screen and (max-width: 1100px) and (orientation: portrait) {
+			@media only screen and (max-width: 900px) and (orientation: portrait) {
 				top: 35vh;
 				height: 60%;
 				width: 50%

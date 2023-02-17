@@ -28,8 +28,4 @@ export const DirectoryMenu = styled.div`
 	align-content: center;
 	justify-content: center;
 	align-content: center;
-
-	// @media screen and (max-width: 800px) {
-	//     margin-top: -120px;;
-	// }
 `

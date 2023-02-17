@@ -11,6 +11,7 @@ import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { createStructuredSelector } from "reselect";
 
 import CartItem from "../cart-item/cart-item.component";
+import { CartContext } from '../../context/cart.context'
 
 import CustomButton from "../custom-button/custom-button.component";
 
@@ -51,7 +52,7 @@ const CartDropdown = ({ cartItems, dispatch }) => {
 	useEffect(() => {
 		checkOpen();
 		checkCart();
-	}, [checkCart])
+	}, [checkOpen])
 
 	return (
 		<DropdownContainer isOpen={isOpen} hasItems={hasItems}>

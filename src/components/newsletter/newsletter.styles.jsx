@@ -3,9 +3,9 @@ import styled from 'styled-components'
 export const Container = styled.div`
 	position: relative;
 	z-index: 50;
-	height: 50vh;
+	height: 30vh;
 	width: 100vw;
-	margin-top: 75vh;
+	margin-top: 35vh;
 	color: white;
 	background-color: maroon;
 	box-shadow: 0 3px 10px black;
@@ -13,10 +13,12 @@ export const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	padding-top: 20px;
 
 	@media only screen and (max-width: 770px) and (orientation: portrait) {
 		margin-top: 80vh;
 	}
+	
 
 	/* @media screen and (max-width: 800px) and (max-height: 700px) {
 		//height: 70vh;

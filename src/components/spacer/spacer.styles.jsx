@@ -9,7 +9,7 @@ export const SpacerContainer = styled.div`
     border: none;
 `
 
-export const CarouselSpacerContainer = styled.div`
+export const HeroSpacerContainer = styled.div`
     position: relative;
     z-index: 50;
     width: 100vw;
@@ -17,7 +17,11 @@ export const CarouselSpacerContainer = styled.div`
     background-color: white;
     border: none;
 
-    @media only screen and (max-width: 900px) and (min-height: 400px) {
+    @media ( orientation: portrait) {
+        display: none;
+    }
+
+    /* @media only screen and (max-width: 900px) and (min-height: 400px) {
 		display: none;
-	}
+	} */
 `

@@ -3,19 +3,24 @@ import styled from 'styled-components'
 export const Container = styled.div`
 	position: relative;
 	z-index: 50;
-	height: clamp(2vh, 120em, 50vh);
-	width: 100vw;
+	//height: clamp(2vh, 120em, 50vh);
+	height: 500px;
+	width: 100%;
 	color: white;
 	display: flex;
 	flex-direction: row;
 	overflow-x: hidden;
 
 	@media only screen and (max-width: 1100px) and (orientation: portrait) {
-		height: 30vh;
+		//height: 30vh;
 	}
 
 	@media only screen and (max-width: 600px) {
-		font-size: smaller;
+		//font-size: smaller;
+	}
+
+	@media (width < 481px) {
+		height: 200px;
 	}
 `
 
@@ -24,9 +29,9 @@ export const LeftSide = styled.span`
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	padding: 20px;
+	padding: 40px;
 	left: 0;
-	width: 50vw;
+	width: 50%;
 	height: 100%;
 	clip-path: polygon(0 0, 100% 0%, 60% 100%, 0 100%);
 	background-color: maroon;
@@ -35,6 +40,11 @@ export const LeftSide = styled.span`
 		&.left {
 			border-top: 1px solid white;
 			border-bottom: none;
+
+			@media(width < 481px) {
+				position: relative;
+				right: 20%;
+			}
 		}
 	}
 `
@@ -44,9 +54,9 @@ export const RightSide = styled.span`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 20px;
+	padding: 40px;
 	right: 0;
-	width: 50vw;
+	width: 50%;
 	height: 100%;
 	clip-path: polygon(40% 0, 100% 0%, 100% 100%, 0 100%);
 	background-color: grey;
@@ -64,6 +74,11 @@ export const Title = styled.h1`
 		color: lightgrey;
 		font-weight: bolder;
 		border-bottom: 2px solid;
+
+		@media(width < 481px) {
+			position: relative;
+			left: 15%;
+		}
 	}
 
 	&.right {
@@ -73,6 +88,10 @@ export const Title = styled.h1`
 		text-align: right;
 		border-top: 1px solid;
 		border-bottom: none;
+
+		@media (width < 481px) {
+			margin-left: 65%;
+		}
 		
 	}
 
@@ -80,6 +99,10 @@ export const Title = styled.h1`
 		margin-left: 35%;
 		border-bottom: 2px solid;
 		left: -30px;
+
+		@media (width < 481px) {
+			margin-left: 2%;
+		}
 	}
 `
 
@@ -91,6 +114,10 @@ export const Description = styled.div`
 
 	&.right {
 		text-align: center;
+	}
+
+	@media (width < 481px) {
+		margin-top: -12%;
 	}
 	
 `
