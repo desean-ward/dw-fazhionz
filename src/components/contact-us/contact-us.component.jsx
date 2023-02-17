@@ -7,6 +7,7 @@ import GlassModal from '../glass-popup/glass-popup.component'
 
 import {
 	Container,
+	LogoContainer,
 	Title,
 	Message,
 	InputContainer,
@@ -117,6 +118,40 @@ const Contact = () => {
 
 	return (
 		<>
+			<LogoContainer>
+				<img
+					className='logo-images left'
+					src='../../images/dw-fazhionz-bg-left.png'
+					alt='Logo'
+				/>
+
+				
+
+				<img
+					className='burst'
+					src='../../images/burst.png'
+					alt='Logo'
+				/>
+
+				<img
+					className='burst2'
+					src='../../images/burst.png'
+					alt='Logo'
+				/>
+
+				<img
+					className='lines'
+					src='../../images/dw-fazhionz-bg-lines.png'
+					alt='Logo'
+				/>
+
+				<img
+					className='logo-images right'
+					src='../../images/dw-fazhionz-bg-right.png'
+					alt='Logo'
+				/>
+			</LogoContainer>
+
 			<Container className='input-container'>
 				<Title className='title maroon'>CONTACT US</Title>
 				<Message>We'd love to hear from you!</Message>
