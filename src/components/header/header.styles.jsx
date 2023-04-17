@@ -12,8 +12,8 @@ export const HeaderContainer = styled.div`
 	position: sticky;
 	z-index: 60;
 	top: 0;
-	padding: 5px 15%;
-	height: 100%;
+	padding: .5rem 3.5rem;
+	//height: 100%;
 	width: 100vw;
 	display: flex;
 	justify-content: space-between;
@@ -24,6 +24,7 @@ export const HeaderContainer = styled.div`
 	&.shadow {
 		filter: drop-shadow(0 1px 8px black);
 	}
+
 
 	@media (max-width: 1100px) {
 		flex-wrap: wrap;
@@ -87,12 +88,9 @@ export const Left = styled.div`
 export const Right = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	//justify-content: center;
 	/* width: 60%; */
 
-	@media (width < 1100) {
-		justify-content: space-around;
-	}
 
 	&.cart-icon {
 		position: relative;
@@ -125,7 +123,7 @@ export const Right = styled.div`
 
 	@media (max-width: 1100px) {
 		width: 100%;
-		justify-content: wrap;
+		justify-content: center;
 		align-items: center;
 	}
 
@@ -181,7 +179,7 @@ export const SearchContainer = styled.div`
 
 	//**  open state  **//
 	&.search-open {
-		width: 21rem;
+		width: 100%;
 		border-radius: 0;
 
 		.close-icon {
@@ -241,7 +239,6 @@ export const Input = styled.input`
 
 export const OptionsContainer = styled.div`
 	position: relative;
-	height: 100%;
 	display: flex;
 	align-items: start;
 	justify-content: space-evenly;

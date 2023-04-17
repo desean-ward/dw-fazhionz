@@ -1,15 +1,16 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
 	position: relative;
 	z-index: 50;
-	//height: clamp(2vh, 120em, 50vh);
-	height: 500px;
+	height: 25rem;
 	width: 100%;
 	color: white;
+	font-size: clamp(1.4rem, 0.9789rem + 1.3474vw, 3rem);
 	display: flex;
 	flex-direction: row;
 	overflow-x: hidden;
+	padding: 0 6em;
 
 	@media only screen and (max-width: 1100px) and (orientation: portrait) {
 		//height: 30vh;
@@ -23,19 +24,38 @@ export const Container = styled.div`
 		height: 200px;
 	}
 `
+export const SlideIn = css`
+	.hidden {
+		opacity: 0;
+		filter: blur(5px);
+		left: 100%;
+		transition: all 3s;
+	}
+
+	.show {
+		opacity: 1;
+		filter: blur(0);
+		left: 0;
+		transition: all 3s;
+	}
+	
+`
 
 export const LeftSide = styled.span`
+	${ SlideIn };
+
 	position: absolute;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	padding: 40px;
+	padding: 0 4rem;
 	left: 0;
 	width: 50%;
 	height: 100%;
 	clip-path: polygon(0 0, 100% 0%, 60% 100%, 0 100%);
 	background-color: maroon;
 
+	
 	h1 {
 		&.left {
 			border-top: 1px solid white;
@@ -50,11 +70,13 @@ export const LeftSide = styled.span`
 `
 
 export const RightSide = styled.span`
+	${ SlideIn };
+
 	position: absolute;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 40px;
+	padding: 0 4rem;
 	right: 0;
 	width: 50%;
 	height: 100%;
@@ -118,6 +140,16 @@ export const Description = styled.div`
 
 	@media (width < 481px) {
 		margin-top: -12%;
+	}
+
+	/* KEYFRAMES */
+	@keyframes slide-in-left {
+		0% {
+			transform: translateX(-50%);
+		}
+		100% {
+			transform: translateX(50%);
+		}
 	}
 	
 `

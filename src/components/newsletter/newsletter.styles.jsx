@@ -2,18 +2,25 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 	position: relative;
+	//top: 58vh;
+	//height: 100vh;
 	z-index: 50;
-	height: 30vh;
-	width: 100vw;
-	margin-top: 35vh;
+	width: 100%;
 	color: white;
 	background-color: maroon;
 	box-shadow: 0 3px 10px black;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 	flex-direction: column;
-	padding-top: 20px;
+	
+	.content {
+		background-color: maroon;
+		width: 100%;
+		padding: 2rem 0 4rem 0;
+
+	}
 
 	@media only screen and (max-width: 770px) and (orientation: portrait) {
 		margin-top: 80vh;
@@ -29,7 +36,7 @@ export const Container = styled.div`
 export const Title = styled.h1`
 	//font-size: 70px;
 	margin-bottom: 20px;
-	margin-top: -40px;
+	//margin-top: -40px;
 	//margin-left: -10px;
 
 	/* @media screen and (max-width: 800px) {
@@ -47,8 +54,10 @@ export const Description = styled.div`
 export const InputContainer = styled.form`
 	position: relative;
 	height: 40px;
+	width: 60%;
 	background-color: white;
 	display: flex;
+	margin: 0 auto;
 	border: 1px solid lightgrey;
 
 	@media only screen and (max-width: 480px) {
@@ -61,7 +70,7 @@ export const Input = styled.input`
 	outline: none;
 	flex: 8;
 	padding-left: 20px;
-	width: 70%;
+	width: 60%;
 `
 
 export const Button = styled.button`

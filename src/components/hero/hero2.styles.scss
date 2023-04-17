@@ -1,55 +1,87 @@
 .video-container {
-    position: relative;
-    height: 100svh;
-    width: 100%;
-    z-index: 50;
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	justify-content: center;
+	padding: 0 8rem;
+	z-index: 10;
+	background-color: white;
+	padding-bottom: 100px;
+	object-fit: contain;
+	overflow: hidden;
 
-    @media (orientation: portrait) {
-      height: 40svh;
-    }
-  }
+	.image-container {
+		img {
+			object-fit: cover;
+			width: 100%;
+			opacity: 0.5;
+		}
+	}
 
-  video {
-    position: absolute;
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
-    filter: grayscale(100%);
-    
-  }
+	@media (orientation: portrait) {
+	}
+}
 
-  .overlay {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, .4);
-    z-index: 100;
+video {
+	position: relative;
+	object-fit: cover;
+	width: 100%;
+	filter: grayscale(100%);
+}
 
-    @media (width < 1101px) {
-      height: 100vh;
-    }
-  }
+.overlay {
+	background-image: linear-gradient(135deg, white, maroon, white);
+	width: 100%;
+	overflow: hidden;
+}
 
-  .hero-title {
-    position: absolute;
-    bottom: 0;
-    width: 70%;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    background-color: maroon;
-    padding: 20px;
+.hero-title {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: maroon;
+	max-width: 80vw;
+	font-size: clamp(0.5rem, 1.4rem, 2.4rem);
+	text-align: center;
+	background-image: linear-gradient(
+		to right,
+		transparent,
+		rgb(165, 165, 165),
+		transparent
+	);
+	padding: 0.5rem 4rem 1rem 4rem;
+	z-index: 50;
+	opacity: 0;
 
-    @media (width < 1101px) {
-      h1 {
-        font-size: 2.4rem;
-      }
-      
-      .hero-content {
-        display: none;
-        
-      }
-    }
-  }
+	.signature {
+		font-family: 'Mr Dafoe', cursive;
+	}
+
+	animation: fade-in 0.5s;
+	animation-fill-mode: forwards;
+
+	@media (width < 1101px) {
+		h1 {
+			font-size: 2.4rem;
+		}
+
+		.hero-content {
+			display: none;
+		}
+	}
+
+	/* KEYFRAMES */
+	@keyframes fade-in {
+		0% {
+			//opacity: 0;
+			transform: scale(0);
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+}

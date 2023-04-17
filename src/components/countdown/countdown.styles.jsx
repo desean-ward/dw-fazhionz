@@ -3,15 +3,16 @@ import styled from "styled-components";
 export const TimerContainer = styled.section`
 	position: sticky;
     z-index: 50;
-    top: 2.55vh;
-	width: 100vw;
+    top: 0;
+	width: 100%;
 	height: 100vh;
-    background-color: black;
+    background-color: pink;
     display: grid;
     grid-template-columns: 450px 150px;
     grid-template-areas:
         ' timer hourglass ';
     place-content: center;
+    padding-top: 100px;
     overflow: hidden;
 
 	h2 {

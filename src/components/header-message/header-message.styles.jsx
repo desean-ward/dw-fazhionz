@@ -7,8 +7,8 @@ export const HeaderMessageContainer = styled.div`
 	color: white;
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
-	padding: 5px 0;
+	justify-content: space-between;
+	padding: .5rem 3rem;
 	text-align: center;
 	font-size: smaller;
 `
@@ -26,4 +26,8 @@ export const Center = styled.div`
 `
 
 export const Right = styled.div`
+@media only screen and (max-width: 999px) {
+		width: 100%;
+		justify-self: center;
+	}
 `

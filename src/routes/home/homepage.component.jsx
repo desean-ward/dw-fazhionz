@@ -19,14 +19,9 @@ const Home = () => {
 		<AnimatedPage>
 			<HomePageContainer>
 				<Hero  />
-				<HeroSpacer/>
-				<Spacer />
 				<BannerOne />
-				<Spacer />
 				<Carousel />
-				<Spacer />
 				<Directory />
-				<Spacer />
 				<Countdown />
 				<Products />
 				<Newsletter />

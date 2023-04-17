@@ -10,15 +10,15 @@ export const DropdownContainer = styled.div`
     background-color: white;
     box-shadow: 0 5px 5px 0 rgba(36, 31, 31, 0.5);
     top: 55px;
-    margin-left: 500px;
+    right: 4rem;
     opacity: 1;
 
     @media (width < 1101px) {
         top: 85px;
-        left: 18.5%;
+        right: calc(100% - 1%);
     }
 
-    @media (width < 901px) {
+    /* @media (width < 901px) {
         left: -4.25%;
     }
 
@@ -30,7 +30,7 @@ export const DropdownContainer = styled.div`
     @media (width < 481px) {
         margin: 0 10%;
         width: 90%;
-    }
+    } */
 `
 
 export const CartItems = styled.div`

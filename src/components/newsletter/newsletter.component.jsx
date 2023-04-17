@@ -81,28 +81,30 @@ const Newsletter = () => {
 	return (
 		<>
 			<Container>
-				<Title>Newsletter</Title>
-				<Description>
-					Subscribe to receive updates on deals and new arrivals
-				</Description>
+				<div className='content'>
+					<Title>Newsletter</Title>
+					<Description>
+						Subscribe to receive updates on deals and new arrivals
+					</Description>
 
-				<InputContainer
-					ref={form}
-					className='form'
-					onSubmit={handleSubmit}>
-					<Input
-                        name='email'
-						className='email-input'
-						type='email'
-						placeholder='Your email'
-						value={formValue}
-						onChange={handleChange}
-					/>
+					<InputContainer
+						ref={form}
+						className='form'
+						onSubmit={handleSubmit}>
+						<Input
+							name='email'
+							className='email-input'
+							type='email'
+							placeholder='Your email'
+							value={formValue}
+							onChange={handleChange}
+						/>
 
-					<Button type='submit'>
-						<MdSend />
-					</Button>
-				</InputContainer>
+						<Button type='submit'>
+							<MdSend />
+						</Button>
+					</InputContainer>
+				</div>
 			</Container>
 
 			<GlassModal

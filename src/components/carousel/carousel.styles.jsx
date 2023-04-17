@@ -180,11 +180,11 @@ export const CarouselNav = styled.div`
 	z-index: 1;
 	display: flex;
 	gap: 10px;
-	left: 40%;
-	bottom: 0;
+	z-index: 100;
+	bottom: 20px;
 	justify-content: center;
-	align-content: center;
-	width: 20%;
+	align-items: center;
+	width: 100%;
 	height: 40px;
 
 	@media (width < 481px) {
@@ -194,7 +194,7 @@ export const CarouselNav = styled.div`
 
 export const NavIndicator = styled.div`
 	display: inline-block;
-	width: 5%;
+	width: 1rem;
 	height: 50%;
 	border-radius: 50%;
 	background-color: black;

@@ -7,12 +7,13 @@ export const Products = styled(ProductsSection)``
 export const Container = styled.div`
 	position: relative;
 	z-index: 50;
-	top: -15vh;
-	width: 100vw;
+	width: 100%;
+	height: 150vh;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
 	gap: 2rem;
-	place-content: center;
+	justify-content: center;
+	background-color: green;
 
 	@media only screen and (max-width: 770px) and (orientation: portrait) {
 		top: 0;
@@ -34,9 +35,9 @@ export const ProductCard = styled.div`
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	flex: 1;
+	//flex: 1;
 	background: #1d212b;
-	width: 100%;
+	//width: 100%;
 	height: fit-content;
 	border-radius: 10px;
 	//box-shadow: 1px 1px 10px grey;

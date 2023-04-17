@@ -37,6 +37,9 @@ export const ImageContainer = styled.div`
 	opacity: 0.6;
 
 	@keyframes loading {
+		from {
+			background-position: 0;
+		}
 		to {
 			background-position: -200%;
 		}
@@ -58,7 +61,7 @@ export const ImageContainer = styled.div`
 export const Image = styled.div`
     width: 320px;
     height: 320px;
-    background-size: object-fit;
+    background-repeat: no-repeat;
     background-position: center;
     opacity: 1;
     visibility: hidden;

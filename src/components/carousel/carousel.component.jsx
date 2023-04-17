@@ -163,8 +163,10 @@ const Carousel = () => {
 								</CustomButton>
 							</ButtonContainer>
 						</InfoContainer>
-					</Slide>
+=					</Slide>
 				))}
+				
+				
 			</Wrapper>
 
 			{/********** RIGHT/NEXT  ARROW **********/}
@@ -188,6 +190,8 @@ const Carousel = () => {
 					/>
 				))}
 			</CarouselNav>
+			
+			
 		</Container>
 	)
 }
