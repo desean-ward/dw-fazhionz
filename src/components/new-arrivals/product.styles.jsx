@@ -12,8 +12,8 @@ export const Container = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
 	gap: 2rem;
-	justify-content: center;
-	background-color: green;
+	justify-content: start;
+	background-color: transparent;
 
 	@media only screen and (max-width: 770px) and (orientation: portrait) {
 		top: 0;

@@ -2,20 +2,18 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 	position: relative;
-	//top: 58vh;
-	//height: 100vh;
+	top: 50vh;
+	height: 50vh;
 	z-index: 50;
 	width: 100%;
 	color: white;
-	background-color: maroon;
-	box-shadow: 0 3px 10px black;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	text-align: center;
-	flex-direction: column;
 	
 	.content {
+		position: absolute;
+		top: 0;
 		background-color: maroon;
 		width: 100%;
 		padding: 2rem 0 4rem 0;
@@ -70,7 +68,6 @@ export const Input = styled.input`
 	outline: none;
 	flex: 8;
 	padding-left: 20px;
-	width: 60%;
 `
 
 export const Button = styled.button`

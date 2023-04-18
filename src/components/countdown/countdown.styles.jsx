@@ -6,7 +6,7 @@ export const TimerContainer = styled.section`
     top: 0;
 	width: 100%;
 	height: 100vh;
-    background-color: pink;
+    background-color: black;
     display: grid;
     grid-template-columns: 450px 150px;
     grid-template-areas:
