@@ -155,7 +155,7 @@ export const LogoContainer = styled.div`
 export const Container = styled.div`
     position: relative;
     z-index: 50;
-    height: 45vh;
+    height: 65vh;
     display: flex;
     flex-direction: column;
     align-items: start;
