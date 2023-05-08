@@ -62,9 +62,10 @@ export const ArrowContainer = styled.div`
 		opacity: 1;
 	}
 
-		@media (width < 1100px) {
-			top: 30%;
-		}
+	@media (width < 1400px) {
+		top: 30%;
+		opacity: 1;
+	}
 	
 `
 
