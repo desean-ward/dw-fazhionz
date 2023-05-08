@@ -14,6 +14,7 @@ import {
 	ShopContainer,
 } from './categories.styles'
 
+// Selects the category according to the title (ex.: 'mens', 'women'...)
 const Categories = ({ collections }) => {
 	const { categoriesMap } = useContext(CategoriesContext)
 

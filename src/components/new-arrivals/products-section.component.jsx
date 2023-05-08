@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
+import { useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 import Categories from '../../components/categories/categories.component'
 
 import Product from './product.component'
@@ -11,39 +14,49 @@ import { Container } from './product.styles'
 
 const CategoriesWithSpinner = WithSpinner(Categories)
 
+
+const parentVariants = {
+	hidden: { opacity: 0 },
+	visible: { opacity: 1, transition: { staggerChildren: 1, duration: 1} },
+    exit: { opacity: 0, transition: { staggerChildren: 1, duration: 1 } }
+}
+
 const ProductsSection = () => {
+	const controls = useAnimation();
+    const [ref, inView] = useInView();
+
+    useEffect(() => {
+        if (inView) {
+        controls.start("visible");
+        } else {
+            controls.start("exit");
+        }
+    }, [controls, inView]);
+
 	const collections = NEW_ARRIVALS
 
-	const prod1 = collections[0]
-	const prod2 = collections[1]
-	const prod3 = collections[2]
-    
 	return (
 		<>
-			<Container className='container'>
-				<Product
-					className='productOne'
-					name={prod1.name}
-					price={prod1.price}
-					imageUrl={prod1.imageUrl}
-					item={prod1}
-				/>
+			<Container 
+				className='container'
+				ref={ref}
+                animate={controls}
+                initial="hidden"
+                variants={parentVariants}
+                exit="exit"
 
-				<Product
-					className='productTwo'
-					name={prod2.name}
-					price={prod2.price}
-					imageUrl={prod2.imageUrl}
-					item={prod2}
-				/>
+			>
+				{collections.map((prod, i) => (
+					<Product
+						key={prod.id}
+						className='productOne'
+						name={prod.name}
+						price={prod.price}
+						imageUrl={prod.imageUrl}
+						item={prod}
+					/>
+				))}
 
-				<Product
-					className='productThree'
-					name={prod3.name}
-					price={prod3.price}
-					imageUrl={prod3.imageUrl}
-					item={prod3}
-				/>
 			</Container>
 		</>
 	)

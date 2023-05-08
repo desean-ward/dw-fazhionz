@@ -1,23 +1,18 @@
 .sign-in-and-sign-up {
-    position: relative;
     z-index: 50;
-    width: 100vw;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 500px);
+    grid-template-columns: repeat(2, 450px);
     justify-items: center;
     place-content: center;
     margin-top: 10vh;
     margin-bottom: -70vh;
-    gap: 10vw;
+    gap: 12em;
     
-    @media only screen and (max-width: 1100px) {
-        //font-size: 16px;
+    
+    @media only screen and (width <  1100px) {
         justify-content: center;
         grid-template-columns: 1fr;
-        .sign-in, .sign-up {
-            @media only screen and (max-width: 420px) {
-                width: 90%;
-            }
-        }
+        padding: 0 4em;
     }
 }

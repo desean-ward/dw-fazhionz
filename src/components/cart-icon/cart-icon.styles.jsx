@@ -4,13 +4,15 @@ export const CartIconContainer = styled.div`
     width: 40px;
     height: 40px;
     position: relative;
-    /* top: 5px; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-right: 10px;
     cursor: pointer;
+
+    @media (max-width: 720px) {
+        left: -3.5rem;
+    }
 
     .shopping-icon {
         width: 30px;

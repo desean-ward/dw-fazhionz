@@ -68,11 +68,11 @@ const QuickView = ({ show, close, index, imageUrl, name, price, category, addIte
 
                     {/********** Product Info **********/}
                     <Info className='info'>
-                        <h2>
+                        <h3>
                             { name }
                             <br />
                             <span>{ category }</span>
-                        </h2>
+                        </h3>
 
                             <p>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro soluta nulla, similique, dignissimos quaerat amet doloremque nobis pariatur, a id harum! Nam ipsam omnis explicabo ipsa? Exercitationem, expedita, vero asperiores non quam amet dolorum nobis repudiandae quae alias obcaecati doloribus libero quo animi. Omnis, similique ipsum optio incidunt unde quia, harum deserunt at, accusamus odio ipsa eum alias ipsam vitae?

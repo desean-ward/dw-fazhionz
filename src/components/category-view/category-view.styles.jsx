@@ -1,28 +1,60 @@
 import styled from 'styled-components'
 
 export const CategoryViewContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px 10px;
-    padding: .5% 8.5%;
-    width: 100vw;
+    position: relative;
+	width: 100%;
+	top: 0;
+	left: 0;
 
-    @media (width < 1325px) {
-		justify-content: center;
-	}
-`
+    .category-view {
+        width: 100%;
+        display: flex;
+        margin-bottom: -5vw;
 
-export const TitleContainer = styled.div`
-    width: 100%;
+        .category-content {
+            margin: 0 auto;
+            max-width: 1310px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: start;
+            gap: .5em;
 
-    .title {
-		margin-top: 9.5vh;
-        margin-left: -3.5px;
+            @media (width < 1305px) {
+                width: 976px;
+            }
 
-        @media (width < 1325px) {
-            text-align: center;
+            @media (width < 976px) {
+                justify-content: center;
+
+                > :last-child {
+                    left: -160px;
+                }
+            }
+
+            @media (max-width: 648px) {
+                > :last-child {
+                    
+                    left: 0;
+                }
+            }
+
         }
     }
 
-    
+`
+
+export const TitleContainer = styled.div`
+    position: relative;
+    width: 100%;
+    max-width: 1300px;
+    margin-top: 9.5vh;
+
+    @media (width < 976px) {
+        text-align: center;
+    }
+
+    h2 {
+        display: inline;
+        margin-right: .5em;
+    }
 `

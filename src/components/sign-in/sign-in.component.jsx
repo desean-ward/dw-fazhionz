@@ -85,7 +85,7 @@ const SignIn = () => {
 	return (
 		<Fragment>
 			<SignInContainer>
-				<h2 className='maroon'>Already have an account?</h2>
+				<h3 className='maroon'>Have an account?</h3>
 				<span>Sign in with your email and password</span>
 
 				<form onSubmit={handleSubmit}>
@@ -111,9 +111,6 @@ const SignIn = () => {
 						<CustomButton className='custom-button' type='submit'>
 							Sign In
 						</CustomButton>
-
-						<span className='hr'><hr /></span>
-						<span>OR SIGN IN WITH</span>
 
 						<CustomButton onClick={googleSignIn} isGoogleSignIn>
 							{' '}

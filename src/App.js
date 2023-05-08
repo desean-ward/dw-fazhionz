@@ -33,7 +33,7 @@ import ScrollToTop from './ScrollToTop.js'
 import PageNotFound from './components/page-not-found/page-not-found.component'
 
 import './App.css'
-import './routes/home/homepage.styles.scss'
+
 import { CategoriesContainer } from './components/categories/categories.styles'
 
 const App = () => {

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-
 export const DirectoryContainer = styled.div`
-    position: relative;
+	position: relative;
+	padding-top: 2rem;
 	z-index: 50;
 	width: 100%;
 	//height: 100%;
@@ -11,21 +11,26 @@ export const DirectoryContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding-bottom: 100px;
+	text-align: center;
+
+	h2 {
+		color: maroon;
+	}
 
 	@media only screen and (max-width: 1100px) and (orientation: portrait) {
-		padding-bottom: 0;
+		//padding-bottom: 0;
 	}
 `
 
 export const DirectoryMenu = styled.div`
-    position: relative;
-	width: 80vw;
-	height: 100%;
+	position: relative;
+	width: 80%;
+	//height: 100%;
 	top: 0;
 	display: flex;
 	flex-wrap: wrap;
 	align-content: center;
 	justify-content: center;
 	align-content: center;
+	padding-bottom: 5rem;
 `

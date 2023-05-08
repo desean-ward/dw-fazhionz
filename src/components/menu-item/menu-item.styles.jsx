@@ -26,7 +26,15 @@ export const MenuItemContainer = styled.div`
         }
     }
 
-    @media screen and (max-width: 800px) {
+    @media (width < 1440px) {
+        .content {
+          opacity: 0.9;
+          cursor: pointer;
+        }
+
+    }
+
+    @media (width <= 800px) {
       height: 200px;
     }
 `
@@ -41,30 +49,34 @@ export const ImageContainer = styled.div`
 
 export const ContentContainer = styled.div`
     height: 90px;
-      padding: 0 25px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid black;
-      border-radius: 10px;
-      background-color: white;
-      opacity: 0.5;
-      position: absolute;
+    padding: 0 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    opacity: 0.5;
+    position: absolute;
 
-      :hover {
-        .title { color: maroon; }
+    :hover {
+      .title { color: maroon; }
+    }
+
+    .title {
+      font-weight: bolder;
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: #4a4a4a;
+
+      @media (width < 1440px) {
+        color: maroon;
       }
-  
-      .title {
-        font-weight: bolder;
-        margin-bottom: 10px;
-        font-size: 24px;
-        color: #4a4a4a;
-      }
-  
-      .subtitle {
-        font-size: 16px;
-      }
+    }
+
+    .subtitle {
+      font-size: 16px;
+    }
     
 `

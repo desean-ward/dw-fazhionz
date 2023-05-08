@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const SignInContainer = styled.div`
-    width: 450px;
+    max-width: 440px;
     display: flex;
     flex-direction: column;
 
@@ -10,10 +10,17 @@ export const SignInContainer = styled.div`
     }
 
     .buttons {
+        position: absolute;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-items: space-between;
-        gap: 10px;
+        gap: 1em;
+        width: 70%;
+
+        @media (width < 540px) {
+            
+            flex-direction: column;
+        }
 
         span {
             width: 100%;
@@ -31,11 +38,6 @@ export const SignInContainer = styled.div`
         width: 50px;
         height: 50px;
         padding-right: 10px;
-    }
-
-    @media (max-width: 900px) {
-        margin-bottom: 60px;
-        width: 90vw;
     }
 `
 

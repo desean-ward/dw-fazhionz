@@ -1,24 +1,34 @@
 import styled from 'styled-components'
 
 export const CategoryContainer = styled.div`
-	width: 100vw;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding: 0.5% 3.5%;
+	position: relative;
+	width: 100%;
+	top: 0;
+	left: 0;
+`
 
-	@media (width < 1325px) {
+export const PreviewContainer = styled.div`
+	width: 100%;
+	display: flex;
+	margin-bottom: -5vw;
+`
+
+export const TitleContainer = styled.div`
+	position: relative;
+	width: 100%;
+	max-width: 1300px;
+	margin-top: 9.5vh;
+
+	@media (width < 976px) {
 		text-align: center;
 	}
 
-	.title {
-		width: 90%;
-		margin-top: 9.5vh;
+	h3 {
+		display: inline;
+		margin-right: .5em;
 	}
 
 	.view-all {
-		width: 90%;
-
 		&:hover {
 			color: maroon;
 			cursor: pointer;
@@ -26,15 +36,19 @@ export const CategoryContainer = styled.div`
 	}
 `
 
-export const Preview = styled.div`
-	width: 100%;
+export const ProductsContainer = styled.div`
+	margin: 0 auto;
+	max-width: 1310px;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 30px 10px;
-	padding: 0.5% 5vw;
-	margin-bottom: -5vw;
+	justify-content: start;
+	gap: .5em;
 
-	@media (width < 1325px) {
+	@media (width < 1305px) {
+		width: 976px;
+	}
+
+	@media (width < 976px) {
 		justify-content: center;
 	}
 `

@@ -1,27 +1,35 @@
 import styled, { css } from 'styled-components'
 
-export const Container = styled.div`
+export const BannerContainer = styled.div`
 	position: relative;
 	z-index: 50;
-	height: 25rem;
+	//height: 20em;
+	max-height: 250px;
 	width: 100%;
 	color: white;
-	font-size: clamp(1.4rem, 0.9789rem + 1.3474vw, 3rem);
+	font-weight: bolder;
 	display: flex;
-	flex-direction: row;
-	overflow-x: hidden;
-	padding: 0 6em;
+	align-items: center;
+	overflow: hidden;
+	
+	.square {
+		
+		// @media (width <= 680px) {
+		// 	.fat-face {
+		// 		width: 100%;
+		// 		//font-size: clamp(2rem, 5vw, 4rem);
+		// 	}
 
-	@media only screen and (max-width: 1100px) and (orientation: portrait) {
-		//height: 30vh;
+		// 	.right-stylez {
+		// 		right: 0.25em;
+		// 	}
+		// }
 	}
 
-	@media only screen and (max-width: 600px) {
-		//font-size: smaller;
-	}
-
-	@media (width < 481px) {
-		height: 200px;
+	@media (width <= 720px) {
+		//font-size: 12px;
+			
+		
 	}
 `
 export const SlideIn = css`
@@ -38,104 +46,145 @@ export const SlideIn = css`
 		left: 0;
 		transition: all 3s;
 	}
-	
 `
 
 export const LeftSide = styled.span`
 	${ SlideIn };
 
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	padding: 0 4rem;
+	//position: relative;
 	left: 0;
 	width: 50%;
-	height: 100%;
-	clip-path: polygon(0 0, 100% 0%, 60% 100%, 0 100%);
+	padding: 5% 2em;
+	clip-path: polygon(0 0, 100% 0%, 50% 100%, 0 100%);
 	background-color: maroon;
 
-	
-	h1 {
-		&.left {
-			border-top: 1px solid white;
-			border-bottom: none;
+	.left-side-content {
+		width: 55%;
+	}
 
-			@media(width < 481px) {
-				position: relative;
-				right: 20%;
-			}
-		}
+	@media (width <= 900px) {
+
+		// &.left-her {
+		// 	position: relative;
+		// 	left: 4rem;
+		// }
 	}
 `
 
 export const RightSide = styled.span`
 	${ SlideIn };
 
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 0 4rem;
+	//position: relative;
 	right: 0;
 	width: 50%;
-	height: 100%;
-	clip-path: polygon(40% 0, 100% 0%, 100% 100%, 0 100%);
+	padding: 5% 2em;
+	clip-path: polygon(50% 0, 100% 0%, 100% 100%, 0 100%);
 	background-color: grey;
+
+	.right-side-content {
+		position: relative;
+		width: 100%;
+		top: 0;
+		left: 0;
+		margin-left: auto;
+		width: 55%;
+	}
 `
 
-export const Title = styled.h1`
-	width: 60%;
-	
-	&.left {
+export const Title = styled.h2`
+	width: 6em;
+
+	&.left-stylez {
+		position: relative;
 		border-top: 1px solid white;
 	}
 
-	&.push-right {
+	&.left-her {
+		position: relative;
+		width: 100%;
+		//left: 1.5em;
 		text-align: right;
-		color: lightgrey;
-		font-weight: bolder;
+		color: grey;
 		border-bottom: 2px solid;
-
-		@media(width < 481px) {
-			position: relative;
-			left: 15%;
-		}
 	}
 
-	&.right {
+	&.right-him {
+		position: relative;
+		width: 100%;
 		color: maroon;
-		margin-left: 45%;
-		width: 55%;
 		text-align: right;
 		border-top: 1px solid;
-		border-bottom: none;
+	}
 
-		@media (width < 481px) {
-			margin-left: 65%;
+	&.right-stylez {
+		position: relative;
+		text-align: right;
+		border-bottom: 2px solid;
+
+		
+	}
+
+	@media (width <= 700px) {
+		&.right-stylez {
+			right: 2em;
+		}
+
+		&.left-stylez {
+			right: 1em;
+		}
+
+		&.left-her {
+			right: 1em;
+		}
+
+		&.right-him {
+			left: 1em;
 		}
 		
 	}
 
-	&.push-left {
-		margin-left: 35%;
-		border-bottom: 2px solid;
-		left: -30px;
+	// @media (width <= 1440px) {
+	// 	&.left-her, &.right-stylez {
+	// 		margin-left: -4rem;
+	// 		width: 100%;
+	// 	}
+	// }
 
-		@media (width < 481px) {
-			margin-left: 2%;
-		}
+	// @media (width <= 900px) {
+
+	// 	&.left-her {
+	// 		left: 2em;
+	// 	}
+
+	// 	&.right-stylez {
+	// 		//left: -0.5em;
+	// 	}
+
+	// 	&.left-stylez {
+	// 		left: -0.5em;
+	// 	}
+
+	// 	&.right-him {
+	// 		right: -0.5em;
+	// 	}
+
+	// 	@media (width <= 900px) {
+			
+
+			
+	// 	}
 	}
 `
 
 export const Description = styled.div`
 	position: relative;
-	font-size: 32px;
-	font-weight: 400;
-	left: 25%;
+	//font-weight: 400;
+	//left: 25%;
+
+	text-align: center;
 
 	&.right {
-		text-align: center;
+		//text-align: center;
 	}
 
 	@media (width < 481px) {

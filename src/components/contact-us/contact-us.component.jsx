@@ -27,6 +27,7 @@ const Contact = () => {
 
 	const emailFormat =
 		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		
 	const name = document.querySelector('.name-input')
 	const email = document.querySelector('.email-input')
 	const subject = document.querySelector('.subject-input')

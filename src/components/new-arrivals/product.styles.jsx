@@ -1,31 +1,34 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 import ProductsSection from './products-section.component'
 
 export const Products = styled(ProductsSection)``
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
 	position: relative;
+	margin-bottom: 60vh;
 	z-index: 50;
 	width: 100%;
-	height: 150vh;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
-	gap: 2rem;
+	gap: 2em;
 	justify-content: start;
 	background-color: transparent;
+	padding-bottom: 20rem;
 
 	@media only screen and (max-width: 770px) and (orientation: portrait) {
-		top: 0;
+		//top: 0;
 		height: 100%;
 	}
 `
 
 /********** Product Card **********/
 export const Header = styled.div`
-	background-color: maroon;
+	//background-color: grey;
 	color: white;
-	padding: 10px 10px 10px 20px;
+	padding-left: 10px;
+	//padding: 10px 10px 10px 20px;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
 `
@@ -35,16 +38,16 @@ export const ProductCard = styled.div`
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	//flex: 1;
-	background: #1d212b;
+	//background: #1d212b;
+	background-color: maroon;
+	//border: 1px solid darkgrey;
 	//width: 100%;
-	height: fit-content;
+	//height: fit-content;
 	border-radius: 10px;
-	//box-shadow: 1px 1px 10px grey;
 
 	::before {
 		content: '';
-		background: rgba(255, 255, 255, 0.1);
+		//background: rgba(255, 255, 255, 0.1);
 		position: absolute;
 		display: block;
 		top: 0;
@@ -83,7 +86,7 @@ export const ProductCard = styled.div`
 			color: white;
 			text-align: center;
 			padding-top: 20px;
-			font-size: 20px;
+			//font-size: 20px;
 			letter-spacing: 1px;
 		}
 	}
@@ -96,7 +99,7 @@ export const ProductCard = styled.div`
 			color: white;
 			width: 100%;
 			text-align: center;
-			font-size: 30px;
+			//font-size: 30px;
 			font-weight: 300;
 		}
 	}
@@ -105,8 +108,8 @@ export const ProductCard = styled.div`
 		&.popup__btn {
 			z-index: 2;
 			color: maroon;
-			background: white;
-			font-size: 14px;
+			background-color: white;
+			//font-size: 14px;
 			text-transform: uppercase;
 			text-decoration: none;
 			letter-spacing: 1px;
@@ -117,7 +120,7 @@ export const ProductCard = styled.div`
 
 			&:hover {
 				cursor: pointer;
-				background-color: maroon;
+				background-color: grey;
 				color: white;
 			}
 		}
@@ -128,7 +131,7 @@ export const Footer = styled.div`
 	background-color: maroon;
 	color: white;
 	text-align: right;
-	padding: 10px 20px 10px 0;
+	padding-right: 10px;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 `
@@ -326,16 +329,16 @@ export const Info = styled.div`
 	padding: 5% 20px;
 	border-radius: 10px;
 	box-shadow: 2px 8px 8px #1d212b;
-	font-size: clamp(16px, 1.25vw, 24px);
+	//font-size: clamp(16px, 1.25vw, 24px);
 
-	h2 {
-		font-size: clamp(24px, 3.5vw, 40px);
+	h3 {
+		//font-size: clamp(24px, 3.5vw, 40px);
 		line-height: 0.8;
-		margin: 0 0 20px 10%;
+		margin: 0 0 20px 1.5em;
 	}
 
 	span {
-		font-size: clamp(16px, 1.5vw, 24px);
+		//font-size: clamp(16px, 1.5vw, 24px);
 		text-transform: uppercase;
 		letter-spacing: 2px;
 		font-weight: 500;
@@ -348,7 +351,7 @@ export const Info = styled.div`
 		}
 
 		&.price {
-			font-size: clamp(24px, 2vw, 32px);
+			//font-size: clamp(24px, 2vw, 32px);
 			font-weight: 500;
 			margin: 0 0 10px 10%;
 		}

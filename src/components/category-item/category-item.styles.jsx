@@ -1,32 +1,43 @@
 import styled from 'styled-components'
 
 export const CategoryItemContainer = styled.div`
-    position: absolute;
+    border: 1px solid grey;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	height: 340px;
+	align-items: center;
+	justify-content:center;
 	width: 320px;
 	align-items: center;
 	position: relative;
-	margin: 0 0 75px 0px;
+	margin: 0 0 2em 0px;
 
 	&:hover {
 		.image {
-			opacity: 0.8;
-			transform: scale(1.025);
+			opacity: 0.6;
 		}
 
 		.btn-container {
 			opacity: 1;
 		}
 	}
+
+	
+	@media (max-width: 320px) {
+		width: 290px;
+	}
 `
 
 export const ImageContainer = styled.div`
-    width: 100%;
+   	width: 100%;
+	height: 340px;
+	overflow: hidden;
 
-    .loading {
+	img {
+		width: 100%;
+	}
+	
+
+    /* .loading {
 	position: relative;
 	background-color: #e2e2e2;
 	color: #0000;
@@ -43,29 +54,32 @@ export const ImageContainer = styled.div`
 		to {
 			background-position: -200%;
 		}
-	}
+	} */
 
 	
 	&.image {
-		height: 350px;
+		//height: 350px;
 	}
 
-	&.name,
+	/* &.name,
 	&.price {
 		//top: 10px;
-		padding-bottom: 10px;
-	}
+		//padding-bottom: 10px;
+	} */
 }
 `
 
 export const Image = styled.div`
-    width: 320px;
-    height: 320px;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 1;
-    visibility: hidden;
-	transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95) 0s;
+	position: absolute;
+    width: 100%;
+	height: 100%;
+	
+	
+    //background-repeat: no-repeat;
+    //background-position: center;
+    //opacity: 1;
+    //visibility: hidden;
+	//transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95) 0s;
 `
 
 export const ButtonContainer = styled.div`
@@ -110,18 +124,20 @@ export const ButtonContainer = styled.div`
 		}
     }
 
-    @media only screen and (max-width: 600px) {
+    @media (width < 1400px) {
         opacity: 1;
         visibility: visible;
     }
 `
 
 export const FooterContainer = styled.div`
-    position: relative;
-    width: 95%;
-    height: 5%;
+    //position: relative;
+    width: 100%;
+	padding: .5em;
+    //height: 5%;
     display: flex;
 	justify-content: space-between;
+	text-align: center;
     
     @media only screen and (max-width: 600px) {
        /* font-size: 22px; */

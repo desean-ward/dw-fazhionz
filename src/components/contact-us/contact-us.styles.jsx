@@ -11,23 +11,22 @@ export const Wrapper = css`
 export const LogoContainer = styled.div`
 	position: absolute;
 	z-index: 50;
-	height: clamp(30vh, 85vh, 100vh);
-	width: 100vw;
+	//height: clamp(30vh, 85vh, 100vh);
+	width: 100%;
+	height: 60vh;
 	display: grid;
 	grid-template-columns: 1fr;
 	place-items: center;
 	background-color: white;
-    opacity: .8;
+    opacity: 1;
+	//overflow: hidden;
 
-	@media only screen and (max-width: 900px) and (orientation: portrait) {
-		height: 50vh;
-		overflow: hidden;
-	}
 
 	img {
 		position: absolute;
-		width: 100vw;
-		height: 100%;
+		width: 100%;
+		height: 40%;
+		object-fit: contain;
 
 		&.logo {
 			grid-area: logo;
@@ -35,16 +34,13 @@ export const LogoContainer = styled.div`
 			width: 75%;
 			height: 70%;
 
-			@media only screen and (max-width: 900px) and (orientation: portrait) {
+			@media (max-width: 900px) {
 				height: 30vh;
 				width: 100%;
 			}
 			z-index: 2;
 		}
 		&.burst {
-			/* left: 20%;
-			z-index: 20;
-			width: 90%; */
 			z-index: 20;
 			width: 60%;
 			height: 90%;
@@ -53,9 +49,6 @@ export const LogoContainer = styled.div`
 		}
 
 		&.burst2 {
-			/* left: 20%;
-			z-index: 20;
-			width: 90%; */
 			z-index: 20;
 			width: 80%;
 			height: 90%;
@@ -89,12 +82,11 @@ export const LogoContainer = styled.div`
 				animation-fill-mode: forwards;
 				
 			}
-
 			
 
 			@media only screen and (max-width: 900px) and (orientation: portrait) {
-				top: 35vh;
-				height: 60%;
+				top: 4em;
+				height: 45%;
 				width: 50%
 			}
 		}
@@ -162,16 +154,21 @@ export const LogoContainer = styled.div`
 export const Container = styled.div`
     position: relative;
     z-index: 50;
-    height: 60vh;
+    height: 45vh;
     display: flex;
     flex-direction: column;
     align-items: start;
-    margin-top: 80px;
+    margin-top: 90px;
+	//overflow: hidden;
     margin-bottom: -60vh;
+
+	@media (width < 1000px) {
+		margin-bottom: -80vh;
+	}
 
    ${ Wrapper }
 
-   @media only screen and (max-height: 900px) and (max-width: 1000px) {
+/*    @media only screen and (max-height: 900px) and (max-width: 1000px) {
        height: 85vh;
 
        @media only screen and (max-height: 450px) {
@@ -187,10 +184,10 @@ export const Container = styled.div`
           height: 85vh;
       }
    }
-`
+ */`
 
 
-export const Title = styled.h2`
+export const Title = styled.h3`
     left: 0;
 `
 
@@ -198,19 +195,32 @@ export const Message = styled.p`
 `
 
 export const InputContainer = styled.form`
+   	position: relative;
     display: flex;
     flex-direction: column;
-    width: clamp(90%, 50vw, 90vw);
-    height: 50vh;
-    margin-top: 40px;
+	width: 100%;
+	max-width: 800px;
+    //width: clamp(40em, 50em + 1vw, 70em);
+	//height: 100vh;
+    margin-top: 4em;
+	//overflow-x: hidden;
 
     input, textarea {
         border-radius: 5px;
+		border: 1px solid black;
+
+		padding: .5em;
     }
 
     .highlight {
-        border: 1px solid maroon;
+        border: 2px solid maroon;
+		outline: none;
         box-shadow: 1px 1px 4px maroon;
+
+		::placeholder {
+			color: maroon;
+			font-weight: stronger;
+		}
     }
 `
 
@@ -222,7 +232,7 @@ export const NameInput = styled.input`
     
     :focus, :hover {
         //background-color: transparent;
-        border-color: black;
+        border: 2px solid black;
     }
 `
 
@@ -234,7 +244,7 @@ export const EmailInput = styled.input`
 
     :focus, :hover {
        // background-color: transparent;
-       border-color: black;
+       border: 2px solid black;
     }
 `
 
@@ -246,7 +256,7 @@ export const SubjectInput = styled.input`
     
     :focus, :hover {
         //background-color: transparent;
-        border-color: black;
+        border: 2px solid black;
     }
 `
 
@@ -259,7 +269,7 @@ export const MessageInput = styled.textarea`
 
     :focus, :hover {
         //background-color: transparent;
-        border-color: black;
+        border: 2px solid black;
     }
 
     @media screen and (max-width: 800px) {

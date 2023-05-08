@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom'
 
 export const Wrapper = styled.div`
     position: fixed;
-	height: 100vh;
-	width: 100vw; 
+	height: 100%;
+	width: 100%; 
     display: ${props => props.show ? "none" : "flex"};
     justify-content: center;
     align-items: center;
     overflow: hidden;
     visibility: hidden;
+    padding-right: 3.5rem;
 
     h1 {
         font-size: 40px;
@@ -21,6 +22,10 @@ export const Wrapper = styled.div`
         position: fixed;
         //z-index: 200;
         top: 0;
+    }
+
+    @media (max-width: 640px) {
+        padding-right: .5rem;
     }
 `
 
@@ -60,11 +65,10 @@ export const Navigation = styled.div`
     .close {
         width: 30px;
         height: 30px;
-        //background-color: #fff;
         position: absolute;
         z-index: 4000;
-        top: 4%;
-        right: 5%;
+        top: 60px;
+        right: 3.5rem;
         cursor: pointer;
         opacity: 0;
 
@@ -88,28 +92,23 @@ export const Navigation = styled.div`
         :hover::before, :hover::after {
              background-color: black;
         }
-    }
 
-    @media only screen and (orientation: landscape) {
-            overflow: auto;
-            font-size: 16px;
-
-            .close {
-                top: 40px;
-            }
+        /* MEDIA QUERIES */
+        @media (max-width: 640px) {
+            right: 0.5rem;
+        }
     }
 `
 
 export const HamburgerContainer = styled.div`
     position: absolute;
-    display: flex;
+    display: grid;
+    place-items: center;
     z-index: 200;
     width: 30px;
     height: 30px;
     background-color: transparent;
-    top: 22.5px;
-    right: 5%;
-    margin-left: 5px;
+    //margin-left: -24px;
     cursor: pointer;
 
     @media only screen and (min-width: 721px) {

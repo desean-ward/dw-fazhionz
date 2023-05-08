@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 
+import { useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 import QuickView from '../../components/new-arrivals/quick-view.component'
 
 import {
@@ -14,6 +17,7 @@ import {
 	Description,
 	AddSectionLinks,
 } from './product.styles'
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
 
 //import NEW_ARRIVALS from './new-arrivals.data.js'
 
@@ -47,7 +51,7 @@ const Product = ({ imageUrl, name, price, category, addItem, item, dispatch }) =
 			{/**********  Card  **********/}
 			<ProductCard className='product__card'>
 				{/********** Header  **********/}
-				<Header><h2>New Arrival</h2></Header>
+				<Header><h3>New Arrival</h3></Header>
 
 				{/********** Product Name *********
 				<h2 className='name'>{ name }</h2>*/}
@@ -69,7 +73,7 @@ const Product = ({ imageUrl, name, price, category, addItem, item, dispatch }) =
 
 				
 				{/********** Footer  **********/}
-				<Footer><h2>Get 15% Off</h2></Footer>
+				<Footer><h3>Get 15% Off</h3></Footer>
 			</ProductCard>
 
 			<QuickView

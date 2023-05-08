@@ -86,7 +86,7 @@ const SignUp = () => {
         <Fragment>
             <SignUpFormContainer>
                 <SignUpForm>
-                    <h2 className='title maroon'>Don't have an account?</h2>
+                    <h3 className='title maroon'>Don't have an account?</h3>
                     <span>Sign up with your email and password</span>
 
                     <form className='sign-up-form' onSubmit = { handleSubmit }>
@@ -130,7 +130,7 @@ const SignUp = () => {
                         /> 
                         
                         <ButtonsContainer>
-                            <CustomButton type = 'submit' onSubmit = { handleSubmit }>SIGN UP</CustomButton>
+                            <CustomButton className='custom-button' type = 'submit' onSubmit = { handleSubmit }>SIGN UP</CustomButton>
                         </ButtonsContainer>
                     </form>
                 </SignUpForm>

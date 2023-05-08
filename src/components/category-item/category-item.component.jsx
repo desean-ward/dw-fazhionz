@@ -10,6 +10,7 @@ import QuickView from '../../components/new-arrivals/quick-view.component'
 import { CategoryItemContainer, ImageContainer, Image, ButtonContainer, FooterContainer } from './category-item.styles'
 
 
+//**** The individual item/product for each category ****//
 const CategoryItem = ({ item, addItem }) => {
 	/********** VARIABLES **********/
 	const { name, price, imageUrl } = item
@@ -66,17 +67,16 @@ const CategoryItem = ({ item, addItem }) => {
 	return (
 		/********** CATEGORY ITEM  **********/
 		<CategoryItemContainer>
+
 			{/********** IMAGE **********/}
-			<ImageContainer ref={imgContainerRef} className='loading'>
+			<ImageContainer ref={imgContainerRef} className='loading img-container'>
 				<Image
 					ref={imgRef}
 					className='image'
-					style={{
-						backgroundImage: `url(${imageUrl})`,
-					}}
-					alt='Image'
 				/>
+				<img src={imageUrl} className='image' alt='Image' />
 			</ImageContainer>
+			{/***************************/}
 
 			{/********** FOOTER **********/}
 			<FooterContainer>
@@ -87,6 +87,7 @@ const CategoryItem = ({ item, addItem }) => {
 					Price: ${price}
 				</span>
 			</FooterContainer>
+			{/**************************/}
 
 			{/*********** BUTTON **********/}
 			<ButtonContainer ref={btnRef} className='popup__btn btn-container'>
@@ -94,7 +95,9 @@ const CategoryItem = ({ item, addItem }) => {
 					Quick View
 				</CustomButton>
 			</ButtonContainer>
-
+			{/*************************/}
+			
+			{/*********** POP-UP QUICK VIEW ************/}
 			<QuickView
 				index={index}
 				className='quick__view'
@@ -106,6 +109,7 @@ const CategoryItem = ({ item, addItem }) => {
 				imageUrl={item.imageUrl}
 				item={item}
 			/>
+			{/*****************************************/}
 		</CategoryItemContainer>
 	)
 }

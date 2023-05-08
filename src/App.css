@@ -7,19 +7,43 @@
 }
 
 body {
-  font-size: clamp(1rem, 0.6323rem + 1.5484vw, 1.2rem);
   font-weight: 400;
-  padding: 0px;
+  font-size: 1rem;
   font-family: "Poppins", sans-serif !important;
+  font-family: 'Oi', cursive;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: clamp(2.4rem, 1.6645rem + 3.0968vw, 3.4rem);
+body .fat-face {
+  font-family: 'Oi', cursive;
+  text-shadow: -1px -1px 0 grey;
+  text-shadow: 1px 1px 0 black;
+ }
+
+ body .maroon {
+    color: maroon;
+ }
+
+ body .strong {
+  font-weight: bolder;
 }
 
-h2 {
-  font-size: clamp(1.6rem, 1.1097rem + 2.0645vw,  2.2rem);
+body h1 {
+  font-size: clamp(3rem, 5vw, 6rem);
+}
+
+body h2 {
+  font-size: clamp(1.5rem, 4vw, 5rem);
+}
+
+body h3 {
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+
+p {
+  font-size: clamp(0.8rem, 1vw, 1.5rem);
+
 }
 
 
@@ -28,9 +52,3 @@ a {
   color: black;
   text-decoration: none !important;
 }
-
-
-
-
-
-/* @import "~bootstrap/scss/bootstrap"; */

@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
 	z-index: 50;
-	width: 100vw;
+	width: 100%;
+	height: 35rem;
 	display: flex;
 	position: relative;
-	height: 100%;
 	overflow: hidden;
 	background: white;
 
@@ -33,13 +33,12 @@ export const Container = styled.div`
 		}
 	}
 
-	@media screen and (max-width: 1100px) and (orientation: portrait) {
-		height: 62vh;
+	@media (width < 900px) {
+		//padding-bottom: 5rem;
 	}
 `
 
 export const ArrowContainer = styled.div`
-	position: absolute;
 	width: 50px;
 	height: 50px;
 	background-color: lightgrey;
@@ -48,8 +47,8 @@ export const ArrowContainer = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	position: absolute;
-	top: 10px;
-	bottom: 0;
+	top: 50%;
+	//bottom: 0;
 	left: ${(props) => props.direction === 'left' && '25px'};
 	right: ${(props) => props.direction === 'right' && '25px'};
 	margin: auto;
@@ -63,18 +62,10 @@ export const ArrowContainer = styled.div`
 		opacity: 1;
 	}
 
-
-	@media (width < 1101px) {
-		top: -420px;
-	}
-
-	@media (width < 901px) {
-		top: -390px;
-	}
-
-	@media (width < 481px) {
-		top: -300px;
-	}
+		@media (width < 1100px) {
+			top: 30%;
+		}
+	
 `
 
 export const LeftArrow = styled(MdArrowLeft)`
@@ -93,35 +84,39 @@ export const Wrapper = styled.div`
 	transform: translateX(${(props) => props.slideIndex * -100}vw);
 
 	@media only screen and (max-width: 1100px) and (orientation: portrait) {
-		height: 65vh;
+		//height: 65vh;
 	}
 `
 
 export const Slide = styled.div`
 	width: 100vw;
-	height: 100vh;
+	height: 100%;
+	//height: clamp(25vh, 75vh + 1vh, 80vh);
 	display: flex;
 	align-items: center;
 
-	@media only screen and (max-width: 1100px) and (orientation: portrait) {
+	@media (width < 1100px) {
 		flex-direction: column;
+		padding 4rem 0;
 	}
 `
 
 export const ImageContainer = styled.div`
-	height: 76%;
-	width: 60%;
+	height: 80%;
+	width: 50%;
 
-	@media only screen and (max-width: 1080px) {
-		width: 95%;
+	@media (width < 1100px) {
+		width: 90%;
+		//height: 50%;
 	}
 
-	@media only screen and (max-width: 1080px) and (orientation: portrait) {
-		height: 30%;
-	}
+	/* @media only screen and (max-width: 1080px) and (orientation: portrait) {
+		//height: 30%;
+	} */
 `
 
 export const Image = styled.div`
+	position: relative;
 	height: 100%;
 	width: 100%;
 	background-image: url(${(props) => props.backgroundImage});
@@ -129,50 +124,50 @@ export const Image = styled.div`
 	background-repeat: no-repeat;
 	border-radius: 10px;
 
-	@media only screen and (max-width: 1080px) and (orientation: portrait) {
+	@media only screen and (max-width: 1180px) {
+		background-size: cover;
 	}
 `
 
 export const InfoContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	//justify-content: space-around;
 	padding-left: 50px;
 	width: 40vw;
-	gap: 40px;
+	gap: 2rem;
 
 	@media screen and (max-width: 1100px) {
-		height: 25vh;
 		width: 95%;
 		padding-left: 20px;
 		gap: 5px;
 		//margin-top: 60px;
-		@media screen and (orientation: portrait) {
+		/* @media screen and (orientation: portrait) {
 			padding-left: 0;
 			margin-top: 20px;
 			height: 20vh;
-		}
+		} */
 	}
-
 `
 
-export const Title = styled.h1`
+export const Title = styled.h2`
+	//font-size: 4rem;
 `
 
 export const Description = styled.p`
-	font-weight: 500;
+	//font-weight: 500;
 	letter-spacing: 3px;
 `
 
 export const ButtonContainer = styled(Link)`
 	height: 55px;
 
-	@media only screen and (max-width: 900px) and (min-height: 400px) {
+	/* @media only screen and (max-width: 900px) and (min-height: 400px) {
 		&.custom-button {
 			width: 30vw;
 			padding: 0;
 		}
-	}
+	} */
 `
 
 export const CarouselNav = styled.div`
@@ -181,14 +176,14 @@ export const CarouselNav = styled.div`
 	display: flex;
 	gap: 10px;
 	z-index: 100;
-	bottom: 20px;
+	bottom: 0;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
 	height: 40px;
 
-	@media (width < 481px) {
-		margin-bottom: 16px;
+	@media (max-width: 900px) {
+		//display: none;
 	}
 `
 
@@ -204,8 +199,8 @@ export const NavIndicator = styled.div`
 		background-color: maroon;
 	}
 
-	@media only screen and (max-width: 900px) and (min-height: 400px) {
+	/* @media only screen and (max-width: 900px) and (min-height: 400px) {
 		width: 12%;
 		height: 60%;
-	}
+	} */
 `

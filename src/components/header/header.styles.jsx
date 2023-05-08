@@ -13,8 +13,7 @@ export const HeaderContainer = styled.div`
 	z-index: 60;
 	top: 0;
 	padding: .5rem 3.5rem;
-	//height: 100%;
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -26,33 +25,41 @@ export const HeaderContainer = styled.div`
 	}
 
 
-	@media (max-width: 1100px) {
-		flex-wrap: wrap;
-		justify-content: center;
-		font-size: smaller;
-		padding: 5px 5%;
+	/* MEDIA QUERIES */
+	@media (max-width: 1000px) {
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+		place-content: center;
+		padding: 0 3.5rem;
 
-		/* @media only screen and (orientation: portrait) {
-			height: 10vh;
-			top: 0;
-			padding-top: 10px;
-		} */
+		.header-left {
+			justify-content: center;
+		}
+		
+	}
+
+	@media (max-width: 720px) {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+
+		.cart-icon {
+			margin-right: 24px;
+		}
 	}
 
 	@media (max-width: 640px) {
-		flex-wrap: nowrap;
-		justify-content: space-between;
+		padding: 0 .5rem;
 	}
+	
 `
 
 export const Left = styled.div`
 	display: flex;
-	/* width: 40%; */
-	align-items: start;
+	align-items: center;
 	justify-content: start;
-
 	
-	@media only screen and (max-width: 721px) {
+	/* @media only screen and (max-width: 721px) {
 		flex-direction: row;
 		justify-content: start;
 		align-items: start;
@@ -82,20 +89,18 @@ export const Left = styled.div`
 				display: none;
 			}
 		}
-	}
+	} */
 `
 
 export const Right = styled.div`
 	display: flex;
 	align-items: center;
-	//justify-content: center;
-	/* width: 60%; */
-
+	justify-content: end;
 
 	&.cart-icon {
-		position: relative;
-		display: flex;
-		margin: auto 0;
+		//position: relative;
+		//display: flex;
+		//margin: auto 0;
 
 		/* @media only screen and (max-width: 1000px) {
 			position: absolute;
@@ -121,15 +126,9 @@ export const Right = styled.div`
 		} */
 	}
 
-	@media (max-width: 1100px) {
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-	}
+	
 
-	@media (width < 720px) {
-		width: 25%;
-	}
+	
 
 
     /* @media only screen and (max-width: 600px) {   
@@ -153,12 +152,10 @@ export const TitleContainer = styled(Link)`
 
 export const Language = styled.span`
 	display: flex;
-	align-items: center;
+	align-items: start;
 	color: #212529;
-	position: relative;
-	height: 40px;
 
-	@media only screen and (max-width: 720px) {
+	@media only screen and (max-width: 540px) {
 		display: none;
 	}
 `
@@ -166,14 +163,14 @@ export const Language = styled.span`
 export const SearchContainer = styled.div`
 	display: flex;
 	align-items: center;
-	padding: 5px;
+	justify-content: center;
+	padding: 12px;
 	margin-left: 12px;
 	background-color: white;
 	border-radius: 50%;
 	box-shadow: 0 0 5px 1px grey;
-	margin-top: 5px;
-	height: 26px;
-	width: 26px;
+	height: 16px;
+	width: 16px;
 	transition: 500ms width ease-in-out, 500ms padding ease-in-out,
 		500ms border-radius ease-in-out;
 
@@ -181,10 +178,35 @@ export const SearchContainer = styled.div`
 	&.search-open {
 		width: 100%;
 		border-radius: 0;
+		left: 0;
+
+		.search-icon {
+			animation: fade-out .5s ease-out;
+			animation-fill-mode: forwards;
+		}
 
 		.close-icon {
 			z-index: 1;
 		}
+
+		/* KEYFRAMES */
+			@keyframes fade-in {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+
+			@keyframes fade-out {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
 
         @media only screen and (max-width: 600px) {
             width: 18rem;
@@ -192,7 +214,6 @@ export const SearchContainer = styled.div`
 
 		@media only screen and (max-width: 400px) {
             width: 15rem;
-			font-size: 16px;
         }
 	}
 
@@ -202,9 +223,11 @@ export const SearchContainer = styled.div`
 
 	.search-icon {
 		position: absolute;
-		margin-left: -2px;
 		cursor: pointer;
-		visibility: visible;
+		
+		animation: fade-in 1s ease-out;
+		animation-fill-mode: forwards;
+	
 	}
 
 	.delete-icon {
@@ -224,8 +247,6 @@ export const SearchContainer = styled.div`
 
 export const Input = styled.input`
 	position: relative;
-	left: 35px;
-	height: 24px;
 	width: 80%;
 	border: none;
 	outline: none;
@@ -240,7 +261,7 @@ export const Input = styled.input`
 export const OptionsContainer = styled.div`
 	position: relative;
 	display: flex;
-	align-items: start;
+	align-items: center;
 	justify-content: space-evenly;
 `
 
@@ -248,8 +269,6 @@ export const OptionsContainerStyles = css`
 	position: relative;
 	padding: 10px 15px;
 	cursor: pointer;
-	margin-left: 5px;
-	min-width: fit-content;
 `
 
 export const OptionLine = styled.div``
@@ -301,9 +320,9 @@ export const OptionLink = styled(Link)`
 export const HamburgerContainer = styled.div`
 	position: relative;
 	width: 30px;
-	height: 20px;
+	display: grid;
+	place-content: center;
 	background: #fff;
-	right: 5%;
 	cursor: pointer;
 `
 export const Bars = styled.div`
@@ -338,7 +357,7 @@ export const ScrollToTop = styled.div`
 	z-index: 100;
 	align-content: end;
 	top: 0;
-	right: 60px;
+	right: 20px;
 	height: 50px;
 	width: 50px;
 	color: white;
@@ -355,7 +374,7 @@ export const ScrollToTop = styled.div`
 	&.active {
 		visibility: visible;
 		opacity: 1;
-		top: 90vh;
+		top: 100vh;
 
 		@media only screen and (max-height: 800px) {
 			top: 85vh;

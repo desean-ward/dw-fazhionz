@@ -5,8 +5,12 @@ import CategoryItem from '../../components/category-item/category-item.component
 
 import { CategoriesContext } from '../../context/categories.context'
 
+import AnimatedPage from '../../components/animated-page/animated-page.component'
+
 import { CategoryViewContainer, TitleContainer } from './category-view.styles.jsx'
 
+
+// The page that displays the indiviual category after clicking 'View All' on the 'categories' page
 const CategoryView = () => {
     const  { category } = useParams()
     const { categoriesMap } = useContext(CategoriesContext)
@@ -18,16 +22,22 @@ const CategoryView = () => {
 
 
   return (
-      <Fragment>
+      <AnimatedPage>
         <CategoryViewContainer>
-            <TitleContainer>
-                <h2 className='title'>{ category.toUpperCase() }</h2>
-            </TitleContainer>
-            {   
-                products && products.map((product) => <CategoryItem className='item' key={product.id} item={product} />)
-            }
+        
+
+        <div className='category-view'>
+            <div className='category-content'>
+                <TitleContainer>
+                    <h3 className='title'>{ category.toUpperCase() }</h3>
+                </TitleContainer> 
+                {   
+                    products && products.map((product) => <CategoryItem className='item' key={product.id} item={product} />)
+                }
+            </div>
+        </div>
         </CategoryViewContainer>
-    </Fragment>
+    </AnimatedPage>
   )
 }
 

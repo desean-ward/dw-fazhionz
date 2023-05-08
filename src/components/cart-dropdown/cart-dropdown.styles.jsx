@@ -13,24 +13,23 @@ export const DropdownContainer = styled.div`
     right: 4rem;
     opacity: 1;
 
-    @media (width < 1101px) {
-        top: 85px;
-        right: calc(100% - 1%);
+    @media (max-width: 1000px) {
+        top: 6rem;
+        right: 5rem;
     }
 
-    /* @media (width < 901px) {
-        left: -4.25%;
+    @media (max-width: 720px) {
+        top: 3rem;
+        display: flex;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
-    @media (width < 721px) {
-        margin-left: 50%;
-        top: 50px;
+    @media (width < 640px) {
+        top: 2.75rem;
     }
 
-    @media (width < 481px) {
-        margin: 0 10%;
-        width: 90%;
-    } */
+    
 `
 
 export const CartItems = styled.div`

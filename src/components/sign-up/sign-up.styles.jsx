@@ -1,11 +1,7 @@
 import styled from 'styled-components'
 
 export const SignUpFormContainer = styled.div`
-    width: 450px;
-
-    @media (max-width: 900px) {
-        width: 90vw;
-    }
+    max-width: 450px;
 `
 
 export const SignUpForm = styled.div`
@@ -14,7 +10,13 @@ export const SignUpForm = styled.div`
 
 export const ButtonsContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-items: space-between;
-    gap: 10px;
+    gap: 1em;
+
+    @media (width < 540px) {
+        .custom-button {
+            width: 100%;
+        }
+    }
 `

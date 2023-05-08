@@ -44,11 +44,11 @@ const Carousel = () => {
 	const btnContainerRef = useRef(null)
 	const btnRef = useRef(null)
 
-	const firstClone = { ...sliderItems[slideIndex] }
-	const lastClone = { ...sliderItems[sliderItems.length - 1] }
+	//const firstClone = { ...sliderItems[slideIndex] }
+	//const lastClone = { ...sliderItems[sliderItems.length - 1] }
 
-	firstClone.id = 'first-clone'
-	lastClone.id = 'last-clone'
+	//firstClone.id = 'first-clone'
+	//lastClone.id = 'last-clone'
  
 	useEffect(() => {
 		setIsLoading(true)
@@ -70,21 +70,31 @@ const Carousel = () => {
 		setIsLoading(false)
 	}, [])
 
+
 	/********** Handles the carousel navigation buttons **********/
 	useEffect(() => {
 		const interval = setInterval(() => {
 			handleClick('right')
 		}, 5000)
 
+
 		updateSelection()
 
 		return () => clearInterval(interval)
+
 	}, [{ Carousel }])
+	/***********************************************************/
+	
 
 	const handleClick = (direction) => {
 		if (direction === 'left') {
 			setSlideIndex(() => (slideIndex > 0 ? slideIndex - 1 : 3))
+			/* const lastClone = sliderItems.pop();
+			sliderItems.unshift(lastClone); */
 		} else {
+			const firstClone = sliderItems[slideIndex];
+			/* sliderItems.push(firstClone);
+			sliderItems.shift(sliderItems[0]) */
 			setSlideIndex(() => (slideIndex < 3 ? slideIndex + 1 : 0))
 		}
 	}
@@ -123,7 +133,8 @@ const Carousel = () => {
 			</ArrowContainer>
 
 			{/********** CAROUSEL **********/}
-			<Wrapper id='wrapper' slideIndex={slideIndex}>
+			<Wrapper id='wrapper' slideIndex={slideIndex} sliderItems={sliderItems}>
+
 				{/********** SLIDES **********/}
 				{sliderItems.map((item) => (
 					<Slide key={item.id} ref={addToSlideRefs}>
@@ -141,7 +152,7 @@ const Carousel = () => {
 						{/********** SLIDE INFO **********/}
 						<InfoContainer>
 							<Title ref={titleRef} className='loading'>
-								<span className='maroon strong'>
+								<span className='maroon fat-face'>
 									{item.title}
 								</span>
 							</Title>
@@ -163,7 +174,7 @@ const Carousel = () => {
 								</CustomButton>
 							</ButtonContainer>
 						</InfoContainer>
-=					</Slide>
+					</Slide>
 				))}
 				
 				
