@@ -19,6 +19,7 @@ export const LogoContainer = styled.div`
 	place-items: center;
 	background-color: white;
     opacity: 1;
+	bottom: 1em;
 	//overflow: hidden;
 
 
