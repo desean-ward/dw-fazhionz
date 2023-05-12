@@ -17,12 +17,13 @@ export const CartIconContainer = styled.div`
     .shopping-icon {
         width: 30px;
         height: 30px;
+        margin-top: -5px;
     }
 
     .item-count {
         position: absolute;
         font-size: 12px;
         font-weight: bold;
-        bottom: 6px;
+        bottom: 10px;
     }
 `

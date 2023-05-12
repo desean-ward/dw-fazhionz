@@ -8,9 +8,9 @@
 
 body {
   font-weight: 400;
-  font-size: 1rem;
   font-family: "Poppins", sans-serif !important;
   font-family: 'Oi', cursive;
+  font-size: clamp(0.8rem, 1vw, 1.5rem);
   overflow-x: hidden;
 }
 
@@ -33,15 +33,15 @@ body h1 {
 }
 
 body h2 {
-  font-size: clamp(1.5rem, 4vw, 5rem);
+  font-size: clamp(1.4rem, 4vw, 5rem);
 }
 
 body h3 {
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
 
-p {
+p, span {
   font-size: clamp(0.8rem, 1vw, 1.5rem);
 
 }

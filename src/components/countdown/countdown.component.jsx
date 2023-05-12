@@ -14,9 +14,9 @@ import {
 } from "./countdown.styles";
 
 const variants = {
-    visible: { opacity: 1, blur: 0, transition: { duration: 1.2 } },
-    hidden: { opacity: 0, blur: 5, transition: { duration: 1 } },
-    exit: { opacity: 0, transition: { duration: 1.2 } }
+    visible: { opacity: 1, blur: 0, transition: { duration: 1.2, delay: 0.2 } },
+    hidden: { opacity: 0, blur: 5, transition: { duration: 1.2, delay: 0.2 } },
+    exit: { opacity: 0, transition: { duration: 1.2, delay: 0.2 } }
 }
 
 

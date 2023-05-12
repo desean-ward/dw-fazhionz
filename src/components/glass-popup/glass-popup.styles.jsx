@@ -39,7 +39,7 @@ export const Modal = styled.div`
 	padding: 20px 20px;
 
 	.exit {
-		font-size: 28px;
+		//font-size: 28px;
 		position: absolute;
 		right: 10px;
 		top: 10px;
@@ -55,8 +55,8 @@ export const Title = styled.h3`
 	text-align: center;
 	top: 40px;
 `
-export const TitleBG = styled.h1`
-	font-size: 50px;
+export const TitleBG = styled.h3`
+	//font-size: 50px;
 	font-weight: 700;
 	text-align: center;
 	padding-bottom: 40px;
@@ -66,6 +66,6 @@ export const TitleBG = styled.h1`
 export const Content = styled.p`
 	position: relative;
 	padding: 20px 0;
-	font-size: 16px;
+	//font-size: 16px;
 	text-align: center;
 `

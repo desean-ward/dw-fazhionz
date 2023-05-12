@@ -1,62 +1,68 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
-import { useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion, useViewportScroll, useTransform, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 import Categories from '../../components/categories/categories.component'
 
 import Product from './product.component'
 import WithSpinner from '../../components/with-spinner/with-spinner.component'
 
-import NEW_ARRIVALS  from './new-arrivals.data.json'
+import NEW_ARRIVALS from './new-arrivals.data.json'
 
 import { Container } from './product.styles'
 
 const CategoriesWithSpinner = WithSpinner(Categories)
 
 
-const parentVariants = {
-	hidden: { opacity: 0 },
-	visible: { opacity: 1, transition: { staggerChildren: 1, duration: 1} },
-    exit: { opacity: 0, transition: { staggerChildren: 1, duration: 1 } }
-}
 
 const ProductsSection = () => {
-	const controls = useAnimation();
-    const [ref, inView] = useInView();
+	const controls = useAnimation()
+	const [ref, inView] = useInView()
+	const { scrollY } = useViewportScroll()
+	const yOffset = useTransform(scrollY, [200, 400], [100, 0])
+	
+	const cardVariants = {
+		hidden: { opacity: 0, y: 100 },
+		visible: { opacity: 1, y: yOffset },
+		exit: { opacity: 0, y: 100 }
+	}
+	
 
-    useEffect(() => {
-        if (inView) {
-        controls.start("visible");
-        } else {
-            controls.start("exit");
-        }
-    }, [controls, inView]);
+	useEffect(() => {
+		if (inView) {
+			controls.start('visible')
+		} else {
+			controls.start('exit')
+		}
+	}, [controls, inView])
 
 	const collections = NEW_ARRIVALS
 
 	return (
-		<>
-			<Container 
-				className='container'
-				ref={ref}
-                animate={controls}
-                initial="hidden"
-                variants={parentVariants}
-                exit="exit"
+		<>	
+			<Container className='container'>
+					{collections.map((prod, index) => (
+						<motion.div
+							ref={ref}
+							key={index}
+							animate={controls}
+							initial='hidden'
+							variants={cardVariants}
+							exit='exit'
+							transition={{ duration: 1, delay: index * 0.3 }}
+						>
 
-			>
-				{collections.map((prod, i) => (
-					<Product
-						key={prod.id}
-						className='productOne'
-						name={prod.name}
-						price={prod.price}
-						imageUrl={prod.imageUrl}
-						item={prod}
-					/>
-				))}
-
+							<Product
+								key={prod.id}
+								className='productOne'
+								name={prod.name}
+								price={prod.price}
+								imageUrl={prod.imageUrl}
+								item={prod}
+							/>
+						</motion.div>
+					))}
 			</Container>
 		</>
 	)

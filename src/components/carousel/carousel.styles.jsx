@@ -151,7 +151,7 @@ export const InfoContainer = styled.div`
 	}
 `
 
-export const Title = styled.h2`
+export const Title = styled.div`
 	//font-size: 4rem;
 `
 

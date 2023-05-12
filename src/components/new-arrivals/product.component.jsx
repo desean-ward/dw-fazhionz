@@ -54,7 +54,7 @@ const Product = ({ imageUrl, name, price, category, addItem, item, dispatch }) =
 				<Header><h3>New Arrival</h3></Header>
 
 				{/********** Product Name *********
-				<h2 className='name'>{ name }</h2>*/}
+				<h3 className='name'>{ name }</h3>*/}
 
 				{/********** Product Image **********/}
 				<img

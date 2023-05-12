@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { connect } from "react-redux";
 import {
 	useLocation,
@@ -36,6 +36,7 @@ function withRouter(Component) {
 
 const CartDropdown = ({ cartItems, dispatch }) => {
 	const [ isOpen, setIsOpen ] = useState(null);
+	const { isCartOpen, setIsCartOpen } = useContext(CartContext)
 	const [ hasItems, setHasItems ] = useState(false);
 	const navigate = useNavigate()
 
@@ -79,6 +80,7 @@ const CartDropdown = ({ cartItems, dispatch }) => {
 						id="dropdown-button"
 						onClick={() => {
 							navigate("/checkout");
+							setIsCartOpen(!isCartOpen);
 							dispatch(toggleCartHidden());
 						}}
 					>

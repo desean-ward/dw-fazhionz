@@ -1,19 +1,21 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = css`
-    width: clamp(20rem, 50vw, 70rem);
+   // width: clamp(20rem, 50vw, 70rem);
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+	
 `
 
 export const LogoContainer = styled.div`
-	position: absolute;
+	position: relative;
 	z-index: 50;
+	top: 25em;
 	//height: clamp(30vh, 85vh, 100vh);
 	width: 100%;
-	height: 60vh;
+	//height: 60vh;
 	display: grid;
 	grid-template-columns: 1fr;
 	place-items: center;
@@ -26,19 +28,20 @@ export const LogoContainer = styled.div`
 	img {
 		position: absolute;
 		width: 100%;
-		height: 40%;
+		//height: 40%;
 		object-fit: contain;
+
+		&.lines {
+			width: 100vw;
+			height: 70em;
+			margin-bottom: 4em;
+		}
 
 		&.logo {
 			grid-area: logo;
 			animation: scale 1s linear;
 			width: 75%;
 			height: 70%;
-
-			@media (max-width: 900px) {
-				height: 30vh;
-				width: 100%;
-			}
 			z-index: 2;
 		}
 		&.burst {
@@ -63,7 +66,6 @@ export const LogoContainer = styled.div`
 			visibility: hidden;
 			border-radius: 20px;
 			width: auto;
-			height: 75%;
 
 			&.left{
 				grid-area: left;
@@ -72,6 +74,10 @@ export const LogoContainer = styled.div`
 					slide-out-left .5s linear .7s,
 					flash .5s linear 1.2s;
 				animation-fill-mode: forwards;
+
+				@media (width <= 1100px) {
+					display: none;
+				}
 			}
 
 			&.right {
@@ -81,16 +87,16 @@ export const LogoContainer = styled.div`
 					slide-out-right .5s linear .7s,
 					flash .5s linear 1.2s;
 				animation-fill-mode: forwards;
+
+
+				@media (width <= 1100px) {
+					display: none;
+				}
 				
 			}
-			
-
-			@media only screen and (max-width: 900px) and (orientation: portrait) {
-				top: 4em;
-				height: 45%;
-				width: 50%
-			}
 		}
+
+		
 
 	}
 
@@ -155,37 +161,25 @@ export const LogoContainer = styled.div`
 export const Container = styled.div`
     position: relative;
     z-index: 50;
-    height: 65vh;
+    padding: 0 0 8em 0;
+	width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    margin-top: 90px;
+    align-items: center;
+    margin-top: 35px;
 	//overflow: hidden;
-    margin-bottom: -60vh;
+    margin-bottom: -25em;
 
-	@media (width < 1000px) {
-		margin-bottom: -80vh;
+	@media (width <= 1100px) {
+		margin-bottom: -50vh;
 	}
 
-   ${ Wrapper }
+	@media (width <= 500px) {
+		margin-bottom: -55vh;
+	}
 
-/*    @media only screen and (max-height: 900px) and (max-width: 1000px) {
-       height: 85vh;
-
-       @media only screen and (max-height: 450px) {
-           height: 100vh;
-           margin-bottom: -20vh;
-       }
-   }
-
-   @media only screen and (max-width: 900px) and (max-height: 1100px) {
-      height: 75vh;
-
-      @media only screen and (max-width: 450px) {
-          height: 85vh;
-      }
-   }
- */`
+   //${ Wrapper }
+`
 
 
 export const Title = styled.h3`
@@ -201,10 +195,6 @@ export const InputContainer = styled.form`
     flex-direction: column;
 	width: 100%;
 	max-width: 800px;
-    //width: clamp(40em, 50em + 1vw, 70em);
-	//height: 100vh;
-    margin-top: 4em;
-	//overflow-x: hidden;
 
     input, textarea {
         border-radius: 5px;
@@ -244,7 +234,6 @@ export const EmailInput = styled.input`
     padding-left: 10px;
 
     :focus, :hover {
-       // background-color: transparent;
        border: 2px solid black;
     }
 `
@@ -273,9 +262,6 @@ export const MessageInput = styled.textarea`
         border: 2px solid black;
     }
 
-    @media screen and (max-width: 800px) {
-        margin-bottom: 0px;
-    }
 `
 
 export const ButtonSend = styled.div`
@@ -286,9 +272,5 @@ export const ButtonSend = styled.div`
     background: transparent;
     margin-top: 40px;
     margin-bottom: 10px;
-    font-size: 20px;
-
-    @media screen and (max-width: 800px) {
-        margin-bottom: 10px;
-    }
+    //font-size: 20px;
 `

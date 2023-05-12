@@ -101,6 +101,7 @@ export const Right = styled.div`
 		//position: relative;
 		//display: flex;
 		//margin: auto 0;
+		margin-top: -10px;
 
 		/* @media only screen and (max-width: 1000px) {
 			position: absolute;

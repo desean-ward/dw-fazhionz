@@ -112,7 +112,7 @@ const SignIn = () => {
 							Sign In
 						</CustomButton>
 
-						<CustomButton onClick={googleSignIn} isGoogleSignIn>
+						<CustomButton buttonType='google' onClick={googleSignIn} isGoogleSignIn>
 							{' '}
 							<div className='logo'>
 								<img

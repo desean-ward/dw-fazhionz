@@ -152,9 +152,9 @@ const Carousel = () => {
 						{/********** SLIDE INFO **********/}
 						<InfoContainer>
 							<Title ref={titleRef} className='loading'>
-								<span className='maroon fat-face'>
+								<h2 className='maroon fat-face'>
 									{item.title}
-								</span>
+								</h2>
 							</Title>
 
 							<Description ref={descRef} className='loading'>

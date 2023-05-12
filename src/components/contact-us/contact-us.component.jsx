@@ -118,15 +118,13 @@ const Contact = () => {
 	}
 
 	return (
-		<>
+		<Container>
 			<LogoContainer>
 				<img
 					className='logo-images left'
 					src='../../images/dw-fazhionz-bg-left.png'
 					alt='Logo'
 				/>
-
-				
 
 				<img
 					className='burst'
@@ -210,7 +208,7 @@ const Contact = () => {
 				title='Thanks for reaching out!'
 				content="You'll hear back from us shortly."
 			/>
-		</>
+		</Container>
 	)
 }
 

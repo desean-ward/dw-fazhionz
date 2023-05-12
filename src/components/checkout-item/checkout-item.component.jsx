@@ -70,14 +70,14 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
 
     return(
         <ItemContainer className="checkout-item">
-            <ImageContainer className="image-container">
+            <ImageContainer className="image-container                                                                                                                                                                                                                        ">
                 <img src={imageUrl} alt="item" />
             </ImageContainer>
 
             <InfoContainer>
-                <Name className="name">{name}</Name>
+                <Name className="name sect">{name}</Name>
                 
-                <Quantity className="quantity">
+                <Quantity className="quantity sect">
                     <div className="arrow" onClick={() => removeItem(cartItem)}><BiMinus /></div>
                     <input type="input"
                     id="value" 
@@ -91,9 +91,9 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
                     <div className="arrow" onClick={() => addItem(cartItem)}><BiPlus /></div>
                 </Quantity>
 
-                <Price className="price">${newItemTotal}</Price>
+                <Price className="price sect">${newItemTotal}</Price>
 
-                <RemoveBtn className="remove-button"  onClick={() => clearItem(cartItem)}>{<MdOutlineDeleteForever className="trash-icon" />}</RemoveBtn>
+                <RemoveBtn className="remove-button sect"  onClick={() => clearItem(cartItem)}>{<MdOutlineDeleteForever className="trash-icon" />}</RemoveBtn>
             </InfoContainer>
         </ItemContainer>
     );

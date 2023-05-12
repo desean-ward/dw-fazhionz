@@ -11,8 +11,7 @@ import StripeCheckoutButton from '../../components/stripe-button/stripe-button.c
 
 import AnimatedPage from '../../components/animated-page/animated-page.component'
 
-
-import './checkout.styles.scss';
+import { CheckoutPageContainer, CheckoutHeaderContainer, CartItemsContainer, TotalContainer, CheckoutMessageContainer, ButtonContainer } from './checkout.styles';
 
 const Checkout = ({ cartItems, total }) => {
     const newTotal = total - (total * .15)
@@ -20,8 +19,8 @@ const Checkout = ({ cartItems, total }) => {
 
     return (
         <AnimatedPage>
-            <div className='checkout-page'>
-                <div className="checkout-header maroon">
+            <CheckoutPageContainer className='checkout-page'>
+                <CheckoutHeaderContainer className="checkout-header maroon">
                     <div className="header-block">
                         <span>Product</span>
                     </div>
@@ -41,9 +40,9 @@ const Checkout = ({ cartItems, total }) => {
                     <div className="header-block">
                         <span>Remove</span>
                     </div>
-                </div>
+                </CheckoutHeaderContainer>
 
-                    <div className="cart-items">
+                    <CartItemsContainer className="cart-items">
                         {
                         
                             cartItems.map(cartItem => (
@@ -51,29 +50,29 @@ const Checkout = ({ cartItems, total }) => {
                             ))
                         
                         }
-                    </div>
+                    </CartItemsContainer>
 
-                <div className="total">
-                    <span>TOTAL: ${formattedTotal}</span>
-                </div>
+                <TotalContainer className="total">
+                    <span><h3>TOTAL: ${formattedTotal}</h3></span>
+                </TotalContainer>
 
-                <div className="checkoutMessage maroon">
+                <CheckoutMessageContainer className="checkoutMessage maroon">
                     <p>
-                    **  Please use the following test card information!  **
+                    **  Please use the following test card information for payment!  **
                         <br /><br />
                         4242 4242 4242 4242<br />
                         Exp: 12/26<br />
                         CVV: 123
                     </p>
-                </div>
-                <div className="button">
+                </CheckoutMessageContainer>
+                <ButtonContainer className="button">
                     {
                         total > 0
                         ? (<StripeCheckoutButton price={total} cartItems={cartItems} total={total} />) 
                         : ( null )
                     }
-                </div>
-            </div>
+                </ButtonContainer>
+            </CheckoutPageContainer>
         </AnimatedPage>
     )
 }

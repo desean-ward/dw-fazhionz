@@ -5,7 +5,7 @@ import ProductsSection from './products-section.component'
 
 export const Products = styled(ProductsSection)``
 
-export const Container = styled(motion.div)`
+export const Container = styled.div`
 	position: relative;
 	margin-bottom: 60vh;
 	z-index: 50;
@@ -26,6 +26,7 @@ export const Container = styled(motion.div)`
 /********** Product Card **********/
 export const Header = styled.div`
 	//background-color: grey;
+	position: sticky;
 	color: white;
 	padding-left: 10px;
 	//padding: 10px 10px 10px 20px;
@@ -166,7 +167,7 @@ export const PopupView = styled.div`
 
 	/********************  Media Queries  ********************/
 	// @media (max-width: 950px) {
-	// 	@media (max-height: 450px) {
+	// 	@media (max-height: 450px) {r
 	// 		padding-top: 120px;
 	// 	}
 	// }
