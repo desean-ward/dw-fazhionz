@@ -18,7 +18,7 @@ export const Container = styled.div`
 	padding-bottom: 20rem;
 
 	@media only screen and (max-width: 770px) and (orientation: portrait) {
-		//top: 0;
+		top: 0;
 		height: 100%;
 	}
 `

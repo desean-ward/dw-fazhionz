@@ -59,6 +59,10 @@ export const Input = styled.input`
 	width: 60%;
 	outline: none;
 	padding-left: 20px;
+
+	@media (width <= 700px) {
+		width: 90%;
+	}
 `
 
 export const Button = styled.button`

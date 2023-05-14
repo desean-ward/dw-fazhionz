@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
+import NewArrivals from "../new-arrivals/new-arrivals.component";
+
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -81,61 +83,63 @@ const Countdown = () => {
 
 
 	return (
-		<TimerContainer>
-			<motion.div
-			ref={ref}
-			animate={controls}
-			initial="hidden"
-			variants={variants}
-			exit="exit"
-			>
-				<Title className='timer-title'><h2 className='fat-face'>15% OFF NEW ARRIVALS</h2></Title>
-			</motion.div>
+		<>
+			<TimerContainer>
+				<motion.div
+				ref={ref}
+				animate={controls}
+				initial="hidden"
+				variants={variants}
+				exit="exit"
+				>
+					<Title className='timer-title'><h2 className='fat-face'>15% OFF NEW ARRIVALS</h2></Title>
+				</motion.div>
+				
+				<Timer>
+					<TimerContent>
+						<h3 className='maroon'>SALE ENDS SATURDAY AT MIDNIGHT</h3>
+						<TimeSpan>
+							{/**** DAYS ****/}
+							<Time>
+								<p>{timerDays}</p>
+								<p>
+									<small>Days</small>
+								</p>
+							</Time>
+
+							
+
+							{/**** HOURS ****/}
+							<Time>
+								<p>{timerHours}</p>
+								<p>
+									<small>Hours</small>
+								</p>
+							</Time>
+
+							{/**** MINUTES ****/}
+							<Time>
+								<p>{timerMinutes}</p>
+								<p>
+									<small>Minutes</small>
+								</p>
+							</Time>
+
+							{/**** SECONDS ****/}
+							<Time>
+								<p>{timerSeconds}</p>
+								<p>
+									<small>Seconds</small>
+								</p>
+							</Time>
+						</TimeSpan>
+					</TimerContent>
+
+					<Hourglass />
+				</Timer>
 			
-			<Timer>
-				<TimerContent>
-					<h3 className='maroon'>SALE ENDS SATURDAY AT MIDNIGHT</h3>
-					<TimeSpan>
-						{/**** DAYS ****/}
-						<Time>
-							<p>{timerDays}</p>
-							<p>
-								<small>Days</small>
-							</p>
-						</Time>
-
-						
-
-						{/**** HOURS ****/}
-						<Time>
-							<p>{timerHours}</p>
-							<p>
-								<small>Hours</small>
-							</p>
-						</Time>
-
-						{/**** MINUTES ****/}
-						<Time>
-							<p>{timerMinutes}</p>
-							<p>
-								<small>Minutes</small>
-							</p>
-						</Time>
-
-						{/**** SECONDS ****/}
-						<Time>
-							<p>{timerSeconds}</p>
-							<p>
-								<small>Seconds</small>
-							</p>
-						</Time>
-					</TimeSpan>
-				</TimerContent>
-
-				<Hourglass />
-			</Timer>
-           
-		</TimerContainer>
+			</TimerContainer>
+		</>
 	);
 };
 

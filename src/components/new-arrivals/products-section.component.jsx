@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 
-import { motion, useViewportScroll, useTransform, useAnimation } from 'framer-motion'
+import { motion, useViewportScroll, useTransform, useAnimation, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
 import Categories from '../../components/categories/categories.component'
@@ -24,33 +24,35 @@ const ProductsSection = () => {
 	
 	const cardVariants = {
 		hidden: { opacity: 0, y: 100 },
-		visible: { opacity: 1, y: yOffset },
+		visible: { opacity: 1, y: 0 },
 		exit: { opacity: 0, y: 100 }
 	}
-	
+
+	const collections = NEW_ARRIVALS
 
 	useEffect(() => {
+		
 		if (inView) {
 			controls.start('visible')
 		} else {
 			controls.start('exit')
 		}
-	}, [controls, inView])
 
-	const collections = NEW_ARRIVALS
+	}, [controls, inView])
+	
 
 	return (
 		<>	
-			<Container className='container'>
+			<Container ref={ref} className='container'>
+				<AnimatePresence>
 					{collections.map((prod, index) => (
 						<motion.div
-							ref={ref}
 							key={index}
 							animate={controls}
 							initial='hidden'
 							variants={cardVariants}
 							exit='exit'
-							transition={{ duration: 1, delay: index * 0.3 }}
+							transition={{ duration: 1, delay: index * 0.5 }}
 						>
 
 							<Product
@@ -63,6 +65,7 @@ const ProductsSection = () => {
 							/>
 						</motion.div>
 					))}
+				</AnimatePresence>
 			</Container>
 		</>
 	)
