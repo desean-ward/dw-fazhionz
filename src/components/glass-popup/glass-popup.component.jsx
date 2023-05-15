@@ -37,7 +37,7 @@ const GlassModal = ({ show, close, titleBG, title, content }) => {
 
 	const variants = {
         hidden: { scale: 0 },
-        visible: { scale: 1 },
+        visible: { scale: 1, opacity: 1 },
         exit: { scale: 0 },
 		exitBeforeEnter: true
     }
@@ -49,14 +49,7 @@ const GlassModal = ({ show, close, titleBG, title, content }) => {
 					className='modalContainer'
 					onClick={() => handleClose()}
 				>
-					<AnimatePresence exitBeforeEnter>
-						<motion.div
-							variants={variants}
-							initial='hidden'
-							animate='visible'
-							exit='exit'
-							transition={{ duration: 0.3 }}
-						>
+					
 							<Modal
 								className='popup'
 								onClick={(e) => e.stopPropagation()}>
@@ -69,8 +62,7 @@ const GlassModal = ({ show, close, titleBG, title, content }) => {
 								<Title>{title}</Title>
 								<Content>{content}</Content>
 							</Modal>
-						</motion.div>
-					</AnimatePresence>
+						
 				</Container>
 			) : null}
 		</>,

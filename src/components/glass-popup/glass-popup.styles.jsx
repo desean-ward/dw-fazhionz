@@ -28,7 +28,7 @@ export const Container = styled.div`
 `
 
 export const Modal = styled.div`
-	//position: absolute;
+	position: relative;
 	z-index: 1000;
 	width: calc(15rem + 15vw);
 	height: fit-content;
@@ -43,7 +43,9 @@ export const Modal = styled.div`
 		position: absolute;
 		right: 10px;
 		top: 10px;
+		color: white;
 		cursor: pointer;
+		z-index: 100;
 
 		&:hover {
 			color: grey;

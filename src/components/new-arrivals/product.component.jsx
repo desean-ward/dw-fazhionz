@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
+import { motion, AnimatePresence } from 'framer-motion'
+
 import QuickView from '../../components/new-arrivals/quick-view.component'
 
 import {
@@ -45,7 +47,13 @@ const Product = ({ imageUrl, name, price, category, addItem, item, dispatch }) =
 		setQuickViews(document.querySelectorAll('.quick__view'))
 	}, [])
 
-	
+	const variants = {
+        hidden: { scale: 0 },
+        visible: { scale: 1 },
+        exit: { scale: 0 },
+        exitBeforeEnter: true
+    }
+
 	return (
 		<>
 			{/**********  Card  **********/}
@@ -76,17 +84,27 @@ const Product = ({ imageUrl, name, price, category, addItem, item, dispatch }) =
 				<Footer><h3>Get 15% Off</h3></Footer>
 			</ProductCard>
 
-			<QuickView
-				index={index}
-				className='quick__view'
-				show={show}
-				close={close}
-				//category={item.category}
-				name={item.name}
-				price={item.price}
-				imageUrl={item.imageUrl}
-				item={item}
-			/>
+			<AnimatePresence exitBeforeEnter>
+				<motion.div
+					variants={variants}
+					initial='hidden'
+					animate='visible'
+					exit='hidden'
+					transition={{ duration: 0.3 }}
+				>
+					<QuickView
+						index={index}
+						className='quick__view'
+						show={show}
+						close={close}
+						//category={item.category}
+						name={item.name}
+						price={item.price}
+						imageUrl={item.imageUrl}
+						item={item}
+					/>
+				</motion.div>
+			</AnimatePresence>
 
 		</>
 	)
