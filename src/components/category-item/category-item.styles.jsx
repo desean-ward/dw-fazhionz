@@ -102,7 +102,7 @@ export const ButtonContainer = styled.div`
 		color: white;
 		outline: none;
 		border: none;
-		font-size: 20px;
+		//font-size: 20px;
 
 		@media screen and (max-width: 800px) {
 			display: block;

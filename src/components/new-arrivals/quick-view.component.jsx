@@ -4,6 +4,8 @@ import ReactDom from 'react-dom'
 import { connect } from 'react-redux'
 import { addItem } from '../../redux/cart/cart.actions'
 
+import { motion, AnimatePresence} from 'framer-motion'
+
 import {
 	Info,
 	PopupProduct,
@@ -12,10 +14,13 @@ import {
 	AddSectionLinks,
 } from './product.styles'
 
+
+
 import { IoMdClose } from 'react-icons/io'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { AiFillHeart } from 'react-icons/ai'
 import CartIcon from '../../components/cart-icon/cart-icon.component'
+import { MotionConfig } from 'framer-motion';
 
 
 const QuickView = ({ show, close, index, imageUrl, name, price, category, addItem, item, dispatch }) => {
@@ -49,52 +54,69 @@ const QuickView = ({ show, close, index, imageUrl, name, price, category, addIte
 			return
 		}
 	}, [show])
+
+    const variants = {
+        hidden: { scale: 0 },
+        visible: { scale: 1 },
+        exit: { scale: 0 },
+        exitBeforeEnter: true
+    }
     
   return ReactDom.createPortal(
       <>
       {
           show ? (
             <PopupView className='popup__view'>
-                <PopupProduct className='popup__product'>
-                    {/********** Close Button **********/}
-                    <IoMdClose 
-                    className='close__btn'
-                    onClick={() =>handleClose()} />
+                <AnimatePresence exitBeforeEnter>
+                    <motion.div
+                        variants={variants}
+                        initial='hidden'
+                        animate='visible'
+                        exit='hidden'
+                        transition={{ duration: 0.3 }}
+                    >
+                        <PopupProduct className='popup__product'>
+                            {/********** Close Button **********/}
+                            <IoMdClose 
+                            className='close__btn'
+                            onClick={() =>handleClose()} />
 
-                    {/********** Product Image **********/}
-                    <PopupImage className='popup__img'>
-                        <img src={ imageUrl } alt='Product Image' />
-                    </PopupImage>
+                            {/********** Product Image **********/}
+                            <PopupImage className='popup__img'>
+                                <img src={ imageUrl } alt='Product Image' />
+                            </PopupImage>
 
-                    {/********** Product Info **********/}
-                    <Info className='info'>
-                        <h3>
-                            { name }
-                            <br />
-                            <span>{ category }</span>
-                        </h3>
+                            {/********** Product Info **********/}
+                            <Info className='info'>
+                                <h3>
+                                    { name }
+                                    <br />
+                                    <span>{ category }</span>
+                                </h3>
 
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro soluta nulla, similique, dignissimos quaerat amet doloremque nobis pariatur, a id harum! Nam ipsam omnis explicabo ipsa? Exercitationem, expedita, vero asperiores non quam amet dolorum nobis repudiandae quae alias obcaecati doloribus libero quo animi. Omnis, similique ipsum optio incidunt unde quia, harum deserunt at, accusamus odio ipsa eum alias ipsam vitae?
-                            
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro soluta nulla, similique, dignissimos quaerat amet doloremque nobis pariatur, a id harum! Nam ipsam omnis explicabo ipsa? Exercitationem, expedita, vero asperiores non quam amet dolorum nobis repudiandae quae alias obcaecati doloribus libero quo animi. Omnis, similique ipsum optio incidunt unde quia, harum deserunt at, accusamus odio ipsa eum alias ipsam vitae?
-                            </p>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro soluta nulla, similique, dignissimos quaerat amet doloremque nobis pariatur, a id harum! Nam ipsam omnis explicabo ipsa? Exercitationem, expedita, vero asperiores non quam amet dolorum nobis repudiandae quae alias obcaecati doloribus libero quo animi. Omnis, similique ipsum optio incidunt unde quia, harum deserunt at, accusamus odio ipsa eum alias ipsam vitae?
+                                    
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro soluta nulla, similique, dignissimos quaerat amet doloremque nobis pariatur, a id harum! Nam ipsam omnis explicabo ipsa? Exercitationem, expedita, vero asperiores non quam amet dolorum nobis repudiandae quae alias obcaecati doloribus libero quo animi. Omnis, similique ipsum optio incidunt unde quia, harum deserunt at, accusamus odio ipsa eum alias ipsam vitae?
+                                    </p>
 
-                        <span className='wasPrice'>${price}.00</span>
-                        <span className='price'>${nowPrice.toFixed(2)}</span>
+                                <span className='wasPrice'>${price}.00</span>
+                                <span className='price'>${nowPrice.toFixed(2)}</span>
+                                
+                                <AddSectionLinks className='links'>
+                                    <a href='#' 
+                                        className='add__cart__btn' 
+                                        onClick={addToBag}
+                                        onTouchEnd={addToBag}
+                                    >
+                                        ADD TO BAG
+                                    </a>
+                                </AddSectionLinks>
+                            </Info>
                         
-                        <AddSectionLinks className='links'>
-                            <a href='#' 
-                                className='add__cart__btn' 
-                                onClick={addToBag}
-                                onTouchEnd={addToBag}
-                            >
-                                ADD TO BAG
-                            </a>
-                        </AddSectionLinks>
-                    </Info>
-                    
-                </PopupProduct>
+                        </PopupProduct>
+                    </motion.div>
+                </AnimatePresence>
             </PopupView>
           ) 
           : null

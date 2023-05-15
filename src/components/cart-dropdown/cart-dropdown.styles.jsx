@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const DropdownContainer = styled.div`
+import { motion } from 'framer-motion'
+
+export const DropdownContainer = styled(motion.div)`
 	position: absolute;
     width: 340px;
     display: flex;
@@ -11,7 +13,7 @@ export const DropdownContainer = styled.div`
     box-shadow: 0 5px 5px 0 rgba(36, 31, 31, 0.5);
     top: 55px;
     right: 4rem;
-    opacity: 1;
+    //opacity: 1;
 
     @media (max-width: 1000px) {
         top: 6rem;

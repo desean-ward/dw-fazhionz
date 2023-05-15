@@ -16,10 +16,22 @@ import {
 } from "./countdown.styles";
 
 const variants = {
-    visible: { opacity: 1, blur: 0, transition: { duration: 1.2, delay: 0.2 } },
-    hidden: { opacity: 0, blur: 5, transition: { duration: 1.2, delay: 0.2 } },
-    exit: { opacity: 0, transition: { duration: 1.2, delay: 0.2 } }
+    visible: { opacity: 1, blur: 0, transition: { duration: 1.2, delay: 0.4 } },
+    hidden: { opacity: 0, blur: 10, transition: { duration: 1.2, delay: 0.4 } },
+    exit: { opacity: 0, transition: { duration: 1.2, delay: 0.4 } }
 }
+
+const leftVariants = {
+    visible: { opacity: 1, x: 0, blur: 0, transition: { duration: 1, delay: 0.4 } },
+    hidden: { opacity: 0, x: -100, blur: 100, transition: { duration: 1, delay: 0.4 } },
+    exit: { opacity: 0, x: -100, transition: { duration: 1, delay: 0.4 } }
+};
+
+const rightVariants = {
+    visible: { opacity: 1, x: 0, blur: 0, transition: { duration: 1, delay: 0.4 } },
+    hidden: { opacity: 0, x: 100, blur: 10, transition: { duration: 1, delay: 0.4 } },
+    exit: { opacity: 0, x: 100, transition: { duration: 1 } }
+};
 
 
 const Countdown = () => {
@@ -73,6 +85,9 @@ const Countdown = () => {
 	const controls = useAnimation();
     const [ref, inView] = useInView();
 
+	// const timerRef = useRef()
+	// const hGlassRef = useRef()
+
     useEffect(() => {
         if (inView) {
         controls.start("visible");
@@ -96,46 +111,62 @@ const Countdown = () => {
 				</motion.div>
 				
 				<Timer>
-					<TimerContent>
-						<h3 className='maroon'>SALE ENDS SATURDAY AT MIDNIGHT</h3>
-						<TimeSpan>
-							{/**** DAYS ****/}
-							<Time>
-								<p>{timerDays}</p>
-								<p>
-									<small>Days</small>
-								</p>
-							</Time>
+					<motion.div
+					ref={ref}
+					animate={controls}
+					initial="hidden"
+					variants={leftVariants}
+					exit="exit"
+					>
+						<TimerContent>
+							<h3 className='maroon'>SALE ENDS SATURDAY AT MIDNIGHT</h3>
+							<TimeSpan>
+								{/**** DAYS ****/}
+								<Time>
+									<p>{timerDays}</p>
+									<p>
+										<small>Days</small>
+									</p>
+								</Time>
 
-							
+								
 
-							{/**** HOURS ****/}
-							<Time>
-								<p>{timerHours}</p>
-								<p>
-									<small>Hours</small>
-								</p>
-							</Time>
+								{/**** HOURS ****/}
+								<Time>
+									<p>{timerHours}</p>
+									<p>
+										<small>Hours</small>
+									</p>
+								</Time>
 
-							{/**** MINUTES ****/}
-							<Time>
-								<p>{timerMinutes}</p>
-								<p>
-									<small>Minutes</small>
-								</p>
-							</Time>
+								{/**** MINUTES ****/}
+								<Time>
+									<p>{timerMinutes}</p>
+									<p>
+										<small>Minutes</small>
+									</p>
+								</Time>
 
-							{/**** SECONDS ****/}
-							<Time>
-								<p>{timerSeconds}</p>
-								<p>
-									<small>Seconds</small>
-								</p>
-							</Time>
-						</TimeSpan>
-					</TimerContent>
+								{/**** SECONDS ****/}
+								<Time>
+									<p>{timerSeconds}</p>
+									<p>
+										<small>Seconds</small>
+									</p>
+								</Time>
+							</TimeSpan>
+						</TimerContent>
+					</motion.div>
 
-					<Hourglass />
+					<motion.div
+						ref={ref}
+						animate={controls}
+						initial="hidden"
+						variants={rightVariants}
+						exit="exit"
+						>
+						<Hourglass />
+					</motion.div>
 				</Timer>
 			
 			</TimerContainer>

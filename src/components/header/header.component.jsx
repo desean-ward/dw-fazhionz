@@ -18,6 +18,10 @@ import GlassModal from '../glass-popup/glass-popup.component'
 import { UserContext } from '../../context/user.context'
 import { CartContext } from '../../context/cart.context'
 
+import { motion, useAnimation, AnimatePresence } from 'framer-motion'
+import { useInView } from "react-intersection-observer";
+
+
 import AnimatedPage from '../../components/animated-page/animated-page.component'
 
 
@@ -46,6 +50,24 @@ import {
 } from '../animated-nav/animated-nav.styles.jsx'
 
 const Header = ({ hidden }) => {
+	const controls = useAnimation();
+    const [ref, inView] = useInView();
+
+	const variants = {
+		hidden: { opacity: 0, height: 0 },
+		visible: { opacity: 1, height: 325, position: 'relative' },
+		exit: { opacity: 0, height: 0 }
+	}
+
+    useEffect(() => {
+        if (inView) {
+        controls.start("visible");
+        } else {
+            controls.start("exit");
+        }
+    }, [controls, inView]);
+
+
 	const [show, setShow] = useState(false)
 	const [searchUrl, setSearchUrl] = useState('')
 	const [inputValue, setInputValue] = useState(null)
@@ -57,6 +79,7 @@ const Header = ({ hidden }) => {
 	const close = document.querySelector('.close-icon')
 	const del = document.querySelector('.delete-icon')
 	const navigate = useNavigate()
+	
 	const { currentUser } = useContext(UserContext)
 	const { isCartOpen, setIsCartOpen } = useContext(CartContext)
 

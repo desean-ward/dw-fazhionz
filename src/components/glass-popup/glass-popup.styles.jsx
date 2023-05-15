@@ -28,7 +28,7 @@ export const Container = styled.div`
 `
 
 export const Modal = styled.div`
-	position: absolute;
+	//position: absolute;
 	z-index: 1000;
 	width: calc(15rem + 15vw);
 	height: fit-content;

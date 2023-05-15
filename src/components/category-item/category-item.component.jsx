@@ -65,6 +65,7 @@ const CategoryItem = ({ item, addItem }) => {
 	}, [])
 
 	return (
+
 		/********** CATEGORY ITEM  **********/
 		<CategoryItemContainer>
 

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import ReactDom from 'react-dom'
 
+import { motion, AnimatePresence} from 'framer-motion'
+
+
 import { IoClose } from 'react-icons/io5'
 
 import {
@@ -32,24 +35,42 @@ const GlassModal = ({ show, close, titleBG, title, content }) => {
 		}, 2000)
 	}
 
+	const variants = {
+        hidden: { scale: 0 },
+        visible: { scale: 1 },
+        exit: { scale: 0 },
+		exitBeforeEnter: true
+    }
+
 	return ReactDom.createPortal(
 		<>
 			{show ? (
 				<Container
 					className='modalContainer'
-					onClick={() => handleClose()}>
-					<Modal
-						className='popup'
-						onClick={(e) => e.stopPropagation()}>
-						<IoClose
-							className='exit'
-							onClick={() => handleClose()}
-						/>
+					onClick={() => handleClose()}
+				>
+					<AnimatePresence exitBeforeEnter>
+						<motion.div
+							variants={variants}
+							initial='hidden'
+							animate='visible'
+							exit='exit'
+							transition={{ duration: 0.3 }}
+						>
+							<Modal
+								className='popup'
+								onClick={(e) => e.stopPropagation()}>
+								<IoClose
+									className='exit'
+									onClick={() => handleClose()}
+								/>
 
-						<TitleBG>{titleBG}</TitleBG>
-						<Title>{title}</Title>
-						<Content>{content}</Content>
-					</Modal>
+								<TitleBG>{titleBG}</TitleBG>
+								<Title>{title}</Title>
+								<Content>{content}</Content>
+							</Modal>
+						</motion.div>
+					</AnimatePresence>
 				</Container>
 			) : null}
 		</>,

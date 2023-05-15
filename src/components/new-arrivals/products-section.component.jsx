@@ -52,7 +52,7 @@ const ProductsSection = () => {
 							initial='hidden'
 							variants={cardVariants}
 							exit='exit'
-							transition={{ duration: 1, delay: index * 0.5 }}
+							transition={{ duration: 1, delay: index * 0.3, ease: "easeInOut"}}
 						>
 
 							<Product

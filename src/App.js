@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, lazy, Suspense } from 'react'
 
-import Home from './routes/home/homepage.component'
-import Shop from './routes/shop/shop.component.jsx'
-import ContactUs from './routes/contact/contact.component'
-import Authentication from './routes/authentication/authentication.component'
-import Checkout from './routes/checkout/checkout.component'
+//import Home from './routes/home/homepage.component'
+//import Shop from './routes/shop/shop.component.jsx'
+// import ContactUs from './routes/contact/contact.component'
+// import Authentication from './routes/authentication/authentication.component'
+// import Checkout from './routes/checkout/checkout.component'
 
 import Categories from './components/categories/categories.component'
 import Category from './routes/category/category.component'
@@ -27,6 +27,7 @@ import { selectCurrentUser } from './redux/user/user.selectors'
 
 import { UserContext } from './context/user.context'
 
+import { motion } from 'framer-motion'
 import { AnimatePresence } from 'framer-motion/dist/es/index'
 
 import ScrollToTop from './ScrollToTop.js'
@@ -35,6 +36,12 @@ import PageNotFound from './components/page-not-found/page-not-found.component'
 import './App.css'
 
 import { CategoriesContainer } from './components/categories/categories.styles'
+
+const Home = lazy(() => import('./routes/home/homepage.component'))
+const Shop = lazy(() => import('./routes/shop/shop.component.jsx'))
+const ContactUs = lazy(() => import('./routes/contact/contact.component'))
+const Authentication = lazy(() => import('./routes/authentication/authentication.component'))
+const Checkout = lazy(() => import('./routes/checkout/checkout.component'))
 
 const App = () => {
 	const { currentUser, setCurrentUser } = useContext(UserContext)
@@ -76,18 +83,20 @@ const App = () => {
 			<ScrollToTop />
 			<Header />
 			<AnimatePresence exitBeforeEnter>
-				<Routes>
-					<Route path='/' element={<Home />} />
-					<Route
-						path='/shop'
-						element={<Navigate replace to='/shop/categories' />}
-					/>
-					<Route path='/shop/categories/*' element={<Shop />} />
-					<Route path='/contact-us' element={<ContactUs />} />
-					<Route exact path='/checkout' element={<Checkout />} />
-					<Route path='/auth' element={<Authentication />} />
-					<Route path='*' element={<PageNotFound />} />
-				</Routes>
+				<Suspense fallback={ <h3 className='fallback'>Loading...</h3>}>
+					<Routes>
+						<Route path='/' element={<Home />} />
+						<Route
+							path='/shop'
+							element={<Navigate replace to='/shop/categories' />}
+						/>
+						<Route path='/shop/categories/*' element={<Shop />} />
+						<Route path='/contact-us' element={<ContactUs />} />
+						<Route exact path='/checkout' element={<Checkout />} />
+						<Route path='/auth' element={<Authentication />} />
+						<Route path='*' element={<PageNotFound />} />
+					</Routes>
+				</Suspense>
 			</AnimatePresence>
 			<Footer />
 		</div>

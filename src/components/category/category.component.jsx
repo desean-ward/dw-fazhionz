@@ -21,7 +21,7 @@ const Category = ({ title, products }) => {
 				<ProductsContainer name='products-container'>
 					<TitleContainer name='title-container'>
 						<h3 className='title'>
-							<span>{title.toUpperCase()}</span>
+							{title.toUpperCase()}
 						</h3>
 						<Link to={title} className='view-all title'>View All</Link>
 					</TitleContainer>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const getMaxHeight = (isOpen) => {
 	console.log(isOpen)
-	return isOpen ? '250px' : '0px'
+	return isOpen ? '550px' : '0px'
 }
 
 export const HeaderTop = styled.div``
@@ -126,11 +126,6 @@ export const Right = styled.div`
 			}
 		} */
 	}
-
-	
-
-	
-
 
     /* @media only screen and (max-width: 600px) {   
 	    padding-top: 10px;

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const HeaderMessageContainer = styled.div`
 	position: relative;
-	z-index: 50;
+	z-index: 60;
 	background-color: maroon;
 	color: white;
 	display: flex;
@@ -14,7 +14,7 @@ export const HeaderMessageContainer = styled.div`
 `
 
 export const Left = styled.div`
-	@media only screen and (max-width: 999px) {
+	@media (width <= 1000px) {
 		display: none;
 	}
 `

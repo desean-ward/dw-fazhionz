@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -16,7 +16,10 @@ import { CartIconContainer } from './cart-icon.styles'
 const CartIcon = ({ toggleCartHidden, itemCount }) => {
     const { isCartOpen, setIsCartOpen } = useContext(CartContext)
 
-    const toggleIsCartOpen = () => setIsCartOpen(!isCartOpen)
+    const toggleIsCartOpen = () => {
+        setIsCartOpen(!isCartOpen)
+        console.log("CART OPEN?: " + isCartOpen)
+    }
 
     return (
         <CartIconContainer onClick={toggleIsCartOpen}>

@@ -11,8 +11,8 @@ export const Wrapper = css`
 
 export const LogoContainer = styled.div`
 	position: relative;
-	z-index: 50;
-	top: 25em;
+	//z-index: -1;
+	top: 18.5em;
 	//height: clamp(30vh, 85vh, 100vh);
 	width: 100%;
 	//height: 60vh;

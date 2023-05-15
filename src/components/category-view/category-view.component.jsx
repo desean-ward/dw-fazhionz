@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect, Fragment } from 'react'
+import React, { useContext, useState, useEffect, lazy, Suspense } from 'react'
 import { useParams } from 'react-router-dom'
 
-import CategoryItem from '../../components/category-item/category-item.component'
+//import CategoryItem from '../../components/category-item/category-item.component'
 
 import { CategoriesContext } from '../../context/categories.context'
 
@@ -9,6 +9,8 @@ import AnimatedPage from '../../components/animated-page/animated-page.component
 
 import { CategoryViewContainer, TitleContainer } from './category-view.styles.jsx'
 
+
+const CategoryItem = lazy(() => import('../../components/category-item/category-item.component'))
 
 // The page that displays the indiviual category after clicking 'View All' on the 'categories' page
 const CategoryView = () => {
@@ -32,7 +34,12 @@ const CategoryView = () => {
                     <h3 className='title'>{ category.toUpperCase() }</h3>
                 </TitleContainer> 
                 {   
-                    products && products.map((product) => <CategoryItem className='item' key={product.id} item={product} />)
+                    products && products.map((product) => 
+                        <>
+                            <Suspense>
+                                <CategoryItem className='item' key={product.id} item={product} />
+                            </Suspense>
+                        </>)
                 }
             </div>
         </div>

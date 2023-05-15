@@ -3,9 +3,7 @@ import React, { useEffect } from 'react';
 import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-
 import { BannerContainer, Title, Description, LeftSide, RightSide, ScrollToTop } from './banner-one.styles';
-
 
 const leftVariants = {
     visible: { opacity: 1, x: 0, blur: 0, transition: { duration: 1, delay: 0.2 } },
