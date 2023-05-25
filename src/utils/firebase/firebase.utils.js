@@ -1,16 +1,16 @@
-import { useContext } from '../../context/user.context'
 import { initializeApp } from 'firebase/app'
 import {
 	getFirestore,
 	doc,
 	getDoc,
 	setDoc,
+	updateDoc,
 	collection,
 	writeBatch,
 	query,
 	getDocs
 } from 'firebase/firestore'
-import 'firebase/compat/auth'
+import 'firebase/auth'
 import { 
 	getAuth,
 	onAuthStateChanged,
@@ -59,7 +59,7 @@ additionalInformation = {}) => {
 
 	//Checking to see if the snapshot exists
 	if (!userSnapshot.exists()) {
-		const { email, displayName } = userAuth
+		const { email, displayName, uid } = userAuth
 		const createdAt = new Date()
 		
 
@@ -67,6 +67,7 @@ additionalInformation = {}) => {
 		//We'll create one using the 'userAuth' object
 		try {
 			await setDoc(userDocRef, {
+				uid,
 				displayName,
 				email,
 				createdAt,
@@ -81,19 +82,33 @@ additionalInformation = {}) => {
 	return userDocRef
 }
 
+/* Custom function to create an authorized user with email/password */
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
 	if(!email || !password) return
 
-	return createUserWithEmailAndPassword(auth, email, password)
+	/* Actual function for creation within Firebase */
+	return await createUserWithEmailAndPassword(auth, email, password)
 }
 
+/* Custom function to sign-in an authorized user with email/password */
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 	if(!email || !password) return
 	
+	/* Actual function for creation within Firebase */
 	await signInWithEmailAndPassword(auth, email, password)
+
+	const userRef = doc(db, 'users', auth.currentUser.uid)
+	const userSnapshot = await getDoc(userRef)
+
+	try {
+		const user = userSnapshot.data()
+		return user
+	} catch (err) {
+		console.log("Error returning signed in user: " + err)
+	}
 }
 
-// Add data to the database
+// Add categories to the database
 export const addCategoriesAndDocuments = async (
 	collectionKey,
 	objectsToAdd) => {
@@ -120,7 +135,6 @@ export const getCategoriesAndDocuments = async () => {
 		acc[title.toLowerCase()] = items
 		return acc
 	}, {})
-
 	return categoryMap
 }
 
@@ -140,6 +154,64 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 		accumulator[collection.title.toLowerCase()] = collection
 		return accumulator
 	}, {})
+}
+
+/* Get the cart items for logged in Google User */
+export const getCartItems = async (user) => {
+	if (user) {
+		console.log('GOT GOOGLE CURRENT USER:' + JSON.stringify(user.uid));
+		const userRef = doc(db, 'users', user.uid)
+		const userSnapshot = await getDoc(userRef)
+
+		try {
+			if (userSnapshot.exists()) {
+				const cartItems = userSnapshot.data().cartItems
+				if (cartItems !== null || cartItems !== 'undefined') {
+					console.log("CART ITEM RETRIEVAL SUCCESSFUL!" + JSON.stringify(cartItems))
+					return cartItems
+				} else {
+					console.log('CART ITEMS IS: ' + JSON.stringify(cartItems));
+				}
+				
+			} else {
+				console.log('CURRENT SNAPSHOT DOES NOT EXIST')
+			}
+
+		} catch (err) {
+			console.log("An error was encountered when fetching the cart items: " + err)
+		}
+	}
+}
+
+/* Update cart in database */
+export const updateCartInDB = async (currentUser, items) => {
+	console.log("WITHIN FIREBASE, CURRENT USER: " + JSON.stringify(currentUser))
+	if (currentUser) {
+		const userRef = doc(db, 'users', currentUser.uid)
+		const userSnapshot = await getDoc(userRef)
+	
+	
+
+		try {	
+			if (userSnapshot.exists()) {
+				const cartItems = userSnapshot.data()
+				
+				if (cartItems !== null || cartItems !== 'undefined') {
+					await updateDoc(userRef, { cartItems: items})
+					console.log("THIS IS THE CART: " + JSON.stringify(cartItems));
+
+					console.log("SUCCESS")
+				}
+			} else {
+				console.log("CART UPDATE ERROR!")
+				await setDoc(userRef, {cartItems: items})
+			}
+		} catch (err) {
+			alert("UPDATE ERROR: " + err)
+		}
+	}
+		//const querySnapshot = await getDocs(userRef)
+	//console.log("CART SNAPSHOT: " + JSON.stringify(userSnapshot.data()))
 }
 
 export const signOutUser = async () => await signOut(auth)

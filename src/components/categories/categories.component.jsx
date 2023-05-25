@@ -31,8 +31,10 @@ const Categories = ({ collections }) => {
 	)
 }
 
-const mapStateToProps = createStructuredSelector({
-	collections: selectCollectionsForPreview,
-})
+// const mapStateToProps = createStructuredSelector({
+// 	collections: selectCollectionsForPreview,
+// })
 
-export default connect(mapStateToProps)(Categories)
+// export default connect(mapStateToProps)(Categories)
+
+export default Categories

@@ -20,11 +20,12 @@ export const CategoriesProvider = ({ children }) => {
     useEffect(() => {
         const getCategoriesMap = async () => {
             const categoryMap = await getCategoriesAndDocuments()
-            
             setCategoriesMap(categoryMap)
         }
 
         getCategoriesMap()
+        console.log('INSIDE CAT CONTEXT: ' + JSON.stringify(categoriesMap))
+
     }, [])
 
     return (

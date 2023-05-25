@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef, useContext, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { clearItemFromCart } from '../../redux/cart/cart.actions';
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Outlet } from 'react-router-dom'
 
-import { auth, signOutUser } from '../../utils/firebase/firebase.utils.js'
+import { auth, signOutUser, updateCartInDB } from '../../utils/firebase/firebase.utils.js'
 
-import { createStructuredSelector } from 'reselect'
-import { selectCurrentUser } from '../../redux/user/user.selectors'
-import { selectCartHidden } from '../../redux/cart/cart.selectors'
+// import { createStructuredSelector } from 'reselect'
+// import { selectCurrentUser } from '../../redux/user/user.selectors'
+// import { selectCartHidden, selectCartItems } from '../../redux/cart/cart.selectors'
 
 import HeaderMessage from '../header-message/header-message.component'
 import CartIcon from '../cart-icon/cart-icon.component'
@@ -20,7 +21,6 @@ import { CartContext } from '../../context/cart.context'
 
 import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import { useInView } from "react-intersection-observer";
-
 
 import AnimatedPage from '../../components/animated-page/animated-page.component'
 
@@ -49,7 +49,8 @@ import {
 	Bars,
 } from '../animated-nav/animated-nav.styles.jsx'
 
-const Header = ({ hidden }) => {
+
+const Header = (/* { hidden, removeItem } */) => {
 	const controls = useAnimation();
     const [ref, inView] = useInView();
 
@@ -80,8 +81,8 @@ const Header = ({ hidden }) => {
 	const del = document.querySelector('.delete-icon')
 	const navigate = useNavigate()
 	
-	const { currentUser } = useContext(UserContext)
-	const { isCartOpen, setIsCartOpen } = useContext(CartContext)
+	const { currentUser, setCurrentUser } = useContext(UserContext)
+	const { cartItems, setCartItems, isCartOpen, setIsCartOpen, clearCart} = useContext(CartContext)
 
 	window.addEventListener('scroll', () => {
 		var scroll = document.querySelector('.scrollTopArrow')
@@ -134,6 +135,22 @@ const Header = ({ hidden }) => {
 
 	const handleChange = (e) => {
 		setSearchUrl('/shop/categories/' + e.target.value.toLowerCase())
+	}
+
+	const handleSignOut = async () => {
+		if (cartItems || cartItems.length) {
+			await updateCartInDB(currentUser, cartItems)
+		}
+
+		try{
+			clearCart()
+			setCurrentUser(null)
+			await signOutUser()
+			
+		} catch (err) {
+			console.log('SIGN OUT ERROR: ' + err)
+		}
+		
 	}
 
 	const openMenu = () => {
@@ -244,7 +261,7 @@ const Header = ({ hidden }) => {
 								<OptionLink
 									as='div'
 									className='btn-ctr'
-									onClick={signOutUser}>
+									onClick={handleSignOut}>
 									SIGN OUT
 									<OptionLine />
 								</OptionLink>
@@ -274,6 +291,8 @@ const Header = ({ hidden }) => {
 				</Right>
 			</HeaderContainer>
 
+			<Outlet />
+
 			<GlassModal
 				show={modal}
 				close={showModal}
@@ -285,8 +304,15 @@ const Header = ({ hidden }) => {
 	)
 }
 
-const mapStateToProps = createStructuredSelector({
-	hidden: selectCartHidden,
-})
+// const mapStateToProps = createStructuredSelector({
+// 	hidden: selectCartHidden,
+// 	cartItems: selectCartItems
+// })
 
-export default connect(mapStateToProps)(Header)
+// const mapDispatchToProps = dispatch => ({
+//     removeItem: cartItems => dispatch(clearItemFromCart(cartItems)),
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Header)
+
+export default Header

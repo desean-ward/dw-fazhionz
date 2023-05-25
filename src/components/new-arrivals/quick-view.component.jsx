@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react'
 import ReactDom from 'react-dom'
 
 import { connect } from 'react-redux'
 import { addItem } from '../../redux/cart/cart.actions'
+
+import { UserContext } from '../../context/user.context'
+import { CartContext } from '../../context/cart.context'
+
+import { updateCartInDB } from '../../utils/firebase/firebase.utils'
 
 import { motion, AnimatePresence} from 'framer-motion'
 
@@ -23,17 +28,27 @@ import CartIcon from '../../components/cart-icon/cart-icon.component'
 import { MotionConfig } from 'framer-motion';
 
 
-const QuickView = ({ show, close, index, imageUrl, name, price, category, addItem, item, dispatch }) => {
+const QuickView = ({ show, close, index, imageUrl, name, price, category, item }) => {
     const [ popupViews, setPopupViews ] = useState([])
 	const [ popupProducts, setPopupProducts ] = useState([])
 	const [ closeBtns, setCloseBtns ] = useState([])
 
+    const { currentUser, setCurrentUser } = useContext(UserContext)
+    const { cartItems, setCartItems } = useContext(CartContext)
+    const { addItemToCart } = useContext(CartContext)
 	const nowPrice = price - (price * .15)
 
-    const addToBag = e => {
+    // useEffect(() => {
+    //     if (currentUser)  updateCart(currentUser, cartItems)
+    // }, [cartItems])
+
+    const addToBag = (e) => {
 		e.preventDefault();
-		addItem(item)
-	}
+
+        addItemToCart(item)
+        updateCartInDB(currentUser, cartItems)
+    }
+       
 
     function handleClose() {
 		const fadeIn = document.querySelector('.popup__view')
@@ -126,8 +141,10 @@ const QuickView = ({ show, close, index, imageUrl, name, price, category, addIte
   )
 };
 
-const mapDispatchToProps = (dispatch) => ({
-	addItem: (item) => dispatch(addItem(item)),
-})
+// const mapDispatchToProps = (dispatch) => ({
+// 	addItem: (item) => dispatch(addItem(item))
+// })
 
-export default connect(null, mapDispatchToProps)(QuickView)
+// export default connect(null, mapDispatchToProps)(QuickView)
+
+export default QuickView

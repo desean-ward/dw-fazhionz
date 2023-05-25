@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState, useContext } from 'react'
 
+import { connect } from 'react-redux'
+//import { addItem, clearCart } from '../../redux/cart/cart.actions';
 import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 
@@ -7,7 +9,8 @@ import { db, auth } from '../../utils/firebase/firebase.utils'
 import { doc, getDoc } from 'firebase/firestore'
 
 
-import { UserContext } from '../../context/user.context.jsx'
+import { UserContext } from '../../context/user.context'
+import { CartContext } from '../../context/cart.context'
 
 import { IconContext } from 'react-icons'
 
@@ -18,24 +21,28 @@ import {
 	HeaderMessageContainer,
 } from './header-message.styles'
 
-const HeaderMessage = () => {
+const HeaderMessage = (/* { addItem, clearCart } */) => {
 	const initialState = 'Hello'
 	const [ name, setName ] = useState(initialState)
 	const [ nameUpdated, setNameUpdated ] = useState(false)
-	const { currentUser } = useContext(UserContext)
+	const { currentUser, setCurrentUser } = useContext(UserContext)
+	const { addItemToCart } = useContext(CartContext)
 
-	const getCurrentUser = () => {
+	const getCurrentUser = async () => {
 		if (!currentUser) return
+	
+		const { cartItems, displayName } =  currentUser
 
-		console.log("HEADER: " + currentUser.displayName)
+		// if( cartItems && cartItems.length ) {
+		// 	console.log("Got the cart")
+		// 	cartItems.forEach((item) => {
+		// 		addItemToCart(item)
+		// 	})
+		// }
+
+
+		setName(displayName)
 		
-		/* if (nameUpdated == false) {
-			setName(currentUser.displayName)
-			setNameUpdated(true)
-		} */
-
-		setName(currentUser.displayName)
-
 	}
 
 	useEffect(() => {
@@ -44,6 +51,7 @@ const HeaderMessage = () => {
 		}
 
 		 return updateName()
+		 
 	}, [currentUser]) 
 
 	
@@ -68,5 +76,12 @@ const HeaderMessage = () => {
 		</HeaderMessageContainer>
 	)
 }
+
+// const mapDispatchToProps = dispatch => ({
+// 	addItem: (item) => dispatch(addItem(item)),
+// 	clearCart: () => dispatch(clearCart())
+// })
+
+// export default connect(null, mapDispatchToProps)(HeaderMessage)
 
 export default HeaderMessage

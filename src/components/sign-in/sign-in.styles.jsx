@@ -5,6 +5,11 @@ export const SignInContainer = styled.div`
     display: flex;
     flex-direction: column;
 
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.5
+    }
+
     .title {
         margin: 10px 0;
     }
@@ -16,6 +21,8 @@ export const SignInContainer = styled.div`
         justify-items: space-between;
         gap: 1em;
         width: 70%;
+
+        
 
         @media (width < 540px) {
             

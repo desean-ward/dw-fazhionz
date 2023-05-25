@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { connect } from 'react-redux';
 
 import { clearItemFromCart } from '../../redux/cart/cart.actions';
+import { updateCartInDB } from '../../utils/firebase/firebase.utils';
+import { CartContext } from '../../context/cart.context';
+import { UserContext } from '../../context/user.context';
 
 import GlassModal from '../../components/glass-popup/glass-popup.component'
 
 
 import StripeCheckout from 'react-stripe-checkout';
+import { getCurrentUrl } from 'swup/lib/helpers';
+import { setCurrentUser } from '../../redux/user/user.actions';
 
-const StripeCheckoutButton = ({ price, cartItems, removeItem }) => {
+const StripeCheckoutButton = ({ price, total }) => {
     const [ modal, setModal ] = useState(false)
+    const { cartItems, setCartItems } = useContext(CartContext)
+    const { currentUser } = useContext(UserContext)
 
     const priceForStripe = price;
     const newPrice = priceForStripe - (priceForStripe * .15)
@@ -19,9 +26,11 @@ const StripeCheckoutButton = ({ price, cartItems, removeItem }) => {
         showModal()
 
         {
-            cartItems.map(cartItem => 
-                removeItem(cartItem)
-            );
+            // cartItems.map(cartItem => 
+            //     removeItem(cartItem)
+            // );
+            setCartItems([])
+            updateCartInDB(currentUser, cartItems)
         }
     }
 
@@ -39,8 +48,8 @@ const StripeCheckoutButton = ({ price, cartItems, removeItem }) => {
                 billingAddress 
                 shippingAddress 
                 image='https://img.icons8.com/ios-filled/50/000000/jacket.png' 
-                description={`Your total is $${newPrice.toFixed(2)}`} 
-                amount={priceForStripe} 
+                description={`Your total is $${price.toFixed(2)}`} 
+                amount={total} 
                 panelLabel='Pay Now' 
                 token={onToken} 
                 stripeKey={publishableKey}
@@ -57,8 +66,10 @@ const StripeCheckoutButton = ({ price, cartItems, removeItem }) => {
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    removeItem: cartItems => dispatch(clearItemFromCart(cartItems)),
-});
+// const mapDispatchToProps = dispatch => ({
+//     removeItem: cartItems => dispatch(clearItemFromCart(cartItems)),
+// });
 
-export default connect(null, mapDispatchToProps)(StripeCheckoutButton);
+// export default connect(null, mapDispatchToProps)(StripeCheckoutButton);
+
+export default StripeCheckoutButton

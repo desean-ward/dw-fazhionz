@@ -44,7 +44,7 @@ export const ItemContainer = styled.div`
 
 export const ImageContainer = styled.div`
     width: 12.5%;
-    //height: 150px;
+    height: 125px;
     //padding-right: 15px;
     //height: 100px;
     object-fit: stretch;

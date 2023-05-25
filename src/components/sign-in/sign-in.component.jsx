@@ -4,6 +4,8 @@ import CustomButton from '../../components/custom-button/custom-button.component
 import GlassModal from '../glass-popup/glass-popup.component'
 
 import { UserContext } from '../../context/user.context'
+import { CartContext } from '../../context/cart.context'
+
 
 import { SignInContainer } from './sign-in.styles'
 
@@ -12,6 +14,7 @@ import {
 	signInWithGooglePopup,
 	createUserDocumentFromAuth,
 	signInAuthUserWithEmailAndPassword,
+	getCartItems
 } from '../../utils/firebase/firebase.utils.js'
 
 const defaultFormFields = {
@@ -26,13 +29,10 @@ const SignIn = () => {
 	const [error, setError] = useState('')
 	const { email, password } = formFields
 	const { currentUser, setCurrentUser } = useContext(UserContext)
+	const { cartItems, setCartItems } = useContext(CartContext)
 
 	const showModal = () => {
 		setModal(!modal)
-	}
-
-	const updateUser = (user) => {
-		console.log('USER: ' + user)
 	}
 
 	const handleSubmit = async (event) => {
@@ -43,8 +43,11 @@ const SignIn = () => {
 				email,
 				password
 			)
+			
+			setCurrentUser(user)
+			setCartItems(user.cartItems)
+			console.log("SIGNED IN: " + JSON.stringify(user) + ": " + JSON.stringify(user.cartItems))
 
-			updateUser(user)
 			/* Clear out the state */
 			setFormFields(defaultFormFields)
 		} catch (error) {
@@ -71,7 +74,11 @@ const SignIn = () => {
 	const googleSignIn = async () => {
 		const { user } = await signInWithGooglePopup()
 		const userDocRef = await createUserDocumentFromAuth(user)
-		setCurrentUser(user.displayName)
+		//setCurrentUser(user)
+		//setCartItems(getCartItems(currentUser))
+		const userItems = await getCartItems(user)
+		setCartItems(userItems)
+		//console.log("CURRENT GOOGLE USER: " + JSON.stringify(userDocRef))
 	}
 
 	/* Handles the change of Input  AND password fields*/

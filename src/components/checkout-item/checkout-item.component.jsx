@@ -4,17 +4,31 @@ Individual items listed on the check out page.
 
 *************************************************************************/
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import { MdOutlineDeleteForever } from 'react-icons/md';
 import { BiPlus, BiMinus } from 'react-icons/bi';
 
-import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions';
+import { clearItemFromCart, addItem, removeItem, clearCart } from '../../redux/cart/cart.actions';
+import { CartContext } from '../../context/cart.context'
+
+import { motion } from 'framer-motion'
 
 import { ItemContainer, InfoContainer, ImageContainer, Name, Quantity, Price, RemoveBtn} from './checkout-item.styles';
+import { updateCartInDB } from '../../utils/firebase/firebase.utils';
+import { getCurrentUrl } from 'swup/lib/helpers';
+import { UserContext } from '../../context/user.context';
 
-const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
+ 
+
+
+const CheckoutItem = ({ cartItem }) => {
+    const { cartItems, setCartItems } = useContext(CartContext)
+    const { addItemToCart, removeItemFromCart, deleteItemFromCart } = useContext(CartContext)
+    const { currentUser } = useContext(UserContext)
+
+    const [ isVisible, setIsVisible ] = useState(true)
     const { name, imageUrl, price, quantity } = cartItem;
     const newPrice = price - (price * .15)
     const itemTotal = Number(newPrice) * quantity;
@@ -24,87 +38,156 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
     const inputRef = useRef(quantity)
     let updatedQty = quantity;
 
+    const variants = {
+        initial: { opacity: 1, scale: 1 },
+        animate: { opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0 },
+        exit: { opacity: 0, scale: 0 }
+    }
+
     const handleQtyClick = (e) => {
         e.target.select();
     }
   
+    /* Adds or Removes an item and updates the quantity */
     const handleQtyChange = (e) => {
-        
-
-        if (e.target.value.length !== -1) {
-            
-            console.log("LENGTH: " + e.target.value.length);
-
+        if (e.target.value.length !== 0) {
             updatedQty = parseInt(e.target.value - 1);
-            
-            console.log("QUANTITY: " + updatedQty);
-            
             cartItem.quantity = updatedQty;
             
-            addItem(cartItem);
+            console.log("ADDING ITEM")
+            addItemToCart(cartItem);
+            console.log("CART AFTER ADDING: " + JSON.stringify(cartItems))
             
         } else {
-            if(inputRef.current.value == "") {
-                cartItem.quantity = 0;
-                removeItem(cartItem);
+            if(inputRef.current.value == "0" || inputRef.current.value == "") {
+                cartItem.quantity = 1;
+                setIsVisible(false)
+
+                const removeItem = () => {
+                    if (cartItem) {
+                        console.log("REMOVING ITEM")
+                        removeItemFromCart(cartItem)
+                        setCartItems([])
+                    }
+
+                    
+                }
+        
+                const myTimeout = setTimeout(removeItem, 400)
+        
+                
             }
+
+            updateCartInDB(currentUser, cartItems)
         }
     }
 
+    const clearTheCart = () => {
+        setCartItems([])
+    }
+
+    /* Removes the entire item from cart IF the quantity is '0' */
     const handleOnBlur = () => {
-        
-        if(itemTotal == 0) {
-            console.log("ITEM TOTAL: " + itemTotal)
-            clearItem(cartItem);
+        if(inputRef.current.value == "0" || inputRef.current.value == "") {
+            cartItem.quantity = 1;
+            setIsVisible(false)
+
+            const deleteItem = async () => {
+                if (cartItem) {
+                    removeItemFromCart(cartItem)
+                    //setCartItems(...cartItem, {quantity: 0})
+                }
+
+                await updateCartInDB(currentUser, cartItems)
+            }
+    
+            const myTimeout = setTimeout(deleteItem, 400)
+    
+            
         }
     }
 
     const handleKeyUp = (e) => {
-        if (itemTotal === 0) {
-            inputRef.current.value = "";
-        }
+        // if (itemTotal === 0) {
+        //     inputRef.current.value = "";
+        // }
 
         if (e.keyCode === 13) inputRef.current.blur();
         
     }
 
-    return(
-        <ItemContainer className="checkout-item">
-            <ImageContainer className="image-container                                                                                                                                                                                                                        ">
-                <img src={imageUrl} alt="item" />
-            </ImageContainer>
+    /* Deletes the entire item quantity from the cart */
+    const handleDeleteFromCart = (cartItem) => {
+        console.log("INSIDE HANDLE DELETE FROM CART")
 
-            <InfoContainer>
-                <Name className="name sect">{name}</Name>
+        setIsVisible(false)
+        
+        const deleteItem = () => {
+            if (cartItem) {
+                deleteItemFromCart(cartItem)
                 
-                <Quantity className="quantity sect">
-                    <div className="arrow" onClick={() => removeItem(cartItem)}><BiMinus /></div>
-                    <input type="input"
-                    id="value" 
-                    className="value" 
-                    ref={inputRef}
-                    onChange={handleQtyChange} 
-                    onClick={handleQtyClick} 
-                    onKeyUp={handleKeyUp}
-                    onBlur={handleOnBlur}
-                    value={updatedQty} />
-                    <div className="arrow" onClick={() => addItem(cartItem)}><BiPlus /></div>
-                </Quantity>
+                console.log("AFTER ITEM DELETION: " + JSON.stringify(cartItems))
+                
+            } else {
+                console.log("NO ITEM TO DELETE")
+            }
+            
+            updateCartInDB(currentUser, cartItems)
 
-                <Price className="price sect">${newItemTotal}</Price>
+        }
 
-                <RemoveBtn className="remove-button sect"  onClick={() => clearItem(cartItem)}>{<MdOutlineDeleteForever className="trash-icon" />}</RemoveBtn>
-            </InfoContainer>
-        </ItemContainer>
+        const myTimeout = setTimeout(deleteItem, 400)
+        
+        //updateCartInDB(currentUser, cartItems)
+
+    }
+
+    return (
+        <motion.div
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={variants}
+            transition={{ duration: 0.5 }}
+            style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
+            >
+            <ItemContainer className="checkout-item">
+                <ImageContainer className="image-container                                                                                                                                                                                                                        ">
+                    <img src={imageUrl} alt="item" />
+                </ImageContainer>
+
+                <InfoContainer>
+                    <Name className="name sect">{name}</Name>
+                    
+                    <Quantity className="quantity sect">
+                        <div className="arrow" onClick={() => removeItemFromCart(cartItem)}><BiMinus /></div>
+                        <input type="input"
+                        id="value" 
+                        className="value" 
+                        ref={inputRef}
+                        onChange={handleQtyChange} 
+                        onClick={handleQtyClick} 
+                        onKeyUp={handleKeyUp}
+                        onBlur={handleOnBlur}
+                        value={updatedQty} />
+                        <div className="arrow" onClick={() => addItemToCart(cartItem)}><BiPlus /></div>
+                    </Quantity>
+
+                    <Price className="price sect">${newItemTotal}</Price>
+
+                    <RemoveBtn className="remove-button sect"  onClick={() => handleDeleteFromCart(cartItem)}>{<MdOutlineDeleteForever className="trash-icon" />}</RemoveBtn>
+                </InfoContainer>
+            </ItemContainer>
+        </motion.div>
     );
 };
 
-const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item)),
+// const mapDispatchToProps = dispatch => ({
+//     addItem: item => dispatch(addItem(item)),
+//     removeItem: item => dispatch(removeItem(item)),
+//     clearItem: item => dispatch(clearItemFromCart(item))
+// });
 
-    removeItem: item => dispatch(removeItem(item)),
+// export default connect(null, mapDispatchToProps)(CheckoutItem);
 
-    clearItem: item => dispatch(clearItemFromCart(item))
-});
-
-export default connect(null, mapDispatchToProps)(CheckoutItem);
+export default CheckoutItem

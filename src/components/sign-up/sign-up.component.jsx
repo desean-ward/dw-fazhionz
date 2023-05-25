@@ -1,9 +1,16 @@
 import React, { useState, useContext, useEffect, Fragment } from 'react';
 
+import { connect } from "react-redux";
+import { selectCartItems } from "../../redux/cart/cart.selectors";
+import { createStructuredSelector } from "reselect";
+
+
 import FormInput from '../form-input/form-input.component';
 import GlassModal from '../glass-popup/glass-popup.component'
 
 import { UserContext } from '../../context/user.context'
+import { CartContext } from '../../context/cart.context';
+
 import CustomButton from '../custom-button/custom-button.component';
 
 import { auth, createUserDocumentFromAuth, createAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
@@ -28,6 +35,7 @@ const SignUp = () => {
 	const [error, setError] = useState('')
 
     const { currentUser, setCurrentUser } = useContext(UserContext)
+    const { cartItems, setCartItems } = useContext(CartContext)
 
     const showModal = () => {
 		setModal(!modal)
@@ -37,23 +45,29 @@ const SignUp = () => {
         event.preventDefault();
 
         if (password !== confirmPassword) {
-            alert ('Passwords do not match!');
+            setError('Passwords do not match!')
+            showModal()
             return;
         }
 
         try {
             const { user } = await createAuthUserWithEmailAndPassword (email, password );
 
-           setCurrentUser(user)
+            setCurrentUser(user)
+            
            
 
-            await createUserDocumentFromAuth (user, { displayName });
+            await createUserDocumentFromAuth (user, { displayName, cartItems });
 
              // Clear out the form //
            setFormFields(defaultFormFields)
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
                 setError('Cannot create user. Email already in use.')
+                showModal()
+                setFormFields(defaultFormFields)
+            } if (error.code === 'auth/weak-password') {
+                setError('Password must be at least 6 characters.')
                 showModal()
                 setFormFields(defaultFormFields)
             } else {
@@ -130,7 +144,7 @@ const SignUp = () => {
                         /> 
                         
                         <ButtonsContainer>
-                            <CustomButton className='custom-button' type = 'submit' onSubmit = { handleSubmit }>SIGN UP</CustomButton>
+                            <CustomButton className='custom-button' type = 'submit' onSubmit = { handleSubmit } >SIGN UP</CustomButton>
                         </ButtonsContainer>
                     </form>
                 </SignUpForm>
@@ -147,6 +161,12 @@ const SignUp = () => {
     ) 
     
 }
+
+// const mapStateToProps = createStructuredSelector({
+// 	cart: selectCartItems,
+// });
     
 
-export default SignUp;
+// export default connect(mapStateToProps)(SignUp);
+
+export default SignUp

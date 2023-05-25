@@ -12,6 +12,10 @@ import { createStructuredSelector } from "reselect";
 
 import CartItem from "../cart-item/cart-item.component";
 import { CartContext } from '../../context/cart.context'
+import { UserContext } from "../../context/user.context";
+
+import { updateCart } from '../../utils/firebase/firebase.utils';
+
 
 import CustomButton from "../custom-button/custom-button.component";
 
@@ -19,6 +23,8 @@ import { useAnimation, AnimatePresence } from 'framer-motion'
 import { useInView } from "react-intersection-observer";
 
 import { DropdownContainer, CartItems,  EmptyMessage, ButtonContainer } from "./cart-dropdown.styles";
+import { setCurrentUser } from "../../redux/user/user.actions";
+//import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 function withRouter(Component) {
 	function ComponentWithRouterProp(props) {
@@ -37,7 +43,7 @@ function withRouter(Component) {
   }
   
 
-const CartDropdown = ({ cartItems, dispatch }) => {
+const CartDropdown = ({ /*cartItems, dispatch*/ }) => {
 	const controls = useAnimation();
     const [ref, inView] = useInView();
 
@@ -49,10 +55,28 @@ const CartDropdown = ({ cartItems, dispatch }) => {
         }
     }, [controls, inView]);
 
+	const { currentUser } = useContext(UserContext)
+	const { cartItems, setCartItems, isCartOpen, setIsCartOpen } = useContext(CartContext)
+	const [ cartTotal, setCartTotal ] = useState(0)
 	const [ isOpen, setIsOpen ] = useState(null);
-	const { isCartOpen, setIsCartOpen } = useContext(CartContext)
 	const [ hasItems, setHasItems ] = useState(false);
 	const navigate = useNavigate()
+
+    let total = 0
+	const discounted = (cartTotal - (cartTotal * .15)).toFixed(2)
+
+    useEffect(() => {
+        
+        const totalTheCart = async () => cartItems.map(item => {
+            total += item.quantity * item.price
+            setCartTotal(total)
+            console.log('$' + discounted)
+        })
+
+        totalTheCart()
+		
+        
+    }, [cartItems])
 
 	const checkOpen = () => {
 		setIsOpen(true);
@@ -89,7 +113,7 @@ const CartDropdown = ({ cartItems, dispatch }) => {
 				transition={{ duration: 0.3 }}
 			>
 					<CartItems>
-						{cartItems.length && hasItems ? (
+						{cartItems.length ? (
 							cartItems.map((cartItem) => (
 								<CartItem 
 									key={cartItem.id}
@@ -105,6 +129,8 @@ const CartDropdown = ({ cartItems, dispatch }) => {
 							
 						
 					</CartItems>
+					<hr />
+					<span className='total'>Total: ${discounted}</span>
 					
 					<ButtonContainer isOpen={isOpen} hasItems={hasItems} >
 						<CustomButton
@@ -112,7 +138,7 @@ const CartDropdown = ({ cartItems, dispatch }) => {
 							onClick={() => {
 								navigate("/checkout");
 								setIsCartOpen(!isCartOpen);
-								dispatch(toggleCartHidden());
+								// dispatch(toggleCartHidden());
 							}}
 						>
 							GO TO CHECKOUT
@@ -123,8 +149,13 @@ const CartDropdown = ({ cartItems, dispatch }) => {
 	);
 };
 
-const mapStateToProps = createStructuredSelector({
-	cartItems: selectCartItems,
-});
+// const mapStateToProps = createStructuredSelector({
+// 	cartItems: selectCartItems,
+// });
 
-export default withRouter(connect(mapStateToProps)(CartDropdown));
+// const mapDispatchToProps = (currentUser, dispatch) => ({
+// 	updateCart: (currentUser, cartItems) => dispatch(updateCart(currentUser, cartItems))
+// })
+
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CartDropdown));
+export default withRouter(CartDropdown)
