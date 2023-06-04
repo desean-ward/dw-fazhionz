@@ -14,7 +14,6 @@ import {
 	db,
 	auth,
 	createUserDocumentFromAuth,
-	updateCart
 } from './utils/firebase/firebase.utils'
 import { doc, getDoc } from 'firebase/firestore'
 import { setCurrentUser } from './redux/user/user.actions'
@@ -49,31 +48,19 @@ const App = ( ) => {
 				if (userAuth) {
 					const userRef = await createUserDocumentFromAuth(userAuth)
 
-				const docRef = doc(db, 'users', userAuth.uid)
+					const docRef = doc(db, 'users', userAuth.uid)
 
-				await getDoc(docRef).then((doc) => {
-					setCurrentUser(doc.data())
-				})
+					await getDoc(docRef).then((doc) => {
+						setCurrentUser(doc.data())
+					})
 
-					/* userRef.onSnapshot((snapShot) => {
-						setCurrentUser({
-							currentUser: {
-								id: snapShot.id,
-								...snapShot.data(),
-							},
-						})
-					}) */
-					/* alert('GOT EM!!!!: ' + JSON.stringify(userAuth.uid)) */
 				}
-
-
-				//setCurrentUser(userAuth)
 			}
 		)
-		
 
 		return unsubscribeFromAuth
 	}, [])
+	
 
 	return (
 		<div>

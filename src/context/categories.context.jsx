@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 
-import { getCategoriesAndDocuments } from '../utils/firebase/firebase.utils.js'
+import { getCategoriesAndDocuments, getProductDescriptions } from '../utils/firebase/firebase.utils.js'
 
 import PRODUCTS from '../routes/shop/shop.data1.js'
 
@@ -8,9 +8,13 @@ export const CategoriesContext = createContext({
     categoriesMap: {},
 })
 
+
+
+
 export const CategoriesProvider = ({ children }) => {
-    const [categoriesMap, setCategoriesMap] = useState({})
-    const value = { categoriesMap }
+    const [ categoriesMap, setCategoriesMap ] = useState({})
+    const [ productDescriptions, setProductDescriptions ] = useState([])
+    
 
     // Initially used to transfer the shop data to the database -- KEEP COMMENTED OUT!!!
    /*  useEffect(() => {
@@ -23,10 +27,19 @@ export const CategoriesProvider = ({ children }) => {
             setCategoriesMap(categoryMap)
         }
 
+        const getProductDescription = async () => {
+            const descriptions = await getProductDescriptions()
+            setProductDescriptions(descriptions)
+        }
+
         getCategoriesMap()
-        console.log('INSIDE CAT CONTEXT: ' + JSON.stringify(categoriesMap))
+        getProductDescription()
 
     }, [])
+
+    //useEffect(() => console.log('PRODUCT DESCRIPTIONS: ' + JSON.stringify(productDescriptions)), [productDescriptions])
+
+    const value = { categoriesMap, productDescriptions }
 
     return (
         <CategoriesContext.Provider value={value}>{ children }</CategoriesContext.Provider>

@@ -6,6 +6,7 @@ import { addItem } from '../../redux/cart/cart.actions'
 
 import { UserContext } from '../../context/user.context'
 import { CartContext } from '../../context/cart.context'
+import { CategoriesContext } from '../../context/categories.context'
 
 import { updateCartInDB } from '../../utils/firebase/firebase.utils'
 
@@ -16,9 +17,9 @@ import {
 	PopupProduct,
 	PopupImage,
 	PopupView,
+    Description,
 	AddSectionLinks,
 } from './product.styles'
-
 
 
 import { IoMdClose } from 'react-icons/io'
@@ -28,19 +29,17 @@ import CartIcon from '../../components/cart-icon/cart-icon.component'
 import { MotionConfig } from 'framer-motion';
 
 
-const QuickView = ({ show, close, index, imageUrl, name, price, category, item }) => {
+const QuickView = ({ show, close, index, imageUrl, title, price, category, name, item, description }) => {
     const [ popupViews, setPopupViews ] = useState([])
 	const [ popupProducts, setPopupProducts ] = useState([])
 	const [ closeBtns, setCloseBtns ] = useState([])
 
     const { currentUser, setCurrentUser } = useContext(UserContext)
-    const { cartItems, setCartItems } = useContext(CartContext)
-    const { addItemToCart } = useContext(CartContext)
+    const { cartItems, setCartItems, addItemToCart} = useContext(CartContext)
+    const { productDescriptions } = useContext(CategoriesContext)
 	const nowPrice = price - (price * .15)
 
-    // useEffect(() => {
-    //     if (currentUser)  updateCart(currentUser, cartItems)
-    // }, [cartItems])
+    
 
     const addToBag = (e) => {
 		e.preventDefault();
@@ -106,14 +105,12 @@ const QuickView = ({ show, close, index, imageUrl, name, price, category, item }
                                 <h3>
                                     { name }
                                     <br />
-                                    <span>{ category }</span>
+                                    <span>{ title }</span>
                                 </h3>
 
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro soluta nulla, similique, dignissimos quaerat amet doloremque nobis pariatur, a id harum! Nam ipsam omnis explicabo ipsa? Exercitationem, expedita, vero asperiores non quam amet dolorum nobis repudiandae quae alias obcaecati doloribus libero quo animi. Omnis, similique ipsum optio incidunt unde quia, harum deserunt at, accusamus odio ipsa eum alias ipsam vitae?
-                                    
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro soluta nulla, similique, dignissimos quaerat amet doloremque nobis pariatur, a id harum! Nam ipsam omnis explicabo ipsa? Exercitationem, expedita, vero asperiores non quam amet dolorum nobis repudiandae quae alias obcaecati doloribus libero quo animi. Omnis, similique ipsum optio incidunt unde quia, harum deserunt at, accusamus odio ipsa eum alias ipsam vitae?
-                                    </p>
+                                <Description>
+                                    <p>{description}</p>
+                                </Description>
 
                                 <span className='wasPrice'>${price}.00</span>
                                 <span className='price'>${nowPrice.toFixed(2)}</span>

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 import CategoryItem from '../category-item/category-item.component.jsx'
 
-import { CategoriesContext } from '../../context/categories.context'
 
 import { CategoryContainer, PreviewContainer, TitleContainer, ProductsContainer } from './category.styles'
 
@@ -28,7 +27,7 @@ const Category = ({ title, products }) => {
 					{products
 						.filter((_, idx) => idx < 4)
 						.map((product) => (
-							<CategoryItem key={product.id} item={product} />
+							<CategoryItem key={product.id} item={product} title={title} id={product.id} />
 					))}
 					</ProductsContainer>
 			</PreviewContainer>

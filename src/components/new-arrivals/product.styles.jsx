@@ -370,7 +370,9 @@ export const Info = styled.div`
 	}
 `
 
-export const Description = styled.div``
+export const Description = styled.div`
+	height: 65%;
+`
 
 export const AddSectionLinks = styled.div`
 	position: relative;

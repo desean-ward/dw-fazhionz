@@ -1,17 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { connect } from 'react-redux'
 
 import CustomButton from '../custom-button/custom-button.component'
 
 import { addItem } from '../../redux/cart/cart.actions'
+//import { productDescription } from '../../utils/openai/openai.utils'
+//import { addProductDescriptions } from '../../utils/firebase/firebase.utils'
 
 import QuickView from '../../components/new-arrivals/quick-view.component'
 
 import { CategoryItemContainer, ImageContainer, Image, ButtonContainer, FooterContainer } from './category-item.styles'
+import { CategoriesContext } from '../../context/categories.context'
+import { getCartItems } from '../../utils/firebase/firebase.utils'
 
 
 //**** The individual item/product for each category ****//
-const CategoryItem = ({ item, addItem }) => {
+const CategoryItem = ({ title, item, id }) => {
 	/********** VARIABLES **********/
 	const { name, price, imageUrl } = item
 	const [isLoading, setIsLoading] = useState(true)
@@ -19,6 +23,10 @@ const CategoryItem = ({ item, addItem }) => {
 	const [ index, setIndex ] = useState(0)
 	const [ popupBtns, setPopupBtns ] = useState([])
 	const [ quickView, setQuickViews ] = useState([])
+	const [ products, setProducts ] = useState([])
+	const [ description, setDescription ] = useState("Product Description Coming Soon...")
+
+	const { productDescriptions } = useContext(CategoriesContext)
 
 	const imgContainerRef = useRef(null)
 	const imgRef = useRef(null)
@@ -64,6 +72,26 @@ const CategoryItem = ({ item, addItem }) => {
 		setQuickViews(document.querySelectorAll('.quick__view'))
 	}, [])
 
+	useEffect(() => {
+		console.log("PRODUCT DESCRIPTIONS: " + JSON.stringify(productDescriptions));
+			const getDescription = () => {
+			try {
+				const name = item.name.toLowerCase();
+				console.log("NAME: " + name);
+				
+				const matchingDescription = productDescriptions.find(prod => prod.description.toLowerCase().includes(name));
+				if (matchingDescription) {
+				console.log("MATCH: " + matchingDescription.description.toLowerCase());
+				return setDescription(matchingDescription.description);
+				}
+			} catch (err) {
+				console.log("There was an error fetching the description: " + err);
+			}};
+
+			getDescription();
+	}, [])
+	
+
 	return (
 
 		/********** CATEGORY ITEM  **********/
@@ -104,19 +132,23 @@ const CategoryItem = ({ item, addItem }) => {
 				className='quick__view'
 				show={show}
 				close={close}
-				category={item.category}
-				name={item.name}
+				item={item}
+				title={title}
 				price={item.price}
 				imageUrl={item.imageUrl}
-				item={item}
+				name={item.name}
+				id={item.id}
+				description={description}
 			/>
 			{/*****************************************/}
 		</CategoryItemContainer>
 	)
 }
 
-const mapDispatchToProps = (dispatch) => ({
-	addItem: (item) => dispatch(addItem(item)),
-})
+// const mapDispatchToProps = (dispatch) => ({
+// 	addItem: (item) => dispatch(addItem(item)),
+// })
 
-export default connect(null, mapDispatchToProps)(CategoryItem)
+// export default connect(null, mapDispatchToProps)(CategoryItem)
+
+export default CategoryItem

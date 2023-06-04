@@ -5,21 +5,24 @@ import {
 	getDoc,
 	setDoc,
 	updateDoc,
+	deleteDoc,
+	addDoc,
 	collection,
 	writeBatch,
 	query,
-	getDocs
+	getDocs,
 } from 'firebase/firestore'
 import 'firebase/auth'
-import { 
+import {
 	getAuth,
 	onAuthStateChanged,
 	signInWithPopup,
 	signOut,
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword 
+	signInWithEmailAndPassword,
 } from 'firebase/auth'
+import { indexOf } from 'lodash'
 
 /* Configuration Object Copied From Firebase Console */
 const firebaseConfig = {
@@ -46,22 +49,21 @@ export const auth = getAuth()
 /* For Google Database (store) Authentication */
 export const db = getFirestore()
 
-
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
 
 /* Checks to see if a userAuth exists/returns */
-export const createUserDocumentFromAuth = async (userAuth, 
-additionalInformation = {}) => {
+export const createUserDocumentFromAuth = async (
+	userAuth,
+	additionalInformation = {}
+) => {
 	if (!userAuth) return
 	const userDocRef = doc(db, 'users', userAuth.uid)
 	const userSnapshot = await getDoc(userDocRef)
-
 
 	//Checking to see if the snapshot exists
 	if (!userSnapshot.exists()) {
 		const { email, displayName, uid } = userAuth
 		const createdAt = new Date()
-		
 
 		//If the snapshot doesn't exist
 		//We'll create one using the 'userAuth' object
@@ -71,9 +73,8 @@ additionalInformation = {}) => {
 				displayName,
 				email,
 				createdAt,
-				...additionalInformation
+				...additionalInformation,
 			})
-
 		} catch (error) {
 			console.log('Error creating the user', error.message)
 		}
@@ -84,7 +85,7 @@ additionalInformation = {}) => {
 
 /* Custom function to create an authorized user with email/password */
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
-	if(!email || !password) return
+	if (!email || !password) return
 
 	/* Actual function for creation within Firebase */
 	return await createUserWithEmailAndPassword(auth, email, password)
@@ -92,8 +93,8 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 
 /* Custom function to sign-in an authorized user with email/password */
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
-	if(!email || !password) return
-	
+	if (!email || !password) return
+
 	/* Actual function for creation within Firebase */
 	await signInWithEmailAndPassword(auth, email, password)
 
@@ -104,14 +105,16 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 		const user = userSnapshot.data()
 		return user
 	} catch (err) {
-		console.log("Error returning signed in user: " + err)
+		console.log('Error returning signed in user: ' + err)
 	}
 }
+
 
 // Add categories to the database
 export const addCategoriesAndDocuments = async (
 	collectionKey,
-	objectsToAdd) => {
+	objectsToAdd,
+) => {
 	const collectionRef = collection(db, collectionKey)
 
 	const batch = writeBatch(db)
@@ -124,19 +127,65 @@ export const addCategoriesAndDocuments = async (
 	return await batch.commit()
 }
 
+
 // Retrieve data from the database
 export const getCategoriesAndDocuments = async () => {
 	const collectionRef = collection(db, 'categories')
+	const descriptionRef = collection(db, 'descriptions')
 	const q = query(collectionRef)
 
 	const querySnapshot = await getDocs(q)
+	const descSnapshot = await getDocs(descriptionRef)
+	//const descriptions = {description: 'test'}
+
 	const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
 		const { title, items } = docSnapshot.data()
 		acc[title.toLowerCase()] = items
 		return acc
 	}, {})
+
 	return categoryMap
 }
+
+
+/* Add the product descriptions from OpenAI */
+export const addProductDescriptions = async (prodDescs) => {
+	if (!prodDescs) return console.log('No descriptions to add!')
+
+	let collectionRef = collection(db, 'descriptions')
+	let collectionSnapshot = await getDocs(collectionRef)
+	console.log("ATTEMPTING TO ADD DESCRIPTIONS" + JSON.stringify(prodDescs.length))
+
+	if(!collectionSnapshot.empty) {	
+		try {
+			prodDescs.forEach(async description => { 
+				console.log("ADDING... " + JSON.stringify(description))
+				const newDocRef = await addDoc(collectionRef, { description })
+			})
+
+			return console.log('Descriptions Created!')
+		} catch (err) {
+			console.log('Error creating descriptions: ' + err)
+		}
+	} else console.log("Descriptions already exist!")
+}
+
+// Retrieve data from the database
+export const getProductDescriptions = async () => {
+	const descriptionRef = collection(db, 'descriptions')
+	const q = query(descriptionRef)
+	const descriptions = []
+
+	const querySnapshot = await getDocs(q)
+	
+	querySnapshot.forEach((doc) => {
+		descriptions.push(doc.data())
+		//console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
+	})
+
+	return descriptions
+}
+
 
 export const convertCollectionsSnapshotToMap = (collections) => {
 	const transformedCollection = collections.docs.map((doc) => {
@@ -156,10 +205,11 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 	}, {})
 }
 
+
 /* Get the cart items for logged in Google User */
 export const getCartItems = async (user) => {
 	if (user) {
-		console.log('GOT GOOGLE CURRENT USER:' + JSON.stringify(user.uid));
+		console.log('GOT GOOGLE CURRENT USER:' + JSON.stringify(user.uid))
 		const userRef = doc(db, 'users', user.uid)
 		const userSnapshot = await getDoc(userRef)
 
@@ -167,50 +217,54 @@ export const getCartItems = async (user) => {
 			if (userSnapshot.exists()) {
 				const cartItems = userSnapshot.data().cartItems
 				if (cartItems !== null || cartItems !== 'undefined') {
-					console.log("CART ITEM RETRIEVAL SUCCESSFUL!" + JSON.stringify(cartItems))
+					console.log(
+						'CART ITEM RETRIEVAL SUCCESSFUL!' +
+							JSON.stringify(cartItems)
+					)
 					return cartItems
 				} else {
-					console.log('CART ITEMS IS: ' + JSON.stringify(cartItems));
+					console.log('CART ITEMS IS: ' + JSON.stringify(cartItems))
 				}
-				
 			} else {
 				console.log('CURRENT SNAPSHOT DOES NOT EXIST')
 			}
-
 		} catch (err) {
-			console.log("An error was encountered when fetching the cart items: " + err)
+			console.log(
+				'An error was encountered when fetching the cart items: ' + err
+			)
 		}
 	}
 }
 
+
 /* Update cart in database */
 export const updateCartInDB = async (currentUser, items) => {
-	console.log("WITHIN FIREBASE, CURRENT USER: " + JSON.stringify(currentUser))
+	console.log('WITHIN FIREBASE, CURRENT USER: ' + JSON.stringify(currentUser))
 	if (currentUser) {
 		const userRef = doc(db, 'users', currentUser.uid)
 		const userSnapshot = await getDoc(userRef)
-	
-	
 
-		try {	
+		try {
 			if (userSnapshot.exists()) {
 				const cartItems = userSnapshot.data()
-				
-				if (cartItems !== null || cartItems !== 'undefined') {
-					await updateDoc(userRef, { cartItems: items})
-					console.log("THIS IS THE CART: " + JSON.stringify(cartItems));
 
-					console.log("SUCCESS")
+				if (cartItems !== null || cartItems !== 'undefined') {
+					await updateDoc(userRef, { cartItems: items })
+					console.log(
+						'THIS IS THE CART: ' + JSON.stringify(cartItems)
+					)
+
+					console.log('SUCCESS')
 				}
 			} else {
-				console.log("CART UPDATE ERROR!")
-				await setDoc(userRef, {cartItems: items})
+				console.log('CART UPDATE ERROR!')
+				await setDoc(userRef, { cartItems: items })
 			}
 		} catch (err) {
-			alert("UPDATE ERROR: " + err)
+			alert('UPDATE ERROR: ' + err)
 		}
 	}
-		//const querySnapshot = await getDocs(userRef)
+	//const querySnapshot = await getDocs(userRef)
 	//console.log("CART SNAPSHOT: " + JSON.stringify(userSnapshot.data()))
 }
 
@@ -218,4 +272,3 @@ export const signOutUser = async () => await signOut(auth)
 
 export const onAuthStateChangedListener = (callback) =>
 	onAuthStateChanged(auth, callback)
-
