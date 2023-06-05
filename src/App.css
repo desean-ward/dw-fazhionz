@@ -52,6 +52,10 @@ a {
 .fallback {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-content: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 3.5em;
+  z-index: 1000;
 }

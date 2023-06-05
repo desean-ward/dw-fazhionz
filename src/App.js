@@ -28,6 +28,8 @@ import { AnimatePresence } from 'framer-motion/dist/es/index'
 import ScrollToTop from './ScrollToTop.js'
 import PageNotFound from './components/page-not-found/page-not-found.component'
 
+import { PropagateLoader } from 'react-spinners'
+
 import './App.css'
 
 import { CategoriesContainer } from './components/categories/categories.styles'
@@ -66,7 +68,12 @@ const App = ( ) => {
 		<div>
 			<ScrollToTop />
 				<AnimatePresence exitBeforeEnter>
-					<Suspense fallback={ <h3 className='fallback'>Loading...</h3>}>
+					<Suspense fallback={
+						<div className='fallback'>
+							<h3>Loading</h3> <br />
+							<PropagateLoader className="fallback" color="black" loading={true} size={15} />
+						</div>
+					}>
 						<Routes>
 							<Route path='/' element={<Header />}>
 								<Route index element={<Home />} />

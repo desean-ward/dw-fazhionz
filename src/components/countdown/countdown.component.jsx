@@ -16,20 +16,20 @@ import {
 } from "./countdown.styles";
 
 const variants = {
-    visible: { opacity: 1, blur: 0, transition: { duration: 1.2, delay: 0.4 } },
-    hidden: { opacity: 0, blur: 10, transition: { duration: 1.2, delay: 0.4 } },
+    visible: { opacity: 1, blur: 0, transition: { duration: 1.2, delay: 0.3 } },
+    hidden: { opacity: 0, blur: 10, transition: { duration: 1.2, delay: 0.3 } },
     exit: { opacity: 0, transition: { duration: 1.2, delay: 0.4 } }
 }
 
 const leftVariants = {
-    visible: { opacity: 1, x: 0, blur: 0, transition: { duration: 1, delay: 0.4 } },
-    hidden: { opacity: 0, x: -100, blur: 100, transition: { duration: 1, delay: 0.4 } },
+    visible: { opacity: 1, x: 0, blur: 0, transition: { duration: 1, delay: 0.5 } },
+    hidden: { opacity: 0, x: -100, blur: 100, transition: { duration: 1, delay: 0.5 } },
     exit: { opacity: 0, x: -100, transition: { duration: 1, delay: 0.4 } }
 };
 
 const rightVariants = {
-    visible: { opacity: 1, x: 0, blur: 0, transition: { duration: 1, delay: 0.4 } },
-    hidden: { opacity: 0, x: 100, blur: 10, transition: { duration: 1, delay: 0.4 } },
+    visible: { opacity: 1, x: 0, blur: 0, transition: { duration: 1, delay: 0.5 } },
+    hidden: { opacity: 0, x: 100, blur: 10, transition: { duration: 1, delay: 0.5 } },
     exit: { opacity: 0, x: 100, transition: { duration: 1 } }
 };
 

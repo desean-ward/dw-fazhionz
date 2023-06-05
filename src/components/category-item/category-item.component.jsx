@@ -13,6 +13,8 @@ import { CategoryItemContainer, ImageContainer, Image, ButtonContainer, FooterCo
 import { CategoriesContext } from '../../context/categories.context'
 import { getCartItems } from '../../utils/firebase/firebase.utils'
 
+import { motion, AnimatePresence } from 'framer-motion'
+
 
 //**** The individual item/product for each category ****//
 const CategoryItem = ({ title, item, id }) => {
@@ -82,7 +84,7 @@ const CategoryItem = ({ title, item, id }) => {
 				const matchingDescription = productDescriptions.find(prod => prod.description.toLowerCase().includes(name));
 				if (matchingDescription) {
 				console.log("MATCH: " + matchingDescription.description.toLowerCase());
-				return setDescription(matchingDescription.description);
+				setDescription(matchingDescription.description);
 				}
 			} catch (err) {
 				console.log("There was an error fetching the description: " + err);
@@ -90,10 +92,16 @@ const CategoryItem = ({ title, item, id }) => {
 
 			getDescription();
 	}, [])
+
+	const variants = {
+        hidden: { scale: 0 },
+        visible: { scale: 1 },
+        exit: { scale: 0 },
+        exitBeforeEnter: true
+    }
 	
 
 	return (
-
 		/********** CATEGORY ITEM  **********/
 		<CategoryItemContainer>
 

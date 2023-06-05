@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
 
 export const BannerContainer = styled.div`
 	position: relative;
@@ -48,7 +49,7 @@ export const SlideIn = css`
 	}
 `
 
-export const LeftSide = styled.span`
+export const LeftSide = styled(motion.span)`
 	${ SlideIn };
 
 	//position: relative;
@@ -71,7 +72,7 @@ export const LeftSide = styled.span`
 	}
 `
 
-export const RightSide = styled.span`
+export const RightSide = styled(motion.span)`
 	${ SlideIn };
 
 	//position: relative;

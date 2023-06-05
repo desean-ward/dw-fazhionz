@@ -39,7 +39,7 @@ export const LogoContainer = styled.div`
 
 		&.logo {
 			grid-area: logo;
-			animation: scale 1s linear;
+			//animation: scale 1s linear;
 			width: 75%;
 			height: 70%;
 			z-index: 2;
@@ -49,7 +49,7 @@ export const LogoContainer = styled.div`
 			width: 60%;
 			height: 90%;
 			opacity: 0;
-			animation: flash2 1s linear 1.9s;
+			//animation: flash2 1s linear 1.9s;
 		}
 
 		&.burst2 {
@@ -57,23 +57,23 @@ export const LogoContainer = styled.div`
 			width: 80%;
 			height: 90%;
 			opacity: 0;
-			transform: rotate(45deg);
-			animation: flash3 1s linear 2.4s;
+			//transform: rotate(45deg);
+			//animation: flash3 1s linear 2.4s;
 		}
 
 		&.logo-images {
 			position: absolute;
-			visibility: hidden;
+			//visibility: hidden;
 			border-radius: 20px;
 			width: auto;
 
 			&.left{
 				grid-area: left;
-				left: 50%;
-				animation: 
+				left: 0;
+				//animation: 
 					slide-out-left .5s linear .7s,
 					flash .5s linear 1.2s;
-				animation-fill-mode: forwards;
+				//animation-fill-mode: forwards;
 
 				@media (width <= 1100px) {
 					display: none;
@@ -82,11 +82,11 @@ export const LogoContainer = styled.div`
 
 			&.right {
 				grid-area: right;
-				right: 50%;
-				animation: 
+				right: 0;
+				//animation: 
 					slide-out-right .5s linear .7s,
 					flash .5s linear 1.2s;
-				animation-fill-mode: forwards;
+				//animation-fill-mode: forwards;
 
 
 				@media (width <= 1100px) {

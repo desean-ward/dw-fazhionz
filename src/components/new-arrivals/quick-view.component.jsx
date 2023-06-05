@@ -86,7 +86,7 @@ const QuickView = ({ show, close, index, imageUrl, title, price, category, name,
                         variants={variants}
                         initial='hidden'
                         animate='visible'
-                        exit='hidden'
+                        exit='exit'
                         transition={{ duration: 0.3 }}
                     >
                         <PopupProduct className='popup__product'>
