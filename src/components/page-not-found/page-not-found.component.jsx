@@ -10,9 +10,8 @@ const PageNotFound = () => {
 			<Wrapper>
 				<Overlay>
 					<Content>
-						404
-						<br />
-						Page Not Found
+						<u>Page Not Found</u> <br />
+						<h3>Please try again</h3>
 					</Content>
 				</Overlay>
 			</Wrapper>
