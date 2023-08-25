@@ -11,7 +11,6 @@ export const TimerContainer = styled.section`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 5em;
 	overflow: hidden;
 
 	@media  (width < 770px) {

@@ -70,9 +70,9 @@ export const LogoContainer = styled.div`
 			&.left{
 				grid-area: left;
 				left: 0;
-				//animation: 
+				/* animation: 
 					slide-out-left .5s linear .7s,
-					flash .5s linear 1.2s;
+					flash .5s linear 1.2s; */
 				//animation-fill-mode: forwards;
 
 				@media (width <= 1100px) {
@@ -83,9 +83,9 @@ export const LogoContainer = styled.div`
 			&.right {
 				grid-area: right;
 				right: 0;
-				//animation: 
+				/* animation: 
 					slide-out-right .5s linear .7s,
-					flash .5s linear 1.2s;
+					flash .5s linear 1.2s; */
 				//animation-fill-mode: forwards;
 
 
@@ -198,15 +198,15 @@ export const InputContainer = styled.form`
 
     input, textarea {
         border-radius: 5px;
-		border: 1px solid black;
+		border: 1px solid #989898;
 
 		padding: .5em;
     }
 
     .highlight {
-        border: 2px solid maroon;
+        /* border: 2px solid maroon; */
 		outline: none;
-        box-shadow: 1px 1px 4px maroon;
+        /* box-shadow: 1px 1px 4px #989898; */
 
 		::placeholder {
 			color: maroon;

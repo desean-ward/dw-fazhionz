@@ -58,25 +58,20 @@ const BannerOne= () => {
     useEffect(() => {
         if (inView) {
         controls.start("visible");
-        } else {
-            controls.start("exit");
-        }
+        } 
+       
     }, [controls, inView]);
 
     useEffect(() => {
         if (leftInView) {
         controls.start("visible");
-        } else {
-            controls.start("exit");
-        }
+        } 
     }, [controls, leftInView]);
 
     useEffect(() => {
         if (rightInView) {
         controls.start("visible");
-        } else {
-            controls.start("exit");
-        }
+        } 
     }, [controls, rightInView]);
     
 

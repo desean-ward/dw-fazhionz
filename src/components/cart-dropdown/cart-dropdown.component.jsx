@@ -67,7 +67,7 @@ const CartDropdown = ({ /*cartItems, dispatch*/ }) => {
 
     useEffect(() => {
         
-        const totalTheCart = async () => cartItems.map(item => {
+        const totalTheCart = async () => cartItems.forEach(item => {
             total += item.quantity * item.price
             setCartTotal(total)
             console.log('$' + discounted)

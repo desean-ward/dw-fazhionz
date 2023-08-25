@@ -92,7 +92,7 @@ const Carousel = () => {
 			/* const lastClone = sliderItems.pop();
 			sliderItems.unshift(lastClone); */
 		} else {
-			const firstClone = sliderItems[slideIndex];
+			// const firstClone = sliderItems[slideIndex];
 			/* sliderItems.push(firstClone);
 			sliderItems.shift(sliderItems[0]) */
 			setSlideIndex(() => (slideIndex < 3 ? slideIndex + 1 : 0))
