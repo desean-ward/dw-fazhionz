@@ -21,12 +21,14 @@ export const DirectoryContainer = styled.div`
     position: absolute;
     width: 100%;
     height: 100vh;
-    z-index: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
 
     .panel {
+      position: relative;
+      z-index: 1;
       height: 100%;
+      margin-top: 5em;
       background-color: white;
     }
   }

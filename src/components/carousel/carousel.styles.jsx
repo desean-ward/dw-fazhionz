@@ -95,6 +95,10 @@ export const Slide = styled.div`
   display: flex;
   align-items: center;
 
+  .active {
+    transform: translateX(0);
+  }
+
   @media (width < 1100px) {
     flex-direction: column;
     padding: 4rem 0;

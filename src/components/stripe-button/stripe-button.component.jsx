@@ -24,14 +24,12 @@ const StripeCheckoutButton = ({ price, total }) => {
 
     const onToken = token => {
         showModal()
-
-        {
+        
             // cartItems.map(cartItem => 
             //     removeItem(cartItem)
             // );
             setCartItems([])
             updateCartInDB(currentUser, cartItems)
-        }
     }
 
     const showModal = () => {
