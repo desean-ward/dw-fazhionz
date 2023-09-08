@@ -11,7 +11,7 @@ export const CategoryItemContainer = styled.div`
   position: relative;
   margin: 0 0 2em 0px;
   /* box-shadow: 0.5em 0.5em 0.5em darkgray; */
-  border-radius: 1em;
+  border-radius: 0.75em;
 
   &:hover {
     .image {
@@ -32,6 +32,8 @@ export const ImageContainer = styled.div`
   width: 100%;
   height: 340px;
   overflow: hidden;
+  border-top-right-radius: 0.75em;
+  border-top-left-radius: 0.75em;
 
   img {
     width: 100%;
@@ -129,7 +131,7 @@ export const ButtonContainer = styled.div`
 export const FooterContainer = styled.div`
   //position: relative;
   width: 100%;
-  padding: 0.5em;
+  padding: 1em;
   //height: 5%;
   display: flex;
   justify-content: space-between;
