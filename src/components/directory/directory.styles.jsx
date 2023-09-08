@@ -28,7 +28,7 @@ export const DirectoryContainer = styled.div`
       position: relative;
       z-index: 1;
       height: 100%;
-      margin-top: 5em;
+      /* margin-top: 5em; */
       background-color: white;
     }
   }
