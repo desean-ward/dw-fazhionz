@@ -170,7 +170,7 @@ export const addProductDescriptions = async (prodDescs) => {
 	} else console.log("Descriptions already exist!")
 }
 
-// Retrieve data from the database
+// Retrieve product descriptions from the database
 export const getProductDescriptions = async () => {
 	const descriptionRef = collection(db, 'descriptions')
 	const q = query(descriptionRef)

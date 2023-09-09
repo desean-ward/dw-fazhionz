@@ -21,6 +21,7 @@ export const CategoriesProvider = ({ children }) => {
         addCategoriesAndDocuments('categories', PRODUCTS)
     }) */
 
+    // Retrieve the Products and Product Descriptions from the database
     useEffect(() => {
         const getCategoriesMap = async () => {
             const categoryMap = await getCategoriesAndDocuments()
@@ -37,7 +38,6 @@ export const CategoriesProvider = ({ children }) => {
 
     }, [])
 
-    //useEffect(() => console.log('PRODUCT DESCRIPTIONS: ' + JSON.stringify(productDescriptions)), [productDescriptions])
 
     const value = { categoriesMap, productDescriptions }
 
