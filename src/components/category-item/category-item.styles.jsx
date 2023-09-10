@@ -86,7 +86,6 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 0;
   width: 100%;
   opacity: 0;
   visibility: hidden;
@@ -94,7 +93,7 @@ export const ButtonContainer = styled.div`
 
   .custom-button {
     opacity: 1;
-    position: absolute;
+    /* position: absolute; */
     bottom: 50px;
     margin: 0 auto;
     background-color: maroon;
