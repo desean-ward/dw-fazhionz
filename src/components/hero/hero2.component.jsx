@@ -32,7 +32,7 @@ const Hero = ()=> {
                     <div className='background' />
 
                     <ImageContainer>
-                        <img src='../../images/hero-bg.jpg' />
+                        <img src='../../images/hero-bg.jpg' alt='' />
                     </ImageContainer>
                 
 
@@ -55,7 +55,7 @@ const Hero = ()=> {
 
                         <Sale>
                             <SaleImage>
-                                <img src='images/hero-15-off.gif' />
+                                <img src='images/hero-15-off.gif' alt='' />
                             </SaleImage>
                         </Sale>
                     </HeroVerbiage>
@@ -66,7 +66,7 @@ const Hero = ()=> {
                         transition={{ delay: 1 }}
                         >
                             <Lines>
-                                <img src='images/hero-top-bg-lines.gif' />          
+                                <img src='images/hero-top-bg-lines.gif' alt='' />          
                             </Lines>
                         </LinesContainer>
                     </AnimatePresence>

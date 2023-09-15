@@ -144,37 +144,6 @@ export const Title = styled.h2`
 		
 	}
 
-	// @media (width <= 1440px) {
-	// 	&.left-her, &.right-stylez {
-	// 		margin-left: -4rem;
-	// 		width: 100%;
-	// 	}
-	// }
-
-	// @media (width <= 900px) {
-
-	// 	&.left-her {
-	// 		left: 2em;
-	// 	}
-
-	// 	&.right-stylez {
-	// 		//left: -0.5em;
-	// 	}
-
-	// 	&.left-stylez {
-	// 		left: -0.5em;
-	// 	}
-
-	// 	&.right-him {
-	// 		right: -0.5em;
-	// 	}
-
-	// 	@media (width <= 900px) {
-			
-
-			
-	// 	}
-	}
 `
 
 export const Description = styled.div`

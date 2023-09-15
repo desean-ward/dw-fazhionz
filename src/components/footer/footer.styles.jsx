@@ -87,7 +87,7 @@ export const Center = styled.div`
   //position: relative;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h4`
   margin-bottom: 30px;
   //font-weight: bold;
 `;

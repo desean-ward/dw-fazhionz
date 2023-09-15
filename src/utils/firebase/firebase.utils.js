@@ -22,7 +22,6 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 } from 'firebase/auth'
-import { indexOf } from 'lodash'
 
 /* Configuration Object Copied From Firebase Console */
 const firebaseConfig = {

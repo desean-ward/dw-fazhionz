@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
 
 import ProductsSection from "./products-section.component";
 
@@ -27,11 +26,12 @@ export const Container = styled.div`
 export const Header = styled.div`
   //background-color: grey;
   position: sticky;
+  background-color: maroon;
   color: white;
-  padding-left: 10px;
-  //padding: 10px 10px 10px 20px;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  text-align: left;
+  padding: 0.5em 0.75em 0;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 `;
 
 export const ProductCard = styled.div`
@@ -46,6 +46,7 @@ export const ProductCard = styled.div`
   //width: 100%;
   //height: fit-content;
   border-radius: 10px;
+  padding: 0.5em;
 
   ::before {
     content: "";
@@ -133,9 +134,9 @@ export const Footer = styled.div`
   background-color: maroon;
   color: white;
   text-align: right;
-  padding-right: 10px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  padding: 0.5em 0.75em 0;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 `;
 
 /********** Product Quick View Popup / Modal **********/

@@ -15,7 +15,8 @@ body {
 }
 
 body .fat-face {
-  font-family: 'Oi', cursive;
+  font-family: 'Abril Fatface', cursive;
+  font-weight: 900oda;
   text-shadow: -1px -1px 0 grey;
   text-shadow: 1px 1px 0 black;
  }
