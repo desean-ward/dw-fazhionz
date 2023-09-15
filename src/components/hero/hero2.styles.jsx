@@ -1,4 +1,5 @@
-import styled from "styled-components";
+// import styled from "styled-components";
+import tw, { styled } from "twin.macro";
 import { motion } from "framer-motion";
 
 export const HeroContainer = styled.div`
@@ -22,6 +23,7 @@ export const Background = styled.div`
   background-color: black;
   width: 100%;
   min-height: 12.3rem;
+  display: none;
 
   @media (min-width: 690px) {
     visibility: hidden;
@@ -58,18 +60,23 @@ export const HeroVerbiage = styled(motion.div)`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  font-size: clamp(3rem, 2.0909rem + 2.9091vw, 5rem);
+  /* font-size: clamp(3rem, 2.0909rem + 2.9091vw, 5rem); */
   padding: 1em 0;
   z-index: 2;
 
   .dwf {
+    ${tw`
+      lg:text-8xl md:text-6xl text-3xl
+    `}
     position: relative;
-    font-size: larger;
-    top: -0.6em;
   }
   .signature {
+    ${tw`
+      lg:text-9xl md:text-7xl text-4xl
+      lg:ml-4 ml-2
+    `}
     width: 50%;
-    font-size: clamp(4rem, 1.7273rem + 7.2727vw, 9rem);
+    /* font-size: clamp(4rem, 1.7273rem + 7.2727vw, 9rem); */
     font-family: "Mr Dafoe", cursive;
     text-decoration: underline;
     text-shadow: 4px 4px 4px maroon;
@@ -137,13 +144,17 @@ export const Lines = styled.div`
   }
 `;
 
-export const Sale = styled.div`
-  position: relative;
-  top: -40px;
+export const Sale = tw.div`
+  md:w-[200px] lg:w-[250px] w-[100px]
+  md:h-[200px] lg:h-[250px] h-[100px]
 `;
 
 export const SaleImage = styled.div`
-  width: 3em;
+  ${tw`
+    border-orange-900 border-2
+  w-full
+  h-full
+  `}
 
   img {
     width: 100%;

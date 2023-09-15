@@ -37,7 +37,8 @@
     "reselect": "^4.0.0",
     "sass": "^1.43.2",
     "styled-components": "^5.3.3",
-    "swup": "^2.0.14"
+    "swup": "^2.0.14",
+    "tailwind-styled-components": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -60,5 +61,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@emotion/babel-plugin": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-twin": "^1.1.0",
+    "twin.macro": "^3.4.0"
   }
 }

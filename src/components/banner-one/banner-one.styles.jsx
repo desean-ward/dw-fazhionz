@@ -1,177 +1,129 @@
-import styled, { css } from 'styled-components'
-import { motion } from 'framer-motion'
+import tw, { styled } from "twin.macro";
+import { css } from "styled-components";
+import { motion } from "framer-motion";
 
 export const BannerContainer = styled.div`
-	position: relative;
-	z-index: 50;
-	//height: 20em;
-	max-height: 250px;
-	width: 100%;
-	color: white;
-	font-weight: bolder;
-	display: flex;
-	align-items: center;
-	overflow: hidden;
-	
-	.square {
-		
-		// @media (width <= 680px) {
-		// 	.fat-face {
-		// 		width: 100%;
-		// 		//font-size: clamp(2rem, 5vw, 4rem);
-		// 	}
-
-		// 	.right-stylez {
-		// 		right: 0.25em;
-		// 	}
-		// }
-	}
-
-	@media (width <= 720px) {
-		//font-size: 12px;
-			
-		
-	}
-`
+  ${tw`
+		relative z-50
+		h-[200px] md:h-[325px] lg:h-[450px]
+		w-full
+		text-white text-sm md:text-xl
+		font-black
+		flex
+		overflow-hidden
+	`}
+`;
 export const SlideIn = css`
-	.hidden {
-		opacity: 0;
-		filter: blur(5px);
-		left: 100%;
-		transition: all 3s;
-	}
+  .hidden {
+    opacity: 0;
+    filter: blur(5px);
+    left: 100%;
+    transition: all 3s;
+  }
 
-	.show {
-		opacity: 1;
-		filter: blur(0);
-		left: 0;
-		transition: all 3s;
-	}
-`
+  .show {
+    opacity: 1;
+    filter: blur(0);
+    left: 0;
+    transition: all 3s;
+  }
+`;
 
 export const LeftSide = styled(motion.span)`
-	${ SlideIn };
+  ${SlideIn};
 
-	//position: relative;
-	left: 0;
-	width: 50%;
-	padding: 5% 2em;
-	clip-path: polygon(0 0, 100% 0%, 50% 100%, 0 100%);
-	background-color: maroon;
+  ${tw`
+	left-0
+	w-[50%]
+	bg-[maroon]
+	flex flex-col justify-center items-start
+	pl-2 md:pl-8
+  `}
 
-	.left-side-content {
-		width: 55%;
-	}
+  clip-path: polygon(0 0, 100% 0%, 50% 100%, 0 100%);
 
-	@media (width <= 900px) {
-
-		// &.left-her {
-		// 	position: relative;
-		// 	left: 4rem;
-		// }
-	}
-`
+  .left-side-content {
+    ${tw`
+		w-[125px] md:w-[225px] lg:w-[300px] 
+		h-[125px] md:h-[225px] lg:h-[300px]
+		flex flex-col justify-center 
+		shadow-black shadow-2xl
+		rounded-full
+		px-2 md:px-12
+	`}
+    background-image: linear-gradient(to right, maroon, grey);
+  }
+`;
 
 export const RightSide = styled(motion.span)`
-	${ SlideIn };
+  ${SlideIn};
 
-	//position: relative;
-	right: 0;
-	width: 50%;
-	padding: 5% 2em;
-	clip-path: polygon(50% 0, 100% 0%, 100% 100%, 0 100%);
-	background-color: grey;
+  ${tw`
+	right-0
+	w-[50%]
+	bg-[black]
+	flex flex-col justify-center items-center
+	pr-4 md:pr-8
+  `}
+  clip-path: polygon(50% 0, 100% 0%, 100% 100%, 0 100%);
 
-	.right-side-content {
-		position: relative;
-		width: 100%;
-		top: 0;
-		left: 0;
-		margin-left: auto;
-		width: 55%;
-	}
-`
+  .right-side-content {
+    ${tw`
+		w-[125px] md:w-[225px] lg:w-[300px] 
+		h-[125px] md:h-[225px] lg:h-[300px]
+		flex flex-col justify-center 
+		shadow-white/30 shadow-2xl
+		rounded-full
+		px-2 md:px-12
+		ml-[30%] lg:ml-[50%]
+		
+	`};
+    background-image: linear-gradient(to right, grey, maroon);
+  }
+`;
 
 export const Title = styled.h2`
-	width: 6em;
+  width: 6em;
 
-	&.left-stylez {
-		position: relative;
-		border-top: 1px solid white;
-	}
+  &.left-stylez {
+    position: relative;
+    border-top: 1px solid white;
+  }
 
-	&.left-her {
-		position: relative;
-		width: 100%;
-		//left: 1.5em;
-		text-align: right;
-		color: grey;
-		border-bottom: 2px solid;
-	}
+  &.left-her {
+    position: relative;
+    width: 100%;
+    text-align: right;
+    color: maroon;
+    border-bottom: 2px solid black;
+  }
 
-	&.right-him {
-		position: relative;
-		width: 100%;
-		color: maroon;
-		text-align: right;
-		border-top: 1px solid;
-	}
+  &.right-him {
+    position: relative;
+    width: 100%;
+    color: gray;
+    text-align: right;
+    border-top: 2px solid black;
+  }
 
-	&.right-stylez {
-		position: relative;
-		text-align: right;
-		border-bottom: 2px solid;
-
-		
-	}
-
-	@media (width <= 700px) {
-		&.right-stylez {
-			right: 2em;
-		}
-
-		&.left-stylez {
-			right: 1em;
-		}
-
-		&.left-her {
-			right: 1em;
-		}
-
-		&.right-him {
-			left: 1em;
-		}
-		
-	}
-
-`
+  &.right-stylez {
+    position: relative;
+    text-align: left;
+    border-bottom: 2px solid;
+  }
+`;
 
 export const Description = styled.div`
-	position: relative;
-	//font-weight: 400;
-	//left: 25%;
+  position: relative;
+  text-align: center;
 
-	text-align: center;
-
-	&.right {
-		//text-align: center;
-	}
-
-	@media (width < 481px) {
-		margin-top: -12%;
-	}
-
-	/* KEYFRAMES */
-	@keyframes slide-in-left {
-		0% {
-			transform: translateX(-50%);
-		}
-		100% {
-			transform: translateX(50%);
-		}
-	}
-	
-`
-
-
-
+  /* KEYFRAMES */
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(50%);
+    }
+  }
+`;

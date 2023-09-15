@@ -1,33 +1,25 @@
-import styled from 'styled-components'
+import tw from "twin.macro";
 
-export const HeaderMessageContainer = styled.div`
-	position: relative;
-	z-index: 60;
-	background-color: maroon;
-	color: white;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: .5rem 3rem;
-	text-align: center;
-	font-size: smaller;
-`
+export const HeaderMessageContainer = tw.div`
+    relative
+    z-50
+    w-screen
+    flex items-center justify-center md:justify-between
+    bg-[maroon]
+    text-white
+    p-4
+ 
+`;
 
-export const Left = styled.div`
-	@media (width <= 1000px) {
-		display: none;
-	}
-`
+export const Left = tw.span`
+  hidden md:block
+  
+`;
 
-export const Center = styled.div`
-	@media only screen and (max-width: 999px) {
-		display: none;
-	}
-`
+export const Center = tw.div`
+  
+`;
 
-export const Right = styled.div`
-@media only screen and (max-width: 999px) {
-		width: 100%;
-		justify-self: center;
-	}
-`
+export const Right = tw.div`
+  hidden md:block
+`;

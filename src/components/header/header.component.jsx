@@ -1,308 +1,307 @@
-import React, { useState, useEffect, useRef, useContext, Fragment } from 'react'
-import { connect } from 'react-redux'
-import { clearItemFromCart } from '../../redux/cart/cart.actions';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useContext,
+  Fragment,
+} from "react";
+// import { connect } from 'react-redux'
+// import { clearItemFromCart } from '../../redux/cart/cart.actions';
 
-import { useNavigate, Outlet } from 'react-router-dom'
+import { useNavigate, Outlet } from "react-router-dom";
 
-import { auth, signOutUser, updateCartInDB } from '../../utils/firebase/firebase.utils.js'
+import {
+  auth,
+  signOutUser,
+  updateCartInDB,
+} from "../../utils/firebase/firebase.utils.js";
 
 // import { createStructuredSelector } from 'reselect'
 // import { selectCurrentUser } from '../../redux/user/user.selectors'
 // import { selectCartHidden, selectCartItems } from '../../redux/cart/cart.selectors'
 
-import HeaderMessage from '../header-message/header-message.component'
-import CartIcon from '../cart-icon/cart-icon.component'
-import CartDropdown from '../cart-dropdown/cart-dropdown.component'
-import AnimatedNav from '../animated-nav/animated-nav.component'
-import GlassModal from '../glass-popup/glass-popup.component'
+import HeaderMessage from "../header-message/header-message.component";
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+import AnimatedNav from "../animated-nav/animated-nav.component";
+import GlassModal from "../glass-popup/glass-popup.component";
 
-import { UserContext } from '../../context/user.context'
-import { CartContext } from '../../context/cart.context'
+import { UserContext } from "../../context/user.context";
+import { CartContext } from "../../context/cart.context";
 
-import { motion, useAnimation, AnimatePresence } from 'framer-motion'
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-import AnimatedPage from '../../components/animated-page/animated-page.component'
-
+import AnimatedPage from "../../components/animated-page/animated-page.component";
 
 import {
-	HeaderTop,
-	HeaderContainer,
-	Left,
-	Right,
-	Language,
-	SearchContainer,
-	Input,
-	LogoContainer,
-	TitleContainer,
-	OptionsContainer,
-	OptionLine,
-	OptionLink,
-	ScrollToTop,
-} from './header.styles'
+  HeaderTop,
+  HeaderContainer,
+  Left,
+  Right,
+  Language,
+  SearchContainer,
+  Input,
+  LogoContainer,
+  TitleContainer,
+  OptionsContainer,
+  OptionLine,
+  OptionLink,
+  ScrollToTop,
+} from "./header.styles";
 
-import { FaSearch, FaWindowClose } from 'react-icons/fa'
-import { RiDeleteBack2Line } from 'react-icons/ri'
-import { ImArrowUp } from 'react-icons/im'
+import { FaSearch, FaWindowClose } from "react-icons/fa";
+import { RiDeleteBack2Line } from "react-icons/ri";
+import { ImArrowUp } from "react-icons/im";
 import {
-	HamburgerContainer,
-	Bars,
-} from '../animated-nav/animated-nav.styles.jsx'
-
+  HamburgerContainer,
+  Bars,
+} from "../animated-nav/animated-nav.styles.jsx";
 
 const Header = (/* { hidden, removeItem } */) => {
-	const controls = useAnimation();
-    const [ref, inView] = useInView();
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
 
-	const variants = {
-		hidden: { opacity: 0, height: 0 },
-		visible: { opacity: 1, height: 325, position: 'relative' },
-		exit: { opacity: 0, height: 0 }
-	}
+  const variants = {
+    hidden: { opacity: 0, height: 0 },
+    visible: { opacity: 1, height: 325, position: "relative" },
+    exit: { opacity: 0, height: 0 },
+  };
 
-    useEffect(() => {
-        if (inView) {
-        controls.start("visible");
-        } else {
-            controls.start("exit");
-        }
-    }, [controls, inView]);
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("exit");
+    }
+  }, [controls, inView]);
 
+  const [show, setShow] = useState(false);
+  const [searchUrl, setSearchUrl] = useState("");
+  const [inputValue, setInputValue] = useState(null);
+  const [validPath, setValidPath] = useState(false);
+  const [modal, setModal] = useState(false);
+  const searchRef = useRef(null);
+  const inputRef = useRef(null);
+  const mobileNavRef = useRef(null);
+  const close = document.querySelector(".close-icon");
+  const del = document.querySelector(".delete-icon");
+  const navigate = useNavigate();
 
-	const [show, setShow] = useState(false)
-	const [searchUrl, setSearchUrl] = useState('')
-	const [inputValue, setInputValue] = useState(null)
-	const [validPath, setValidPath] = useState(false)
-	const [modal, setModal] = useState(false)
-	const searchRef = useRef(null)
-	const inputRef = useRef(null)
-	const mobileNavRef = useRef(null)
-	const close = document.querySelector('.close-icon')
-	const del = document.querySelector('.delete-icon')
-	const navigate = useNavigate()
-	
-	const { currentUser, setCurrentUser } = useContext(UserContext)
-	const { cartItems, setCartItems, isCartOpen, setIsCartOpen, clearCart} = useContext(CartContext)
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { cartItems, setCartItems, isCartOpen, setIsCartOpen, clearCart } =
+    useContext(CartContext);
 
-	window.addEventListener('scroll', () => {
-		var scroll = document.querySelector('.scrollTopArrow')
+  window.addEventListener("scroll", () => {
+    var scroll = document.querySelector(".scrollTopArrow");
 
-		var header = document.querySelector('.header-container')
+    var header = document.querySelector(".header-container");
 
-		if (window.scrollY > 0) {
-			header.classList.add('shadow')
-		}
-		scroll.classList.toggle('active', window.scrollY > 0)
+    if (window.scrollY > 0) {
+      header.classList.add("shadow");
+    }
+    scroll.classList.toggle("active", window.scrollY > 0);
 
-		scroll.classList.toggle('animateArrow', window.scrollY == 0)
-	})
+    scroll.classList.toggle("animateArrow", window.scrollY === 0);
+  });
 
-	const scrollToTop = () => {
-		var arrow = document.querySelector('.scrollTopArrow')
+  const scrollToTop = () => {
+    var arrow = document.querySelector(".scrollTopArrow");
 
-		arrow.classList.add('animateArrow')
+    arrow.classList.add("animateArrow");
 
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		})
-	}
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
-	const handleKeyDown = (e) => {
-		const paths = ['mens', 'womens', 'hats', 'jackets', 'sneakers']
-		const path = inputRef.current.value.toLowerCase().trim()
+  const handleKeyDown = (e) => {
+    const paths = ["mens", "womens", "hats", "jackets", "sneakers"];
+    const path = inputRef.current.value.toLowerCase().trim();
 
-		if (e.keyCode === 13) {
-			if (paths.includes(path)) {
-				navigate(searchUrl)
-			} else {
-				navigate('/page-not-found')
+    if (e.keyCode === 13) {
+      if (paths.includes(path)) {
+        navigate(searchUrl);
+      } else {
+        navigate("/page-not-found");
+      }
 
-			}
+      inputRef.current.value = "";
+    }
+  };
 
-			inputRef.current.value = ''
-		}
-	}
+  const checkValue = (path) => {
+    if (inputRef.current.value == path) setValidPath(true);
 
-	const checkValue = (path) => {
-		if (inputRef.current.value == path) setValidPath(true)
+    if (validPath === true) {
+      navigate(searchUrl);
+    } else return;
+  };
 
-		if (validPath === true) {
-			navigate(searchUrl)
-		} else return 
+  const handleChange = (e) => {
+    setSearchUrl("/shop/categories/" + e.target.value.toLowerCase());
+  };
 
-	}
+  const handleSignOut = async () => {
+    if (cartItems || cartItems.length) {
+      await updateCartInDB(currentUser, cartItems);
+    }
 
-	const handleChange = (e) => {
-		setSearchUrl('/shop/categories/' + e.target.value.toLowerCase())
-	}
+    try {
+      clearCart();
+      setCurrentUser(null);
+      await signOutUser();
+    } catch (err) {
+      console.log("SIGN OUT ERROR: " + err);
+    }
+  };
 
-	const handleSignOut = async () => {
-		if (cartItems || cartItems.length) {
-			await updateCartInDB(currentUser, cartItems)
-		}
+  const openMenu = () => {
+    setShow(!show);
+  };
 
-		try{
-			clearCart()
-			setCurrentUser(null)
-			await signOutUser()
-			
-		} catch (err) {
-			console.log('SIGN OUT ERROR: ' + err)
-		}
-		
-	}
+  const showModal = () => {
+    setModal(!modal);
+  };
 
-	const openMenu = () => {
-		setShow(!show)
-	}
+  useEffect(() => {
+    return setTimeout(() => {
+      // showModal()
+    }, 10000);
+  }, []);
 
-	const showModal = () => {
-		setModal(!modal)
-	}
+  return (
+    <Fragment>
+      <ScrollToTop className='scrollTopArrow' onClick={scrollToTop}>
+        <ImArrowUp className='arrow' />
+      </ScrollToTop>
+      <AnimatedNav
+        show={show}
+        close={openMenu}
+        auth={auth}
+        currentUser={currentUser}
+      />
+      <HeaderTop>
+        <HeaderMessage id='message' currentUser={currentUser} />
+      </HeaderTop>
 
-	useEffect(() => {
-		return setTimeout(() => {
-			showModal()
-		}, 10000)
-	}, [])
+      <HeaderContainer className='header-container shadow'>
+        <Left className='header-left'>
+          <Language className='language'>Search</Language>
 
+          <SearchContainer ref={searchRef} className='search'>
+            <FaSearch
+              className='search-icon'
+              onMouseEnter={() => {
+                searchRef.current.classList.add("search-open");
+                inputRef.current.style.visibility = "visible";
+                inputRef.current.value = inputValue;
+                inputRef.current.focus();
+              }}
+              onTouchStart={() => {
+                searchRef.current.classList.add("search-open");
+                inputRef.current.style.visibility = "visible";
+                inputRef.current.value = inputValue;
+                inputRef.current.focus();
+              }}
+            />
 
-	return (
-		<Fragment>
-			<ScrollToTop className='scrollTopArrow' onClick={scrollToTop}>
-				<ImArrowUp className='arrow' />
-			</ScrollToTop>
-			<AnimatedNav
-				show={show}
-				close={openMenu}
-				auth={auth}
-				currentUser={currentUser}
-			/>
-			<HeaderTop>
-				<HeaderMessage id='message' currentUser={currentUser} />
-			</HeaderTop>
+            <Input
+              ref={inputRef}
+              type='text'
+              className='search-input'
+              placeholder="Ex: 'mens', 'sneakers'..."
+              onKeyDown={handleKeyDown}
+              onChange={handleChange}
+            />
 
-			<HeaderContainer className='header-container shadow'>
-				<Left className='header-left'>
-					<Language className='language'>Search</Language>
+            <RiDeleteBack2Line
+              className='delete-icon'
+              size={20}
+              onClick={() => {
+                inputRef.current.value = "";
+                inputRef.current.focus();
+              }}
+            />
 
-					<SearchContainer ref={searchRef} className='search'>
-						<FaSearch
-							className='search-icon'
-							onMouseEnter={() => {
-								searchRef.current.classList.add('search-open')
-								inputRef.current.style.visibility = 'visible'
-								inputRef.current.value = inputValue
-								inputRef.current.focus()
-							}}
-							onTouchStart={() => {
-								searchRef.current.classList.add('search-open')
-								inputRef.current.style.visibility = 'visible'
-								inputRef.current.value = inputValue
-								inputRef.current.focus()
-							}}
-						/>
+            <FaWindowClose
+              id='close-icon'
+              className='close-icon'
+              size={20}
+              onClick={() => {
+                searchRef.current.classList.remove("search-open");
+                setInputValue(inputRef.current.value);
+                inputRef.current.value = "";
+                inputRef.current.style.visibility = "hidden";
+              }}
+            />
+          </SearchContainer>
+        </Left>
 
-						<Input
-							ref={inputRef}
-							type='text'
-							className='search-input'
-							placeholder="Ex: 'mens', 'sneakers'..."
-							onKeyDown={handleKeyDown}
-							onChange={handleChange}
-						/>
+        <Right className='header-right'>
+          <OptionsContainer>
+            <OptionLink className='btn-ctr' to='/'>
+              HOME
+              <OptionLine />
+            </OptionLink>
 
-						<RiDeleteBack2Line
-							className='delete-icon'
-							onClick={() => {
-								inputRef.current.value = ''
-								inputRef.current.focus()
-							}}
-						/>
+            <OptionLink className='btn-ctr' to='/shop'>
+              SHOP
+              <OptionLine />
+            </OptionLink>
 
-						<FaWindowClose
-							id='close-icon'
-							className='close-icon'
-							onClick={() => {
-								searchRef.current.classList.remove(
-									'search-open'
-								)
-								setInputValue(inputRef.current.value)
-								inputRef.current.value = ''
-								inputRef.current.style.visibility = 'hidden'
-							}}
-						/>
-					</SearchContainer>
+            <OptionLink className='btn-ctr' to='/contact-us'>
+              CONTACT
+              <OptionLine />
+            </OptionLink>
 
-				</Left>
-
-				<Right className='header-right'>
-					<OptionsContainer>
-						<OptionLink className='btn-ctr' to='/'>
-							HOME
-							<OptionLine />
-						</OptionLink>
-
-						<OptionLink className='btn-ctr' to='/shop'>
-							SHOP
-							<OptionLine />
-						</OptionLink>
-
-						<OptionLink className='btn-ctr' to='/contact-us'>
-							CONTACT
-							<OptionLine />
-						</OptionLink>
-
-						{
-							/* Conditionally renders a 'div' if currentUser is an object,
+            {
+              /* Conditionally renders a 'div' if currentUser is an object,
                 or a 'Link' if it's false */
-							currentUser ? (
-								<OptionLink
-									as='div'
-									className='btn-ctr'
-									onClick={handleSignOut}>
-									SIGN OUT
-									<OptionLine />
-								</OptionLink>
-							) : (
-								<OptionLink className='btn-ctr' to='/auth'>
-									SIGN IN / SIGN UP
-									<OptionLine />
-								</OptionLink>
-							)
-						}
+              currentUser ? (
+                <OptionLink
+                  as='div'
+                  className='btn-ctr'
+                  onClick={handleSignOut}
+                >
+                  SIGN OUT
+                  <OptionLine />
+                </OptionLink>
+              ) : (
+                <OptionLink className='btn-ctr' to='/auth'>
+                  SIGN IN / SIGN UP
+                  <OptionLine />
+                </OptionLink>
+              )
+            }
+          </OptionsContainer>
 
-						
-					</OptionsContainer>
+          <CartIcon />
 
-					<CartIcon className='cart-icon'/>
+          {
+            /* Toggle the Shopping Cart Dropdown */
+            isCartOpen && <CartDropdown />
+          }
 
-					{
-						/* Toggle the Shopping Cart Dropdown */
-						isCartOpen && <CartDropdown />
-					}
+          <HamburgerContainer className='hamburger' onClick={openMenu}>
+            <Bars className='bars' />
+          </HamburgerContainer>
+        </Right>
+      </HeaderContainer>
 
-					<HamburgerContainer
-						className='hamburger'
-						onClick={openMenu}>
-						<Bars className='bars' />
-					</HamburgerContainer>
-				</Right>
-			</HeaderContainer>
+      <Outlet />
 
-			<Outlet />
-
-			<GlassModal
-				show={modal}
-				close={showModal}
-				titleBG='WEEKLY SPECIAL'
-				title='Enjoy 15% Off All Apparel!!!'
-				content="Don't forget to join our newsletter for weekly deals."
-			/>
-		</Fragment>
-	)
-}
+      <GlassModal
+        show={modal}
+        close={showModal}
+        titleBG='WEEKLY SPECIAL'
+        title='Enjoy 15% Off All Apparel!!!'
+        content="Don't forget to join our newsletter for weekly deals."
+      />
+    </Fragment>
+  );
+};
 
 // const mapStateToProps = createStructuredSelector({
 // 	hidden: selectCartHidden,
@@ -315,4 +314,4 @@ const Header = (/* { hidden, removeItem } */) => {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Header)
 
-export default Header
+export default Header;
