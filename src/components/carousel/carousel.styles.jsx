@@ -1,16 +1,18 @@
-import styled from "styled-components";
+// import styled from "styled-components";
+import tw, { styled } from "twin.macro";
 import { MdArrowLeft, MdArrowRight } from "react-icons/md";
 
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  z-index: 50;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  background: white;
+  ${tw`
+    z-50
+    w-full h-[50vh] lg:h-screen
+    flex
+    relative
+    overflow-hidden
+    bg-white
+  `}
 
   .hidden {
     visibility: hidden;
@@ -32,10 +34,6 @@ export const Container = styled.div`
       }
     }
   }
-
-  @media (width < 900px) {
-    //padding-bottom: 5rem;
-  }
 `;
 
 export const ArrowContainer = styled.div`
@@ -48,7 +46,6 @@ export const ArrowContainer = styled.div`
   justify-content: space-between;
   position: absolute;
   top: 40%;
-  //bottom: 0;
   left: ${(props) => props.direction === "left" && "25px"};
   right: ${(props) => props.direction === "right" && "25px"};
   margin: auto;
@@ -83,15 +80,11 @@ export const Wrapper = styled.div`
   transition: all 1.5s ease;
   transform: translateX(${(props) => props.slideIndex * -100}vw);
 
-  @media only screen and (max-width: 1100px) and (orientation: portrait) {
-    //height: 65vh;
-  }
-`;
+ `;
 
 export const Slide = styled.div`
   width: 100vw;
   height: 100%;
-  //height: clamp(25vh, 75vh + 1vh, 80vh);
   display: flex;
   align-items: center;
 
@@ -111,12 +104,7 @@ export const ImageContainer = styled.div`
 
   @media (width < 1100px) {
     width: 90%;
-    //height: 50%;
   }
-
-  /* @media only screen and (max-width: 1080px) and (orientation: portrait) {
-		//height: 30%;
-	} */
 `;
 
 export const Image = styled.div`
@@ -136,7 +124,6 @@ export const Image = styled.div`
 export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  //justify-content: space-around;
   padding-left: 50px;
   width: 40vw;
   gap: 2rem;
@@ -145,12 +132,6 @@ export const InfoContainer = styled.div`
     width: 95%;
     padding-left: 20px;
     gap: 5px;
-    //margin-top: 60px;
-    /* @media screen and (orientation: portrait) {
-			padding-left: 0;
-			margin-top: 20px;
-			height: 20vh;
-		} */
   }
 `;
 
@@ -159,24 +140,15 @@ export const Title = styled.div`
 `;
 
 export const Description = styled.p`
-  //font-weight: 500;
   letter-spacing: 3px;
 `;
 
 export const ButtonContainer = styled(Link)`
   height: 55px;
-
-  /* @media only screen and (max-width: 900px) and (min-height: 400px) {
-		&.custom-button {
-			width: 30vw;
-			padding: 0;
-		}
-	} */
 `;
 
 export const CarouselNav = styled.div`
   position: absolute;
-  z-index: 1;
   display: flex;
   gap: 10px;
   z-index: 100;
@@ -185,16 +157,12 @@ export const CarouselNav = styled.div`
   align-items: center;
   width: 100%;
   height: 40px;
-
-  @media (max-width: 900px) {
-    //display: none;
-  }
 `;
 
 export const NavIndicator = styled.div`
   display: inline-block;
-  width: 1rem;
-  height: 50%;
+  width: 1em;
+  height: 1em;
   border-radius: 50%;
   background-color: black;
   cursor: pointer;
@@ -202,9 +170,4 @@ export const NavIndicator = styled.div`
   #active {
     background-color: maroon;
   }
-
-  /* @media only screen and (max-width: 900px) and (min-height: 400px) {
-		width: 12%;
-		height: 60%;
-	} */
 `;

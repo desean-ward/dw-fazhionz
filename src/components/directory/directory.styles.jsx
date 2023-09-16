@@ -1,4 +1,5 @@
-import styled from "styled-components";
+// import styled from "styled-components";
+import tw, { styled } from "twin.macro";
 
 export const DirectoryContainer = styled.div`
   position: relative;
@@ -18,18 +19,21 @@ export const DirectoryContainer = styled.div`
   }
 
   #reveal {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    ${tw`
+      absolute
+      top-[5.5em]
+      w-full h-full
+      grid grid-cols-2
+      
+    `}
 
     .panel {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      /* margin-top: 5em; */
-      background-color: white;
+      ${tw`
+        relative
+        z-10
+        h-full
+        bg-white
+      `}
     }
   }
 
