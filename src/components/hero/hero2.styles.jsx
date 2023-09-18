@@ -145,15 +145,14 @@ export const Lines = styled.div`
 `;
 
 export const Sale = tw.div`
-  md:w-[200px] lg:w-[250px] w-[100px]
-  md:h-[200px] lg:h-[250px] h-[100px]
+  md:w-[200px] lg:w-[250px] xl:w-[350px] w-[100px]
 `;
 
 export const SaleImage = styled.div`
   ${tw`
-    border-orange-900 border-2
-  w-full
-  h-full
+    w-full
+    h-full
+    rounded-full
   `}
 
   img {

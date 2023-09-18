@@ -75,7 +75,9 @@ const Carousel = () => {
 
   const handleClick = (direction) => {
     if (direction === "left") {
-        setActiveIndex((prevIndex) => (prevIndex - 1 + sliderItems.length) % sliderItems.length);
+      setActiveIndex(
+        (prevIndex) => (prevIndex - 1 + sliderItems.length) % sliderItems.length
+      );
     } else {
       setActiveIndex((prevIndex) => (prevIndex + 1) % sliderItems.length);
     }
@@ -129,13 +131,13 @@ const Carousel = () => {
               ref={imgContainerRef}
               className='img-container loading'
             >
-              <Image ref={imgRef} className='' backgroundImage={item.img} />
+              <Image ref={imgRef} backgroundImage={item.img} />
             </ImageContainer>
 
             {/********** SLIDE INFO **********/}
             <InfoContainer>
               <Title ref={titleRef} className='loading'>
-                <h2 className='maroon fat-face'>{item.title}</h2>
+                <h2 className='fat-face'>{item.title}</h2>
               </Title>
 
               <Description ref={descRef} className='loading'>

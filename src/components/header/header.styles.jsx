@@ -18,7 +18,7 @@ export const HeaderContainer = styled.div`
     sticky top-0
     z-[100]
     py-2 lg:py-4 px-4
-    w-screen
+    w-full
     flex justify-between items-center
     bg-white
   `}
@@ -303,7 +303,7 @@ export const ScrollToTop = styled.div`
   z-index: 100;
   align-content: end;
   top: 0;
-  right: 30px;
+  right: 2.5em;
   height: 50px;
   width: 50px;
   color: white;
@@ -320,7 +320,7 @@ export const ScrollToTop = styled.div`
   &.active {
     visibility: visible;
     opacity: 1;
-    top: 100vh;
+    top: 92.5vh;
 
     @media only screen and (max-height: 800px) {
       top: 85vh;

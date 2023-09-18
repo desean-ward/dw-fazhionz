@@ -5,7 +5,7 @@ export const DirectoryContainer = styled.div`
   position: relative;
   padding-top: 2rem;
   z-index: 50;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   background-color: white;
   display: flex;
@@ -13,15 +13,20 @@ export const DirectoryContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 
   h2 {
     color: maroon;
+    margin-bottom: 0.5em;
+    ${tw`
+      md:text-[3em]
+    `}
   }
 
   #reveal {
     ${tw`
       absolute
-      top-[5.5em]
+      top-[4.5em] md:top-[5em]
       w-full h-full
       grid grid-cols-2
       

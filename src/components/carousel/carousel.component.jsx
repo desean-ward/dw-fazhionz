@@ -86,13 +86,11 @@ const Carousel = () => {
 
   const handleClick = (direction) => {
     if (direction === "left") {
-		
-      setSlideIndex(() => (slideIndex > 0 ? slideIndex - 1 : 3))
-	  setActiveIndex((prevIndex) => (prevIndex + 1) % sliderItems.length);
-     
-        // const lastClone = sliderItems[3];
-        // sliderItems.unshift(lastClone);
-   
+      setSlideIndex(() => (slideIndex > 0 ? slideIndex - 1 : 3));
+      setActiveIndex((prevIndex) => (prevIndex + 1) % sliderItems.length);
+
+      // const lastClone = sliderItems[3];
+      // sliderItems.unshift(lastClone);
     } else {
       // const firstClone = sliderItems[slideIndex];
       /* sliderItems.push(firstClone);
@@ -139,7 +137,11 @@ const Carousel = () => {
       <Wrapper id='wrapper' slideIndex={slideIndex} sliderItems={sliderItems}>
         {/********** SLIDES **********/}
         {sliderItems.map((item, index) => (
-          <Slide key={item.id} ref={addToSlideRefs} className={`${index === activeIndex ? 'active' : ''}`}>
+          <Slide
+            key={item.id}
+            ref={addToSlideRefs}
+            className={`${index === activeIndex ? "active" : ""}`}
+          >
             {/********** SLIDE IMAGE **********/}
             <ImageContainer
               ref={imgContainerRef}
@@ -151,7 +153,7 @@ const Carousel = () => {
             {/********** SLIDE INFO **********/}
             <InfoContainer>
               <Title ref={titleRef} className='loading'>
-                <h2 className='maroon fat-face'>{item.title}</h2>
+                <h2 className='maroon fat-face text-[3em]'>{item.title}</h2>
               </Title>
 
               <Description ref={descRef} className='loading'>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import tw from "twin.macro";
 
 import ProductsSection from "./products-section.component";
 
@@ -222,7 +223,7 @@ export const PopupProduct = styled.div`
 
     .popup__img {
       left: 5%;
-      top: 17vh;
+      top: 20vh;
       width: 90%;
       height: 50%;
       margin: 0 auto;
@@ -232,6 +233,10 @@ export const PopupProduct = styled.div`
       top: 0;
       width: 100%;
       height: 70%;
+
+      h3 {
+        margin-top: 1.5em;
+      }
     }
 
     .close__btn {
@@ -331,7 +336,7 @@ export const Info = styled.div`
 
   h3 {
     //font-size: clamp(24px, 3.5vw, 40px);
-    line-height: 0.8;
+    line-height: 1;
     margin: 0 0 20px 1.5em;
   }
 
@@ -340,18 +345,20 @@ export const Info = styled.div`
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 500;
+    font-size: smaller;
 
     &.wasPrice {
       text-decoration: line-through;
       line-height: 0.8;
       color: maroon;
-      margin: 40px 0 0 10%;
+      margin: 20px 0 0 10%;
     }
 
     &.price {
       //font-size: clamp(24px, 2vw, 32px);
       font-weight: 500;
-      margin: 0 0 10px 10%;
+      margin: 0 0 4em 10%;
+      font-size: large;
     }
   }
 
@@ -360,15 +367,15 @@ export const Info = styled.div`
     padding: 5px 10px;
     line-height: 1.5;
     border-left: 1px solid #1d212b;
-    margin: 20px 10% 0px 10%;
+    margin: 0 10% 0px 10%;
     padding-left: 10px;
-    overflow: auto;
-    scrollbar-width: thin;
   }
 `;
 
 export const Description = styled.div`
-  height: 65%;
+  height: 400px;
+  overflow: auto;
+  scrollbar-width: thin;
 `;
 
 export const AddSectionLinks = styled.div`
@@ -376,7 +383,6 @@ export const AddSectionLinks = styled.div`
   z-index: 200;
   width: 100%;
   bottom: 0;
-  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -384,11 +390,9 @@ export const AddSectionLinks = styled.div`
 
   a {
     &.add__cart__btn {
-      position: absolute;
       color: white;
       background: maroon;
       width: 200px;
-      margin: 0 auto 0 auto;
       text-transform: uppercase;
       text-decoration: none;
       letter-spacing: 1px;

@@ -12,6 +12,10 @@ export const BannerContainer = styled.div`
 		flex
 		overflow-hidden
 	`}
+
+  h2 {
+    ${tw`text-xl md:text-4xl lg:text-6xl`}
+  }
 `;
 export const SlideIn = css`
   .hidden {
@@ -50,6 +54,7 @@ export const LeftSide = styled(motion.span)`
 		shadow-black shadow-2xl
 		rounded-full
 		px-2 md:px-12
+    lg:ml-[20%] xl:ml-[35%]
 	`}
     background-image: linear-gradient(to right, maroon, grey);
   }
@@ -75,7 +80,7 @@ export const RightSide = styled(motion.span)`
 		shadow-white/30 shadow-2xl
 		rounded-full
 		px-2 md:px-12
-		ml-[30%] lg:ml-[50%]
+		ml-[30%]  xl:ml-[60%]
 		
 	`};
     background-image: linear-gradient(to right, grey, maroon);
@@ -88,6 +93,8 @@ export const Title = styled.h2`
   &.left-stylez {
     position: relative;
     border-top: 1px solid white;
+
+    ${tw`md:ml-[-1em]`}
   }
 
   &.left-her {
@@ -96,6 +103,8 @@ export const Title = styled.h2`
     text-align: right;
     color: maroon;
     border-bottom: 2px solid black;
+
+    ${tw`ml-[-.5em] lg:ml-0`}
   }
 
   &.right-him {
@@ -110,6 +119,8 @@ export const Title = styled.h2`
     position: relative;
     text-align: left;
     border-bottom: 2px solid;
+
+    ${tw`md:ml-[-1.5em]`}
   }
 `;
 

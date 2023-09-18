@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -20,6 +20,8 @@ import {
   AddSectionLinks,
 } from "./product.styles";
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { Link } from "react-router-dom";
+import { CategoriesContext } from "../../context/categories.context";
 
 //import NEW_ARRIVALS from './new-arrivals.data.js'
 
@@ -36,6 +38,9 @@ const Product = ({
   const [popupBtns, setPopupBtns] = useState([]);
   const [index, setIndex] = useState(0);
   const [quickView, setQuickViews] = useState([]);
+  const [description, setDescription] = useState(null);
+
+  const { productDescriptions } = useContext(CategoriesContext);
 
   let currentIndex = null;
 
@@ -54,6 +59,26 @@ const Product = ({
 
     setQuickViews(document.querySelectorAll(".quick__view"));
   }, []);
+
+  useEffect(() => {
+    const getDescription = () => {
+      try {
+        const name = item.name.toLowerCase();
+
+        const matchingDescription = productDescriptions.find((prod) =>
+          prod.description.toLowerCase().includes(name)
+        );
+        if (matchingDescription) {
+          
+          setDescription(matchingDescription.description);
+        }
+      } catch (err) {
+        console.log("There was an error fetching the description: " + err);
+      }
+    };
+
+    getDescription();
+  }, [description, item.name, productDescriptions]);
 
   const variants = {
     hidden: { scale: 0 },
@@ -81,9 +106,9 @@ const Product = ({
 				<span className='price'>${ price }</span>*/}
 
         {/********** Popup Button **********/}
-        <a href='#' className='popup__btn' onClick={popup}>
+        <Link to='#' className='popup__btn' onClick={popup}>
           Quick View
-        </a>
+        </Link>
 
         {/********** Footer  **********/}
         <Footer>
@@ -109,6 +134,7 @@ const Product = ({
             price={item.price}
             imageUrl={item.imageUrl}
             item={item}
+            description={description}
           />
         </motion.div>
       </AnimatePresence>

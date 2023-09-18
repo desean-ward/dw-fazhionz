@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 *,
 *::before,
 *::after {
@@ -10,17 +11,20 @@
   box-sizing: border-box;
 }
 
+
+
 body {
   font-weight: 400;
   font-family: "Poppins", sans-serif !important;
   font-family: 'Oi', cursive;
-  font-size: clamp(0.8rem, 1vw, 1.5rem);
+  /* font-size: clamp(0.8rem, 1vw, 1.5rem); */
+  width: 100vw;
   overflow-x: hidden;
-}
+  }
 
 body .fat-face {
   font-family: 'Abril Fatface', cursive;
-  font-weight: 900oda;
+  font-weight: 900;
   text-shadow: -1px -1px 0 grey;
   text-shadow: 1px 1px 0 black;
  }
@@ -32,6 +36,9 @@ body .fat-face {
  body .strong {
   font-weight: bolder;
 }
+
+
+
 
 /* body h1 {
   font-size: clamp(3rem, 5vw, 6rem);
@@ -48,6 +55,8 @@ body h3 {
 p, span {
   font-size: clamp(0.8rem, 1vw, 1.5rem);
 } */
+
+
 
 a {
   color: black;

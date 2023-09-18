@@ -27,6 +27,12 @@ export const Title = styled.div`
   text-align: center;
   color: white;
   width: 100%;
+
+  h2 {
+    ${tw`
+      md:text-[3em]
+    `}
+  }
 `;
 
 export const Timer = styled.div`

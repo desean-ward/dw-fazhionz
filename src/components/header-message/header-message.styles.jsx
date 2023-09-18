@@ -1,8 +1,8 @@
-import tw from "twin.macro";
+import tw, { styled } from "twin.macro";
 
 export const HeaderMessageContainer = tw.div`
     relative
-    z-50
+    z-[60]
     w-screen
     flex items-center justify-center md:justify-between
     bg-[maroon]

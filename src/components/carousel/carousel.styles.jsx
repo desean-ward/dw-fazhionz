@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
   ${tw`
     z-50
-    w-full h-[50vh] lg:h-screen
+    w-screen h-[70vh] lg:h-[90vh]
     flex
     relative
     overflow-hidden
@@ -79,8 +79,7 @@ export const Wrapper = styled.div`
   display: flex;
   transition: all 1.5s ease;
   transform: translateX(${(props) => props.slideIndex * -100}vw);
-
- `;
+`;
 
 export const Slide = styled.div`
   width: 100vw;
@@ -136,7 +135,12 @@ export const InfoContainer = styled.div`
 `;
 
 export const Title = styled.div`
-  //font-size: 4rem;
+  /* font-size: 14rem; */
+  h2 {
+    ${tw`
+      md:text-[3em]
+    `}
+  }
 `;
 
 export const Description = styled.p`

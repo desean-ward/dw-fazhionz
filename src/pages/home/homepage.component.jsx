@@ -22,7 +22,6 @@ const Home = () => {
         <BannerOne />
         <Spacer />
         <Carousel />
-        <CarouselSpacer />
         <Directory />
         <Spacer />
         <Countdown />

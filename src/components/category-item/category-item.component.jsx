@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import CustomButton from '../custom-button/custom-button.component'
 
 import { addItem } from '../../redux/cart/cart.actions'
-//import { productDescription } from '../../utils/openai/openai.utils'
+// import { productDescription } from '../../utils/openai/openai.utils'
 //import { addProductDescriptions } from '../../utils/firebase/firebase.utils'
 
 import QuickView from '../../components/new-arrivals/quick-view.component'

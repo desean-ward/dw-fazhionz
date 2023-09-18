@@ -87,6 +87,7 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  bottom: 5em;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out;

@@ -1,215 +1,203 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from "react";
 
-import emailjs from 'emailjs-com'
+import emailjs from "emailjs-com";
 
-import CustomButton from '../../components/custom-button/custom-button.component'
-import GlassModal from '../glass-popup/glass-popup.component'
+import CustomButton from "../../components/custom-button/custom-button.component";
+import GlassModal from "../glass-popup/glass-popup.component";
 
 import {
-	Container,
-	LogoContainer,
-	Title,
-	Message,
-	InputContainer,
-	NameInput,
-	EmailInput,
-	SubjectInput,
-	MessageInput,
-	ButtonSend,
-} from './contact-us.styles'
+  Container,
+  LogoContainer,
+  Title,
+  Message,
+  InputContainer,
+  NameInput,
+  EmailInput,
+  SubjectInput,
+  MessageInput,
+  ButtonSend,
+} from "./contact-us.styles";
 
 const Contact = () => {
-	const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
 
-	const initialValues = { name: '', email: '', subject: '', message: '' }
-	const [formValues, setFormValues] = useState(initialValues)
-	const [isSubmit, setIsSubmit] = useState(false)
+  const initialValues = { name: "", email: "", subject: "", message: "" };
+  const [formValues, setFormValues] = useState(initialValues);
+  const [isSubmit, setIsSubmit] = useState(false);
 
-	const emailFormat =
-		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-		
-	const name = document.querySelector('.name-input')
-	const email = document.querySelector('.email-input')
-	const subject = document.querySelector('.subject-input')
-	const message = document.querySelector('.message-input')
+  const emailFormat =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-	const handleChange = (e) => {
-		const { name, value } = e.target
-		setFormValues({ ...formValues, [name]: value })
-	}
+  const name = document.querySelector(".name-input");
+  const email = document.querySelector(".email-input");
+  const subject = document.querySelector(".subject-input");
+  const message = document.querySelector(".message-input");
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
 
-		validate(formValues) ? setIsSubmit(true) : setIsSubmit(false)
-	}
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-	const showModal = () => {
-		setModal(!modal)
-		setFormValues(initialValues)
+    validate(formValues) ? setIsSubmit(true) : setIsSubmit(false);
+  };
 
-		if (modal) setIsSubmit(false)
-	}
+  const showModal = () => {
+    setModal(!modal);
+    setFormValues(initialValues);
 
-	useEffect(() => {
-		setFormValues(initialValues)
- 	}, [isSubmit])
+    if (modal) setIsSubmit(false);
+  };
 
-	useEffect(() => {
-		if (isSubmit) {
-			sendEmail()
-			showModal()
-		}
-	}, [isSubmit])
+  useEffect(() => {
+    setFormValues(initialValues);
+  }, [isSubmit]);
 
-	const validate = (values) => {
-		try {
-			if (!values.name) {
-				name.classList.add('highlight')
-				name.focus()
-			} else name.classList.remove('highlight')
+  useEffect(() => {
+    if (isSubmit) {
+      sendEmail();
+      showModal();
+    }
+  }, [isSubmit]);
 
-			if (!values.email) {
-				email.classList.add('highlight')
-			} else if (values.email.match(emailFormat)) {
-				email.classList.remove('highlight')
-			} else email.focus()
+  const validate = (values) => {
+    try {
+      if (!values.name) {
+        name.classList.add("highlight");
+        name.focus();
+      } else name.classList.remove("highlight");
 
-			if (!values.subject) {
-				subject.classList.add('highlight')
-				subject.focus()
-			} else subject.classList.remove('highlight')
+      if (!values.email) {
+        email.classList.add("highlight");
+      } else if (values.email.match(emailFormat)) {
+        email.classList.remove("highlight");
+      } else email.focus();
 
-			if (!values.message) {
-				message.classList.add('highlight')
-			} else message.classList.remove('highlight')
-		} catch (err) {
-			return
-		}
+      if (!values.subject) {
+        subject.classList.add("highlight");
+        subject.focus();
+      } else subject.classList.remove("highlight");
 
-		const fields = document.querySelectorAll('.highlight')
+      if (!values.message) {
+        message.classList.add("highlight");
+      } else message.classList.remove("highlight");
+    } catch (err) {
+      return;
+    }
 
-		try {
-			if (fields && fields.length > 0) fields[0].focus()
-			else return true
-		} catch (err) {
-			return false
-		}
-	}
+    const fields = document.querySelectorAll(".highlight");
 
-	const form = useRef()
+    try {
+      if (fields && fields.length > 0) fields[0].focus();
+      else return true;
+    } catch (err) {
+      return false;
+    }
+  };
 
-	const sendEmail = () => {
-		emailjs
-			.sendForm(
-				'service_jhnvilg',
-				'dw-fazhionz-contact-us',
-				form.current,
-				'user_E2SDLaiMBuyQ2WLk4t4Vg'
-			)
-			.then(
-				(result) => {
-					console.log(result.text)
-				},
-				(error) => {
-					console.log(error.text)
-				}
-			)
-	}
+  const form = useRef();
 
-	return (
-		<Container>
-			<LogoContainer>
-				<img
-					className='logo-images left'
-					src='../../images/dw-fazhionz-bg-left.png'
-					alt='Logo'
-				/>
+  const sendEmail = () => {
+    emailjs
+      .sendForm(
+        "service_jhnvilg",
+        "dw-fazhionz-contact-us",
+        form.current,
+        "user_E2SDLaiMBuyQ2WLk4t4Vg"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
-				<img
-					className='burst'
-					src='../../images/burst.png'
-					alt='Logo'
-				/>
+  return (
+    <Container>
+      <LogoContainer>
+        <img
+          className='logo-images left'
+          src='../../images/dw-fazhionz-bg-left.png'
+          alt='Logo'
+        />
 
-				<img
-					className='burst2'
-					src='../../images/burst.png'
-					alt='Logo'
-				/>
+        <img className='burst' src='../../images/burst.png' alt='Logo' />
 
-				<img
-					className='lines'
-					src='../../images/dw-fazhionz-bg-lines.png'
-					alt='Logo'
-				/>
+        <img className='burst2' src='../../images/burst.png' alt='Logo' />
 
-				<img
-					className='logo-images right'
-					src='../../images/dw-fazhionz-bg-right.png'
-					alt='Logo'
-				/>
-			</LogoContainer>
+        <img
+          className='lines'
+          src='../../images/dw-fazhionz-bg-lines.png'
+          alt='Logo'
+        />
 
-			<Container className='input-container'>
-				<Title className='title maroon'>CONTACT US</Title>
-				<Message>We'd love to hear from you!</Message>
-				<InputContainer
-					ref={form}
-					className='form'
-					onSubmit={handleSubmit}
-				>
-					<NameInput
-						name='name'
-						type='text'
-						className='input name-input'
-						placeholder='Name'
-						value={formValues.name}
-						onChange={handleChange}
-					/>
+        <img
+          className='logo-images right'
+          src='../../images/dw-fazhionz-bg-right.png'
+          alt='Logo'
+        />
+      </LogoContainer>
 
-					<EmailInput
-						name='email'
-						type='email'
-						className='input email-input'
-						placeholder='Email (ex.: abc@1234.com)'
-						value={formValues.email}
-						onChange={handleChange}
-					/>
+      <Container className='input-container'>
+        <InputContainer ref={form} className='form' onSubmit={handleSubmit}>
+          <Title className='title maroon'>CONTACT US</Title>
+          <Message>We'd love to hear from you!</Message>
+          <NameInput
+            name='name'
+            type='text'
+            className='input name-input'
+            placeholder='Name'
+            value={formValues.name}
+            onChange={handleChange}
+          />
 
-					<SubjectInput
-						name='subject'
-						type='text'
-						className='input subject-input'
-						placeholder='Subject'
-						value={formValues.subject}
-						onChange={handleChange}
-					/>
+          <EmailInput
+            name='email'
+            type='email'
+            className='input email-input'
+            placeholder='Email (ex.: abc@1234.com)'
+            value={formValues.email}
+            onChange={handleChange}
+          />
 
-					<MessageInput
-						name='message'
-						type='text'
-						className='input message-input'
-						placeholder='Message'
-						value={formValues.message}
-						onChange={handleChange}
-					/>
+          <SubjectInput
+            name='subject'
+            type='text'
+            className='input subject-input'
+            placeholder='Subject'
+            value={formValues.subject}
+            onChange={handleChange}
+          />
 
-					<ButtonSend>
-						<CustomButton type='submit'>Send</CustomButton>
-					</ButtonSend>
-				</InputContainer>
-			</Container>
+          <MessageInput
+            name='message'
+            type='text'
+            className='input message-input'
+            placeholder='Message'
+            value={formValues.message}
+            onChange={handleChange}
+          />
 
-			<GlassModal
-				show={modal}
-				close={showModal}
-				titleBG='D.W. Fazhionz'
-				title='Thanks for reaching out!'
-				content="You'll hear back from us shortly."
-			/>
-		</Container>
-	)
-}
+          <ButtonSend>
+            <CustomButton type='submit'>Send</CustomButton>
+          </ButtonSend>
+        </InputContainer>
+      </Container>
 
-export default Contact
+      <GlassModal
+        show={modal}
+        close={showModal}
+        titleBG='D.W. Fazhionz'
+        title='Thanks for reaching out!'
+        content="You'll hear back from us shortly."
+      />
+    </Container>
+  );
+};
+
+export default Contact;
