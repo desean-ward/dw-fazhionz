@@ -1,31 +1,25 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
-import { store, persistor } from './redux/store'
+import { store, persistor } from "./redux/store";
 
-import App from './App'
-import { UserProvider } from './context/user.context'
-import { CategoriesProvider } from './context/categories.context'
-import { CartProvider } from './context/cart.context'
+import App from "./App";
+import { CartProvider } from "./context/cart.context";
 
-import './index.css'
+import "./index.css";
 
 ReactDOM.render(
-	<Provider store={store}>
-		<BrowserRouter>
-			<PersistGate persistor={persistor}>
-				<UserProvider>
-					<CategoriesProvider>
-						<CartProvider>
-							<App />
-						</CartProvider>
-					</CategoriesProvider>
-				</UserProvider>
-			</PersistGate>
-		</BrowserRouter>
-	</Provider>,
-	document.getElementById('root')
-)
+  <Provider store={store}>
+    <BrowserRouter>
+      <PersistGate persistor={persistor}>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </PersistGate>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);

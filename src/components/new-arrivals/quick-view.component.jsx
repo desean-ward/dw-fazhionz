@@ -10,6 +10,7 @@ import { CategoriesContext } from "../../context/categories.context";
 
 import { updateCartInDB } from "../../utils/firebase/firebase.utils";
 
+
 import { motion, AnimatePresence } from "framer-motion";
 
 import {
@@ -22,10 +23,14 @@ import {
 } from "./product.styles";
 
 import { IoMdClose } from "react-icons/io";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiFillHeart } from "react-icons/ai";
-import CartIcon from "../../components/cart-icon/cart-icon.component";
-import { MotionConfig } from "framer-motion";
+
+// TODO ---- Implement Wish List ---- //
+// import { AiOutlineHeart } from "react-icons/ai";
+// import { AiFillHeart } from "react-icons/ai";
+// import CartIcon from "../../components/cart-icon/cart-icon.component";
+// import { MotionConfig } from "framer-motion";
+
+
 import { Link } from "react-router-dom";
 
 const QuickView = ({
@@ -46,20 +51,8 @@ const QuickView = ({
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const { cartItems, setCartItems, addItemToCart } = useContext(CartContext);
-  const { productDescriptions } = useContext(CategoriesContext);
 
   const nowPrice = price - price * 0.15;
-
-  // let description;
-
-  // for (let pd of productDescriptions) {
-  //   try {
-  //     if (pd.description.includes(item.name))
-  //       console.log("DESC: ", pd.description);
-  //   } catch (error) {
-  //     console.log("ERROR: ", error);
-  //   }
-  // }
 
   const addToBag = (e) => {
     e.preventDefault();

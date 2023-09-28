@@ -1,70 +1,66 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-// import { connect } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
-// import { selectCollectionsForPreview } from "../../redux/shop/shop.selectors";
-// import { createStructuredSelector } from "reselect";
-import { createProductDescription } from "../../utils/openai/openai.utils";
+// Keep commented out ---- For AI Descriptions
+// import { createProductDescription } from "../../utils/openai/openai.utils";
+
+// Keep commented out ---- For AI Descriptions
+// import { addProductDescriptions } from "../../utils/firebase/firebase.utils";
 
 import AnimatedPage from "../../components/animated-page/animated-page.component";
 import Category from "../category/category.component";
 
-import { CategoriesContext } from "../../context/categories.context";
-
 import { ShopContainer } from "./categories.styles";
 
-import { addProductDescriptions } from "../../utils/firebase/firebase.utils";
+import { selectCategoriesMap } from "../../redux/shop/shop.selectors";
 
 // Selects the category according to the title (ex.: 'mens', 'women'...)
-const Categories = ({ collections }) => {
-  const { categoriesMap } = useContext(CategoriesContext);
-  //   const { title, items } = categoriesMap;
+const Categories = () => {
+  const categoriesMap = useSelector(selectCategoriesMap);
 
-  // Array to hold product descriptions returned from OpenAI
-  const [descriptions, setDescriptions] = useState([]);
+  //* Keep commented out ---- For AI Description Creation
+  // useEffect(() => {
+  //   const getDescription = async () => {
+  //     try {
+  //       const prodDescriptions = [];
+  //       await Promise.all(
+  //         Object.keys(categoriesMap).map(async (title) => {
+  //           const items = categoriesMap[title];
 
-  useEffect(() => {
-    const getDescription = async () => {
-      try {
-        const prodDescriptions = [];
-        await Promise.all(
-          Object.keys(categoriesMap).map(async (title) => {
-            const items = categoriesMap[title];
+  //           await Promise.all(
+  //             items.map(async (item) => {
+  //               const desc = title.toLowerCase() + " " + item.name;
 
-            await Promise.all(
-              items.map(async (item) => {
-                const desc = title.toLowerCase() + " " + item.name;
+  //               // Call to OpenAI for product description generation
+  //               const description = await createProductDescription(desc);
+  //               prodDescriptions.push(description);
+  //             })
+  //           );
+  //         })
+  //       );
 
-                // Call to OpenAI for product description generation
-                const description = await createProductDescription(desc);
-                prodDescriptions.push(description);
-              })
-            );
-          })
-        );
+  //       setDescriptions(prodDescriptions);
+  //     } catch (err) {
+  //       console.log("There was an error fetching the description: " + err);
+  //     }
+  //   };
+  //   getDescription();
 
-        setDescriptions(prodDescriptions);
-      } catch (err) {
-        console.log("There was an error fetching the description: " + err);
-      }
-    };
-    getDescription();
+  //   // Add OpenAI descriptions to database - comment out after first run
+  //   // addProductDescriptions(descriptions);
+  // }, []);
 
-	// Add OpenAI descriptions to database - comment out after first run
-    // addProductDescriptions(descriptions);
-  }, []);
-
-  //! Comment out
+  //! Commented out
   // ---- Original Call Add Product Descriptions to Database
-//   useEffect(() => {
-//     const addProducts = async () => {
-//       await addProductDescriptions(descriptions);
-//       descriptions.forEach((descr) =>
-//         console.log("PRODUCT DESCRIPTION: " + JSON.stringify(descriptions))
-//       );
-//     };
-//     addProducts();
-//   }, [descriptions]);
+  //   useEffect(() => {
+  //     const addProducts = async () => {
+  //       await addProductDescriptions(descriptions);
+  //       descriptions.forEach((descr) =>
+  //         console.log("PRODUCT DESCRIPTION: " + JSON.stringify(descriptions))
+  //       );
+  //     };
+  //     addProducts();
+  //   }, [descriptions]);
 
   return (
     <AnimatedPage>
@@ -78,11 +74,5 @@ const Categories = ({ collections }) => {
     </AnimatedPage>
   );
 };
-
-// const mapStateToProps = createStructuredSelector({
-// 	collections: selectCollectionsForPreview,
-// })
-
-// export default connect(mapStateToProps)(Categories)
 
 export default Categories;

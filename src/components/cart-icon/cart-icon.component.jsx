@@ -1,56 +1,57 @@
 import React, { useContext, useState } from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+// import { connect } from "react-redux";
+// import { createStructuredSelector } from "reselect";
 
-import { toggleCartHidden } from "../../redux/cart/cart.actions";
-import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
+// import { toggleCartHidden } from "../../redux/cart/cart.actions";
+// import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 
 import { CartContext } from "../../context/cart.context";
-import { UserContext } from "../../context/user.context";
+// import { UserContext } from "../../context/user.context";
 
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 
 import { CartIconContainer } from "./cart-icon.styles";
 import { useEffect } from "react";
 
-const CartIcon = (
+const CartIcon = () =>
+  // {
+  //   /* toggleCartHidden, itemCount */
+  // }
   {
-    /* toggleCartHidden, itemCount */
-  }
-) => {
-  const { isCartOpen, setIsCartOpen, cartItems } = useContext(CartContext);
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-  const [totalQty, setTotalQty] = useState(0);
-  let total = 0;
+    const { isCartOpen, setIsCartOpen, cartItems } = useContext(CartContext);
+    // const { currentUser, setCurrentUser } = useContext(UserContext);
+    const [totalQty, setTotalQty] = useState(0);
+    let total = 0;
 
-  //alert("this is the current user: " + JSON.stringify(currentUser.cart))
-  useEffect(() => {
-    if (cartItems && cartItems.length) {
-      const itemCount = () =>
-        cartItems.map((item) => {
-          total = total + item.quantity;
-          setTotalQty(total);
-        });
+    //alert("this is the current user: " + JSON.stringify(currentUser.cart))
+    useEffect(() => {
+      const itemCount = () => {
+        if (cartItems && cartItems.length) {
+          cartItems.map((item) => {
+            total += item.quantity;
+            return setTotalQty(total);
+          });
+          console.log("TOTAL QUANTITY: ", total);
+        }
+      };
 
       itemCount();
-    }
-  }, [cartItems]);
+    }, [cartItems]);
 
-  useEffect(() => {
-    console.log("TOTAL: " + cartItems.length);
-  }, [cartItems]);
+    
+    const toggleIsCartOpen = () => {
+      setIsCartOpen(!isCartOpen);
+    };
 
-  const toggleIsCartOpen = () => {
-    setIsCartOpen(!isCartOpen);
+    return (
+      <CartIconContainer onClick={toggleIsCartOpen}>
+        <ShoppingIcon className='shopping-icon' />
+        <span className='item-count maroon'>
+          {cartItems.length ? totalQty : total}
+        </span>
+      </CartIconContainer>
+    );
   };
-
-  return (
-    <CartIconContainer onClick={toggleIsCartOpen}>
-      <ShoppingIcon className='shopping-icon' />
-      <span className='item-count maroon'>{totalQty}</span>
-    </CartIconContainer>
-  );
-};
 
 // const mapDispatchToProps = dispatch => ({
 //     toggleCartHidden: () => dispatch(toggleCartHidden())

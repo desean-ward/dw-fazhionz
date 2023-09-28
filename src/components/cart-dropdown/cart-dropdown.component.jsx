@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import {
 	useLocation,
 	useNavigate,
 	useParams,
   } from "react-router-dom";
 
-import { selectCartItems } from "../../redux/cart/cart.selectors";
-import { toggleCartHidden } from "../../redux/cart/cart.actions";
-import { createStructuredSelector } from "reselect";
+// import { selectCartItems } from "../../redux/cart/cart.selectors";
+// import { toggleCartHidden } from "../../redux/cart/cart.actions";
+// import { createStructuredSelector } from "reselect";
 
 import CartItem from "../cart-item/cart-item.component";
 import { CartContext } from '../../context/cart.context'
 import { UserContext } from "../../context/user.context";
 
-import { updateCart } from '../../utils/firebase/firebase.utils';
+// import { updateCart } from '../../utils/firebase/firebase.utils';
 
 
 import CustomButton from "../custom-button/custom-button.component";
@@ -23,7 +23,7 @@ import { useAnimation, AnimatePresence } from 'framer-motion'
 import { useInView } from "react-intersection-observer";
 
 import { DropdownContainer, CartItems,  EmptyMessage, ButtonContainer } from "./cart-dropdown.styles";
-import { setCurrentUser } from "../../redux/user/user.actions";
+// import { setCurrentUser } from "../../redux/user/user.actions";
 //import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 function withRouter(Component) {

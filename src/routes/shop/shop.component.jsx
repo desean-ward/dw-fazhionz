@@ -1,85 +1,65 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route, useNavigate, Outlet } from "react-router-dom";
-import { connect } from 'react-redux'
+import { useDispatch } from "react-redux";
 
 import Categories from "../../components/categories/categories.component";
 import Category from "../category/category.component";
-import CategoryView from '../../components/category-view/category-view.component'
-import AnimatedPage from '../../components/animated-page/animated-page.component'
-import WithSpinner from '../../components/with-spinner/with-spinner.component'
+import CategoryView from "../../components/category-view/category-view.component";
+import AnimatedPage from "../../components/animated-page/animated-page.component";
+import WithSpinner from "../../components/with-spinner/with-spinner.component";
 
-import { CategoriesContext } from '../../context/categories.context'
+import {
+  getCategoriesAndDocuments,
+  getProductDescriptions,
+} from "../../utils/firebase/firebase.utils";
 
-import { db, convertCollectionsSnapshotToMap } from '../../utils/firebase/firebase.utils'
-import { collection } from 'firebase/firestore'
+import {
+  setCategoriesMap,
+  setProductDescriptions,
+} from "../../redux/shop/shop.actions";
 
-import { updateCollections } from '../../redux/shop/shop.actions';
+import { ShopContainer } from "./shop.styles.jsx";
 
-import { ShopContainer } from  "./shop.styles.jsx";
+// const CategoriesWithSpinner = WithSpinner(Categories);
+// const CategoryWithSpinner = WithSpinner(Category);
 
+const ShopPage = ({ updatedCollections }) => {
+  const dispatch = useDispatch();
 
-const CategoriesWithSpinner = WithSpinner(Categories)
-const CategoryWithSpinner = WithSpinner(Category)
+  // Retrieve the Products and Product Descriptions from the database
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const categoryMap = await getCategoriesAndDocuments();
+      dispatch(setCategoriesMap(categoryMap));
+    };
 
-const ShopPage = ({ updatedCollections}) => {
-     /* const [ loading, setLoading ] = useState(true)
-     const navigate = useNavigate()
-     //const { match } = useParams()
-     const { categoriesMap } = useContext(CategoriesContext)
+    const getProductDescription = async () => {
+      // Retrieve the product descriptions from the database
+      const descriptions = await getProductDescriptions();
 
-     useEffect(() => {
-          const { updateCollections } = categoriesMap;
-          console.log('CATEGORIES: ' + JSON.stringify(categoriesMap))
-          const collectionRef = collection(db, 'collections');
+      // Dispatch the descriptions to state
+      dispatch(setProductDescriptions(descriptions));
+    };
 
-          const unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
-               const collectionsMap = convertCollectionsSnapshotToMap(snapshot); 
-               updateCollections(collectionsMap); 
-               setLoading(false)
-          })
+    getCategoriesMap();
+    getProductDescription();
+  }, []);
 
-          return unsubscribeFromSnapshot()
-
-     }, []) */
-
-  
-
-         return (
-               <ShopContainer>
-                    <AnimatedPage>
-                         <Routes>
-                              <Route index element={<Categories />} />
-                              <Route path=':category' element={<CategoryView />} />
-                         </Routes>
-                   
-                         {/* <Routes>
-                              <Route
-                                   exact
-                                   path='/shop'
-                                   render={products => (
-                                        <CategoriesWithSpinner isLoading={loading} { ...products } />
-                                   )}
-                              />
-                         </Routes>
-                    </AnimatedPage>
-
-                    <AnimatedPage>
-                         <Routes>
-                              <Route
-                                   path='/shop/:collectionId'
-                                   render={products => (
-                                        <CategoryWithSpinner isLoading={loading} { ...products } />
-                                   )}
-                              />
-                                   </Routes> */}
-                    </AnimatedPage>
-               </ShopContainer>
-          );
-    
+  return (
+    <ShopContainer>
+      <AnimatedPage>
+        <Routes>
+          <Route index element={<Categories />} />
+          <Route path=':category' element={<CategoryView />} />
+        </Routes>
+      </AnimatedPage>
+    </ShopContainer>
+  );
 };
 
-const mapDispatchToProps = dispatch => ({
-     updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap))
-})
+// const mapDispatchToProps = dispatch => ({
+//      updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap))
+// })
 
-export default connect(mapDispatchToProps)(ShopPage)
+// export default connect(mapDispatchToProps)(ShopPage)
+export default ShopPage;

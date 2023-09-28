@@ -1,10 +1,8 @@
-import { UserActionTypes } from './user.types';
+import { USER_ACTION_TYPES } from "./user.types";
+import { createAction } from "../../utils/reducer/reducer.utils";
 
-export const setCurrentUser = user => ({
-    type: UserActionTypes.SET_CURRENT_USER,
-    payload: user
-})
+export const setCurrentUser = (user) =>
+  createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user);
 
-export const selectCurrentUser = user => ({
-    type: UserActionTypes.SELECT_CURRENT_USER
-})
+export const selectCurrentUser = (user) =>
+  createAction(USER_ACTION_TYPES.SELECT_CURRENT_USER);

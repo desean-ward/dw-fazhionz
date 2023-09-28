@@ -5,6 +5,12 @@ import React, {
   useContext,
   Fragment,
 } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectCurrentUser,
+  setCurrentUser,
+} from "../../redux/user/user.selectors";
+
 // import { connect } from 'react-redux'
 // import { clearItemFromCart } from '../../redux/cart/cart.actions';
 
@@ -26,10 +32,15 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import AnimatedNav from "../animated-nav/animated-nav.component";
 import GlassModal from "../glass-popup/glass-popup.component";
 
-import { UserContext } from "../../context/user.context";
+// import { UserContext } from "../../context/user.context";
 import { CartContext } from "../../context/cart.context";
 
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  AnimatePresence,
+  useDragControls,
+} from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 import AnimatedPage from "../../components/animated-page/animated-page.component";
@@ -87,8 +98,11 @@ const Header = (/* { hidden, removeItem } */) => {
   const close = document.querySelector(".close-icon");
   const del = document.querySelector(".delete-icon");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  // const { currentUser, setCurrentUser } = useContext(UserContext);
+  let currentUser = useSelector(selectCurrentUser);
+
   const { cartItems, setCartItems, isCartOpen, setIsCartOpen, clearCart } =
     useContext(CartContext);
 
@@ -150,8 +164,8 @@ const Header = (/* { hidden, removeItem } */) => {
 
     try {
       clearCart();
-      setCurrentUser(null);
       await signOutUser();
+      dispatch(setCurrentUser(null));
     } catch (err) {
       console.log("SIGN OUT ERROR: " + err);
     }
@@ -167,7 +181,7 @@ const Header = (/* { hidden, removeItem } */) => {
 
   useEffect(() => {
     return setTimeout(() => {
-      // showModal()
+      showModal();
     }, 10000);
   }, []);
 

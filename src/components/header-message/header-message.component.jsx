@@ -1,14 +1,18 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
-
-import { connect } from "react-redux";
-//import { addItem, clearCart } from '../../redux/cart/cart.actions';
-import { createStructuredSelector } from "reselect";
+import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
-import { db, auth } from "../../utils/firebase/firebase.utils";
+// import { connect } from "react-redux";
+//import { addItem, clearCart } from '../../redux/cart/cart.actions';
+// import { createStructuredSelector } from "reselect";
+
+import {
+  db,
+  onAuthStateChangedListener,
+} from "../../utils/firebase/firebase.utils";
 import { doc, getDoc } from "firebase/firestore";
 
-import { UserContext } from "../../context/user.context";
+// import { UserContext } from "../../context/user.context";
 import { CartContext } from "../../context/cart.context";
 
 import { IconContext } from "react-icons";
@@ -21,34 +25,13 @@ import {
 } from "./header-message.styles";
 
 const HeaderMessage = (/* { addItem, clearCart } */) => {
-  const initialState = "Hello";
+  const initialState = "Customer";
   const [name, setName] = useState(initialState);
   const [nameUpdated, setNameUpdated] = useState(false);
-  const { currentUser, setCurrentUser } = useContext(UserContext);
   const { addItemToCart } = useContext(CartContext);
 
-  const getCurrentUser = async () => {
-    if (!currentUser) return;
-
-    const { cartItems, displayName } = currentUser;
-
-    // if( cartItems && cartItems.length ) {
-    // 	console.log("Got the cart")
-    // 	cartItems.forEach((item) => {
-    // 		addItemToCart(item)
-    // 	})
-    // }
-
-    setName(displayName);
-  };
-
-  useEffect(() => {
-    function updateName() {
-      getCurrentUser();
-    }
-
-    return updateName();
-  }, [currentUser]);
+  const loggedIn = useSelector(selectCurrentUser);
+  
 
   return (
     <HeaderMessageContainer>
@@ -58,8 +41,8 @@ const HeaderMessage = (/* { addItem, clearCart } */) => {
         <Center>YOUR 1-STOP FAZHION SHOP!!!</Center>
 
         <Right>
-          {currentUser ? (
-            <div>Welcome, {name}!</div>
+          {loggedIn ? (
+            <div>Welcome, {loggedIn.displayName || 'Customer'}!</div>
           ) : (
             <span>Please Sign In Or Sign Up</span>
           )}

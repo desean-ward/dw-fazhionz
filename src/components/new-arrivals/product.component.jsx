@@ -22,6 +22,10 @@ import {
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { Link } from "react-router-dom";
 import { CategoriesContext } from "../../context/categories.context";
+import { useSelector } from "react-redux";
+import { selectDescriptions } from "../../redux/shop/shop.selectors";
+import { getProductDescriptions } from "../../utils/firebase/firebase.utils";
+import { setProductDescriptions } from "../../redux/shop/shop.actions";
 
 //import NEW_ARRIVALS from './new-arrivals.data.js'
 
@@ -40,10 +44,6 @@ const Product = ({
   const [quickView, setQuickViews] = useState([]);
   const [description, setDescription] = useState(null);
 
-  const { productDescriptions } = useContext(CategoriesContext);
-
-  let currentIndex = null;
-
   const popup = (i) => {
     i.preventDefault();
     setIndex(i);
@@ -61,15 +61,20 @@ const Product = ({
   }, []);
 
   useEffect(() => {
-    const getDescription = () => {
+    const getDescription = async () => {
       try {
+        // Retrieve the product descriptions from the database
+        const productDescriptions = await getProductDescriptions();
+
+        // Dispatch the descriptions to state
+        dispatch(setProductDescriptions(productDescriptions));
+        
         const name = item.name.toLowerCase();
 
         const matchingDescription = productDescriptions.find((prod) =>
           prod.description.toLowerCase().includes(name)
         );
         if (matchingDescription) {
-          
           setDescription(matchingDescription.description);
         }
       } catch (err) {
@@ -78,7 +83,7 @@ const Product = ({
     };
 
     getDescription();
-  }, [description, item.name, productDescriptions]);
+  }, [description, item.name]);
 
   const variants = {
     hidden: { scale: 0 },
