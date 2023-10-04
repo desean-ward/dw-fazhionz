@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-// import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // import { createStructuredSelector } from "reselect";
 
-// import { toggleCartHidden } from "../../redux/cart/cart.actions";
-// import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
+import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 
 import { CartContext } from "../../context/cart.context";
 // import { UserContext } from "../../context/user.context";
@@ -18,37 +18,36 @@ const CartIcon = () =>
   //   /* toggleCartHidden, itemCount */
   // }
   {
-    const { isCartOpen, setIsCartOpen, cartItems } = useContext(CartContext);
+    // const { isCartOpen, setIsCartOpen, cartItems } = useContext(CartContext);
     // const { currentUser, setCurrentUser } = useContext(UserContext);
-    const [totalQty, setTotalQty] = useState(0);
-    let total = 0;
+    // const [totalQty, setTotalQty] = useState(0);
+    // let total = 0;
+    const total = useSelector(selectCartItemsCount);
+    const dispatch = useDispatch();
 
     //alert("this is the current user: " + JSON.stringify(currentUser.cart))
-    useEffect(() => {
-      const itemCount = () => {
-        if (cartItems && cartItems.length) {
-          cartItems.map((item) => {
-            total += item.quantity;
-            return setTotalQty(total);
-          });
-          console.log("TOTAL QUANTITY: ", total);
-        }
-      };
+    // useEffect(() => {
+    //   const itemCount = () => {
+    //     if (cartItems && cartItems.length) {
+    //       cartItems.map((item) => {
+    //         total += item.quantity;
+    //         return setTotalQty(total);
+    //       });
+    //       console.log("TOTAL QUANTITY: ", total);
+    //     }
+    //   };
 
-      itemCount();
-    }, [cartItems]);
+    //   itemCount();
+    // }, [cartItems]);
 
-    
     const toggleIsCartOpen = () => {
-      setIsCartOpen(!isCartOpen);
+      dispatch(toggleCartHidden());
     };
 
     return (
       <CartIconContainer onClick={toggleIsCartOpen}>
         <ShoppingIcon className='shopping-icon' />
-        <span className='item-count maroon'>
-          {cartItems.length ? totalQty : total}
-        </span>
+        <span className='item-count maroon'>{total}</span>
       </CartIconContainer>
     );
   };

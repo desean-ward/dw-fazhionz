@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import { selectDescriptions } from "../../redux/shop/shop.selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  selectCategoriesMap,
+  selectDescriptions,
+} from "../../redux/shop/shop.selectors";
+
+import { setViewProduct } from "../../redux/shop/shop.actions";
 
 import CustomButton from "../custom-button/custom-button.component";
 
@@ -37,6 +43,8 @@ const CategoryItem = ({ title, item, id }) => {
     "Product Description Coming Soon..."
   );
   const productDescriptions = useSelector(selectDescriptions);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Retrieve the product descriptions from the database
   // const productDescriptions = useSelector(selectDescriptions);
@@ -66,6 +74,12 @@ const CategoryItem = ({ title, item, id }) => {
     setShow(false);
   };
 
+  // Save the selected product to state and navigates to the product page
+  const viewProduct = () => {
+    dispatch(setViewProduct({ item: item, description: description }));
+    navigate(`/shop/categories/${title}/${item.name}`);
+  };
+
   useEffect(() => {
     const startRenderCard = () => {
       setIsLoading(true);
@@ -86,6 +100,7 @@ const CategoryItem = ({ title, item, id }) => {
     setQuickViews(document.querySelectorAll(".quick__view"));
   }, []);
 
+  // Gets the product descriptions on page render
   useEffect(() => {
     // Load the product descriptions
     const getDescription = () => {
@@ -139,8 +154,8 @@ const CategoryItem = ({ title, item, id }) => {
 
       {/*********** BUTTON **********/}
       <ButtonContainer ref={btnRef} className='popup__btn btn-container'>
-        <CustomButton onClick={popup} inverted={true.toString()}>
-          Quick View
+        <CustomButton onClick={() => viewProduct()} inverted={true.toString()}>
+          View Item
         </CustomButton>
       </ButtonContainer>
       {/*************************/}

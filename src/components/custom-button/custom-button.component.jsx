@@ -5,6 +5,7 @@ import "./custom-button.styles.scss";
 const BUTTON_TYPE_CLASSES = {
   google: "google-sign-in",
   inverted: "inverted",
+  buyNow: 'buyNow'
 };
 
 // /* Pull the 'children' from passed props, and destructure 'otherProps' */

@@ -1,24 +1,36 @@
 import { createSelector } from "reselect";
-import memoize from "lodash.memoize";
+// import memoize from "lodash.memoize";
 
 const selectShop = (state) => state.shop;
 
-export const selectCategoriesMap = (state) => state.shop.categoriesMap;
 export const selectDescriptions = (state) => state.shop.productDescriptions;
 
+export const selectProduct = (state) => state.shop.product;
 
-export const selectCollections = createSelector(
+export const selectCategories = createSelector(
   [selectShop],
-  (shop) => shop.collections
+  (shop) => shop.categories
 );
 
-export const selectCollectionsForPreview = createSelector(
-  [selectCollections],
-  (collections) =>
-    collections ? Object.keys(collections).map((key) => collections[key]) : []
+export const selectCategoriesForPreview = createSelector(
+  [selectCategories],
+  (categories) =>
+    categories ? Object.keys(categories).map((key) => categories[key]) : []
 );
 
-export const selectCollection = (collectionUrlParam) =>
-  createSelector([selectCollections], (collections) =>
-    collections ? collections[collectionUrlParam] : null
+export const selectCategory = (categoryUrlParam) =>
+  createSelector([selectCategories], (categories) =>
+    categories ? categories[categoryUrlParam] : null
   );
+
+// Reduce and return the categories array
+export const selectCategoriesMap = createSelector(
+  [selectCategories],
+  (categories) => {
+    return categories.reduce((acc, category) => {
+      const { title, items } = category;
+      acc[title.toLowerCase()] = items;
+      return acc;
+    }, {});
+  }
+);

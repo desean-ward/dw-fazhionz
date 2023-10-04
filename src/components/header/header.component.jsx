@@ -12,7 +12,7 @@ import {
 } from "../../redux/user/user.selectors";
 
 // import { connect } from 'react-redux'
-// import { clearItemFromCart } from '../../redux/cart/cart.actions';
+import { clearItemFromCart, clearCart } from '../../redux/cart/cart.actions';
 
 import { useNavigate, Outlet } from "react-router-dom";
 
@@ -23,8 +23,7 @@ import {
 } from "../../utils/firebase/firebase.utils.js";
 
 // import { createStructuredSelector } from 'reselect'
-// import { selectCurrentUser } from '../../redux/user/user.selectors'
-// import { selectCartHidden, selectCartItems } from '../../redux/cart/cart.selectors'
+import { selectCartHidden, selectCartItems } from '../../redux/cart/cart.selectors'
 
 import HeaderMessage from "../header-message/header-message.component";
 import CartIcon from "../cart-icon/cart-icon.component";
@@ -103,8 +102,11 @@ const Header = (/* { hidden, removeItem } */) => {
   // const { currentUser, setCurrentUser } = useContext(UserContext);
   let currentUser = useSelector(selectCurrentUser);
 
-  const { cartItems, setCartItems, isCartOpen, setIsCartOpen, clearCart } =
-    useContext(CartContext);
+  // const { cartItems, setCartItems, isCartOpen, setIsCartOpen, clearCart } =
+  //   useContext(CartContext);
+
+  const cartItems = useSelector(selectCartItems)
+  const isCartOpen = useSelector(selectCartHidden);
 
   window.addEventListener("scroll", () => {
     var scroll = document.querySelector(".scrollTopArrow");
@@ -179,11 +181,11 @@ const Header = (/* { hidden, removeItem } */) => {
     setModal(!modal);
   };
 
-  useEffect(() => {
-    return setTimeout(() => {
-      showModal();
-    }, 10000);
-  }, []);
+  // useEffect(() => {
+  //   return setTimeout(() => {
+  //     showModal();
+  //   }, 10000);
+  // }, []);
 
   return (
     <Fragment>

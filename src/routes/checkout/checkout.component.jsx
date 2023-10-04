@@ -1,115 +1,114 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from "react";
 
-// import { connect } from 'react-redux';
+import { useSelector } from "react-redux";
 // import { createStructuredSelector } from 'reselect';
 
-// import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selectors';
-import { CartContext } from '../../context/cart.context'
-import { UserContext } from '../../context/user.context'
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../redux/cart/cart.selectors";
+// import { CartContext } from '../../context/cart.context'
+import { UserContext } from "../../context/user.context";
 
-import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
-import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
+import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
 
-import AnimatedPage from '../../components/animated-page/animated-page.component'
+import AnimatedPage from "../../components/animated-page/animated-page.component";
 
-import { CheckoutPageContainer, CheckoutHeaderContainer, CartItemsContainer, TotalContainer, CheckoutMessageContainer, ButtonContainer } from './checkout.styles';
+import {
+  CheckoutPageContainer,
+  CheckoutHeaderContainer,
+  CartItemsContainer,
+  TotalContainer,
+  CheckoutMessageContainer,
+  ButtonContainer,
+} from "./checkout.styles";
 
 const Checkout = () => {
-    const { cartItems, setCartItems } = useContext(CartContext)
-    const { currentUser } = useContext(UserContext)
-    const [ newTotal, setNewTotal ] = useState(0)
-    let total = 0
-    //alert("this is the current user: " + JSON.stringify(currentUser.cart))
-    useEffect(() => {
-        console.log("INSIDE CHECKOUT TOTAL" + JSON.stringify(cartItems))
-        
+  const cartItems = useSelector(selectCartItems);
+  let total = 0;
+  const { currentUser } = useContext(UserContext);
+  const [newTotal, setNewTotal] = useState(0);
 
-        const totalTheCart = () => cartItems.map(item => {
-            total += item.quantity * item.price
-            
-        })
+  useEffect(() => {
+    console.log("INSIDE CHECKOUT TOTAL" + JSON.stringify(cartItems));
 
-        totalTheCart()
-        
-        setNewTotal((total - (total * .15)))
+    const totalTheCart = () =>
+      cartItems.map((item) => {
+        return (total += item.quantity * item.price);
+      });
 
-        console.log('UPDATED CHECKOUT TOTAL: ' + newTotal)
-    }, [cartItems])
+    totalTheCart();
 
-    
-    
+    setNewTotal(total - total * 0.15);
 
-    return (
-        <AnimatedPage>
-            <CheckoutPageContainer className='checkout-page'>
-                <CheckoutHeaderContainer className="checkout-header maroon">
-                    <div className="header-block">
-                        <span>Product</span>
-                    </div>
+    console.log("UPDATED CHECKOUT TOTAL: " + newTotal);
+  }, [cartItems, total]);
 
-                    <div className="header-block description">
-                        <span>Description</span>
-                    </div>
+  return (
+    <AnimatedPage>
+      <CheckoutPageContainer className='checkout-page'>
+        <CheckoutHeaderContainer className='checkout-header maroon'>
+          <div className='header-block'>
+            <span>Product</span>
+          </div>
 
-                    <div className="header-block">
-                        <span>Quantity</span>
-                    </div>
+          <div className='header-block description'>
+            <span>Description</span>
+          </div>
 
-                    <div className="header-block">
-                        <span>Subtotal</span>
-                    </div>
+          <div className='header-block'>
+            <span>Quantity</span>
+          </div>
 
-                    <div className="header-block">
-                        <span>Remove</span>
-                    </div>
-                </CheckoutHeaderContainer>
+          <div className='header-block'>
+            <span>Subtotal</span>
+          </div>
 
-                {
-                    cartItems
-                    ?
-                    <CartItemsContainer className="cart-items">
-                        {
-                           cartItems.map(cartItem => (
-                                <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-                            ))
-                        
-                        }
-                    </CartItemsContainer>
-                    :
-                    null
-                }
+          <div className='header-block'>
+            <span>Remove</span>
+          </div>
+        </CheckoutHeaderContainer>
 
-                <TotalContainer className="total">
-                    <span><h3>TOTAL: ${(newTotal.toFixed(2))}</h3></span>
-                </TotalContainer>
+        {cartItems ? (
+          <CartItemsContainer className='cart-items'>
+            {cartItems.map((cartItem) => (
+              <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+            ))}
+          </CartItemsContainer>
+        ) : null}
 
-                <CheckoutMessageContainer className="checkoutMessage maroon">
-                    <p>
-                    **  Please use the following test card information for payment!  **
-                        <br /><br />
-                        4242 4242 4242 4242<br />
-                        Exp: 12/26<br />
-                        CVV: 123
-                    </p>
-                </CheckoutMessageContainer>
-                <ButtonContainer className="button">
-                    {
-                        newTotal > 0
-                        ? (<StripeCheckoutButton price={newTotal} cartItems={cartItems} total={newTotal * 100} />) 
-                        : ( null )
-                    }
-                </ButtonContainer>
-            </CheckoutPageContainer>
-        </AnimatedPage>
-    )
-}
+        <TotalContainer className='total'>
+          <span>
+            <h3>TOTAL: ${newTotal.toFixed(2)}</h3>
+          </span>
+        </TotalContainer>
 
-// const mapStateToProps = createStructuredSelector({
-//     //cartItems: selectCartItems,
-//     total: selectCartTotal
-// })
+        <CheckoutMessageContainer className='checkoutMessage maroon'>
+          <p>
+            ** Please use the following test card information for payment! **
+            <br />
+            <br />
+            4242 4242 4242 4242
+            <br />
+            Exp: 12/26
+            <br />
+            CVV: 123
+          </p>
+        </CheckoutMessageContainer>
+        <ButtonContainer className='button'>
+          {newTotal > 0 ? (
+            <StripeCheckoutButton
+              price={newTotal}
+              cartItems={cartItems}
+              total={newTotal * 100}
+            />
+          ) : null}
+        </ButtonContainer>
+      </CheckoutPageContainer>
+    </AnimatedPage>
+  );
+};
 
-// export default connect(mapStateToProps)(Checkout);
-
-export default Checkout
+export default Checkout;

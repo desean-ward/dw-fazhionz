@@ -1,15 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import ReactDom from "react-dom";
 
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../redux/cart/cart.actions";
+import { selectCartItems } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import { UserContext } from "../../context/user.context";
 import { CartContext } from "../../context/cart.context";
 import { CategoriesContext } from "../../context/categories.context";
 
 import { updateCartInDB } from "../../utils/firebase/firebase.utils";
-
 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -30,7 +31,6 @@ import { IoMdClose } from "react-icons/io";
 // import CartIcon from "../../components/cart-icon/cart-icon.component";
 // import { MotionConfig } from "framer-motion";
 
-
 import { Link } from "react-router-dom";
 
 const QuickView = ({
@@ -49,15 +49,20 @@ const QuickView = ({
   const [popupProducts, setPopupProducts] = useState([]);
   const [closeBtns, setCloseBtns] = useState([]);
 
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-  const { cartItems, setCartItems, addItemToCart } = useContext(CartContext);
+  // const { currentUser, setCurrentUser } = useContext(UserContext);
+  // const { cartItems, setCartItems, addItemToCart } = useContext(CartContext);
+
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+  const currentUser = useSelector(selectCurrentUser)
 
   const nowPrice = price - price * 0.15;
 
   const addToBag = (e) => {
     e.preventDefault();
 
-    addItemToCart(item);
+    // addItemToCart(item);
+    dispatch(addItem(item));
     updateCartInDB(currentUser, cartItems);
   };
 

@@ -41,6 +41,7 @@ const CategoryView = () => {
                     className='item'
                     key={product.id}
                     item={product}
+                    title={category}
                   />
                 </Suspense>
               ))}

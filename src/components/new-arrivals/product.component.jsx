@@ -66,9 +66,9 @@ const Product = ({
         // Retrieve the product descriptions from the database
         const productDescriptions = await getProductDescriptions();
 
-        // Dispatch the descriptions to state
-        dispatch(setProductDescriptions(productDescriptions));
-        
+        // // Dispatch the descriptions to state
+        // dispatch(setProductDescriptions(productDescriptions));
+
         const name = item.name.toLowerCase();
 
         const matchingDescription = productDescriptions.find((prod) =>

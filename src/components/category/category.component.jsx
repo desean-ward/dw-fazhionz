@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link,  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import CategoryItem from "../category-item/category-item.component.jsx";
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Categories from "./components/categories/categories.component";
@@ -7,29 +7,16 @@ import Category from "./routes/category/category.component";
 import Header from "./components/header/header.component.jsx";
 import Footer from "./components/footer/footer.component.jsx";
 
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
-// import { connect } from 'react-redux'
-// import { createStructuredSelector } from 'reselect'
+import { Routes, Route, Navigate, Outlet, useParams } from "react-router-dom";
 
-// import {
-// 	db,
-// 	auth,
-// 	createUserDocumentFromAuth,
-// } from './utils/firebase/firebase.utils'
 import {
-  db,
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
 } from "./utils/firebase/firebase.utils";
 
-import { doc, getDoc } from "firebase/firestore";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 
-// import { UserContext } from "./context/user.context";
-// import { CartContext } from "./context/cart.context";
-
-// import { motion } from 'framer-motion'
 import { AnimatePresence } from "framer-motion/dist/es/index";
 
 import ScrollToTop from "./ScrollToTop.js";
@@ -38,8 +25,7 @@ import PageNotFound from "./components/page-not-found/page-not-found.component";
 import { PropagateLoader } from "react-spinners";
 
 import "./App.css";
-
-// import { CategoriesContainer } from './components/categories/categories.styles'
+import Product from "./routes/product/product.component";
 
 const Home = lazy(() => import("./routes/home/homepage.component"));
 const Shop = lazy(() => import("./routes/shop/shop.component.jsx"));
@@ -51,8 +37,7 @@ const Checkout = lazy(() => import("./routes/checkout/checkout.component"));
 
 const App = () => {
   const dispatch = useDispatch();
-  //   const { currentUser, setCurrentUser } = useContext(UserContext);
-  //   const { cartItems, setCartItems } = useContext(CartContext);
+  const title = useParams();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener(async (user) => {
@@ -60,12 +45,6 @@ const App = () => {
         await createUserDocumentFromAuth(user);
       }
       dispatch(setCurrentUser(user));
-      //   const docRef = doc(db, "users", user.uid);
-
-      //   await getDoc(docRef).then((doc) => {
-      //     // dispatch(setCurrentUser(doc.data()));
-      //     console.log("DATA: ", doc.data());
-      //   });
     });
 
     return unsubscribe;
@@ -96,6 +75,10 @@ const App = () => {
                 element={<Navigate replace to='/shop/categories' />}
               />
               <Route path='/shop/categories/*' element={<Shop />} />
+              <Route
+                path='/shop/categories/:category/:id'
+                element={<Product />}
+              />
               <Route path='/contact-us' element={<ContactUs />} />
               <Route exact path='/checkout' element={<Checkout />} />
               <Route path='/auth' element={<Authentication />} />
@@ -108,13 +91,5 @@ const App = () => {
     </div>
   );
 };
-
-// const mapStateToProps = createStructuredSelector({
-// 	currentUser: selectCurrentUser,
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-// 	setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-// })
 
 export default App;
