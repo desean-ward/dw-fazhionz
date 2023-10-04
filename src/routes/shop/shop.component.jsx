@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Routes, Route, useNavigate, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Categories from "../../components/categories/categories.component";
@@ -14,6 +14,7 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import {
+  fetchCategoriesAsync,
   setCategories,
   setProductDescriptions,
 } from "../../redux/shop/shop.actions";
@@ -57,4 +58,9 @@ const ShopPage = ({ updatedCollections }) => {
   );
 };
 
+// const mapDispatchToProps = dispatch => ({
+//      updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap))
+// })
+
+// export default connect(mapDispatchToProps)(ShopPage)
 export default ShopPage;

@@ -11,10 +11,10 @@ export const ProductPageContainer = styled.div`
 
 export const BreadcrumbContainer = styled.nav`
   ${tw`
-        flex
+        flex flex-wrap
         gap-4
         p-8
-        text-xl
+        md:text-xl
         
     `}
 `;
@@ -28,7 +28,8 @@ export const StyledLink = styled(Link)`
 
 export const ImagePricingSection = styled.main`
   ${tw`
-        grid grid-cols-2
+        flex flex-col
+        lg:grid grid-cols-2
     `}
 `;
 
@@ -69,14 +70,16 @@ export const Section = styled.section`
 
 export const ThumnbnailSection = styled.section`
   ${tw`
-        w-[10em] h-[30em]
-        flex flex-col justify-between
-        px-8
-    `}
+    hidden md:flex
+      w-[10em] h-[30em]
+      flex flex-col justify-between
+      px-8
+  `}
 `;
 
 export const Thumbnail = styled.section`
   ${tw`
+        
         max-w-[10em] h-[7em]
         flex justify-center items-center
         rounded-lg
@@ -103,8 +106,8 @@ export const StatsContainer = styled.div`
 
 export const ProductColorContainer = styled.section`
   ${tw`
+        hidden md:flex
         flex  items-center
-        
         my-8
     `}
 `;
@@ -158,7 +161,7 @@ export const BuyButtonsContainer = styled.div`
 
 export const ChatWishShare = styled.div`
   ${tw`
-        flex justify-center
+        flex flex-wrap md:flex-nowrap justify-center
     `}
 
   span {
@@ -205,6 +208,6 @@ export const SimilarProductsSection = styled.div`
 
 export const ProductsContainer = styled.section`
   ${tw`
-        flex gap-4
+        flex flex-wrap justify-center md:justify-start gap-4
     `}
 `;

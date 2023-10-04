@@ -1,6 +1,7 @@
 import { compose, createStore, applyMiddleware } from "redux";
 // import logger from "redux-logger";
 import { persistStore } from "redux-persist";
+import thunk from "redux-thunk";
 
 import rootReducer from "./root-reducer";
 
@@ -22,6 +23,11 @@ const loggerMiddleware = (store) => (next) => (action) => {
 const middlewares = [
   process.env.NODE_ENV !== "production" && loggerMiddleware,
 ].filter(Boolean);
+
+const thunkMiddleware = (store) => (next) => (action) => {
+  if (typeof action === "runction") {
+  }
+};
 
 const composeEnhancer =
   (process.env.NODE_ENV !== "production" &&
