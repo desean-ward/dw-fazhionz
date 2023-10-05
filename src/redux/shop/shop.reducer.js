@@ -12,6 +12,11 @@ const shopReducer = (state = CATEGORIES_INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
+    case SHOP_ACTION_TYPES.SET_CATEGORIES:
+      return {
+        ...state,
+        categories: payload,
+      };
     case SHOP_ACTION_TYPES.FETCH_CATEGORIES_START:
       return {
         ...state,
