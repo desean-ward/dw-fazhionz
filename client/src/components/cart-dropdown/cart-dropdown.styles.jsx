@@ -18,7 +18,7 @@ export const DropdownContainer = styled(motion.div)`
 
   .total {
     font-weight: bolder;
-    text-align: right;
+    margin-left: auto;
   }
 
   @media (max-width: 1000px) {
@@ -56,4 +56,8 @@ export const ButtonContainer = styled(motion.div)`
   margin-top: 20px;
   display: ${(props) => (props.hasItems ? "grid" : "none")};
   place-content: center;
+`;
+
+export const Total = styled.div`
+  display: ${(props) => (props.hasItems ? "flex" : "none")};
 `;

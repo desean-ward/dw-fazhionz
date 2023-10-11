@@ -21,6 +21,7 @@ import {
   CartItems,
   EmptyMessage,
   ButtonContainer,
+  Total,
 } from "./cart-dropdown.styles";
 
 function withRouter(Component) {
@@ -55,9 +56,6 @@ const CartDropdown = ({ open }) => {
 
   const discounted = (cartTotal - cartTotal * 0.15).toFixed(2);
 
-  // const checkOpen = () => {
-  //   dispatch(toggleCartHidden());
-  // };
 
   const checkCart = () => {
     return cartItems.length ? setHasItems(true) : setHasItems(false);
@@ -108,7 +106,9 @@ const CartDropdown = ({ open }) => {
           )}
         </CartItems>
         <hr />
-        <span className='total'>Total: ${discounted}</span>
+        <Total hasItems={hasItems}>
+          <span className='total'>Total: ${discounted}</span>
+        </Total>
 
         <ButtonContainer
           isOpen={isOpen}
