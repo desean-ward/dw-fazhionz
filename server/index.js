@@ -17,6 +17,10 @@ app.use(cors());
 app.use(express.static(process.env.STATIC_DIR));
 app.use(express.json());
 
+app.use("/", (req, res) => {
+  res.send("Server is running.");
+});
+
 app.get("/", (req, res) => {
   const path = resolve(process.env.STATIC_DIR + "/index.html");
   console.log(path);
