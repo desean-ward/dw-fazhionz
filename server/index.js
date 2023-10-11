@@ -17,9 +17,9 @@ app.use(cors());
 app.use(express.static(process.env.STATIC_DIR));
 app.use(express.json());
 
-app.use("/", (req, res) => {
-  res.send("Server is running.");
-});
+// app.use("/", (req, res) => {
+//   res.send("Server is running.");
+// });
 
 app.get("/", (req, res) => {
   const path = resolve(process.env.STATIC_DIR + "/index.html");
@@ -28,10 +28,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/config", (req, res) => {
-  console.log(
-    "Publishable Key: ",
-    process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
-  );
   res.send({
     publishableKey: process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY,
   });
@@ -39,8 +35,8 @@ app.get("/config", (req, res) => {
 
 app.post("/create-payment-intent", async (req, res) => {
   const { total } = req.body;
-  console.log("Total: ", total);
-  try {
+
+   try {
     const paymentIntent = await stripe.paymentIntents.create({
       currency: "USD",
       amount: total,
