@@ -1,0 +1,25 @@
+ [
+    {
+    "id": 0,
+    "name": "Brown Brim",
+    "imageUrl": "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+    "price": 25,
+    "category": "hats"
+    },
+   
+    {
+      "id": 1,
+      "name": "Black Jean Jacket",
+      "imageUrl": "https://i.ibb.co/XzcwL5s/black-shearling.png",
+      "price": 125,
+      "category": "jackets"
+    },
+    {
+      "id": 2,
+      "name": "Adidas NMD",
+      "imageUrl": "https://i.ibb.co/0s3pdnc/adidas-nmd.png",
+      "price": 220,
+      "category": "sneakers"
+    }
+]
+

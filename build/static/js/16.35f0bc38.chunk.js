@@ -1,0 +1,2 @@
+(this["webpackJsonpdw-fazhionz"]=this["webpackJsonpdw-fazhionz"]||[]).push([[16],{199:function(t,a,n){"use strict";n.d(a,"a",(function(){return i})),n.d(a,"b",(function(){return r}));var h=n(0);function i(t){return Object(h.a)({tag:"svg",attr:{viewBox:"0 0 24 24"},child:[{tag:"path",attr:{d:"M5 11h14v2H5z"}}]})(t)}function r(t){return Object(h.a)({tag:"svg",attr:{viewBox:"0 0 24 24"},child:[{tag:"path",attr:{d:"M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"}}]})(t)}}}]);
+//# sourceMappingURL=16.35f0bc38.chunk.js.map
