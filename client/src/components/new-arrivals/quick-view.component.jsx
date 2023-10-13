@@ -127,13 +127,14 @@ const QuickView = ({
 
   const slideOut = {
     hidden: {
-      width: 0,
+      width: "0em",
       opacity: 0,
       transition: { duration: 0.3, ease: "easeInOut" },
     },
     visible: {
       width: "30em",
       opacity: 1,
+      display: "flex",
       transition: { duration: 0.3, delay: 0.4, ease: "easeInOut" },
     },
     exit: { opacity: 0 },
@@ -141,12 +142,14 @@ const QuickView = ({
 
   const slideDown = {
     hidden: {
-      height: 0,
+      // height: 0,
+      y: "-50%",
       opacity: 0,
       transition: { duration: 0.3, ease: "easeInOut" },
     },
     visible: {
-      height: "30em",
+      // height: "30em",
+      y: "0%",
       opacity: 1,
       transition: { duration: 0.3, delay: 0.4, ease: "easeInOut" },
     },

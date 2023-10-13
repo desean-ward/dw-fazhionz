@@ -12,7 +12,7 @@ export const Container = styled.div`
     grid gap-[2em]
     z-50
     bg-transparent
-    pb-[20rem]
+    pb-[20rem] px-8
     mb-[60vh]
   `}
 
