@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     right: 0;
     width: 100vw;
     height: 100vh;
-    margin-bottom: -75vh;
+    margin-bottom: -43vh;
     background-image: url('../../images/mobile-nav-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,11 +18,13 @@ export const Overlay = styled.div`
     width: 100vw;
     background-color: maroon;
     opacity: 0.7;
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+   
 `
 export const Content = styled.section`
     color: white;
     text-align: center;
+    margin-top: 22vh;
 `
 

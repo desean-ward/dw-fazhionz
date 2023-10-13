@@ -17,9 +17,10 @@ app.use(cors());
 app.use(express.static(process.env.STATIC_DIR));
 app.use(express.json());
 
-// app.use("/", (req, res) => {
-//   res.send("Server is running.");
-// });
+app.use("/server-running", (req, res) => {
+  console.log(req.body);
+  res.send("Server is running.");
+});
 
 app.get("/", (req, res) => {
   const path = resolve(process.env.STATIC_DIR + "/index.html");
@@ -36,7 +37,7 @@ app.get("/config", (req, res) => {
 app.post("/create-payment-intent", async (req, res) => {
   const { total } = req.body;
 
-   try {
+  try {
     const paymentIntent = await stripe.paymentIntents.create({
       currency: "USD",
       amount: total,
