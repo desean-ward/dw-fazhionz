@@ -40,8 +40,8 @@ This full-stack application was built using React JS and Firebase. Users are abl
 
 The application is built upon MongoDB, Express.js, React.js, and Node.js. 
 
-<img src="https://github.com/desean-ward/dw-fazhionz/assets/66344466/beb8b147-4461-47a2-a707-2e540443b303" width="40" alt="" /> Firebase | 
-<img src='https://github.com/deseanward/PS-Capstone/assets/139034534/4ab37a82-8541-4cc4-a9f3-1aaee9d07146' width="40" alt="" /> Express | 
+<img src="https://github.com/desean-ward/dw-fazhionz/assets/66344466/beb8b147-4461-47a2-a707-2e540443b303" width="80" alt="" /> 
+<img src='https://github.com/deseanward/PS-Capstone/assets/139034534/4ab37a82-8541-4cc4-a9f3-1aaee9d07146' width="80" alt="" />
 ![react](https://github.com/deseanward/PS-Capstone/assets/139034534/9dce6126-c414-4399-82cb-67b32319f665)
 ![node](https://github.com/deseanward/PS-Capstone/assets/139034534/75765da7-b173-4fba-991c-c1f2555d6010)
 ![tailwind](https://github.com/deseanward/PS-Capstone/assets/139034534/2e5d8e8e-732b-474e-8ded-2200b880ad4e)
