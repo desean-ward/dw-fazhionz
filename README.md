@@ -3,7 +3,7 @@
 <p align="center">
 
 
-  <h1 align="center"D.W. Fazhionz!</h3>
+  <h1 align="center">D.W. Fazhionz!</h3>
 
   <p align="center">
     Modern Apparel For Modern Mindz
