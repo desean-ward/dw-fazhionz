@@ -205,9 +205,6 @@ export const getCartItems = async (user) => {
       if (userSnapshot.exists()) {
         const cartItems = userSnapshot.data().cartItems;
         if (cartItems !== null || cartItems !== "undefined") {
-          console.log(
-            "CART ITEM RETRIEVAL SUCCESSFUL!" + JSON.stringify(cartItems)
-          );
           return cartItems;
         } else {
           console.log("CART ITEMS IS: " + JSON.stringify(cartItems));
@@ -225,7 +222,6 @@ export const getCartItems = async (user) => {
 
 /* Update cart in database */
 export const updateCartInDB = async (currentUser, items) => {
-  console.log("WITHIN FIREBASE, CURRENT USER: " + JSON.stringify(currentUser));
   if (currentUser) {
     const userRef = doc(db, "users", currentUser.uid);
     const userSnapshot = await getDoc(userRef);

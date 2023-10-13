@@ -45,6 +45,7 @@ const Checkout = () => {
     fetch(url).then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(loadStripe(publishableKey));
+      stripePromise && console.log("Stripe Promise: ");
     });
   }, []);
 
@@ -54,7 +55,7 @@ const Checkout = () => {
 
     process.env.NODE_ENV === "development"
       ? (url = "http://localhost:5252/create-payment-intent")
-      : (url = "/create-payment-intent");
+      : (url = "https://dw-fazhionz.vercel.app/create-payment-intent");
 
     fetch(url, {
       method: "POST",
@@ -67,6 +68,7 @@ const Checkout = () => {
     }).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
+      clientSecret && console.log("Client Secret: ");
     });
   }, [total]);
 
