@@ -48,9 +48,7 @@ The application is built upon MongoDB, Express.js, React.js, and Node.js.
 <img src="https://github.com/deseanward/PS-Capstone/assets/139034534/4ab3ef67-00d5-4730-a7b8-7d71ee79aa1c" width="80" alt="" />
 <img src="https://github.com/desean-ward/dw-fazhionz/assets/66344466/8b0a58e5-6dea-4f17-be24-703b913dfee1" width="80" alt="" />
 
-## Roadmap!
-
-
+## Roadmap
 
 In the near future, I plan on implementing 
 <ul>
