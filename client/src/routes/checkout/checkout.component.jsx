@@ -34,22 +34,20 @@ const Checkout = () => {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
 
+  const URL = process.env.REACT_APP_SERVER_URL;
+
   // Retrieve Stripe publishable key from server
   useEffect(() => {
-    let url;
-
-    fetch("/config").then(async (r) => {
+    fetch(`${URL}/config`).then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(loadStripe(publishableKey));
-      stripePromise && console.log("Stripe Promise: ");
+      console.log(stripePromise);
     });
   }, []);
 
   // Create PaymentIntent as soon as the page loads
   useEffect(() => {
-    let url;
-
-    fetch("/create-payment-intent", {
+    fetch(`${URL}/create-payment-intent`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
