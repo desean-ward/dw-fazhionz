@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
+import { nanoid } from "nanoid";
+
 import {
   selectCartItems,
   selectCartTotal,
@@ -24,6 +26,11 @@ import {
   Total,
 } from "./cart-dropdown.styles";
 
+/**
+ * Higher-order component that adds router props to the wrapped component.
+ * @param {React.Component} Component - The component to be wrapped.
+ * @returns {React.Component} - The wrapped component with router props.
+ */
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
     let location = useLocation();
@@ -56,15 +63,18 @@ const CartDropdown = ({ open }) => {
 
   const discounted = (cartTotal - cartTotal * 0.15).toFixed(2);
 
-
   const checkCart = () => {
-    return cartItems.length ? setHasItems(true) : setHasItems(false);
+    typeof cartItems !== "undefined" && cartItems.length
+      ? setHasItems(true)
+      : setHasItems(false);
   };
 
+  // Check if cart has items
   useEffect(() => {
     checkCart();
-  }, [isOpen]);
+  }, [isOpen, cartItems]);
 
+  // Animation variants for cart dropdown
   const variants = {
     hidden: {
       opacity: 0,
@@ -90,16 +100,11 @@ const CartDropdown = ({ open }) => {
         variants={variants}
         initial='hidden'
         animate={isOpen ? "visible" : "hidden"}
-        // transition={{ duration: 0.3 }}
       >
         <CartItems>
           {cartItems.length ? (
             cartItems.map((cartItem) => (
-              <CartItem
-                key={cartItem.id}
-                item={cartItem}
-                className='cart-item'
-              />
+              <CartItem key={nanoid()} item={cartItem} className='cart-item' />
             ))
           ) : (
             <EmptyMessage>Your bag is empty</EmptyMessage>
@@ -121,7 +126,6 @@ const CartDropdown = ({ open }) => {
             id='dropdown-button'
             onClick={() => {
               navigate("/checkout");
-              // setIsCartOpen(!isCartOpen);
               dispatch(toggleCartHidden());
             }}
           >

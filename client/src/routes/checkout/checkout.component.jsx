@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./checkout-form";
+import { nanoid } from "nanoid";
 
-// import { stripePromise } from "../../utils/stripe/stripe.utils";
 import { loadStripe } from "@stripe/stripe-js";
 
 import { useSelector } from "react-redux";
@@ -11,12 +11,9 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../redux/cart/cart.selectors";
-// import { UserContext } from "../../context/user.context";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
-// import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
-// import CustomButton from "../../components/custom-button/custom-button.component";
 import AnimatedPage from "../../components/animated-page/animated-page.component";
 
 import {
@@ -32,11 +29,12 @@ import {
 
 const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
-  let total = 0;
+  const total = useSelector(selectCartTotal);
   const [newTotal, setNewTotal] = useState(0);
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
 
+  // Retrieve Stripe publishable key from server
   useEffect(() => {
     let url;
 
@@ -50,6 +48,7 @@ const Checkout = () => {
     });
   }, []);
 
+  // Create PaymentIntent as soon as the page loads
   useEffect(() => {
     let url;
 
@@ -63,15 +62,15 @@ const Checkout = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        total: newTotal * 100,
+        total: total * 100,
       }),
     }).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
     });
-  }, [newTotal]);
+  }, [total]);
 
-  // TODO ---- SAVE FOR LATER ---- //
+  // TODO ---- SAVE FOR LATER FOR POSSIBLE DIFFERENT STRIPE INTEGRATION---- //
   // const handleCheckout = async (e) => {
   //   e.preventDefault();
 
@@ -93,17 +92,9 @@ const Checkout = () => {
   //   }
   // };
 
+  // Updates total when cart items change
   useEffect(() => {
-    const totalTheCart = () =>
-      cartItems.map((item) => {
-        return (total += item.quantity * item.price);
-      });
-
-    totalTheCart();
-
     setNewTotal(total - total * 0.15);
-
-    console.log("UPDATED CHECKOUT TOTAL: " + newTotal);
   }, [cartItems, total]);
 
   return (
@@ -135,7 +126,7 @@ const Checkout = () => {
           {cartItems ? (
             <CartItemsContainer className='cart-items'>
               {cartItems.map((cartItem) => (
-                <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+                <CheckoutItem key={nanoid()} cartItem={cartItem} />
               ))}
             </CartItemsContainer>
           ) : null}

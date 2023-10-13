@@ -83,7 +83,7 @@ const Product = () => {
       notify.itemAdded({
         imgUrl: product.item.imageUrl,
         name: product.item.name,
-        text: "has beenadded to cart",
+        text: "has been added to cart",
       });
     } catch (error) {
       notify.error({
@@ -101,7 +101,7 @@ const Product = () => {
       notify.itemAdded({
         imgUrl: product.item.imageUrl,
         name: product.item.name,
-        text: "has beenadded to cart",
+        text: "has been added to cart",
       });
     } catch (error) {
       notify.error({

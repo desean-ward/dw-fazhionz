@@ -1,13 +1,10 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Categories from "./components/categories/categories.component";
-import Category from "./routes/category/category.component";
-
 import Header from "./components/header/header.component.jsx";
 import Footer from "./components/footer/footer.component.jsx";
 
-import { Routes, Route, Navigate, Outlet, useParams } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import {
   onAuthStateChangedListener,
@@ -17,7 +14,7 @@ import {
 } from "./utils/firebase/firebase.utils";
 
 import { setCurrentUser } from "./redux/user/user.actions";
-import { selectCartItems } from "./redux/cart/cart.selectors";
+import { selectCartHidden, selectCartItems } from "./redux/cart/cart.selectors";
 
 import { AnimatePresence } from "framer-motion/dist/es/index";
 
@@ -28,9 +25,11 @@ import { PropagateLoader } from "react-spinners";
 
 import "./App.css";
 import Product from "./routes/product/product.component";
-import { addItem, clearCart } from "./redux/cart/cart.actions";
-
-
+import {
+  addItem,
+  toggleCartHidden,
+  updateItem,
+} from "./redux/cart/cart.actions";
 
 const Home = lazy(() => import("./routes/home/homepage.component"));
 const Shop = lazy(() => import("./routes/shop/shop.component.jsx"));
@@ -43,8 +42,14 @@ const Checkout = lazy(() => import("./routes/checkout/checkout.component"));
 const App = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
+  const cartHidden = useSelector(selectCartHidden);
 
   useEffect(() => {
+    /**
+     * Listen for changes in user authentication state and perform necessary actions.
+     * @param {firebase.User} user - The authenticated user object.
+     * @returns {unsubscribe} - Function to unsubscribe from the listener.
+     */
     const unsubscribe = onAuthStateChangedListener(async (user) => {
       if (user) {
         await createUserDocumentFromAuth(user);
@@ -55,27 +60,37 @@ const App = () => {
         dispatch(setCurrentUser(theUser));
       } else dispatch(setCurrentUser(null));
 
-      // Retrieve user cart items from database
-      if (!cartItems.length) {
-        const userItems = await getCartItems(user);
-        if (userItems) {
-          userItems.forEach((item) => {
-            dispatch(addItem(item));
-          });
-        }
-      }
-      // // Initialize the cart
-      // dispatch(clearCart());
 
+      // Retrieve user cart items from database
+      const userItems = await getCartItems(user);
+
+      // If userItems exist, check if they are already in the cart
+      userItems
+        ? typeof cartItems !== "undefined" && cartItems.length
+          ? userItems.forEach((item) => {
+              !cartItems.find((cartItem) => cartItem.id === item.id)
+                ? dispatch(addItem(item))
+                : dispatch(updateItem(item));
+            })
+            // If cart is empty, add all userItems to cart
+          : userItems.forEach((item) => {
+              dispatch(addItem(item));
+              console.log("ITEM", item);
+            })
+        : console.log("NO USER ITEMS");
     });
 
     return unsubscribe;
-  }, [dispatch, cartItems]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (cartHidden === true) dispatch(toggleCartHidden());
+  }, [dispatch]);
 
   return (
     <div>
       <ScrollToTop />
-      
+
       <AnimatePresence exitBeforeEnter>
         <Suspense
           fallback={

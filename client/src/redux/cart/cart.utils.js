@@ -11,7 +11,13 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     );
   }
 
-  return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+  return [
+    ...cartItems,
+    {
+      ...cartItemToAdd,
+      quantity: cartItemToAdd.quantity ? cartItemToAdd.quantity : 1,
+    },
+  ];
 };
 
 export const updateItemInCart = (cartItems, cartItemToUpdate) => {
@@ -26,7 +32,6 @@ export const updateItemInCart = (cartItems, cartItemToUpdate) => {
         : cartItem
     );
   } else console.log("NO ITEM TO UPDATE");
-
 };
 
 export const removeItemFromCart = (cartItems, cartItemToRemove) => {
@@ -35,6 +40,8 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   );
 
   if (existingCartItem.quantity === 1) {
+    if (cartItems.length === 1) return [];
+
     return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
   }
 

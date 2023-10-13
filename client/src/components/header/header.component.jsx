@@ -1,12 +1,6 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectCurrentUser,
-  setCurrentUser,
-} from "../../redux/user/user.selectors";
-
-import { clearItemFromCart, clearCart } from "../../redux/cart/cart.actions";
-
 import { useNavigate, Outlet } from "react-router-dom";
 
 import {
@@ -15,10 +9,12 @@ import {
   updateCartInDB,
 } from "../../utils/firebase/firebase.utils.js";
 
+import { clearCart, toggleCartHidden } from "../../redux/cart/cart.actions";
 import {
   selectCartHidden,
   selectCartItems,
 } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import HeaderMessage from "../header-message/header-message.component";
 import CartIcon from "../cart-icon/cart-icon.component";
@@ -26,15 +22,8 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import AnimatedNav from "../animated-nav/animated-nav.component";
 import GlassModal from "../glass-popup/glass-popup.component";
 
-import {
-  motion,
-  useAnimation,
-  AnimatePresence,
-  useDragControls,
-} from "framer-motion";
+import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
-import AnimatedPage from "../../components/animated-page/animated-page.component";
 
 import {
   HeaderTop,
@@ -44,8 +33,6 @@ import {
   Language,
   SearchContainer,
   Input,
-  LogoContainer,
-  TitleContainer,
   OptionsContainer,
   OptionLine,
   OptionLink,
@@ -85,14 +72,12 @@ const Header = () => {
   const [modal, setModal] = useState(false);
   const searchRef = useRef(null);
   const inputRef = useRef(null);
-  const mobileNavRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   let currentUser = useSelector(selectCurrentUser);
-
+  const cartHidden = useSelector(selectCartHidden);
   const cartItems = useSelector(selectCartItems);
-  const isCartOpen = useSelector(selectCartHidden);
 
   window.addEventListener("scroll", () => {
     var scroll = document.querySelector(".scrollTopArrow");
@@ -149,12 +134,15 @@ const Header = () => {
 
   const handleSignOut = async () => {
     if (cartItems || cartItems.length) {
+      console.log("CART ITEMS TO DB: " + cartItems);
       await updateCartInDB(currentUser, cartItems);
     }
 
     try {
+      if (cartHidden === true) dispatch(toggleCartHidden());
       await signOutUser();
       dispatch(clearCart());
+      navigate("/");
     } catch (err) {
       console.log("SIGN OUT ERROR: " + err);
     }

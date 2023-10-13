@@ -10,10 +10,10 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import { BiPlus, BiMinus } from "react-icons/bi";
 
 import {
-  clearItemFromCart,
   addItem,
   removeItem,
   updateItem,
+  clearCart,
 } from "../../redux/cart/cart.actions";
 
 import { selectCartItems } from "../../redux/cart/cart.selectors";
@@ -52,12 +52,14 @@ const CheckoutItem = ({ cartItem }) => {
     exit: { opacity: 0, scale: 0 },
   };
 
+   // Decrement item quantity
   const handleDecrement = async (cartItem) => {
     if (cartItem.quantity === 1) {
       handleDeleteFromCart(cartItem);
     } else dispatch(removeItem(cartItem));
   };
 
+  /* Selects the quantity input field on click */
   const handleQtyClick = (e) => {
     e.target.select();
   };
@@ -83,7 +85,7 @@ const CheckoutItem = ({ cartItem }) => {
       }
     }
   };
-  
+
   /* Removes the entire item from cart IF the quantity is '0' */
   const handleOnBlur = () => {
     if (inputRef.current.value === "0" || inputRef.current.value === "") {
@@ -92,7 +94,7 @@ const CheckoutItem = ({ cartItem }) => {
 
       const deleteItem = async () => {
         if (cartItem) {
-          dispatch(clearItemFromCart(cartItem));
+          dispatch(removeItem(cartItem));
         }
       };
 
@@ -100,17 +102,20 @@ const CheckoutItem = ({ cartItem }) => {
     }
   };
 
+  // Blur input field on 'Enter' key press
   const handleKeyUp = (e) => {
     if (e.keyCode === 13) inputRef.current.blur();
   };
 
-  /* Deletes the entire item quantity from the cart */
+  /* Deletes the entire item from the cart */
   const handleDeleteFromCart = (cartItem) => {
     setIsVisible(false);
 
     const deleteItem = () => {
       if (cartItem) {
-        dispatch(clearItemFromCart(cartItem));
+        const moreItems = dispatch(removeItem(cartItem));
+
+        if (!moreItems) updateCartInDB(currentUser, null);
       } else {
         console.log("NO ITEM TO DELETE");
       }

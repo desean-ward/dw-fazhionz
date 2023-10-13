@@ -54,7 +54,7 @@ export const EmptyMessage = styled.div`
 export const ButtonContainer = styled(motion.div)`
   width: 100%;
   margin-top: 20px;
-  display: ${(props) => (props.hasItems ? "grid" : "none")};
+  display: ${(props) => (props.hasItems ? "flex" : "none")};
   place-content: center;
 `;
 
