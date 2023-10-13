@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy } from "react";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./checkout-form";
 import { nanoid } from "nanoid";
 
 import { loadStripe } from "@stripe/stripe-js";
@@ -11,8 +10,6 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../redux/cart/cart.selectors";
-
-import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
 import AnimatedPage from "../../components/animated-page/animated-page.component";
 
@@ -25,6 +22,15 @@ import {
   CheckoutFormContainer,
   NoItemsContainer,
 } from "./checkout.styles";
+import { PropagateLoader } from "react-spinners";
+import { Suspense } from "react";
+import Suspend from "../../components/suspend/suspend.component";
+
+const CheckoutForm = lazy(() => import("./checkout-form"));
+const CheckoutItem = lazy(() =>
+  import("../../components/checkout-item/checkout-item.component")
+);
+
 // import PaymentForm from "../../components/payment-form/payment-form.component";
 
 const Checkout = () => {
@@ -41,7 +47,6 @@ const Checkout = () => {
     fetch(`${URL}/config`).then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(loadStripe(publishableKey));
-      console.log(stripePromise);
     });
   }, []);
 
@@ -58,7 +63,6 @@ const Checkout = () => {
     }).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
-      clientSecret && console.log("Client Secret:");
     });
   }, [total]);
 
@@ -118,7 +122,9 @@ const Checkout = () => {
           {cartItems ? (
             <CartItemsContainer className='cart-items'>
               {cartItems.map((cartItem) => (
-                <CheckoutItem key={nanoid()} cartItem={cartItem} />
+                <Suspend key={nanoid()}>
+                  <CheckoutItem key={nanoid()} cartItem={cartItem} />
+                </Suspend>
               ))}
             </CartItemsContainer>
           ) : null}
@@ -142,9 +148,11 @@ const Checkout = () => {
           {newTotal > 0 ? (
             <>
               {clientSecret && stripePromise && (
-                <Elements stripe={stripePromise} options={{ clientSecret }}>
-                  <CheckoutForm />
-                </Elements>
+                <Suspend>
+                  <Elements stripe={stripePromise} options={{ clientSecret }}>
+                    <CheckoutForm />
+                  </Elements>
+                </Suspend>
               )}
             </>
           ) : (

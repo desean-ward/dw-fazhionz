@@ -13,7 +13,7 @@ export const Container = styled.div`
   position: relative;
   width: 100%;
   padding: 4em 0 4em 10%;
-  display: grid;
+  display: ${(props) => (props.pageLoaded ? "grid" : "none")};
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2em;
   background-color: maroon;

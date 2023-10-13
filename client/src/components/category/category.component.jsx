@@ -1,7 +1,7 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 
-import CategoryItem from "../category-item/category-item.component.jsx";
+// import CategoryItem from "../category-item/category-item.component.jsx";
 
 import {
   CategoryContainer,
@@ -11,6 +11,13 @@ import {
 } from "./category.styles";
 import { useSelector } from "react-redux";
 import { selectCategoriesMap } from "../../redux/shop/shop.selectors.js";
+import { nanoid } from "nanoid";
+import { PropagateLoader } from "react-spinners";
+import Suspend from "../suspend/suspend.component";
+
+const CategoryItem = lazy(() =>
+  import("../category-item/category-item.component.jsx")
+);
 
 const Category = ({ title }) => {
   const categoriesMap = useSelector(selectCategoriesMap);
@@ -30,12 +37,14 @@ const Category = ({ title }) => {
           {products
             .filter((_, idx) => idx < 4)
             .map((product) => (
-              <CategoryItem
-                key={product.id}
-                item={product}
-                title={title}
-                id={product.id}
-              />
+              <Suspend key={nanoid()}>
+                <CategoryItem
+                  key={nanoid()}
+                  item={product}
+                  title={title}
+                  id={product.id}
+                />
+              </Suspend>
             ))}
         </ProductsContainer>
       </PreviewContainer>

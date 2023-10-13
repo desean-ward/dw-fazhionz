@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useLocation } from "react-use";
 
 import {
@@ -29,8 +29,10 @@ import { GrMail } from "react-icons/gr";
 const Footer = () => {
   const footerRef = useRef(null);
   const path = useLocation();
+  const [pageLoaded, setPageLoaded] = useState(false);
 
   useEffect(() => {
+    setPageLoaded(false);
     const footer = document.querySelector(".footer");
     path.pathname === "/"
       ? footer.classList.add("shadow")
@@ -39,11 +41,18 @@ const Footer = () => {
     path.pathname === "/contact"
       ? footer.classList.add("portrait")
       : footer.classList.remove("portrait");
+
+    // Delay footer loading to prevent flashing
+    const stall = setTimeout(() => {
+      setPageLoaded(true);
+    }, 300);
+
+    return () => clearTimeout(stall);
   }, [path]);
 
   return (
     <Wrapper ref={footerRef} className='footer shadow'>
-      <Container className='info'>
+      <Container pageLoaded={pageLoaded}>
         <Left>
           <Title>D.W. Fazhionz</Title>
 

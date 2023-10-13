@@ -13,7 +13,6 @@ import {
   addItem,
   removeItem,
   updateItem,
-  clearCart,
 } from "../../redux/cart/cart.actions";
 
 import { selectCartItems } from "../../redux/cart/cart.selectors";
@@ -46,6 +45,7 @@ const CheckoutItem = ({ cartItem }) => {
 
   const inputRef = useRef(quantity);
 
+  // Animation variants
   const variants = {
     initial: { opacity: 1, scale: 1 },
     animate: { opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0 },

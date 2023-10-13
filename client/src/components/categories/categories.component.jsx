@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import { useSelector } from "react-redux";
 
 // Keep commented out ---- For Initial AI Descriptions
@@ -8,11 +8,15 @@ import { useSelector } from "react-redux";
 // import { addProductDescriptions } from "../../utils/firebase/firebase.utils";
 
 import AnimatedPage from "../../components/animated-page/animated-page.component";
-import Category from "../category/category.component";
+// import Category from "../category/category.component";
 
 import { ShopContainer } from "./categories.styles";
 
 import { selectCategoriesMap } from "../../redux/shop/shop.selectors";
+import { nanoid } from "nanoid";
+import Suspend from "../suspend/suspend.component";
+
+const Category = lazy(() => import("../category/category.component"));
 
 // Selects the category according to the title (ex.: 'mens', 'women'...)
 const Categories = () => {
@@ -47,8 +51,8 @@ const Categories = () => {
   //   };
   //   getDescription();
 
-    // Add OpenAI descriptions to database - comment out after first run
-    // addProductDescriptions(descriptions);
+  // Add OpenAI descriptions to database - comment out after first run
+  // addProductDescriptions(descriptions);
   // }, []);
 
   //! Commented out
@@ -69,7 +73,11 @@ const Categories = () => {
         {Object.keys(categoriesMap).map((title) => {
           const products = categoriesMap[title];
 
-          return <Category key={title} title={title} products={products} />;
+          return (
+            <Suspend key={nanoid()}>
+              <Category key={nanoid()} title={title} products={products} />
+            </Suspend>
+          );
         })}
       </ShopContainer>
     </AnimatedPage>

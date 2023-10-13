@@ -1,8 +1,8 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "./components/header/header.component.jsx";
-import Footer from "./components/footer/footer.component.jsx";
+// import Footer from "./components/footer/footer.component.jsx";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -21,8 +21,6 @@ import { AnimatePresence } from "framer-motion/dist/es/index";
 import ScrollToTop from "./ScrollToTop.js";
 import PageNotFound from "./components/page-not-found/page-not-found.component";
 
-import { PropagateLoader } from "react-spinners";
-
 import "./App.css";
 import Product from "./routes/product/product.component";
 import {
@@ -30,6 +28,7 @@ import {
   toggleCartHidden,
   updateItem,
 } from "./redux/cart/cart.actions";
+import Suspend from "./components/suspend/suspend.component.jsx";
 
 const Home = lazy(() => import("./routes/home/homepage.component"));
 const Shop = lazy(() => import("./routes/shop/shop.component.jsx"));
@@ -38,6 +37,7 @@ const Authentication = lazy(() =>
   import("./routes/authentication/authentication.component")
 );
 const Checkout = lazy(() => import("./routes/checkout/checkout.component"));
+const Footer = lazy(() => import("./components/footer/footer.component.jsx"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,7 +60,6 @@ const App = () => {
         dispatch(setCurrentUser(theUser));
       } else dispatch(setCurrentUser(null));
 
-
       // Retrieve user cart items from database
       const userItems = await getCartItems(user);
 
@@ -72,8 +71,8 @@ const App = () => {
                 ? dispatch(addItem(item))
                 : dispatch(updateItem(item));
             })
-            // If cart is empty, add all userItems to cart
-          : userItems.forEach((item) => {
+          : // If cart is empty, add all userItems to cart
+            userItems.forEach((item) => {
               dispatch(addItem(item));
               console.log("ITEM", item);
             })
@@ -92,19 +91,7 @@ const App = () => {
       <ScrollToTop />
 
       <AnimatePresence exitBeforeEnter>
-        <Suspense
-          fallback={
-            <div className='fallback'>
-              <h3>Loading</h3> <br />
-              <PropagateLoader
-                className='fallback'
-                color='black'
-                loading={true}
-                size={15}
-              />
-            </div>
-          }
-        >
+        <Suspend>
           <Routes>
             <Route path='/' element={<Header />}>
               <Route index element={<Home />} />
@@ -123,9 +110,9 @@ const App = () => {
               <Route path='*' element={<PageNotFound />} />
             </Route>
           </Routes>
-        </Suspense>
+          <Footer />
+        </Suspend>
       </AnimatePresence>
-      <Footer />
     </div>
   );
 };
