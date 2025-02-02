@@ -22,6 +22,9 @@ import ScrollToTop from "./ScrollToTop.js";
 import PageNotFound from "./components/page-not-found/page-not-found.component";
 
 import "./App.css";
+
+import './assets/fonts/greater-theory.otf'
+
 import Product from "./routes/product/product.component";
 import {
   addItem,

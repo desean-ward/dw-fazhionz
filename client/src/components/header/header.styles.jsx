@@ -10,28 +10,22 @@ const getMaxHeight = (isOpen) => {
 export const HeaderTop = styled.div``;
 
 export const HeaderContainer = styled.div`
-  position: sticky;
+  position: fixed;
+  top: 0;
 
   transition: transform 0.5s ease;
 
   ${tw`
-    sticky top-0
+    fixed top-0
+    text-white
     z-[100]
-    py-2 lg:py-4 px-16
+    p-6 pr-8
     w-full
     flex justify-between items-center
-    bg-white
   `}
 
-  &.shadow {
-    box-shadow: 0 30px 50px -20px rgb(50 50 93 / 25%),
-      0 30px 60px -30px rgb(0 0 0 / 30%);
-
-    filter: drop-shadow(0 0.25em 0.5em gray);
-  }
-
   /* MEDIA QUERIES */
-  @media (max-width: 1000px) {
+  @media (max-width: 640px) {
     display: grid;
     grid-template-rows: 1fr 1fr;
     place-content: center;
@@ -86,7 +80,7 @@ export const TitleContainer = styled(Link)`
 export const Language = styled.span`
   display: flex;
   align-items: start;
-  color: #212529;
+  color: white;
 
   @media only screen and (max-width: 540px) {
     display: none;
@@ -97,25 +91,20 @@ export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  height: 2.5em;
-  width: 2.5em;
-  transition: 500ms width ease-in-out, 500ms padding ease-in-out,
+  height: 1.5em;
+  width: 1.5em;
+  padding: 0 0.5em 0 0.5em;
+  border: 1px solid rgba(255, 255, 255, 05);
+  transition: 500ms width ease-in-out, 500ms ease-in-out,
     500ms border-radius ease-in-out;
 
-  ${tw`
-	cursor-pointer
-	shadow shadow-gray-700
-	p-3
-	rounded-full
-
-  `}
+  ${tw`py-3 rounded-full cursor-pointer`}
 
   //**  open state  **//
   &.search-open {
     ${tw`
 		w-[22em] lg:w-[34em]
-		rounded-md
+		rounded-md bg-white
 	`}
 
     .search-icon {
@@ -151,7 +140,7 @@ export const SearchContainer = styled.div`
     }
 
     @media only screen and (max-width: 600px) {
-      /* width: 18rem; */
+      width: 18rem;
     }
 
     @media only screen and (max-width: 400px) {
@@ -173,24 +162,25 @@ export const SearchContainer = styled.div`
 
   .delete-icon {
     position: relative;
-    /* left: 12px; */
+    color: black;
+    left: 0;
     z-index: -2;
     cursor: pointer;
-
-    ${tw`lg:left-3`}
   }
 
   .close-icon {
     position: sticky;
+    color: black;
     z-index: -1;
-    left: 100%;
+    right: 0;
+    margin-left: 4px;
     cursor: pointer;
   }
 `;
 
 export const Input = styled.input`
   position: relative;
-  width: 80%;
+  width: 100%;
   border: none;
   outline: none;
   background-color: transparent;
@@ -212,6 +202,7 @@ export const OptionsContainerStyles = css`
   position: relative;
   padding: 10px 15px;
   cursor: pointer;
+  color: white;
 `;
 
 export const OptionLine = styled.div``;
@@ -220,7 +211,7 @@ export const OptionLink = styled(Link)`
   ${OptionsContainerStyles}
 
   :hover {
-    color: maroon;
+    color: rgba(255, 255, 255, 0.5);
   }
 
   ::after {
@@ -245,7 +236,7 @@ export const OptionLink = styled(Link)`
     transform: scale(1, 1);
   }
 
-  @media only screen and (max-width: 720px) {
+  @media only screen and (max-width: 900px) {
     display: none;
   }
 `;
@@ -255,13 +246,16 @@ export const HamburgerContainer = styled.div`
   width: 30px;
   display: grid;
   place-content: center;
-  background: #fff;
+  color: white;
+  background: black;
   cursor: pointer;
 `;
+
 export const Bars = styled.div`
   width: 30px;
   height: 4px;
-  background: #000;
+  background: #fff;
+  color: white;
 
   &::before,
   &::after {
@@ -269,7 +263,8 @@ export const Bars = styled.div`
     position: absolute;
     width: 30px;
     height: 4px;
-    background: #000;
+    background: #fff;
+    color: white;
   }
 
   &::before {
@@ -295,8 +290,8 @@ export const ScrollToTop = styled.div`
   width: 50px;
   color: white;
   background-color: maroon;
-  border: 1px solid white;
-  box-shadow: 4px 2px 4px black;
+  /* border: 1px solid white;
+  box-shadow: 4px 2px 4px black; */
   border-radius: 10%;
   cursor: pointer;
   visibility: hidden;

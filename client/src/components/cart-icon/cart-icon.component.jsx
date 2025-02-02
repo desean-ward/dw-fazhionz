@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 
-import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
-
+import { IoBag } from "react-icons/io5";
 import { CartIconContainer } from "./cart-icon.styles";
 
 const CartIcon = () => {
@@ -18,7 +17,7 @@ const CartIcon = () => {
 
   return (
     <CartIconContainer onClick={toggleIsCartOpen}>
-      <ShoppingIcon className='shopping-icon' />
+    <IoBag className="shopping-icon" size={28} />
       <span className='item-count maroon'>{total}</span>
     </CartIconContainer>
   );

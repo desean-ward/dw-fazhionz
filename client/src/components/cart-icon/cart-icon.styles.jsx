@@ -10,20 +10,26 @@ export const CartIconContainer = styled.div`
     justify-content: center;
     cursor: pointer;
 
-    @media (max-width: 720px) {
-        left: -3em;
+    @media (max-width: 900px) {
+        left: -1.5em;
+        margin-top: 0.4em;
     }
 
     .shopping-icon {
-        width: 30px;
-        height: 30px;
-        margin-top: -5px;
+        width: 36px;
+        height: 36px;
+        
     }
 
     .item-count {
         position: absolute;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: bold;
-        bottom: 10px;
+        bottom: 5px;
+
+        @media (min-width: 901px) {
+        bottom: 6px;
+    }
+        
     }
 `

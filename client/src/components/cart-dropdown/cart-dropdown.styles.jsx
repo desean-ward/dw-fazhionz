@@ -10,6 +10,7 @@ export const DropdownContainer = styled(motion.div)`
   padding: 20px;
   border-top: 1px solid rgb(216, 214, 214);
   background-color: white;
+  color: black;
   box-shadow: 0 5px 5px 0 rgba(36, 31, 31, 0.5);
   top: 6em;
   right: 3rem;
@@ -23,7 +24,7 @@ export const DropdownContainer = styled(motion.div)`
 
   @media (max-width: 1000px) {
     top: 8rem;
-    right: 25vw;
+    right: 1em;
   }
 
   @media (max-width: 720px) {

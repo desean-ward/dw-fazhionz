@@ -6,7 +6,7 @@ import { HomePageContainer } from "./homepage.styles";
 import { Products } from "../../components/new-arrivals/product.styles";
 import Suspend from "../../components/suspend/suspend.component";
 
-const Hero = lazy(() => import("../../components/hero/hero2.component"));
+const Hero = lazy(() => import("../../components/hero/hero.component"));
 const BannerOne = lazy(() =>
   import("../../components/banner-one/banner-one.component")
 );

@@ -4,7 +4,7 @@ import tw from "twin.macro";
 import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
-  ${tw`md:hidden`}
+  ${tw`lg:hidden`}
   position: absolute;
 
   height: 100vh;
@@ -71,8 +71,8 @@ export const Navigation = styled.div`
     height: 30px;
     position: absolute;
     z-index: 4000;
-    top: 6em;
-    margin-right: 0.5rem;
+    top: 2em;
+    right: 2rem;
     cursor: pointer;
     opacity: 0;
 
@@ -117,7 +117,7 @@ export const HamburgerContainer = styled.div`
   //margin-left: -24px;
   cursor: pointer;
 
-  @media only screen and (min-width: 721px) {
+  @media only screen and (min-width: 900px) {
     display: none;
   }
 `;

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@material-ui/core": "^4.12.3",
     "@stripe/react-stripe-js": "^2.3.1",
     "@stripe/stripe-js": "^2.1.7",
@@ -42,6 +43,7 @@
     "redux-thunk": "^2.4.2",
     "reselect": "^4.0.0",
     "sass": "^1.43.2",
+    "split-type": "^0.3.4",
     "stripe": "^13.9.0",
     "styled-components": "^5.3.3",
     "swup": "^2.0.14",

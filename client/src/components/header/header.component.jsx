@@ -46,6 +46,9 @@ import {
   HamburgerContainer,
   Bars,
 } from "../animated-nav/animated-nav.styles.jsx";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { IoMenuSharp } from "react-icons/io5";
 
 const Header = () => {
   const controls = useAnimation();
@@ -86,6 +89,10 @@ const Header = () => {
 
     if (window.scrollY > 0) {
       header.classList.add("shadow");
+      header.style.backgroundColor = "black";
+    } else {
+      header.classList.remove("shadow");
+      header.style.backgroundColor = "transparent";
     }
     scroll.classList.toggle("active", window.scrollY > 0);
 
@@ -158,8 +165,17 @@ const Header = () => {
 
   useEffect(() => {
     return setTimeout(() => {
-      showModal();
+      // showModal();
     }, 10000);
+  }, []);
+
+  useGSAP(() => {
+    gsap.from(".header-container", {
+      top: "4rem",
+      opacity: 0,
+      duration: 1,
+      delay: 9,
+    });
   }, []);
 
   return (
@@ -173,17 +189,18 @@ const Header = () => {
         auth={auth}
         currentUser={currentUser}
       />
-      <HeaderTop>
+      {/* <HeaderTop>
         <HeaderMessage id='message' currentUser={currentUser} />
-      </HeaderTop>
+      </HeaderTop> */}
 
-      <HeaderContainer className='header-container shadow'>
+      <HeaderContainer className='header-container'>
         <Left className='header-left'>
-          <Language className='language'>Search</Language>
+          <Language className=' language'>Search</Language>
 
           <SearchContainer ref={searchRef} className='search'>
             <FaSearch
               className='search-icon'
+              size={14}
               onMouseEnter={() => {
                 searchRef.current.classList.add("search-open");
                 inputRef.current.style.visibility = "visible";
@@ -274,7 +291,7 @@ const Header = () => {
           <CartDropdown />
 
           <HamburgerContainer className='hamburger' onClick={openMenu}>
-            <Bars className='bars' />
+          <IoMenuSharp size={42}/>
           </HamburgerContainer>
         </Right>
       </HeaderContainer>

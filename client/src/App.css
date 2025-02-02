@@ -17,16 +17,16 @@ body {
   font-weight: 400;
   font-family: "Poppins", sans-serif !important;
   font-family: 'Oi', cursive;
-  /* font-size: clamp(0.8rem, 1vw, 1.5rem); */
+  font-size: 1.5rem;
+  /* font-size: clamp(0.8rem, 1vw, 1.5rem + 1px); */
   width: 100vw;
   overflow-x: hidden;
-  }
+}
 
 body .fat-face {
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Greater Theory', sans-serif;
   font-weight: 900;
-  text-shadow: -1px -1px 0 grey;
-  text-shadow: 1px 1px 0 black;
+  font-size: 5vw;
  }
 
  body .maroon {
@@ -35,6 +35,12 @@ body .fat-face {
 
  body .strong {
   font-weight: bolder;
+}
+
+@font-face {
+  font-family: "Greater Theory";
+  src: url("./assets/fonts/greater-theory.otf"
+  ) format("opentype");
 }
 
 
@@ -73,3 +79,136 @@ a {
   gap: 3.5em;
   z-index: 1000;
 }
+
+.word h1 {
+  font-size: 5vw;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 8vw;
+  }
+
+  @media screen and (max-width: 680px) {
+    font-size: 10vw;
+  }
+}
+
+#logo-title {
+  margin-bottom: -8px;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+
+  @media screen and (max-width: 680px) {
+    font-size: 1.25rem;
+  }
+}
+
+.featured {
+  font-size: 1.5rem;
+  margin-top: -8em;
+
+  @media screen and (max-width: 900px) {
+    margin-top: -16em;
+  }
+
+  @media screen and (max-width: 680px) {
+    margin-top: -7.5em;
+  }
+}
+
+.mask-clip-path {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.img:first-child {
+  opacity: 1;
+}
+
+.images.stacked-container {
+  position: absolute;
+  left: 1.25em;
+  bottom: 2em; 
+  width: auto;
+  height: auto; 
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: start;
+  gap: 0.5em; 
+  transform: none;
+  will-change: transform;
+
+  @media screen and (max-width: 1000px) {
+    top: 42vh;
+    flex-direction: row-reverse; 
+  }
+
+  @media screen and (max-width: 680px) {
+    top: 37vh;
+    left: 0;
+    flex-direction: row-reverse; 
+  }
+}
+
+.img.stacked {
+  position: relative;
+  width: 150px;
+  height: 100px;
+  transform: none;
+  top: auto;
+  left: auto;
+  opacity: 1;
+  will-change: transform;
+}
+
+.site-info p {
+  width: "100%";
+}
+
+.site-info p.copy {
+  font-size: 1.5rem;
+}
+
+.site-info:nth-child(2) {
+  display: flex;
+}
+
+#address, #socials {
+  flex: 1;
+}
+#address p, #socials p {
+  line-height: 1.25;
+}
+
+.tagline, .word, .nav-item, .line, #cover-image {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.tageline,
+.word h1,
+.word p,
+.nav-item p,
+.site-info h2,
+.line span, 
+.line p {
+  position: relative;
+  will-change: transform;
+}
+
+.site-info h1,
+.line span {
+  display: flex;
+  transform: translateY(100%);
+}
+
+.tageline,
+.word h1,
+.word p,
+.nav-item p, 
+.line p,
+.site-info.col {
+  transform: translateY(150%);
+}
+
+
