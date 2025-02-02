@@ -5,11 +5,11 @@ const Suspend = ({ children }) => {
   return (
     <Suspense
       fallback={
-        <div className='fallback'>
+        <div className='text-white bg-black fallback'>
           <h3>Loading</h3> <br />
           <PropagateLoader
             className='fallback'
-            color='black'
+            color='white'
             loading={true}
             size={15}
           />
