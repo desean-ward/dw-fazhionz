@@ -223,7 +223,7 @@ export const OptionLink = styled(Link)`
     width: 80%;
     left: 10%;
     margin: 5px auto;
-    height: 0.175rem;
+    /* height: 0.175rem; */
     background-color: maroon;
   }
 

@@ -82,7 +82,7 @@ const Newsletter = () => {
 		<>
 			<Container>
 				<div className='content'>
-					<Title>Newsletter</Title>
+					<Title className="fat-face">Newsletter</Title>
 					<Description>
 						Subscribe to receive updates on deals and new arrivals
 					</Description>

@@ -79,6 +79,12 @@ export const NavItem = tw.li`
     cursor-pointer
 `;
 
+export const GridBackgroundContainer = tw.div`
+    absolute 
+    inset-0
+    opacity-30
+`
+
 export const CoverImageContainer = tw.div`
     absolute 
     right-0

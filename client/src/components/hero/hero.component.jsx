@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {
   CoverImage,
   CoverImageContainer,
+  GridBackgroundContainer,
   HeroContainer,
   HeroContent,
   HeroImage,
@@ -142,7 +143,11 @@ const Hero = () => {
           <Revealer className='top-0 r-1'></Revealer>
           <Revealer className='bottom-0 r-2'></Revealer>
         </RevelearsContainer>
-
+        
+        <GridBackgroundContainer>
+          <img src="/images/hero/grid-background.png" alt="Grid Background" className="absolute inset-0" />
+        </GridBackgroundContainer>
+        
         {/* Hero Images Container */}
         <HeroImagesContainer className='images'>
           <HeroImage

@@ -29,6 +29,10 @@ body .fat-face {
   font-size: 5vw;
  }
 
+ .fat-face h2 {
+  font-size: 5vw;
+ }
+
  body .maroon {
     color: maroon;
  }
