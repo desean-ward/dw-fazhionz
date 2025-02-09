@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Fragment } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
 
 import {
   auth,
@@ -16,7 +16,7 @@ import {
 } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
-import HeaderMessage from "../header-message/header-message.component";
+// import HeaderMessage from "../header-message/header-message.component";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import AnimatedNav from "../animated-nav/animated-nav.component";
@@ -26,7 +26,7 @@ import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 import {
-  HeaderTop,
+  // HeaderTop,
   HeaderContainer,
   Left,
   Right,
@@ -51,7 +51,10 @@ import gsap from "gsap";
 import { IoMenuSharp } from "react-icons/io5";
 
 const Header = () => {
+  const [isScrolling, setIsScrolling] = useState(false);
+  
   const controls = useAnimation();
+  const location = useLocation();
   const [ref, inView] = useInView();
 
   const variants = {
@@ -83,14 +86,15 @@ const Header = () => {
   const cartItems = useSelector(selectCartItems);
 
   window.addEventListener("scroll", () => {
-    var scroll = document.querySelector(".scrollTopArrow");
-
-    var header = document.querySelector(".header-container");
+    const scroll = document.querySelector(".scrollTopArrow");
+    const header = document.querySelector(".header-container");
+    const links = document.querySelectorAll(".nav-link");
 
     if (window.scrollY > 0) {
-      header.classList.add("shadow");
+      setIsScrolling(true);
       header.style.backgroundColor = "black";
     } else {
+      setIsScrolling(false);
       header.classList.remove("shadow");
       header.style.backgroundColor = "transparent";
     }
@@ -189,9 +193,6 @@ const Header = () => {
         auth={auth}
         currentUser={currentUser}
       />
-      {/* <HeaderTop>
-        <HeaderMessage id='message' currentUser={currentUser} />
-      </HeaderTop> */}
 
       <HeaderContainer className='header-container'>
         <Left className='header-left'>
@@ -248,18 +249,18 @@ const Header = () => {
         </Left>
 
         <Right className='header-right'>
-          <OptionsContainer>
-            <OptionLink className='btn-ctr' to='/'>
+          <OptionsContainer id="nav-links" path={location.pathname} scrolling={isScrolling}>
+            <OptionLink className='btn-ctr nav-link' to='/'>
               HOME
               <OptionLine />
             </OptionLink>
 
-            <OptionLink className='btn-ctr' to='/shop'>
+            <OptionLink className='btn-ctr nav-link' to='/shop'>
               SHOP
               <OptionLine />
             </OptionLink>
 
-            <OptionLink className='btn-ctr' to='/contact-us'>
+            <OptionLink className='btn-ctr nav-link' to='/contact-us'>
               CONTACT
               <OptionLine />
             </OptionLink>
@@ -285,13 +286,13 @@ const Header = () => {
             }
           </OptionsContainer>
 
-          <CartIcon />
+          <CartIcon path={location.pathname} scrolling={isScrolling} />
 
           {/* Toggle the Shopping Cart Dropdown */}
           <CartDropdown />
 
           <HamburgerContainer className='hamburger' onClick={openMenu}>
-          <IoMenuSharp size={42}/>
+            <IoMenuSharp size={42} />
           </HamburgerContainer>
         </Right>
       </HeaderContainer>

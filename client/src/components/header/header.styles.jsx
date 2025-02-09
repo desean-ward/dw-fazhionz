@@ -22,6 +22,8 @@ export const HeaderContainer = styled.div`
     p-6 pr-8
     w-full
     flex justify-between items-center
+    transition-colors 
+    duration-500
   `}
 
   /* MEDIA QUERIES */
@@ -196,22 +198,31 @@ export const OptionsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+
+  /* ${tw`transition-colors duration-500`} */
+
+  a {
+    color: ${(props) =>
+      props.path === "/" || props.scrolling ? "white" : "black"};
+  }
 `;
 
 export const OptionsContainerStyles = css`
   position: relative;
   padding: 10px 15px;
   cursor: pointer;
-  color: white;
 `;
 
-export const OptionLine = styled.div``;
+export const OptionLine = tw.div`
+  relative 
+  z-10
+`;
 
 export const OptionLink = styled(Link)`
   ${OptionsContainerStyles}
 
   :hover {
-    color: rgba(255, 255, 255, 0.5);
+    color: maroon;
   }
 
   ::after {
@@ -234,6 +245,7 @@ export const OptionLink = styled(Link)`
 
   &.btn-ctr:hover::after {
     transform: scale(1, 1);
+    color: maroon;
   }
 
   @media only screen and (max-width: 900px) {

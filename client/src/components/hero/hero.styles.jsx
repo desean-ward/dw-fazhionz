@@ -82,12 +82,20 @@ export const NavItem = tw.li`
 export const GridBackgroundContainer = tw.div`
     absolute 
     inset-0
-    opacity-30
+    opacity-50
+    -z-10
+`
+
+export const GridBackground = tw.img`
+    w-full 
+    h-full
+    object-cover
 `
 
 export const CoverImageContainer = tw.div`
     absolute 
-    right-0
+    right-[1.5em]
+    -translate-x-[1.5em]
     -bottom-[11.5em]
     md:bottom-[2em] 
     w-full

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {
   CoverImage,
   CoverImageContainer,
+  GridBackground,
   GridBackgroundContainer,
   HeroContainer,
   HeroContent,
@@ -143,11 +144,7 @@ const Hero = () => {
           <Revealer className='top-0 r-1'></Revealer>
           <Revealer className='bottom-0 r-2'></Revealer>
         </RevelearsContainer>
-        
-        <GridBackgroundContainer>
-          <img src="/images/hero/grid-background.png" alt="Grid Background" className="absolute inset-0" />
-        </GridBackgroundContainer>
-        
+
         {/* Hero Images Container */}
         <HeroImagesContainer className='images'>
           <HeroImage
@@ -231,7 +228,7 @@ const Hero = () => {
         </Navbar> */}
 
         {/* Cover Image */}
-        <CoverImageContainer id='cover-image'>
+        <CoverImageContainer id='cover-image' className="right-2">
           <Revealer id='r-3' />
           <CoverImage src='/images/hero/hero-cover.jpeg' alt='Cover Image' />
         </CoverImageContainer>
@@ -262,6 +259,13 @@ const Hero = () => {
           </SiteInfo>
         </SiteInfoContainer>
       </HeroContainer>
+      <GridBackgroundContainer id='bg-grid-container'>
+        <GridBackground
+          id='bg-grid'
+          src='/images/hero/grid-background.png'
+          alt='Grid Background'
+        />
+      </GridBackgroundContainer>
     </HeroWrapper>
   );
 };

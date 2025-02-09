@@ -7,7 +7,7 @@ import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 import { IoBag } from "react-icons/io5";
 import { CartIconContainer } from "./cart-icon.styles";
 
-const CartIcon = () => {
+const CartIcon = ({path, scrolling}) => {
   const total = useSelector(selectCartItemsCount);
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const CartIcon = () => {
   };
 
   return (
-    <CartIconContainer onClick={toggleIsCartOpen}>
+    <CartIconContainer onClick={toggleIsCartOpen} path={path} scrolling={scrolling}>
     <IoBag className="shopping-icon" size={28} />
       <span className='item-count maroon'>{total}</span>
     </CartIconContainer>
