@@ -12,6 +12,8 @@ export const HeaderTop = styled.div``;
 export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
+  color: ${(props) =>
+    props.path === "/" || props.scrolling ? "white" : "black"};
 
   transition: transform 0.5s ease;
 
@@ -54,9 +56,10 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Left = tw.div`
-  flex items-center justify-start gap-2
-
-  
+  flex 
+  items-center 
+  justify-start 
+  gap-2
 `;
 
 export const Right = styled.div`
@@ -82,7 +85,9 @@ export const TitleContainer = styled(Link)`
 export const Language = styled.span`
   display: flex;
   align-items: start;
-  color: white;
+  /* color: white; */
+  color: ${(props) =>
+    props.path === "/" || props.scrolling ? "white" : "black"};
 
   @media only screen and (max-width: 540px) {
     display: none;
@@ -93,10 +98,16 @@ export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${(props) =>
+    props.path === "/" || props.scrolling ? "white" : "black"};
   height: 1.5em;
   width: 1.5em;
   padding: 0 0.5em 0 0.5em;
-  border: 1px solid rgba(255, 255, 255, 05);
+  border: ${(props) =>
+    props.path === "/" || props.scrolling
+      ? "1px solid rgba(255, 255, 255, 05)"
+      : "1px solid black"};
+  /* border: 1px solid rgba(255, 255, 255, 05); */
   transition: 500ms width ease-in-out, 500ms ease-in-out,
     500ms border-radius ease-in-out;
 

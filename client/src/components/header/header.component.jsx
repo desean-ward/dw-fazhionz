@@ -9,18 +9,18 @@ import {
   updateCartInDB,
 } from "../../utils/firebase/firebase.utils.js";
 
-import { clearCart, toggleCartHidden } from "../../redux/cart/cart.actions";
+import { clearCart, toggleCartHidden } from "../../redux/cart/cart.actions.js";
 import {
   selectCartHidden,
   selectCartItems,
-} from "../../redux/cart/cart.selectors";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
+} from "../../redux/cart/cart.selectors.js";
+import { selectCurrentUser } from "../../redux/user/user.selectors.js";
 
 // import HeaderMessage from "../header-message/header-message.component";
-import CartIcon from "../cart-icon/cart-icon.component";
-import CartDropdown from "../cart-dropdown/cart-dropdown.component";
-import AnimatedNav from "../animated-nav/animated-nav.component";
-import GlassModal from "../glass-popup/glass-popup.component";
+import CartIcon from "../cart-icon/cart-icon.component.jsx";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component.jsx";
+import AnimatedNav from "../animated-nav/animated-nav.component.jsx";
+import GlassModal from "../glass-popup/glass-popup.component.jsx";
 
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -37,7 +37,7 @@ import {
   OptionLine,
   OptionLink,
   ScrollToTop,
-} from "./header.styles";
+} from "./header.styles.jsx";
 
 import { FaSearch, FaWindowClose } from "react-icons/fa";
 import { RiDeleteBack2Line } from "react-icons/ri";
@@ -194,9 +194,9 @@ const Header = () => {
         currentUser={currentUser}
       />
 
-      <HeaderContainer className='header-container'>
+      <HeaderContainer className='header-container' path={location.pathname}>
         <Left className='header-left'>
-          <Language className=' language'>Search</Language>
+          <Language path={location.pathname}>Search</Language>
 
           <SearchContainer ref={searchRef} className='search'>
             <FaSearch

@@ -23,7 +23,7 @@ import PageNotFound from "./components/page-not-found/page-not-found.component";
 
 import "./App.css";
 
-import './assets/fonts/greater-theory.otf'
+import "./assets/fonts/greater-theory.otf";
 
 import Product from "./routes/product/product.component";
 import {
@@ -92,7 +92,6 @@ const App = () => {
   return (
     <div>
       <ScrollToTop />
-
       <AnimatePresence exitBeforeEnter>
         <Suspend>
           <Routes>

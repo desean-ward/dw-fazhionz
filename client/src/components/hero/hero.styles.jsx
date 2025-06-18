@@ -1,156 +1,158 @@
-import tw from "twin.macro";
+import tw, { styled } from "twin.macro";
+import { motion } from "framer-motion";
 
-export const HeroWrapper = tw.section`
-    relative 
-    z-[10]
-    w-screen 
-    h-screen
-    bg-black
-    text-white
-    overflow-hidden
-    px-8
+export const HeroContainer = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  background-color: white;
+  padding-bottom: 4em;
+  overflow-x: hidden;
 `;
 
-export const HeroContainer = tw.div`
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  background-color: black;
+  width: 100%;
+  min-height: 12.3rem;
+  display: none;
+
+  @media (min-width: 690px) {
+    visibility: hidden;
+  }
 `;
 
-export const RevelearsContainer = tw.div`
-    fixed 
-    top-0 
-    left-0 
-    w-screen 
-    h-screen 
-    flex 
-    flex-col 
-    z-[2] 
+export const ImageContainer = styled.div`
+  width: 100%;
+  max-height: 750px;
+
+  img {
+    object-fit: contain;
+    width: 100%;
+  }
 `;
 
-export const Revealer = tw.div`
-    flex-1 
-    h-full
-    w-full 
-    bg-black
-    absolute
+export const HeroContent = styled.div`
+  width: 100%;
+  color: white;
+  line-height: 0.75;
+  z-index: 50;
+  overflow: hidden;
+  opacity: 1;
+
+  .overlay {
+    width: 100%;
+  }
 `;
 
-export const HeroImagesContainer = tw.div`
-    w-full 
-    h-full 
-    absolute 
-    left-0 
-    top-0
-    origin-[center center] 
-    will-change-transform
+export const HeroVerbiage = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1em 0;
+  z-index: 2;
+
+  .dwf {
+    ${tw`
+      lg:text-8xl md:text-6xl text-3xl
+    `}
+    position: relative;
+  }
+  .signature {
+    ${tw`
+      lg:text-9xl md:text-7xl text-4xl
+      lg:ml-4 ml-2
+    `}
+    width: 50%;
+    font-family: "Mr Dafoe", cursive;
+    text-decoration: underline;
+    text-shadow: 4px 4px 4px maroon;
+    z-index: -1;
+  }
 `;
 
-export const HeroImage = tw.img`
-    absolute 
-    left-0 
-    top-0
-    w-full 
-    h-full 
-    will-change-transform 
-    opacity-0
-    
+export const VerbiageBar = styled(motion.div)`
+  font-family: "Poppins";
+  color: maroon;
+  background-color: maroon;
+  font-size: 1rem;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-content: end;
+  justify-content: center;
+  top: 160px;
+  white-space: nowrap;
+  text-shadow: 0.1em 0.1em 0.001em white;
+  padding: 0.5em;
+  z-index: -1;
+
+  @media (width < 900px) {
+    top: 100px;
+  }
+
+  @media (width < 540px) {
+    visibility: hidden;
+    opacity: 0;
+  }
 `;
 
-export const HeroContent = tw.div`
-    relative 
-    h-full 
+export const Signature = styled.div`
+  width: 50%;
+  font-size: clamp(4rem, 1.7273rem + 7.2727vw, 9rem);
+  font-family: "Mr Dafoe", cursive;
+  text-decoration: underline;
+  text-shadow: 0.025em 0.05em maroon;
+  z-index: -1;
+
+  @media (width < 1101px) {
+    p {
+      display: none;
+    }
+  }
+`;
+
+export const LinesContainer = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 200px;
+  z-index: 1;
+`;
+
+export const Lines = styled.div`
+  width: 100%;
+  padding-bottom: 0.5em;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    z-index: 1000;
+  }
+`;
+
+export const Sale = tw.div`
+  md:w-[200px] lg:w-[250px] xl:w-[350px] w-[100px]
+`;
+
+export const SaleImage = styled.div`
+  ${tw`
     w-full
-`;
-
-export const Navbar = tw.ul`
-    absolute 
-    right-0 
-    w-1/2 
-    p-[2em] 
-    flex 
-    justify-end 
-    gap-[1em]
-`;
-
-export const NavItem = tw.li`
-    relative 
-    text-lg
-    font-medium
-    list-none
-    hover:text-[maroon]
-    cursor-pointer
-`;
-
-export const GridBackgroundContainer = tw.div`
-    absolute 
-    inset-0
-    opacity-50
-    -z-10
-`
-
-export const GridBackground = tw.img`
-    w-full 
     h-full
-    object-cover
-`
+    rounded-full
+  `}
 
-export const CoverImageContainer = tw.div`
-    absolute 
-    right-[1.5em]
-    -translate-x-[1.5em]
-    -bottom-[11.5em]
-    md:bottom-[2em] 
-    w-full
-    md:w-[40%] 
-    h-[50%]
-    md:h-[40%]
-    scale-y-0
-    rounded-lg 
-    overflow-hidden
-`;
-
-export const CoverImage = tw.img`
-    w-full 
-    h-full
-    saturate-0
-    object-fill
-`;
-
-export const SiteInfoContainer = tw.div`
-    absolute
-    top-[50%]
-    md:top-[72.5%]
-    lg:top-[46%] 
-    md:w-1/2 
-    h-1/2 
-    flex 
-    flex-col 
-    lg:flex-row
-`;
-
-export const SiteInfo = tw.div`
-    flex 
-    w-full
-    items-end
-    lg:mb-[-1rem]
-`;
-
-export const SiteLogo = tw.div`
-    relative 
-    top-24 
-    md:top-36 
-    lg:top-28
-    
-    flex 
-    flex-col
-    items-start
-    lg:flex-row 
-    lg:items-end
-    gap-[1em]
-`;
-
-export const LogoTitle = tw.div`
-    text-[10vw]
-    md:text-[5vw]
-    font-medium
-    leading-none
-    tracking-[0.01em]
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
 `;
